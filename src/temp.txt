@@ -1,0 +1,22 @@
+import React from 'react';
+const ChildComponent = (props) => {
+    return(
+          <h2> {props.message} </h2>
+    );
+}
+export default ChildComponent;
+
+import React from 'react'
+import ChildComponent from './ChildComponent';
+
+class ParentComponent extends React.Component {
+render(){
+    return(
+    <div>
+        <ChildComponent message="Data from first component"/>
+    </div>
+      );
+   }
+}
+
+export default ParentComponent;

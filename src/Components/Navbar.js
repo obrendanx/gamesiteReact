@@ -10,7 +10,6 @@ import Home from "../Pages/Home";
 import About from "../Pages/About";
 import Fourms from "../Pages/Fourms";
 import Login from "../Pages/Login";
-import Fetchapi from "../Components/Fetchapi";
 import companyLogo from "../images/logo.jpg";
 
 
@@ -70,7 +69,6 @@ render(){
         <Route path="/about" component={About}/>
         <Route path="/fourms" component={Fourms}/>
         <Route path="/login" component={Login}/>
-        <Route path="/fetchapi" component={Fetchapi}/>
       </Switch>
       </div>
       </Router>
