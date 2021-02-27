@@ -20,3 +20,70 @@ render(){
 }
 
 export default ParentComponent;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//stores items form api
+//know when items have been loaded from api
+// items: [],
+// isLoaded: false,
+
+// componentDidMount() {
+//
+//   fetch('https://jsonplaceholder.typicode.com/users')
+//     .then(res => res.json())
+//     .then(json => {
+//       this.setState({
+//         isLoaded: true,
+//         items: json,
+//       })
+//     });
+//
+// }
+
+// handleChange(event){
+//   this.setState({value: event.target.value});
+// }
+//
+// handleSubmit(event){
+//   alert('A name was submitted: ' + this.state.value);
+//   event.preventDefault();
+// }
+
+// function Users(props){
+//   return(
+//     <ul>
+//       {items.map(item => (
+//         //key is used to let js know which items have been  updated or modified
+//         <li key={item.id}>
+//           Name: {item.name} | Email: {item.email}
+//         </li>
+//       ))};
+//     </ul>
+//   );
+// }
+
+// function returnUsers(props){
+//   var { isLoaded, items } = this.state;
+//
+//   if (!isLoaded) {
+//     return <div>Loading ...</div>;
+//   }
+//
+//   else{
+//     return <Users />
+//   }
+// }

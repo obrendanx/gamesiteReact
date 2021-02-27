@@ -46,13 +46,10 @@ render(){
           </div>
           <ul className="acc-ul">
             <li>
-              <h3>{this.props.loggedInStatus}</h3>
+              <h3>{this.state.loggedInStatus}</h3>
             </li>
             <li>
               <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/fetchapi">fetch</Link>
             </li>
           </ul>
         </nav>
@@ -66,7 +63,12 @@ render(){
           <Home {...props} loggedInStatus={this.state.loggedInStatus} />
         )}
         />
-        <Route path="/about" component={About}/>
+        <Route
+        path="/about"
+        render={props => (
+          <About {...props} loggedInStatus={this.state.loggedInStatus} />
+        )}
+        />
         <Route path="/fourms" component={Fourms}/>
         <Route path="/login" component={Login}/>
       </Switch>
