@@ -10,6 +10,7 @@ import Home from "../Pages/Home";
 import About from "../Pages/About";
 import Fourms from "../Pages/Fourms";
 import Login from "../Pages/Login";
+import Welcome from "../Pages/Welcome";
 import companyLogo from "../images/logo.jpg";
 
 
@@ -19,7 +20,7 @@ class Navbar extends Component {
 
     this.state = {
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
+      user: {},
     }
 };
 
@@ -71,6 +72,7 @@ render(){
         />
         <Route path="/fourms" component={Fourms}/>
         <Route path="/login" component={Login}/>
+        <Route path="/welcome" component={Welcome}/>
       </Switch>
       </div>
       </Router>
