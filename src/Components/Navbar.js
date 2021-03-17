@@ -11,6 +11,7 @@ import About from "../Pages/About";
 import Fourms from "../Pages/Fourms";
 import Login from "../Pages/Login";
 import Welcome from "../Pages/Welcome";
+import Searchbar from "./Searchbar";
 import companyLogo from "../images/logo.jpg";
 
 

@@ -1,0 +1,68 @@
+@import 'components/header.scss';
+@import 'components/footer.scss';
+@import 'components/home.scss';
+@import 'components/about.scss';
+@import 'mixins.scss';
+
+/*
+Colors:
+#D32F2F
+#FFCDD2
+#F44336
+#FFFFFF
+#607D8B
+#212121
+#757575
+#BDBDBD
+*/
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  overflow-x:hidden;
+  width:80%;
+  margin:auto;
+}
+
+.App{
+  width:80%;
+  min-height:100%;
+  background:blue;
+  margin:auto;
+  @include flex(flex, column, nowrap);
+}
+
+@media screen and (max-width: 770px) {
+
+  body{
+    width:100%;
+    .App{
+      width:100%;
+    }
+  }
+
+  .Navbar{
+    height:10vh;
+    nav{
+      @include flex(flex, row, wrap-reverse);
+      .nav-left{
+        height:6vh;
+        width:100%;
+      }
+      .acc-ul{
+        height:4vh;
+        width:100%;
+        background:#D32F2F;
+        a{
+          height:4vh;
+          line-height:4vh;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,69 @@
+@import '../mixins.scss';
+
+/* navigation styles */
+.Navbar{
+  height:6vh;
+  background:#F44336;
+  nav{
+    height:100%;
+    width:100%;
+    @include flex(flex, row, nowrap);
+    .nav-left{
+      height:6vh;
+      width:78%;
+    }
+    .acc-ul{
+      height:6vh;
+      width:22%;
+    }
+  }
+}
+
+.logo{
+  height:100%;
+  width:100%;
+}
+
+.Navbar li{
+  display:inline-block;
+  margin-left:10px;
+}
+
+.Navbar a{
+  display:block;
+  height:6vh;
+  width:50px;
+  line-height:6vh;
+  text-decoration:none;
+  @include textDisplay(0.9em, normal, 'Roboto', #fff);
+}
+
+.logo-link{
+  margin-top:7.5px;
+  float:left;
+}
+
+.logo-link a{
+  height:40px;
+  width:40px;
+}
+
+.Navbar h3{
+  font-size:0.8em;
+  font-family: 'Roboto', sans-serif;
+  color:#212121;
+}
+
+.main-nav-ul{
+  float:left;
+  position:relative;
+}
+
+
+// Search bar styles
+.barStyle{
+  width:20rem;
+  background:#F2F1F9;
+  border:none;
+  padding:0.5rem;
+}
