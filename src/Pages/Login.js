@@ -1,38 +1,34 @@
-import React, { Component } from 'react';
-import Navbar from '../Components/Navbar'
+import React, { useState } from 'react';
+import LoginForm from '../Components/LoginForm.js'
 
-class Login extends Component {
-  constructor(props){
-    super(props);
-
-    this.state={
-      name:'',
-      password:'',
-    }
-};
-
-  handleChange =  (e) =>{
-    const {name,value} = e.target;
-    this.setState({[name]:value});
+function Login() {
+  const adminUser = {
+    email: "admin@admin.com",
+    password: "admin123"
   }
 
-  handleSubmit = (e) =>{
-    e.preventDefault();
-    this.props.history.push('/Welcome')
+  const [user, setUser] = useState({name: "", email: ""});
+  const [error, setError] = useState("");
+
+  const Login = details => {
+    console.log(details);
   }
 
-  render(){
-      return(
-      <div>
-          <form onSubmit = {this.handleSubmit}>
-            <input type='name' name='name' placeholder='name...' required onChange = {this.handleChange}/>
-            <input type='password' name='pwd' placeholder='password...' required onChange = {this.handleChange}/>
-            <button onSubmit = {this.handleSubmit}>Login</button>
-            <h1>Hello {this.state.name}</h1>
-          </form>
+  const Logout = () => {
+    console.log("logout");
+  }
+
+    return(
+      <div className="Login">
+          {(user.email != "") ? (
+            <div className="welcome">
+              <h2>Welcome, <span>{user.name}</span></h2>
+              <button>Logout</button>
+            </div>
+          ) : (
+            <LoginForm />
+          )}
       </div>
-        );
-     }
-  }
-
+    );
+}
 export default Login;

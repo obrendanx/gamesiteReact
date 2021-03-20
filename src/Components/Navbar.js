@@ -12,6 +12,7 @@ import Fourms from "../Pages/Fourms";
 import Login from "../Pages/Login";
 import Welcome from "../Pages/Welcome";
 import Searchbar from "./Searchbar";
+import LoggedIn from "./LoggedIn";
 import companyLogo from "../images/logo.jpg";
 
 
@@ -47,12 +48,11 @@ render(){
             </ul>
           </div>
           <ul className="acc-ul">
-            <li>
-              <h3>{this.state.loggedInStatus}</h3>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            <div className="logStat">
+              <li>
+                <Link to="/login" className="login">Login</Link>
+              </li>
+            </div>
           </ul>
         </nav>
       </div>

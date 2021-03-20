@@ -10,11 +10,12 @@
     @include flex(flex, row, nowrap);
     .nav-left{
       height:6vh;
-      width:78%;
+      width:95%;
     }
     .acc-ul{
       height:6vh;
-      width:22%;
+      width:5%;
+      margin-right:10px;
     }
   }
 }
