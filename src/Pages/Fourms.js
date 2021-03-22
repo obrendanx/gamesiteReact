@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react'
 
-const Fourms = (props) => {
-    return(
-          <div className="Fourms">
-            <h1>Fourms</h1>
-          </div>
-    );
+function Fourms() {
+    return (
+        <div>
+            <h2>Fourms</h2>
+        </div>
+    )
 }
-export default Fourms;
+
+export default Fourms

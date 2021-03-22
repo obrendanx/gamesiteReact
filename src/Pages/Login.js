@@ -1,34 +1,11 @@
-import React, { useState } from 'react';
-import LoginForm from '../Components/LoginForm.js'
+import React from 'react'
 
 function Login() {
-  const adminUser = {
-    email: "admin@admin.com",
-    password: "admin123"
-  }
-
-  const [user, setUser] = useState({name: "", email: ""});
-  const [error, setError] = useState("");
-
-  const Login = details => {
-    console.log(details);
-  }
-
-  const Logout = () => {
-    console.log("logout");
-  }
-
-    return(
-      <div className="Login">
-          {(user.email != "") ? (
-            <div className="welcome">
-              <h2>Welcome, <span>{user.name}</span></h2>
-              <button>Logout</button>
-            </div>
-          ) : (
-            <LoginForm />
-          )}
-      </div>
-    );
+    return (
+        <div>
+            <h1>Login</h1>
+        </div>
+    )
 }
-export default Login;
+
+export default Login

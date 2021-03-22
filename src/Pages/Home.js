@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
-import LgInfoBox from '../Components/LgInfoBox';
+import React from 'react'
 
-const Home = (props) => {
-    return(
-        <div className="Home">
-            <h1>Home</h1>
-            <LgInfoBox compNum="1"/>
-            <LgInfoBox compNum="2"/>
-            <LgInfoBox compNum="3"/>
+function Home() {
+    return (
+        <div>
+            <h2>Home</h2>
         </div>
-    );
+    )
 }
-export default Home;
+
+export default Home
