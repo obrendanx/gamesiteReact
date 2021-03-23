@@ -20,18 +20,36 @@ Colors:
 }
 
 body{
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 .App{
   @include flex(flex, column, nowrap);
-  min-height:100%;
-  width:80%;
-  margin:auto;
+  min-height: 100%;
+  width: 80%;
+  margin: auto;
 }
 
 @media screen and (max-width: 770px) {
 
-
+  .navbar{
+    height: 12vh;
+    .navbar-ul{
+      flex-direction: column-reverse !important;
+      .nav-left{
+        height: 7vh;
+        width: 100%;
+      }
+      .nav-right{
+        height: 5vh;
+        width: 100%;
+        background: #F44336;
+        a{
+          height: 5vh;
+          line-height: 5vh;
+        }
+      }
+    }
+  }
 
 }

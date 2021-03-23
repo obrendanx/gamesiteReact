@@ -10,11 +10,14 @@
         a{
             display: block;
             height:7vh;
-            width: 10%;
             text-decoration: none;
             line-height:7vh;
             margin:0px 5px 0px 5px;
             @include textDisplay(0.8em, normal, Roboto, #fff );
+            transition:0.7s;
+        }
+        a:hover{
+            color:#181616;
         }
         li{
             margin-left:10px;
@@ -24,16 +27,25 @@
             width: 60%;
             align-self: flex-start;
             @include flex(flex, row,  nowrap);
+            img{
+                height:7vh;
+                
+            }
         }
         .nav-right{
             height: 100%;
             width: 40%;
-            background-color: purple;
             align-self: flex-end;
             @include flex(flex, row,  nowrap);
-            a{
-                display: bl;
-            }
+            justify-content: flex-end;
+            padding-right:10px;
         }
     }
+}
+
+.user-name{
+    color:#212121 !important;
+}
+.user-name:hover{
+    text-decoration: underline !important;
 }
