@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import logo from '../images/logo.jpg'
 
-function Nav() {
-    return (
-        <div>
+class Nav extends Component {
+    constructor(props) {
+        super(props)
+    
+    }
+    
+
+    render() {
+        var loginMessage = "";
+
+        if (this.props.loginStat == false){
+            loginMessage = this.props.message;
+        } else{
+            loginMessage = this.props.updateMessage;
+        }
+
+        return (
+            <div>
+                <div>
             <nav className="navbar">
                 <ul className="navbar-ul">
                     
@@ -25,7 +41,7 @@ function Nav() {
 
                     <div className="nav-right">
                         <Link to="/profile/id" class="user-name">
-                            <li>Username</li>
+                            <li>{loginMessage}</li>
                         </Link>
                         <Link to="/login">
                             <li>Login</li>
@@ -35,7 +51,10 @@ function Nav() {
                 </ul>
             </nav>
         </div>
-    )
+            </div>
+        )
+    }
 }
 
 export default Nav
+

@@ -13,13 +13,27 @@ class App extends Component {
   constructor(props){
     super(props);
 
+    this.state = {
+      loginMessage: "NOT_LOGGED_IN",
+      loggedInStat: false
+    }
+
+    this.updateMessage = this.loginMessageUpdate.bind(this)
+};
+
+loginMessageUpdate() {
+  if(this.state.loggedInStat == true){
+    this.setState({
+      loginMessage: "LOGGED_IN"
+    })
+  }
 };
 
 render(){
     return (
       <Router>
       <div className="App">
-        <Nav />
+        <Nav message={this.state.loginMessage} loginStat={this.state.loggedInStat}/>
         <Switch>
         <Route path="/" exact component={Home}/>
         <Route path="/about" component={About}/>
