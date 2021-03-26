@@ -11,12 +11,18 @@ class Nav extends Component {
 
     render() {
         var loginMessage = "";
+        var loginBtnText = "";
 
+        // checks to see if loginstat is true and changes login message depeding on the answer
         if (this.props.loginStat == false){
-            loginMessage = this.props.message;
+            loginMessage = "NOT_LOGGED_IN";
+            loginBtnText = "Login";
         } else{
-            loginMessage = this.props.updateMessage;
+            loginMessage = "LOGGED_IN";
+            loginBtnText = "Logout";
         }
+
+        console.log(this.props);
 
         return (
             <div>
@@ -44,7 +50,7 @@ class Nav extends Component {
                             <li>{loginMessage}</li>
                         </Link>
                         <Link to="/login">
-                            <li>Login</li>
+                            <li>{loginBtnText}</li>
                         </Link>
                     </div>
 

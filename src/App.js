@@ -14,31 +14,33 @@ class App extends Component {
     super(props);
 
     this.state = {
-      loginMessage: "NOT_LOGGED_IN",
-      loggedInStat: false
+      loggedInStat: false,
     }
 
-    this.updateMessage = this.loginMessageUpdate.bind(this)
+    this.updatedLoginStat = this.updatedLoginStat.bind(this);
 };
 
-loginMessageUpdate() {
-  if(this.state.loggedInStat == true){
-    this.setState({
-      loginMessage: "LOGGED_IN"
-    })
-  }
-};
+updatedLoginStat(){
+  this.setState({
+    loggedInStat: !this.state.loggedInStat,
+  })
+}
 
 render(){
     return (
       <Router>
       <div className="App">
-        <Nav message={this.state.loginMessage} loginStat={this.state.loggedInStat}/>
+        <Nav message={this.state.loginMessage} loginStat={this.state.loggedInStat} updatedMessage={this.loginMessageUpdate}/>
         <Switch>
         <Route path="/" exact component={Home}/>
         <Route path="/about" component={About}/>
         <Route path="/fourms" component={Fourms}/>
-        <Route path="/login" component={Login}/>
+        <Route 
+          path="/login" 
+          render={(props) => (
+            <Login {...props} loggedIn={this.updatedLoginStat} loggedInStat={this.state.loggedInStat} />
+          )}
+        />
         </Switch>
       </div>
       </Router>
