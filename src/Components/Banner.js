@@ -2,7 +2,12 @@ import React, { Component } from 'react'
 import "react-toggle/style.css" // for ES6 modules
 import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, StyleSheet, Image } from 'react-native'
 
-var imgArr = [{image:require('../images/react-gaming.jpeg')}, {image:require('../images/rdrdupdate.jpg')}, {image:require('../images/sololvl121.png')}, {image:require('../images/warzone.jpg')}]
+import RDRDUpdate from '../images/rdrdupdate.jpg'
+import REACTGaming from '../images/react-gaming.jpeg'
+import WARZONE from '../images/warzone.jpg'
+import SOLOLVL from '../images/sololvl121.png'
+
+var imgArr = [{RDRDUpdate}, {REACTGaming}, {SOLOLVL}, {WARZONE}]
 
 class banner extends Component {
     constructor(props) {
@@ -36,7 +41,7 @@ class banner extends Component {
         return (
             <div>
                 <View>
-                    <Image source = {imgArr[this.state.counter]} 
+                    <Image source = {SOLOLVL} 
                         style={{
                             height: "500px",
                             width: "100%"
