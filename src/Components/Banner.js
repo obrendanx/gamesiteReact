@@ -7,7 +7,12 @@ import REACTGaming from '../images/react-gaming.jpeg'
 import WARZONE from '../images/warzone.jpg'
 import SOLOLVL from '../images/sololvl121.png'
 
-var imgArr = [{RDRDUpdate}, {REACTGaming}, {SOLOLVL}, {WARZONE}]
+export const imgArr = [
+  REACTGaming,
+  RDRDUpdate,
+  WARZONE,
+  SOLOLVL
+];
 
 class banner extends Component {
     constructor(props) {
@@ -15,6 +20,17 @@ class banner extends Component {
         this.state = {
           counter: 0,
         }
+      }
+
+      componentDidMount() {
+        this.interval = setInterval(() => {
+          this.setState({ counter: this.state.counter + 1 })
+          console.log(this.state.counter);
+        }, 10000)
+      }
+
+      componentWillUnmount() {
+        clearInterval(this.interval);
       }
 
       changeImage(button) {
@@ -38,26 +54,52 @@ class banner extends Component {
         button1=true;
         } 
 
+        if(this.state.counter > 3){
+          this.setState({
+            counter: 0
+          });
+        }
+
         return (
             <div>
                 <View>
-                    <Image source = {SOLOLVL} 
+                    <Image source = {imgArr[this.state.counter]} 
                         style={{
                             height: "500px",
-                            width: "100%"
+                            width: "100%",
+                            animation: "1s linear forwards ${fadeIn}"
                         }}
                     />
-                    <TouchableHighlight disabled={button1} onPress = {(param) => this.toggle(param)}>
-                    <Text>
-                        Next
-                    </Text>
-                    </TouchableHighlight>
+                    <div className="touchFlex">
+                      <TouchableHighlight 
+                        disabled={button1} 
+                        onPress = {(e) => this.changeImage(1)}
+                        underlayColor = {'#D32F2F'}
+                        style={{
+                          position: "absolute",
+                          padding: "10px"  
+                        }}
+                        >
+                      <Text>
+                          Next
+                      </Text>
+                      </TouchableHighlight>
 
-                    <TouchableHighlight disabled={button2} onPress = {(param) => this.toggle(param)}>
-                    <Text>
-                        Previous
-                    </Text>
-                    </TouchableHighlight>
+                      <TouchableHighlight 
+                        disabled={button2} 
+                        onPress = {(e) => this.changeImage(2)}
+                        underlayColor = {'#D32F2F'}
+                        style={{
+                          position: "absolute",
+                          right: "0",
+                          padding: "10px",
+                        }}
+                        >
+                      <Text>
+                          Previous
+                      </Text>
+                      </TouchableHighlight>
+                    </div>
                 </View>
             </div>
         )
