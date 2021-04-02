@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import "react-toggle/style.css" // for ES6 modules
-import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, StyleSheet, Image } from 'react-native'
+import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, StyleSheet, Image, ImageBackground } from 'react-native'
 
 import RDRDUpdate from '../images/rdrdupdate.jpg'
 import REACTGaming from '../images/react-gaming.jpeg'
@@ -45,6 +45,8 @@ class banner extends Component {
 
     render() {
         let button1 = false,button2 = false; 
+        var imgTitle = "";
+        var imgMessage = "";
         if(this.state.counter == 0) {
         //make the previous button disable
         button2=true;
@@ -60,46 +62,97 @@ class banner extends Component {
           });
         }
 
+        if(this.state.counter == 0){
+          imgTitle = "React Gaming";
+          imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
+        } else if(this.state.counter == 1){
+          imgTitle = "Read Dead Redemption 2";
+          imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
+        } else if(this.state.counter == 2){
+          imgTitle = "Warzone";
+          imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
+        } else if(this.state.counter == 3){
+          imgTitle = "Solo Leveling";
+          imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
+        }
+
         return (
             <div>
                 <View>
-                    <Image source = {imgArr[this.state.counter]} 
+                    <ImageBackground source = {imgArr[this.state.counter]} 
                         style={{
-                            height: "500px",
+                            height: "700px",
                             width: "100%",
-                            animation: "1s linear forwards ${fadeIn}"
+                            animation: "1s linear forwards ${fadeIn}",
+                            position: "relative",
                         }}
-                    />
-                    <div className="touchFlex">
-                      <TouchableHighlight 
-                        disabled={button1} 
-                        onPress = {(e) => this.changeImage(1)}
-                        underlayColor = {'#D32F2F'}
+                    >
+                      <div className="touchFlex">
+                    <TouchableHighlight 
+                        disabled={button2} 
+                        onPress = {(e) => this.changeImage(2)}
+                        underlayColor = {''}
                         style={{
                           position: "absolute",
-                          padding: "10px"  
+                          padding: "10px",
                         }}
                         >
-                      <Text>
-                          Next
+                      <Text
+                        style={{
+                          background: "#fff",
+                          color: "#000",
+                          opacity: "0.7",
+                          padding: "10px"
+                        }}
+                      >
+                          &lt;
                       </Text>
                       </TouchableHighlight>
 
                       <TouchableHighlight 
-                        disabled={button2} 
-                        onPress = {(e) => this.changeImage(2)}
-                        underlayColor = {'#D32F2F'}
+                        disabled={button1} 
+                        onPress = {(e) => this.changeImage(1)}
+                        underlayColor = {''}
                         style={{
                           position: "absolute",
                           right: "0",
                           padding: "10px",
                         }}
                         >
-                      <Text>
-                          Previous
+                      <Text 
+                        style={{
+                          background: "#fff",
+                          color: "#000",
+                          opacity: "0.7",
+                          padding: "10px"
+                        }}
+                      >
+                          &gt;
                       </Text>
                       </TouchableHighlight>
                     </div>
+
+                    <div className="imageInfo">
+                        <Text
+                          style={{
+                            position: "absolute",
+                            bottom: "0",
+                            color: "#fff",
+                            height: "150px",
+                            width: "50%",
+                            background: "rgba(0, 0, 0, 0.5)",
+                            margin: "0, 0, 10%, 10%",
+                          }}
+                        >
+                            <header>
+                              <h1>{imgTitle}</h1>
+                            </header>
+                            <p>
+                              {imgMessage}
+                            </p>
+                        </Text>
+                    </div>
+                    </ImageBackground>
                 </View>
             </div>
         )
