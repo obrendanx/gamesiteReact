@@ -12,7 +12,7 @@
     "react-art": "^17.0.2",
     "react-dom": "^17.0.1",
     "react-native-dom": "^0.5.0",
-    "react-native-media-query": "^1.0.5",
+    "react-native-media-query": "^1.0.6",
     "react-native-router-flux": "^4.2.0",
     "react-native-web": "^0.15.5",
     "react-responsive": "^8.2.0",
@@ -46,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-jest": "^24.3.5"
   }
 }
