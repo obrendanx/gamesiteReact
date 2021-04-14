@@ -1,6 +1,6 @@
-.text_box{
-    height:600px;
-    width: 100%;
+.text_box_small{
+    height:295px;
+    width:100%;
     margin-top:2.5%;
     position: relative;
     margin-bottom:2.5%;
@@ -12,7 +12,7 @@
     }
     .text_area{
         position: absolute;
-        height:30%;
+        height:55%;
         width:100%;
         bottom:0;
         background: rgba(255, 255, 255, 0.5);
@@ -21,9 +21,9 @@
     }
 }
 
-.text_box:hover .text_area{
-    background: rgba(231, 98, 98, 1);
+.text_box_small:hover .text_area{
+    background: rgb(249, 51, 255);
 }
-.text_box:hover{
+.text_box_small:hover{
     opacity:0.8;
 }

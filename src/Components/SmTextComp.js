@@ -1,10 +1,10 @@
 import React from 'react'
 
 
-function LgTextComp(props) {
+function SmTextComp(props) {
     return (
         <div>
-            <div className="text_box">
+            <div className="text_box_small">
                 <img src={props.imgName} alt="image here" />
                 <div className="text_area">
                     <header>
@@ -19,4 +19,4 @@ function LgTextComp(props) {
     )
 }
 
-export default LgTextComp
+export default SmTextComp

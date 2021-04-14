@@ -1,0 +1,23 @@
+.text_comp_one{
+    @include flex(flex, row, nowrap);
+    margin-top:2.5%;
+}
+
+.large_textbox_wrap{
+    width:47.5%;
+}
+
+.small_textbox_wrap{
+    width:47.5%;
+    margin-left:5%;
+}
+
+.text_comp_two{
+    @include flex(flex, column, nowrap);
+    .comp_two_wrapone{
+        @include flex(flex, row, nowrap);
+    }
+    .comp_two_wraptwo{
+        @include flex(flex, row, nowrap);
+    }
+}
