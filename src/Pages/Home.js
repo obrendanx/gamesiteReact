@@ -7,6 +7,11 @@ import RDRDUpdate from '../images/rdrdupdate.jpg'
 import WARZONE from '../images/warzone.webp'
 import SOLOLVL from '../images/sololvl121.png'
 import GAMESCORE from '../images/gamescore.jpg'
+import GAMEPC from '../images/gamepc.webp'
+import SWITCH from '../images/switch.webp'
+import FALLOUT from '../images/falloutsd.jpg'
+import MINIGONE from '../images/minigone.jpg'
+import WARFRAME from '../images/Warframe.jpg'
 
 var comp_one_text = "Some information about the image, and about new updates that are out. Learn more here";
 var comp_one_title = "Main Title";
@@ -34,14 +39,14 @@ function Home() {
             <div className="text_comp_two">
                     <div className="comp_two_wrapone">
                         <SmTextComp imgName={GAMESCORE} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
-                        <SmTextComp imgName={SOLOLVL} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
-                        <SmTextComp imgName={GAMESCORE} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
-                        <SmTextComp imgName={SOLOLVL} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
+                        <SmTextComp imgName={WARFRAME} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
+                        <SmTextComp imgName={RDRDUpdate} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
+                        <SmTextComp imgName={FALLOUT} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
                     </div>
 
                     <div className="comp_two_wraptwo">
-                        <SmTextComp imgName={GAMESCORE} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
-                        <SmTextComp imgName={SOLOLVL} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
+                        <LgTextComp imgName={GAMEPC} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
+                        <LgTextComp imgName={SWITCH} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
                     </div>
                 </div>
         </div>

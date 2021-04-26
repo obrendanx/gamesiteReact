@@ -1,6 +1,7 @@
 .text_comp_one{
     @include flex(flex, row, nowrap);
     margin-top:2.5%;
+    width:100%;
 }
 
 .large_textbox_wrap{
@@ -19,5 +20,10 @@
     }
     .comp_two_wraptwo{
         @include flex(flex, row, nowrap);
+    }
+    div{
+        width:98%;
+        margin-right:0.5%;
+        margin-left:0.5%;
     }
 }
