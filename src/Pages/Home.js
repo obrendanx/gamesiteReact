@@ -13,13 +13,13 @@ import FALLOUT from '../images/falloutsd.jpg'
 import MINIGONE from '../images/minigone.jpg'
 import WARFRAME from '../images/Warframe.jpg'
 
-var comp_one_text = "Some information about the image, and about new updates that are out. Learn more here";
+var comp_one_text = "Some information about the image, and about new updates that are out. Learn more";
 var comp_one_title = "Main Title";
 
-var comp_smone_text = "Some information about the image, and about new updates that are out. Learn more here";
+var comp_smone_text = "Some information about the image, and about new updates that are out. Learn more";
 var comp_smone_title = "Main Title 1";
 
-var comp_smtwo_text = "Some information about the image, and about new updates that are out. Learn more here";
+var comp_smtwo_text = "Some information about the image, and about new updates that are out. Learn more";
 var comp_smtwo_title = "Main Title 2";
 
 function Home() {

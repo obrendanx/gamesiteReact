@@ -7,7 +7,7 @@
     transition:0.7s;
     box-shadow: 0 8px 6px -6px black;
     img{
-        height: 100%;
+        height: 70%;
         width:100%;
     }
     .text_area{
@@ -19,6 +19,7 @@
         padding:5%;
         transition:0.7s;
         margin:0;
+        @include textDisplay(1em, normal, Roboto, #000 );
     }
 }
 

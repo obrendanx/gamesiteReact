@@ -5,7 +5,7 @@ import logo from '../images/logo.jpg'
 class Nav extends Component {
     constructor(props) {
         super(props)
-    
+        
     }
     
 

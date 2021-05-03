@@ -11,7 +11,7 @@ function LgTextComp(props) {
                         <h2>{props.imgTitle}</h2>
                     </header>
                     <p>
-                    {props.imgText}
+                    {props.imgText} <a href="#">here</a>
                     </p>
                 </div>
             </div>
