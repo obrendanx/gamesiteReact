@@ -6,6 +6,7 @@ class LoginForm extends Component {
         this.state = {
             username: '',
             password: '',
+            userLoggedIn: false,
             users: [
                 {
                     username: "test",
@@ -43,14 +44,16 @@ class LoginForm extends Component {
         // }
         if(this.state.users.find(user => user.username === this.state.username && user.password === this.state.password)){
             console.log("match");
-                alert("Logged In");
+            alert("Logged In");
+            this.setState({
+                userLoggedIn: true
+            });
         }else{
             alert("username or password is incorrect");
         }
+        console.log(this.state.userLoggedIn);
         event.preventDefault();
       }
-
-      
 
     render() {
         return (
@@ -62,7 +65,7 @@ class LoginForm extends Component {
 
                     Password:
                     <input type="password" name="password" value={this.state.password} onChange={this.updatePassword}/>
-                    <input type="submit" name="Submit" value="Submit"/>
+                    <input type="submit" name="Submit" value="Submit" />
                 </label>
             </form>
             </div>
