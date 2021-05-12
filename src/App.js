@@ -15,18 +15,26 @@ class App extends Component {
 
     this.state = {
       loggedInStat: false,
+      userLogIn: false,
     }
 
     this.updatedLoginStat = this.updatedLoginStat.bind(this);
 };
 
 updatedLoginStat(){
-  this.setState({
-    loggedInStat: !this.state.loggedInStat,
-  })
+  if(this.state.userLogIn == true){
+    this.setState({
+      loggedInStat: !this.state.loggedInStat,
+    })
+  }
+}
+
+callbackFunction = (childData) => {
+  this.setState({userLogIn: childData})
 }
 
 render(){
+  console.log(this.state.loggedInStat);
     return (
       <Router>
       <div className="App">
@@ -38,7 +46,7 @@ render(){
         <Route 
           path="/login" 
           render={(props) => (
-            <Login {...props} loggedIn={this.updatedLoginStat} loggedInStat={this.state.loggedInStat} />
+            <Login {...props} loggedIn={this.updatedLoginStat} loggedInStat={this.state.loggedInStat} callback={this.callbackFunction}/>
           )}
         />
         </Switch>

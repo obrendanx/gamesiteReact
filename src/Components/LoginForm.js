@@ -20,7 +20,7 @@ class LoginForm extends Component {
         };
     
         this.updateUsername = this.updateUsername.bind(this);
-        this.updatePassword = this.updatePassword.bind(this);
+        this.updatePassword = this.updatePassword.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
@@ -37,25 +37,50 @@ class LoginForm extends Component {
       }
     
       handleSubmit(event) {
-        //alert('A username was submitted: ' + this.state.username);
-        //alert('A password was submitted: ' + this.state.password);
+        // alert('A username was submitted: ' + this.state.username);
+        // alert('A password was submitted: ' + this.state.password);
         // if(this.state.username == users[0][0] && this.state.password == users[0][1]){
         //     alert('Logged in' + this.state.username + this.state.password);
         // }
         if(this.state.users.find(user => user.username === this.state.username && user.password === this.state.password)){
-            console.log("match");
             alert("Logged In");
-            this.setState({
-                userLoggedIn: true
-            });
         }else{
             alert("username or password is incorrect");
         }
-        console.log(this.state.userLoggedIn);
         event.preventDefault();
       }
 
+      logoutUser = () =>{
+          this.setState({
+            userLoggedIn: false
+          });
+          alert("Logged Out");
+          this.props.parentCallback(false);
+      }
+
+      loginUser = () =>{
+        this.setState({
+          userLoggedIn: true
+        });
+        this.props.parentCallback(true);
+    }
+
     render() {
+        console.log(this.state.userLoggedIn);
+        var loginButMessage = "";
+        if(this.state.userLoggedIn == true){
+            loginButMessage = "Logout"
+        }else{
+            loginButMessage = "Login"
+        }
+
+        const loggedIn = this.state.userLoggedIn;
+        let button;
+        if(loggedIn){
+            button = <input type="submit" name="Submit" value={loginButMessage} onClick={this.logoutUser}/>
+        }else{
+            button = <input type="submit" name="Submit" value={loginButMessage} onClick={this.loginUser}/>
+        }
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -65,7 +90,7 @@ class LoginForm extends Component {
 
                     Password:
                     <input type="password" name="password" value={this.state.password} onChange={this.updatePassword}/>
-                    <input type="submit" name="Submit" value="Submit" />
+                    {button}
                 </label>
             </form>
             </div>
