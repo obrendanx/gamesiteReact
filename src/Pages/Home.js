@@ -4,8 +4,8 @@ import LgTextComp from '../Components/LgTextComp'
 import SmTextComp from '../Components/SmTextComp'
 
 import RDRDUpdate from '../images/rdrdupdate.jpg'
-import WARZONE from '../images/warzone.webp'
-import SOLOLVL from '../images/sololvl121.png'
+import SW from '../images/main/sw.webp'
+import CODCW from '../images/main/codcw.jpg'
 import GAMESCORE from '../images/gamescore.jpg'
 import GAMEPC from '../images/gamepc.webp'
 import SWITCH from '../images/switch.webp'
@@ -28,11 +28,11 @@ function Home() {
             <Banner />
             <div className="text_comp_one">
                 <div className="large_textbox_wrap">
-                    <LgTextComp imgName={WARZONE} imgText={comp_one_text} imgTitle={comp_one_title}/>
+                    <LgTextComp imgName={SW} imgText={comp_one_text} imgTitle={comp_one_title}/>
                 </div>
                 <div className="small_textbox_wrap">
                     <SmTextComp imgName={GAMESCORE} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
-                    <SmTextComp imgName={SOLOLVL} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
+                    <SmTextComp imgName={CODCW} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
                 </div>
             </div>
 

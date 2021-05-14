@@ -43,9 +43,15 @@ class LoginForm extends Component {
         //     alert('Logged in' + this.state.username + this.state.password);
         // }
         if(this.state.users.find(user => user.username === this.state.username && user.password === this.state.password)){
-            alert("Logged In");
+            console.log("logged in")
+            
+            this.props.parentCallback(true);
         }else{
             alert("username or password is incorrect");
+            this.props.parentCallback(false);
+            this.setState({
+                userLoggedIn: false
+              });
         }
         event.preventDefault();
       }
@@ -54,7 +60,6 @@ class LoginForm extends Component {
           this.setState({
             userLoggedIn: false
           });
-          alert("Logged Out");
           this.props.parentCallback(false);
       }
 
@@ -63,6 +68,13 @@ class LoginForm extends Component {
           userLoggedIn: true
         });
         this.props.parentCallback(true);
+    }
+
+    clearSubmit = () =>{
+        this.setState({
+            username: "",
+            password: ""
+        });
     }
 
     render() {
@@ -76,14 +88,18 @@ class LoginForm extends Component {
 
         const loggedIn = this.state.userLoggedIn;
         let button;
-        if(loggedIn){
-            button = <input type="submit" name="Submit" value={loginButMessage} onClick={this.logoutUser}/>
+        let welcome;
+        if(loggedIn == true){
+            button = <input type="submit" name="Submit" value={loginButMessage} onClick={this.logoutUser} class="login_btn"/>
+            welcome = <h2> Welcome </h2>
         }else{
-            button = <input type="submit" name="Submit" value={loginButMessage} onClick={this.loginUser}/>
+            button = <input type="submit" name="Submit" value={loginButMessage} onClick={this.loginUser} class="login_btn"/>
+            welcome = <h2> Sign In </h2>
         }
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} class="login_form">
+                {welcome}
                 <label name="login">
                     Username:
                     <input type="text" name="username" value={this.state.username} onChange={this.updateUsername}/>

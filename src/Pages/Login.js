@@ -39,7 +39,6 @@ export class Login extends Component {
 
         return (
             <div>
-                <h1>Login</h1>
                 <LoginForm userLogged={this.state.userLogged} onChangeValue={this.handleChangeValue} parentCallback={this.callbackFunction}/>
             </div>
         )
