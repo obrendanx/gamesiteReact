@@ -1,6 +1,6 @@
 .login_form{
     height:500px;
-    width:50%;
+    width:40%;
     background:rgba(244, 64, 52, 0.8);
     margin:auto;
     margin-top:50px;
@@ -28,6 +28,9 @@
             height:30px;
             border:none;
             margin-top:10px;
+            border-radius:15%;
+            color:#fff;
+            background:rgb(37, 38, 39);
         }
     }
 }

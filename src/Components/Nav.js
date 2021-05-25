@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import logo from '../images/logo.jpg'
 

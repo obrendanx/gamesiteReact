@@ -1,7 +1,8 @@
 .text_comp_one{
     @include flex(flex, row, nowrap);
     margin-top:2.5%;
-    width:100%;
+    width:90%;
+    margin-left:5%;
 }
 
 .large_textbox_wrap{
@@ -26,4 +27,8 @@
         margin-right:0.5%;
         margin-left:0.5%;
     }
+}
+
+.home_wrap{
+    background:#333333;
 }
