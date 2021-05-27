@@ -72,4 +72,25 @@ body{
     width:100%;
   }
 
+  .text_comp_one{
+    flex-direction: column;
+  }
+
+  .large_textbox_wrap{
+    width:100%;
+  }
+
+  .small_textbox_wrap{
+    width:100%;
+    margin-left:0;
+  }
+
+  .text_comp_two .comp_two_wrapone{
+    flex-direction: column;
+}
+
+  .text_comp_two .comp_two_wraptwo{
+    flex-direction: column;
+  }
+
 }
