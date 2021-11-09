@@ -6,8 +6,9 @@
     margin-bottom:2.5%;
     transition:0.7s;
     img{
-        height: 70%;
+        height: 100%;
         width:100%;
+        border-radius:5px;
     }
     .text_area{
         position: absolute;
@@ -17,12 +18,21 @@
         padding:5%;
         transition:0.7s;
         margin:0;
-        @include textDisplay(0.65em, normal, Roboto, #fff );
+        @include textDisplay(0.65em, 'Dongle', Roboto, #fff );
+        a{
+            color:#fff;
+        }
+        h2{
+            margin-bottom:5px;
+            text-transform:uppercase;
+        }
+        p{
+            font-size:1.1em;
+        }
     }
 }
 
 .text_box_small:hover .text_area{
-    background: #F44336;
     h2{
         text-decoration:underline;
     }
@@ -30,4 +40,8 @@
 .text_box_small:hover .img{
     opacity:0.8;
     transform: scale(1.25);
+}
+
+.color-scheme-s1{
+    background:rgba(57, 104, 255,0.2);
 }

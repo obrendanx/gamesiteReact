@@ -40,7 +40,7 @@ function Home() {
 
             <div className="text_comp_two">
                     <div className="comp_two_wrapone">
-                        <SmTextComp imgName={ZELDA} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
+                        <SmTextComp imgName={ZELDA} imgText={comp_smone_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
                         <SmTextComp imgName={AC} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
                         <SmTextComp imgName={DPREMAKE} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
                         <SmTextComp imgName={SMASH} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>

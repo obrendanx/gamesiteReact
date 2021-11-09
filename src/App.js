@@ -4,6 +4,7 @@ import Home from './Pages/Home';
 import About from './Pages/About';
 import Fourms from './Pages/Fourms';
 import Login from './Pages/Login';
+import Footer from './Components/Footer';
 
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -50,6 +51,7 @@ render(){
           )}
         />
         </Switch>
+        <Footer/>
       </div>
       </Router>
     )

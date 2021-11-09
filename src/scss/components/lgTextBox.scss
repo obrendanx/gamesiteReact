@@ -5,9 +5,11 @@
     position: relative;
     margin-bottom:2.5%;
     transition:0.7s;
+    border-radius:5px;
     img{
-        height: 70%;
+        height: 100%;
         width:100%;
+        border-radius:5px;
     }
     .text_area{
         position: absolute;
@@ -17,12 +19,21 @@
         padding:5%;
         transition:0.7s;
         margin:0;
-        @include textDisplay(1em, normal, Roboto, #fff );
+        @include textDisplay(1em, normal, 'Dongle', #fff );
+        a{
+            color:#fff;
+        }
+        h2{
+            margin-bottom:5px;
+            text-transform:uppercase;
+        }
+        p{
+            font-size:1.3em;
+        }
     }
 }
 
 .text_box:hover .text_area{
-    background: #F44336;
     h2{
         text-decoration:underline;
     }

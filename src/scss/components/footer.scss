@@ -1,0 +1,62 @@
+.main_footer{
+    background:#D32F2F;
+    height:300px;
+    padding:10px;
+    .social_links{
+        height:75px;
+        ul{
+            list-style:none;
+            text-align:center;
+            li{
+                display:inline-block;
+                margin-left:5%;
+                margin-right:5%;
+                margin-top:2%;
+                a{
+                    color:#212121 ;
+                }
+                a:hover{
+                    color:#fff;
+                }
+            }
+        }
+    }
+    .personal_projects{
+        text-align:center;
+        margin-top:2%;
+        h4{
+            font-style:italic;
+            @include textDisplay(0.9em, 'Dongle', Roboto, #212121 );
+        }
+        ul{
+            list-style:none;
+            margin-top:1.5%;
+            li{
+                display:inline-block;
+                height:50px;
+                width:150px;
+                margin-left:2.5%;
+                margin-right:2.5%;
+                line-height:50px;
+                border:solid 3px #fff ;
+                border-radius:10px;
+                a{
+                    text-decoration:none;
+                    text-transform:uppercase;
+                    @include textDisplay(0.9em, 'Dongle', Roboto, #fff );
+                }
+            }
+        }
+    }
+    .personal_info{
+        text-align:center;
+        margin-top:2.5%;
+        font-style:italic;
+        @include textDisplay(0.9em, 'Dongle', Roboto, #212121 );
+        h3{
+            text-transform:uppercase;
+            margin-bottom:1%;
+            @include textDisplay(1.2em, 'Dongle', Roboto, #fff );
+        }
+    }
+}
