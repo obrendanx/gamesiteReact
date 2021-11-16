@@ -31,8 +31,8 @@ function Home() {
                     <LgTextComp imgName={SW} imgText={comp_one_text} imgTitle={comp_one_title}/>
                 </div>
                 <div className="small_textbox_wrap">
-                    <SmTextComp imgName={MINECRAFT} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
-                    <SmTextComp imgName={MARIO} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
+                    <SmTextComp imgName={MINECRAFT} imgText={comp_smone_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
+                    <SmTextComp imgName={MARIO} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
                 </div>
             </div>
 
@@ -41,9 +41,9 @@ function Home() {
             <div className="text_comp_two">
                     <div className="comp_two_wrapone">
                         <SmTextComp imgName={ZELDA} imgText={comp_smone_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                        <SmTextComp imgName={AC} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
-                        <SmTextComp imgName={DPREMAKE} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
-                        <SmTextComp imgName={SMASH} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
+                        <SmTextComp imgName={AC} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
+                        <SmTextComp imgName={DPREMAKE} imgText={comp_smone_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                        <SmTextComp imgName={SMASH} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
                     </div>
 
                     <h2 className="section_header">Top Stories</h2>
