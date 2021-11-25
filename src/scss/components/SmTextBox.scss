@@ -19,7 +19,8 @@
         transition:0.7s;
         margin:0;
         border-radius:px 5px 0px 5px;
-        @include textDisplay(0.65em, 'Dongle', Roboto, #fff );
+        font-weight:900;
+        @include textDisplay(0.6em, 'Dongle', Roboto, #fff );
         a{
             color:#fff;
         }

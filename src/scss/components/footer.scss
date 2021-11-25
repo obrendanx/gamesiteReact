@@ -1,62 +1,66 @@
 .main_footer{
-    background:#D32F2F;
-    height:300px;
-    padding:10px;
-    .social_links{
-        height:75px;
+    background:#464545;
+    height:325px;
+    padding:3%;
+    .welcome_links{
+        height:50px;
+        margin-bottom:-1.25%;
         ul{
             list-style:none;
             text-align:center;
-            li{
-                display:inline-block;
-                margin-left:5%;
-                margin-right:5%;
-                margin-top:2%;
-                a{
-                    color:#212121 ;
-                }
-                a:hover{
-                    color:#fff;
-                }
-            }
+        }
+        li{
+            display:inline-block;
+            margin-left:2%;
+        }
+        a{
+            @include textDisplay(0.8em, 'Dongle', Roboto, #fff );
+            text-decoration:none;
+            text-transform:uppercase;
+        }
+        a:hover{
+            text-decoration:underline;
         }
     }
-    .personal_projects{
-        text-align:center;
-        margin-top:2%;
-        h4{
-            font-style:italic;
-            @include textDisplay(0.9em, 'Dongle', Roboto, #212121 );
-        }
+    .social_links{
+        height:75px;
+        width:40%;
+        margin-left:30%;
+        margin-bottom:-1.75%;
         ul{
-            list-style:none;
-            margin-top:1.5%;
-            li{
-                display:inline-block;
-                height:50px;
-                width:150px;
-                margin-left:2.5%;
-                margin-right:2.5%;
-                line-height:50px;
-                border:solid 3px #fff ;
-                border-radius:10px;
-                a{
-                    text-decoration:none;
-                    text-transform:uppercase;
-                    @include textDisplay(0.9em, 'Dongle', Roboto, #fff );
-                }
-            }
+            list-style-type:none;
+            text-align:center;
+        }
+        li{
+            display:inline-block;
+            margin:0% 2% 0% 2%;
+            height:75px;
+            border-radius:50%;
+        }
+        a{
+            color:#fff;
+        }
+        i:hover{
+            transform:scale(1.5);
+        }
+        i{
+            transition:1s;
         }
     }
     .personal_info{
+        @include textDisplay(0.8em, 'Dongle', Roboto, #fff );
         text-align:center;
-        margin-top:2.5%;
-        font-style:italic;
-        @include textDisplay(0.9em, 'Dongle', Roboto, #212121 );
+        h4{
+            margin-top:0.75%;
+        }
         h3{
-            text-transform:uppercase;
-            margin-bottom:1%;
-            @include textDisplay(1.2em, 'Dongle', Roboto, #fff );
+            margin-top:0.75%;
+        }
+        hr{
+            margin:3%;
+        }
+        a{
+            color:rgba(255, 255, 255, 0.603);
         }
     }
 }

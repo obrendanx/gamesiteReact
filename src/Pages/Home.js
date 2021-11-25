@@ -26,7 +26,7 @@ function Home() {
     return (
         <div className="home_wrap">
             <Banner />
-            <div className="text_comp_one">
+            <div className="text_comp_one top_block">
                 <div className="large_textbox_wrap">
                     <LgTextComp imgName={SW} imgText={comp_one_text} imgTitle={comp_one_title}/>
                 </div>
@@ -51,6 +51,16 @@ function Home() {
                     <div className="comp_two_wraptwo">
                         <LgTextComp imgName={PS5} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
                         <LgTextComp imgName={XBOX} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
+                    </div>
+
+                    <div className="text_comp_one">
+                        <div className="small_textbox_wrap">
+                            <SmTextComp imgName={MINECRAFT} imgText={comp_smone_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
+                            <SmTextComp imgName={MARIO} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
+                        </div>
+                        <div className="large_textbox_wrap">
+                            <LgTextComp imgName={SW} imgText={comp_one_text} imgTitle={comp_one_title}/>
+                        </div>
                     </div>
                 </div>
         </div>

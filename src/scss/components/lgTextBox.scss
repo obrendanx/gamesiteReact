@@ -3,7 +3,6 @@
     width: 100%;
     margin-top:2.5%;
     position: relative;
-    margin-bottom:2.5%;
     transition:0.7s;
     border-radius:5px;
     img{
@@ -19,7 +18,7 @@
         padding:5%;
         transition:0.7s;
         margin:0;
-        @include textDisplay(1em, normal, 'Dongle', #fff );
+        @include textDisplay(1.1em, normal, 'Dongle', #fff );
         font-weight:900;
         a{
             color:#fff;
