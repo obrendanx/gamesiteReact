@@ -101,10 +101,10 @@ class LoginForm extends Component {
                 <form onSubmit={this.handleSubmit} class="login_form">
                 {welcome}
                 <label name="login">
-                    Username:
+                    <label class="username">Username:</label>
                     <input type="text" name="username" value={this.state.username} onChange={this.updateUsername}/>
 
-                    Password:
+                    <label class="password">Password:</label>
                     <input type="password" name="password" value={this.state.password} onChange={this.updatePassword}/>
                     {button}
                 </label>

@@ -18,8 +18,8 @@
         padding:5%;
         transition:0.7s;
         margin:0;
-        @include textDisplay(1.1em, normal, 'Dongle', #fff );
-        font-weight:900;
+        @include textDisplay(1em, normal, 'Roboto', #fff );
+        
         a{
             color:#fff;
         }
