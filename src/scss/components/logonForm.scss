@@ -5,33 +5,42 @@
     margin:auto;
     margin-top:50px;
     margin-bottom:50px;
-    box-shadow: 0 8px 6px -6px black;
     padding-top:50px;
     border-radius:10px;
     @include textDisplay(1em, normal, 'Roboto', #fff );
     h2{
         text-align:center;
         padding-top:30px;
+        margin-bottom:50px;
     }
-    label{
-        height:100%;
-        width:50%;
-        margin-left:25%;
-        padding-top:50px;
-        @include flex(flex, column, nowrap);
+    .main_label{
+        width:100%;
+        label{
+            width:50%;
+            margin-left:25%;
+        }
         input{
-            width:100%;
-            height:25%;
+            width:50%;
+            height:10%;
             margin-top:2%;
             margin-bottom:2%;
+            margin-left:25%;
+            padding:10px;
+            border:0;
+            border-radius:10px;
+            box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+            @include textDisplay(1em, normal, 'Roboto', #f44034);
         }
         .login_btn{
             width:75px;
             height:30px;
             border:none;
+            line-height:10px;
             margin-top:10px;
             color:#fff;
             background:rgb(37, 38, 39);
+            margin-left:25%;
+            border-radius:10%;
         }
     }
 }

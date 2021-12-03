@@ -18,7 +18,7 @@
         padding:5%;
         transition:0.7s;
         margin:0;
-        @include textDisplay(1em, normal, 'Roboto', #fff );
+        @include textDisplay(1em, 'Dongle', Roboto, #fff );
         
         a{
             color:#fff;

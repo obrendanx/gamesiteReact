@@ -100,12 +100,12 @@ class LoginForm extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} class="login_form">
                 {welcome}
-                <label name="login">
-                    <label class="username">Username:</label>
-                    <input type="text" name="username" value={this.state.username} onChange={this.updateUsername}/>
+                <label name="login" class="main_label">
+                    <label class="username">Username:</label><br></br>
+                    <input type="text" name="username" value={this.state.username} onChange={this.updateUsername}/><br></br>
 
-                    <label class="password">Password:</label>
-                    <input type="password" name="password" value={this.state.password} onChange={this.updatePassword}/>
+                    <label class="password">Password:</label><br></br>
+                    <input type="password" name="password" value={this.state.password} onChange={this.updatePassword}/><br></br>
                     {button}
                 </label>
             </form>
