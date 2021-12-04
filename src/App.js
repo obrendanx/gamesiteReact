@@ -97,7 +97,8 @@ const App = () => {
         <Route path="/" exact component={Home}/>
         <Route path="/about" component={About}/>
         <Route path="/fourms" component={Fourms}/>
-        {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>}
+        {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
+        {user ? <Logout /> : <Loogin />}
         </Switch>
         <Footer/>
       </div>
