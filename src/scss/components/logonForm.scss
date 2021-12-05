@@ -8,13 +8,11 @@
     padding-top:50px;
     border-radius:10px;
     @include textDisplay(1em, normal, 'Roboto', #fff );
-    h2{
+    h1{
         text-align:center;
         padding-top:30px;
         margin-bottom:50px;
     }
-    .main_label{
-        width:100%;
         label{
             width:50%;
             margin-left:25%;
@@ -31,8 +29,8 @@
             box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
             @include textDisplay(1em, normal, 'Roboto', #f44034);
         }
-        .login_btn{
-            width:75px;
+        button{
+            width:50%;
             height:30px;
             border:none;
             line-height:10px;
@@ -40,7 +38,9 @@
             color:#fff;
             background:rgb(37, 38, 39);
             margin-left:25%;
-            border-radius:10%;
+            border-radius:10px;
+        }
+        input:hover{
+            border:solid 1px #f44034;
         }
     }
-}

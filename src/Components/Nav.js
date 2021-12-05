@@ -42,7 +42,7 @@ function Nav() {
 
                         <div className="nav-right">
                             <Link to="/profile/id" class="user-name">
-                                <li>{user ? loginMessage = user.name : loginMessage = "Welcome"}</li>
+                                <li>{user ? loginMessage = user.name : loginMessage = "Register"}</li>
                             </Link>
                             <Link to="/login">
                                 <li>{user ? loginBtnText = "Logout" : loginBtnText = "Login"}</li>

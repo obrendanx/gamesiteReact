@@ -2,7 +2,6 @@
  import { logout, selectUser } from "../app/features/userSlice";
  import { useSelector } from "react-redux";
  import React from 'react';
- import '../scss/components/logout.scss';
  
  const Logout = () => {
     const user = useSelector(selectUser);
@@ -15,7 +14,7 @@
     };
 
      return (
-         <div className="logut_box">
+         <div className="logout_box">
              <h1>Welcome <span className="user_name">{user.name}</span></h1>
              <button className="logout_btn" onClick={(e) => handleLogout(e)}> Logout </button>
          </div>

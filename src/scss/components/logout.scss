@@ -1,13 +1,12 @@
-.user_name{
-    color:purple;
-}
-
-.logout_btn{
-    height:50px;
-    width:100px;
-}
-
 .logout_box{
-    height:500px;
+    height:100%;
     background:blue;
+    .user_name{
+        color:purple;
+    }
+    
+    .logout_btn{
+        height:50px;
+        width:100px;
+    }
 }
