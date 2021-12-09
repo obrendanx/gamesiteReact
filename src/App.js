@@ -76,10 +76,11 @@ import Nav from './Components/Nav';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import Fourms from './Pages/Fourms';
-import Login from './Pages/Login';
 import Footer from './Components/Footer';
-import Loogin from './Components/Loogin';
+import Login from './Components/Login';
 import Logout from './Components/Logout';
+import Register from './Components/Register';
+import FetchUser from './Components/FetchUser';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './scss/App.scss';
 import { useSelector } from "react-redux";
@@ -96,9 +97,10 @@ const App = () => {
         <Switch>
         <Route path="/" exact component={Home}/>
         <Route path="/about" component={About}/>
-        <Route path="/fourms" component={Fourms}/>
+        <Route path="/fourms" component={FetchUser}/>
+        <Route path="/register" component={Register}/>
         {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
-        {user ? <Logout /> : <Loogin />}
+        {user ? <Logout /> : <Login />}
         </Switch>
         <Footer/>
       </div>

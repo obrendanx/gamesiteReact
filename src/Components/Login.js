@@ -2,7 +2,7 @@ import React, { useEffect, useState }  from 'react';
 import { useDispatch } from "react-redux";
 import { login } from "../app/features/userSlice";
 
-const Loogin = () => {
+const Login = (props) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,6 +18,12 @@ const Loogin = () => {
             password:password,
             loggedIn: true,
         }));
+
+        if(name != props.person.login.username || password != props.person.login.password || email != props.person.email){
+            alert("Incorrect usernmae or password!");
+        }else{
+            alert("Logged In!");
+        };
     }
 
     return (
@@ -26,7 +32,7 @@ const Loogin = () => {
                 <h1>Login Here</h1>
                 <input 
                     name="name" 
-                    placeholder="Name" 
+                    placeholder="Username" 
                     value={name} 
                     onChange={(e) => setName(e.target.value)}
                 />
@@ -38,6 +44,7 @@ const Loogin = () => {
                 />
                 <input 
                     name="password" 
+                    type="password"
                     placeholder="Password" 
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)}
@@ -48,4 +55,4 @@ const Loogin = () => {
     )
 }
 
-export default Loogin
+export default Login

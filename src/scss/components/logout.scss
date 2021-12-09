@@ -1,6 +1,8 @@
 .logout_box{
-    height:100%;
-    background:blue;
+    height:425px;
+    text-align:center;
+    padding-top:10%;
+    @include textDisplay(1em, normal, 'Roboto', #f44034);
     .user_name{
         color:purple;
     }
@@ -8,5 +10,10 @@
     .logout_btn{
         height:50px;
         width:100px;
+        margin-top:15px;
+        border-radius:10px;
+        border:none;
+        background:#fff;
+        color:#000;
     }
 }
