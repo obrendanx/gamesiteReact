@@ -13,12 +13,14 @@
     .text_area{
         position: absolute;
         height:30%;
-        width:100%;
+        width:97%;
         bottom:0;
         padding:5%;
         transition:0.7s;
         margin:0;
-        @include textDisplay(1em, 'Dongle', Roboto, #fff );
+        margin-left:1.75%;
+        @include textDisplay(0.8em, 'Dongle', Roboto, #fff );
+        background:rgba(0, 0, 0, 0.5);
         
         a{
             color:#fff;
@@ -31,12 +33,17 @@
             font-size:1.3em;
         }
     }
+
+    .hov_indicator{
+        background:rgb(114, 112, 112);
+        height:10px;
+        width:30px;
+        transition:1s;
+    }
 }
 
-.text_box:hover .text_area{
-    h2{
-        text-decoration:underline;
-    }
+.text_box:hover .hov_indicator{
+    background:rgb(245, 242, 242);
 }
 .img:hover{
     opacity:0.8;

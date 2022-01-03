@@ -15,6 +15,7 @@ function LgTextComp(props) {
             <div className="text_box">
                 <img src={props.imgName} alt="image here" />
                 <div className="text_area" id="text_area">
+                    <div class="hov_indicator"></div>
                     <header>
                         <h2>{props.imgTitle}</h2>
                     </header>
