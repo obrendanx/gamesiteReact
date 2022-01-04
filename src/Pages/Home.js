@@ -2,6 +2,7 @@ import React from 'react'
 import Banner from '../Components/Banner'
 import LgTextComp from '../Components/LgTextComp'
 import SmTextComp from '../Components/SmTextComp'
+import MdTextComp from '../Components/MdTextComp'
 
 import DPREMAKE from '../images/main/dpremake.webp'
 import SW from '../images/main/sw.jpg'
@@ -31,8 +32,8 @@ function Home() {
                     <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
                 </div>
                 <div className="small_textbox_wrap">
-                    <SmTextComp imgName={MINECRAFT} imgText={comp_one_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
-                    <SmTextComp imgName={MARIO} imgText={comp_one_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
+                    <MdTextComp imgName={MINECRAFT} imgText={comp_one_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
+                    <MdTextComp imgName={MARIO} imgText={comp_one_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
                 </div>
             </div>
 
@@ -40,6 +41,10 @@ function Home() {
 
             <div className="text_comp_two">
                     <div className="comp_two_wrapone">
+                        <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                        <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
+                        <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                        <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
                         <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
                         <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
                         <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
@@ -55,8 +60,8 @@ function Home() {
 
                     <div className="text_comp_one">
                         <div className="small_textbox_wrap">
-                            <SmTextComp imgName={MINECRAFT} imgText={comp_smone_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
-                            <SmTextComp imgName={MARIO} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
+                            <MdTextComp imgName={MINECRAFT} imgText={comp_smone_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
+                            <MdTextComp imgName={MARIO} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
                         </div>
                         <div className="large_textbox_wrap">
                             <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
