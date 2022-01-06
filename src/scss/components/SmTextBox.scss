@@ -18,7 +18,7 @@
         padding:5%;
         transition:0.7s;
         margin:0;
-        border-radius:px 5px 0px 5px;
+        border-radius:0px 0px 5px 5px;
         font-weight:900;
         @include textDisplay(0.6em, 'Dongle', Roboto, #fff );
         a{
@@ -47,14 +47,26 @@
 .color-scheme-s1{
     background:rgba(57, 104, 255,0.6);
 }
+.color-scheme-s1:hover{
+    background:rgba(57, 104, 255,1);
+}
 .color-scheme-s2{
     background:rgba(10, 202, 74, 0.6);
+}
+.color-scheme-s2:hover{
+    background:rgba(10, 202, 74, 1);
 }
 .color-scheme-s3{
     background:rgba(176, 204, 14, 0.6);
 }
+.color-scheme-s3:hover{
+    background:rgba(176, 204, 14, 1);
+}
 .color-scheme-s4{
     background:rgba(206, 145, 12, 0.6);
+}
+.color-scheme-s4:hover{
+    background:rgba(206, 145, 12, 1);
 }
 
 .mar_bot{

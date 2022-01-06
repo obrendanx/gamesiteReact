@@ -19,7 +19,7 @@
         transition:0.7s;
         margin:0;
         font-weight:900;
-        @include textDisplay(0.6em, 'Dongle', Roboto, #000 );
+        @include textDisplay(0.65em, 'Dongle', Roboto, #000 );
         background:rgba(255, 254, 254, 0.8);
         a{
             color:#fff;
@@ -27,9 +27,6 @@
         h2{
             margin-bottom:5px;
             text-transform:uppercase;
-        }
-        p{
-            font-size:1.1em;
         }
     }
     .hov_indicator{
@@ -40,8 +37,8 @@
     }
 }
 
-.text_box:hover .hov_indicator{
-    background:rgb(245, 242, 242);
+.text_box_md:hover .hov_indicator{
+    background:#F44336;
 }
 .text_box_md:hover .img{
     opacity:0.8;

@@ -20,7 +20,7 @@ var comp_one_title = "Main Title";
 var comp_smone_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt mollis mi, sit amet aliquam sem volutpat in. Donec varius. Learn more";
 var comp_smone_title = "Main Title 1";
 
-var comp_smtwo_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum et mauris et tempor. Vivamus porttitor leo id lectus pharetra egestas. Fusce cursus, arcu at. Learn more";
+var comp_smtwo_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum et mauris et tempor. Vivamus porttitor leo id lectus pharetra egestas. Learn more";
 var comp_smtwo_title = "Main Title 2";
 
 function Home() {
@@ -45,10 +45,10 @@ function Home() {
                         <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
                         <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
                         <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
-                        <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                        {/* <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
                         <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
                         <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                        <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
+                        <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/> */}
                     </div>
 
                     <h2 className="section_header">Top Stories</h2>
@@ -66,6 +66,35 @@ function Home() {
                         <div className="large_textbox_wrap">
                             <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
                         </div>
+                    </div>
+
+                    <div className="text_comp_one">
+                    <div className="large_textbox_wrap">
+                            <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                        </div>
+                        <div className="large_textbox_wrap">
+                            <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                        </div>
+                    </div>
+
+                    <div className="text_comp_one">
+                    <div className="large_textbox_wrap">
+                            <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                        </div>
+                        <div className="large_textbox_wrap">
+                            <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                        </div>
+                    </div>
+
+                    <div className="comp_two_wrapone">
+                        <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                        <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
+                        <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                        <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
+                        {/* <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                        <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
+                        <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                        <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/> */}
                     </div>
                 </div>
         </div>
