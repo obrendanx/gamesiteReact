@@ -1,12 +1,15 @@
 import React from 'react'
 import AboutUser from '../Components/AboutUser'
 
+var teaminfo = "Cras luctus bibendum justo, ut consectetur libero euismod non. Cras ut elit semper neque ultrices consectetur at eu tortor. Cras malesuada eget nibh faucibus dapibus. Mauris sit amet egestas odio, nec tempor mi. Nulla aliquam ullamcorper mattis."
+
 function About() {
     return (
-        <div>
-            <h1>- Our Mission -</h1>
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-            <p>
+        <div className="about_main">
+            <h1 className="abt_main_head">- Our Mission -</h1>
+            <h2 className="abtSubHead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+            <h1 className="abt_main_head">About</h1>
+            <p className="abtMainPara">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Quisque mollis tincidunt pretium. Cras quis commodo ligula, 
             eu facilisis massa. Praesent sodales euismod ipsum, et dapibus dolor finibus id. 
@@ -28,10 +31,11 @@ function About() {
             Nulla aliquam ullamcorper mattis.
             </p>
             <div className="teamMembers">
-                <AboutUser />
-                <AboutUser />
-                <AboutUser />
-                <AboutUser />
+                <h1 className="abt_main_head">Leadership</h1>
+                <AboutUser teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"}/>
+                <AboutUser teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"}/>
+                <AboutUser teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"}/>
+                <AboutUser teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"}/>
             </div>
         </div>
     )

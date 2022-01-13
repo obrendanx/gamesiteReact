@@ -1,0 +1,20 @@
+.about_main{
+    background:green;
+    padding:5%;
+    .abt_main_head{
+        text-align: center;
+        @include textDisplay(1.6em, 'Dongle', Roboto, #fff );
+        margin:1.5%;
+        font-weight:1000;
+    }
+    .abtSubHead{
+        text-align:center;
+        @include textDisplay(1em, 'Dongle', Roboto, #fff );
+        margin:1.5%;
+        font-weight:900;
+    }
+    .abtMainPara{
+        @include textDisplay(0.95em, 'Dongle', Roboto, #fff );
+        margin-bottom:2%;
+    }
+}
