@@ -11,6 +11,7 @@ import SOLOLVL from '../images/sololvl121.png'
 import BANOne from '../images/banone.jpg'
 import BANTwo from '../images/bantwo.webp'
 import BANThree from '../images/banthree.jpg'
+import { nominalTypeHack } from 'prop-types';
 
 //creating the array for the banner images
 export const imgArr = [
@@ -92,34 +93,35 @@ class banner extends Component {
 
         const {ids, styles} = StyleSheet.create({
           ban: {
-              height: "700px",
+              height: "250px",
               width: "100%",
               animation: "1s linear forwards ${fadeIn}",
               position: "relative",  
 
-              '@media (max-width: 770px)': {
-                  height: '250px'
+              '@media (min-width: 770px)': {
+                  height: '700px',
+                  
               },
           },
 
           arrowLeftBtn: {
             position: "absolute",
             padding: "10px",
-            top: "37.5%",
+            top: "250px",
 
             '@media (max-width: 770px)': {
-              top: "10%"
+              top: "30%"
           },
           },
 
           arrowRightBtn: {
             position: "absolute",
-            top: "37.5%",
+            top: "250px",
             right: "0",
             padding: "10px",
 
             '@media (max-width: 770px)': {
-              top: "10%"
+              top: "30%"
           },
           },
 
@@ -196,7 +198,7 @@ class banner extends Component {
                         <Text
                           style={{
                             position: "absolute",
-                            bottom: "0",
+                            top: "450px",
                             color: "#fff",
                             width: "50%",
                             minHeight: "30%",

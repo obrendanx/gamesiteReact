@@ -102,7 +102,6 @@ const App = () => {
         {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
         {user ? <Logout /> : <Login />}
         </Switch>
-        <Footer/>
       </div>
       </Router>
     </div>

@@ -12,17 +12,17 @@
     }
     .text_area{
         position: absolute;
-        height:30%;
+        min-height:30%;
         width:100%;
         bottom:0;
-        padding:3% 5% 5% 5%;
+        padding:2% 5% 2% 5%;
         transition:0.7s;
         margin:0;
         font-weight:900;
-        @include textDisplay(0.65em, 'Dongle', Roboto, #000 );
+        @include textDisplay(0.8em, 'Dongle', Roboto, #000 );
         background:rgba(255, 254, 254, 0.8);
         a{
-            color:#fff;
+            color:#F44336;
         }
         h2{
             margin-bottom:5px;

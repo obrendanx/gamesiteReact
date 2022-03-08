@@ -32,12 +32,11 @@ Colors:
 body{
   overflow-x: hidden;
   background:rgb(37, 38, 39);
-  height:100%;
 }
 
 .App{
   @include flex(flex, column, nowrap);
-  min-height: 100%;
+  min-height:100%;
   width: 80%;
   margin: auto;
 }

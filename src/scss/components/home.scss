@@ -31,6 +31,7 @@
 
 .home_wrap{
     background:#333333;
+    padding-bottom:2.5%;
     h2{
         font-family: 'Oswald', sans-serif;
     }
@@ -54,6 +55,13 @@
 .top_block{
     margin-left:5%;
 }
-.home_wrap{
-    padding-bottom:2.5%;
+
+@media only screen and (min-width: 770px){
+    .info_wrap{
+        position:relative;
+        top:450px;
+    }
+    .home_wrap{
+        padding-bottom:11%;
+    }
 }

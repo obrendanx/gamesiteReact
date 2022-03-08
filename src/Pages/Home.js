@@ -3,6 +3,7 @@ import Banner from '../Components/Banner'
 import LgTextComp from '../Components/LgTextComp'
 import SmTextComp from '../Components/SmTextComp'
 import MdTextComp from '../Components/MdTextComp'
+import Footer from '../Components/Footer';
 
 import DPREMAKE from '../images/main/dpremake.webp'
 import SW from '../images/main/sw.jpg'
@@ -38,76 +39,82 @@ function Home() {
     return (
         <div className="home_wrap">
             <Banner />
-            <div className="text_comp_one top_block">
-                <div className="large_textbox_wrap">
-                    <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+            <div className="info_wrap">
+                
+                <div className="text_comp_one top_block">
+                    <div className="large_textbox_wrap">
+                        <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                    </div>
+                    <div className="small_textbox_wrap">
+                        <MdTextComp imgName={MINECRAFT} imgText={comp_one_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
+                        <MdTextComp imgName={MARIO} imgText={comp_one_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
+                    </div>
                 </div>
-                <div className="small_textbox_wrap">
-                    <MdTextComp imgName={MINECRAFT} imgText={comp_one_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
-                    <MdTextComp imgName={MARIO} imgText={comp_one_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
+
+                <h2 className="section_header">Nintendo</h2>
+
+                <div className="text_comp_two">
+
+                        <div className="comp_two_wrapone">
+                            <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
+                            <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
+                            {/* <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
+                            <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/> */}
+                        </div>
+
+                        <h2 className="section_header">Top Stories</h2>
+
+                        <div className="comp_two_wraptwo">
+                            <LgTextComp imgName={PS5} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
+                            <LgTextComp imgName={XBOX} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
+                        </div>
+
+                        <div className="text_comp_one">
+                            <div className="small_textbox_wrap">
+                                <MdTextComp imgName={CODMOB} imgText={comp_smone_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
+                                <MdTextComp imgName={PKMPEARL} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
+                            </div>
+                            <div className="large_textbox_wrap">
+                                <LgTextComp imgName={HALOINFINITE} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                            </div>
+                        </div>
+
+                        <div className="text_comp_one">
+                            <div className="large_textbox_wrap">
+                                <LgTextComp imgName={CYBERPUNK} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                            </div>
+                            <div className="large_textbox_wrap">
+                                <LgTextComp imgName={FALLOUT76} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                            </div>
+                        </div>
+
+                        <div className="text_comp_one">
+                            <div className="large_textbox_wrap">
+                                <LgTextComp imgName={SPIDERMAN2} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                            </div>
+                            <div className="large_textbox_wrap">
+                                <LgTextComp imgName={WARFRAMENEWWAR} imgText={comp_smone_text} imgTitle={comp_one_title}/>
+                            </div>
+                        </div>
+
+                        <div className="comp_two_wrapone">
+                            <SmTextComp imgName={PKMBLACK} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmTextComp imgName={PKMDIAMOND} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
+                            <SmTextComp imgName={PKMFIRERED} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmTextComp imgName={PKMWHITE2} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
+                            {/* <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
+                            <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/> */}
+                        </div>
+
                 </div>
             </div>
-
-            <h2 className="section_header">Nintendo</h2>
-
-            <div className="text_comp_two">
-                    <div className="comp_two_wrapone">
-                        <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                        <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
-                        <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                        <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
-                        {/* <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                        <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
-                        <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                        <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/> */}
-                    </div>
-
-                    <h2 className="section_header">Top Stories</h2>
-
-                    <div className="comp_two_wraptwo">
-                        <LgTextComp imgName={PS5} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
-                        <LgTextComp imgName={XBOX} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
-                    </div>
-
-                    <div className="text_comp_one">
-                        <div className="small_textbox_wrap">
-                            <MdTextComp imgName={CODMOB} imgText={comp_smone_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
-                            <MdTextComp imgName={PKMPEARL} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
-                        </div>
-                        <div className="large_textbox_wrap">
-                            <LgTextComp imgName={HALOINFINITE} imgText={comp_smone_text} imgTitle={comp_one_title}/>
-                        </div>
-                    </div>
-
-                    <div className="text_comp_one">
-                    <div className="large_textbox_wrap">
-                            <LgTextComp imgName={CYBERPUNK} imgText={comp_smone_text} imgTitle={comp_one_title}/>
-                        </div>
-                        <div className="large_textbox_wrap">
-                            <LgTextComp imgName={FALLOUT76} imgText={comp_smone_text} imgTitle={comp_one_title}/>
-                        </div>
-                    </div>
-
-                    <div className="text_comp_one">
-                    <div className="large_textbox_wrap">
-                            <LgTextComp imgName={SPIDERMAN2} imgText={comp_smone_text} imgTitle={comp_one_title}/>
-                        </div>
-                        <div className="large_textbox_wrap">
-                            <LgTextComp imgName={WARFRAMENEWWAR} imgText={comp_smone_text} imgTitle={comp_one_title}/>
-                        </div>
-                    </div>
-
-                    <div className="comp_two_wrapone">
-                        <SmTextComp imgName={PKMBLACK} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                        <SmTextComp imgName={PKMDIAMOND} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
-                        <SmTextComp imgName={PKMFIRERED} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                        <SmTextComp imgName={PKMWHITE2} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
-                        {/* <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                        <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
-                        <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                        <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/> */}
-                    </div>
-                </div>
+            <Footer />
         </div>
     )
 }
