@@ -2,7 +2,7 @@
     background:#464545;
     height:325px;
     width:100%;
-    padding:3%;
+    padding:1.5%;
     position:relative;
     bottom:0;
     .welcome_links{
@@ -53,6 +53,7 @@
     .personal_info{
         @include textDisplay(0.8em, 'Dongle', Roboto, #fff );
         text-align:center;
+        margin-top:3%;
         h4{
             margin-top:0.75%;
         }
@@ -60,7 +61,7 @@
             margin-top:0.75%;
         }
         hr{
-            margin:3%;
+            margin:1.5%;
         }
         a{
             color:rgba(255, 255, 255, 0.603);
@@ -70,6 +71,6 @@
 
 @media only screen and (min-width: 770px){
     .main_footer{
-        bottom:-450px;
+        
     }
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState }  from 'react';
 import { useDispatch } from "react-redux";
 import { login } from "../app/features/userSlice";
+import Footer from '../Components/Footer';
 
 const Login = (props) => {
     const [name, setName] = useState("");
