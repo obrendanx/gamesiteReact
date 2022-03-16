@@ -119,12 +119,27 @@ html{
   }
 
   .workUserProfile{
-    width:100%;
-    margin-bottom:2%;
+    width:100% !important;
+    margin-bottom:2% !important;
   }
 
   .members{
     margin-left:0;
   }
 
+}
+
+@media screen and (max-width: 1600px){
+  .workUserProfile{
+    width:45%;
+  }
+
+  .members{
+    margin-left:7.5%;
+  }
+
+  .teamUserImg{
+    width:45% !important;
+    margin-left:25% !important;
+  }
 }
