@@ -98,11 +98,11 @@ const App = () => {
         <Switch>
         <Route path="/" exact component={Home}/>
         <Route path="/about" component={About}/>
-        <Route path="/fourms" component={FetchUser}/>
+        <Route path="/fourms" component={Fourms}/>
         <Route path="/register" component={Register}/>
         <Route path="/profile" component={Profile}/>
         {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
-        {user ? <Logout /> : <Login />}
+        {user ? <Logout /> : <FetchUser />}
         </Switch>
       </div>
       </Router>

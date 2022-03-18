@@ -45,3 +45,12 @@
             border:solid 1px #f44034;
         }
     }
+
+    .fixed_sidebar_login{
+        position:fixed;
+        left:0;
+        top:50%;
+        height:100px;
+        width:250px;
+        background:#f44034;
+    }
