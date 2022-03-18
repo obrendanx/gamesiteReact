@@ -21,11 +21,16 @@ const Login = (props) => {
         }));
 
         if(name != props.person.login.username || password != props.person.login.password || email != props.person.email){
-            alert("Incorrect usernmae or password!");
+            alert("Incorrect username or password!");
         }else{
             alert("Logged In!");
         };
     }
+
+    const tempEmail = props.person;
+    const tempPass = props.person;
+    const tempUser = props.username;
+
 
     return (
         <div className="login">
@@ -52,6 +57,12 @@ const Login = (props) => {
                 />
                 <button type="submit" className="submit_btn">Submit</button>
             </form>
+            <div class="fixed_sidebar_login">
+                <h3>Test User</h3>
+                <h4>Username: {props.username}</h4>
+                <h4>Password: {tempPass}</h4>
+                <h4>Email: {tempEmail}</h4>
+            </div>
         </div>
     )
 }

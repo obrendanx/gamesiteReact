@@ -121,10 +121,11 @@ html{
   .workUserProfile{
     width:100% !important;
     margin-bottom:2% !important;
+    @include textDisplay(1.1em, 'Dongle', Roboto, #fff );
   }
 
   .members{
-    margin-left:0;
+    margin-left:0 !important;
   }
 
 }
@@ -134,12 +135,16 @@ html{
     width:45%;
   }
 
+  .teamMembers h1{
+    padding:2.5%;
+  }
+
   .members{
     margin-left:7.5%;
   }
 
   .teamUserImg{
     width:45% !important;
-    margin-left:25% !important;
+    margin-left:27.5% !important;
   }
 }

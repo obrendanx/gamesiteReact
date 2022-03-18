@@ -80,6 +80,7 @@ import Footer from './Components/Footer';
 import Login from './Components/Login';
 import Logout from './Components/Logout';
 import Register from './Components/Register';
+import Profile from './Components/Profile';
 import FetchUser from './Components/FetchUser';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './scss/App.scss';
@@ -97,8 +98,9 @@ const App = () => {
         <Switch>
         <Route path="/" exact component={Home}/>
         <Route path="/about" component={About}/>
-        <Route path="/fourms" component={Fourms}/>
+        <Route path="/fourms" component={FetchUser}/>
         <Route path="/register" component={Register}/>
+        <Route path="/profile" component={Profile}/>
         {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
         {user ? <Logout /> : <Login />}
         </Switch>
