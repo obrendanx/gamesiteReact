@@ -1,10 +1,10 @@
 .login_form{
-    height:100%;
+    height:calc(100% + 150px);
     width:35%;
     background:rgba(244, 64, 52, 0.8);
     margin:auto;
     margin-top:50px;
-    margin-bottom:50px;
+    margin-bottom:150px;
     padding-top:25px;
     border-radius:10px;
     @include textDisplay(1em, normal, 'Roboto', #fff );
@@ -47,10 +47,16 @@
     }
 
     .fixed_sidebar_login{
-        position:fixed;
-        left:0;
-        top:50%;
-        height:100px;
-        width:250px;
-        background:#f44034;
+        position:absolute;
+        height:150px;
+        width:27.5%;
+        background:#CA3B32;
+        padding:1.5%;
+        opacity:0.6;
+        margin-top:15px;
+        border-radius:10% 10% 0% 0%;
+    }
+
+    .fixed_sidebar_login:hover{
+        opacity:1;
     }

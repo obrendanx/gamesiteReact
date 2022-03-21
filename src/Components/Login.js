@@ -51,13 +51,14 @@ const Login = (props) => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button type="submit" className="submit_btn">Submit</button>
-            </form>
-            <div class="fixed_sidebar_login">
+
+                <div class="fixed_sidebar_login">
                 <h3>Test User</h3>
                 <h4>Username: {props.username}</h4>
                 <h4>Password: {props.password}</h4>
                 <h4>Email: {props.email}</h4>
-            </div>
+                </div>
+            </form>
         </div>
     )
 }
