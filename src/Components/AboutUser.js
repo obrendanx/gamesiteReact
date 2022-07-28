@@ -1,3 +1,11 @@
+/* 
+AboutUser - component fisplay information about employees or users to display on the about page 
+        information as follows:
+        - team member name
+        - team member email
+        - information about the team member 
+*/
+
 import React from 'react'
 
 function AboutUser(props) {

@@ -1,3 +1,7 @@
+/*
+FetchUser - fetches a random users set of details from an api to display and use to allow someone to login and logout and to show the user profile
+*/ 
+
 import React, { Component } from 'react';
 import Login from './Login';
 

@@ -1,3 +1,11 @@
+/*
+Banner - this component takes a colelction of images and forms them into a small slideshow banner to preview
+  - images are stored in an array
+  - information about the image is set based on the counter number
+
+  -- text  information needs to be updated to automatically add infomation to certain images
+*/ 
+
 import React, { Component } from 'react'
 import "react-toggle/style.css" // for ES6 modules
 import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native'
