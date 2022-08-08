@@ -1,0 +1,43 @@
+.profile_page{
+    background:#F44336;
+    width:100%;
+    height:100%;
+    color:#fff;
+    width:75%;
+    margin:20px;
+    padding:20px;
+    a{
+        color:#000;
+    }
+    .profile_title{
+        color:#fff;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .profile_img{
+        border-radius:50%;
+        width:25%;
+        height:175px;
+        margin-left:37.5%;
+        margin-top:20px;
+    }
+    .profile_info{
+        text-align:center;
+    }
+
+    .follow_count{
+        display:flex;
+        flex-direction: row;
+        width:50%;
+        margin-left:25%;
+        margin-top:25px;
+        .following{
+            width:50%;
+            text-align: center;
+        }
+        .followers{
+            width:50%;
+            text-align: center;
+        }
+    }
+}

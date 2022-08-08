@@ -18,6 +18,12 @@ const Login = (props) => {
             email:email,
             password:password,
             loggedIn: true,
+            profileImg: props.profileImg,
+            firstname: props.firstname,
+            lastname: props.lastname,
+            location_street: props.location_street,
+            location_code: props.location_code,
+            location_country: props.location_country
         }));
 
         if(name != props.username || password != props.password || email != props.email){
