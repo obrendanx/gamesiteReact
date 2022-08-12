@@ -1,13 +1,14 @@
 .profile_page{
     background:#F44336;
     width:100%;
-    height:100%;
+    min-height:600px;
     color:#fff;
-    width:75%;
-    margin:20px;
+    width:100%;
     padding:20px;
+    margin:auto;
+    @include textDisplay(0.8em, 'Dongle', Roboto, #fff );
     a{
-        color:#000;
+        @include textDisplay(0.8em, 'Dongle', Roboto, #000 );
     }
     .profile_title{
         color:#fff;
@@ -16,9 +17,9 @@
     }
     .profile_img{
         border-radius:50%;
-        width:25%;
-        height:175px;
-        margin-left:37.5%;
+        width:15%;
+        height:200px;
+        margin-left:42.5%;
         margin-top:20px;
     }
     .profile_info{
@@ -39,5 +40,35 @@
             width:50%;
             text-align: center;
         }
+    }
+}
+
+.following_tab{
+    background: #464545;
+    width:70%;
+    height:75px;
+    border-radius:20px;
+    margin:auto;
+    margin-top:35px;
+    margin-bottom:35px;
+    padding:15px 10px 10px 20px;
+    transition: 1s;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12);
+    a{
+        color:#fff;
+        text-decoration: none;
+    }
+}
+
+.following_tab:hover{
+    background:#ccc;
+    a{
+        color:#464545;
     }
 }

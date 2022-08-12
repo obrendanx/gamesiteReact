@@ -28,6 +28,8 @@ function Profile() {
           </div>
 
           <FollowingList username={username}/>
+          <FollowingList username={username}/>
+          <FollowingList username={username}/>
         </div>
     </div>
   )

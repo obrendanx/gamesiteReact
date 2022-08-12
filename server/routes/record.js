@@ -1,25 +1,26 @@
 const express = require("express");
+const router = express.Router();
+const signUp = require('../db/conn')
+const bcrypt = require('bcrypt')
 
-// recordRoutes is an instance of the express router.
-// We use it to define our routes.
-// The router will be added as a middleware and will take control of requests starting with path /listings.
-const recordRoutes = express.Router();
+router.post('/signup', async (request, response) =>{
 
-// This section will help you get a list of all the documents.
-recordRoutes.route("/listings").get(async function (req, res) {
-    const dbConnect = dbo.getDb();
-  
-    dbConnect
-      .collection("users")
-      .find({}).limit(50)
-      .toArray(function (err, result) {
-        if (err) {
-          res.status(400).send("Error fetching users!");
-       } else {
-          res.json(result);
-          console.log(result);
-        }
-      });
-  });
+  const saltPassword = await bcrypt.genSalt(10)
+  const securePassword= await bcrypt.hash(request.body.password, saltPassword)
 
-  module.exports = recordRoutes;
+  const signedUpUser = new signUp({
+    fullName:request.body.fullName,
+    username:request.body.username,
+    email:request.body.email,
+    password:securePassword
+  })
+  signedUpUser.save()
+  .then(data =>{
+    response.json(data)
+  })
+  .catch(error =>{
+    response.json(error)
+  })
+})
+
+module.exports = router

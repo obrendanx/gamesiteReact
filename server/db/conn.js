@@ -1,27 +1,27 @@
-const { MongoClient } = require("mongodb");
-const connectionString = process.env.ATLAS_URI;
-const client = new MongoClient(connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const mongoose = require('mongoose')
+const { string } = require('prop-types')
 
-let dbConnection;
-
-module.exports = {
-  connectToServer: function (callback) {
-    client.connect(function (err, db) {
-      if (err || !db) {
-        return callback(err);
-      }
-
-      dbConnection = db.db("users");
-      console.log("Successfully connected to MongoDB.");
-
-      return callback();
-    });
+const signUp = new mongoose.Schema({
+  fullName:{
+    type:String,
+    required:true
   },
-
-  getDb: function () {
-    return dbConnection;
+  username:{
+    type:String,
+    required:true
   },
-};
+  email:{
+    type:String,
+    required:true
+  },
+  password:{
+    type:String,
+    required:true
+  },
+  date:{
+    type:Date,
+    default:Date.now
+  }
+})
+
+module.exports = mongoose.model('mytable', signUp)
