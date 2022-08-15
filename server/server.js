@@ -24,5 +24,4 @@ mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database Connec
     console.log(`Server is running on port: ` + PORT);
   });
 
-
   
