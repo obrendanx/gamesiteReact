@@ -1,6 +1,7 @@
 // Loads the configuration from config.env to process.env
 require("dotenv").config({ path: "./config.env" });
 
+const PORT = process.env.PORT || 5000
 const express = require("express");
 const app = express();
 
@@ -19,7 +20,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database Connec
   app.use(cors())
   app.use('/app', recordUrls)
   // start the Express server
-  app.listen(5000, () => {
+  app.listen(PORT, () => {
     console.log(`Server is running on port: 5000`);
   });
 
