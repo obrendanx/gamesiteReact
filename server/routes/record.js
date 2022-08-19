@@ -13,7 +13,7 @@ router.post('/signup', async (request, response) =>{
     fullName:request.body.fullName,
     username:request.body.username,
     email:request.body.email,
-    password:securePassword
+    password:request.body.password
   })
   signedUpUser.save()
   .then(data =>{
@@ -30,18 +30,16 @@ router.post('/login', async (request, response) =>{
       username: request.body.username,
       password: request.body.password
   })
-
   if(user) {
-
-    const token = jwt.sign({
+      const token = jwt.sign({
         username: user.username,
         email: user.email,
     }, 'Zz47H.Aa5B')
-
     return response.json({ status: 'ok', user: token})
-  }else{
-    return response.json({ status: 'error', user:false})
-  }
+    }else{
+      return response.json({ status: 'error', user:false})
+    }
 })
 
 module.exports = router
+

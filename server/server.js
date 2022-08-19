@@ -21,7 +21,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database Connec
   app.use('/app', recordUrls)
   // start the Express server
   app.listen(PORT, () => {
-    console.log(`Server is running on port: 5000`);
+    console.log(`Server is running on port: ` + PORT);
   });
 
 

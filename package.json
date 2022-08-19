@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@expo/match-media": "^0.1.0",
+    "@expo/match-media": "^0.3.0",
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -21,21 +21,21 @@
     "mongodb": "^4.8.1",
     "mongoose": "^6.5.1",
     "mysql": "^2.18.1",
-    "passport": "^0.5.0",
+    "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-google-login": "^5.2.2",
-    "react-native-dom": "^0.5.0",
+    "react-native-dom": "^0.0.1",
     "react-native-media-query": "^1.0.6",
-    "react-native-router-flux": "^4.2.0",
+    "react-native-router-flux": "^3.45.0",
     "react-native-web": "^0.15.5",
     "react-redux": "^7.2.6",
     "react-responsive": "^8.2.0",
     "react-router-dom": "^5.3.0",
     "react-router-native": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "react-toggle": "^4.1.2",
     "react-transition-group": "^4.4.1",
     "redux": "^4.1.2",
@@ -44,14 +44,13 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start", 
+    "build": "react-app-rewired build", 
+    "test": "react-app-rewired test", 
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
       "react-app/jest"
     ]
   },
@@ -68,6 +67,16 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-jest": "^24.3.6"
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "eslint-plugin-jest": "^24.3.6",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0"
   }
 }
