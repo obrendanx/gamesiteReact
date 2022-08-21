@@ -89,6 +89,7 @@ async function loginUser(event) {
             username, email, password,
         }),
     })
+   
 
     const data = await response.json()
 
