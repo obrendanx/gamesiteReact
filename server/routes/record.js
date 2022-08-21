@@ -25,22 +25,42 @@ router.post('/signup', async (request, response) =>{
 })
 
 router.post('/login', async (request, response) =>{
-    const user = await signUp.findOne({ 
-      email: request.body.email,
-      username: request.body.username,
-      password: request.body.password
-  })
+  //   const user = await signUp.findOne({ 
+  //     email: request.body.email,
+  //     username: request.body.username,
+  //     password: request.body.password
+  // })
+  // const validPass = await bcrypt.compare(request.body.password, response.password)
+  // if(user && validPass) {
 
-  if(user) {
+  //   const token = jwt.sign({
+  //       username: user.username,
+  //       email: user.email,
+  //   }, 'Zz47H.Aa5B')
 
-    const token = jwt.sign({
-        username: user.username,
-        email: user.email,
-    }, 'Zz47H.Aa5B')
-
-    return response.json({ status: 'ok', user: token})
-  }else{
-    return response.json({ status: 'error', user:false})
+  //   return response.json({ status: 'ok', user: token})
+  // }else{
+  //   console.log(request.body.password)
+  //   return response.json({ status: 'error', user:false})
+  // }
+  try {
+    const user = await signUp.findOne({ username: request.body.username, email: request.body.email });
+    if (user) {
+      const cmp = await bcrypt.compare(request.body.password, user.password);
+      if (cmp) {
+          const token = jwt.sign({
+          username: user.username,
+          email: user.email,
+      }, 'Zz47H.Aa5B')
+        return response.json({ status: 'ok', user: token})
+      } else {
+        return response.json({ status: 'error', user:false})
+      }
+    } else {
+      response.send("Wrong username or password.");
+    }
+  } catch (error) {
+    response.status(500).send("Internal Server error Occured");
   }
 })
 
