@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const recordUrls = require('./routes/record')
 const cors = require('cors')
+const path = require(“path”);
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, () => console.log("Database Connec
   app.use(express.json())
   const bodyParser = require('body-parser');
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(express.static(path.join(__dirname, "client/build")))
   app.use(cors())
   app.use('/app', recordUrls)
   // start the Express server
