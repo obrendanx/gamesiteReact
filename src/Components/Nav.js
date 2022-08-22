@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import logo from '../images/logo.jpg'
 import { useSelector } from "react-redux";
@@ -28,7 +28,7 @@ function Nav() {
                         
                         <div className="nav-left">
                             <Link to='/'>
-                                <li><img src={logo} alt="Logo image" /></li>
+                                <li><img src={logo} alt="Logo" /></li>
                             </Link>
                             <Link to='/'>
                                 <li> Home </li>

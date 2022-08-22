@@ -13,7 +13,7 @@ function LgTextComp(props) {
     return (
         <div>
             <div className="text_box">
-                <img src={props.imgName} alt="image here" />
+                <img src={props.imgName} alt="gaming" />
                 <div className="text_area" id="text_area">
                     <div class="hov_indicator"></div>
                     <header>

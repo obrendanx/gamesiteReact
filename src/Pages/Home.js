@@ -3,7 +3,6 @@ import Banner from '../Components/Banner'
 import LgTextComp from '../Components/LgTextComp'
 import SmTextComp from '../Components/SmTextComp'
 import MdTextComp from '../Components/MdTextComp'
-import Footer from '../Components/Footer';
 
 import DPREMAKE from '../images/main/dpremake.webp'
 import SW from '../images/main/sw.jpg'

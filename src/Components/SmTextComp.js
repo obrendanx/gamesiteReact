@@ -5,7 +5,7 @@ function SmTextComp(props) {
     return (
         <div>
             <div className="text_box_small">
-                <img src={props.imgName} alt="image here" />
+                <img src={props.imgName} alt="gaming" />
                 <div className={'text_area ' + (props.colorscheme)}>
                     <header>
                         <h2>{props.imgTitle}</h2>

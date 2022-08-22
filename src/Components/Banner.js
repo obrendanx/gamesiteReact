@@ -8,18 +8,14 @@ Banner - this component takes a colelction of images and forms them into a small
 
 import React, { Component } from 'react'
 import "react-toggle/style.css" // for ES6 modules
-import { View, Text, TouchableHighlight, TouchableOpacity, TextInput, Image, ImageBackground } from 'react-native'
+import { View, Text, TouchableHighlight, ImageBackground } from 'react-native'
 import StyleSheet from 'react-native-media-query';
 
 //importing images for the banner slideshow
-import RDRDUpdate from '../images/rdrdupdate.jpg'
 import REACTGaming from '../images/react-gaming.jpeg'
-import WARZONE from '../images/warzone.jpg'
-import SOLOLVL from '../images/sololvl121.png'
 import BANOne from '../images/banone.jpg'
 import BANTwo from '../images/bantwo.webp'
 import BANThree from '../images/banthree.jpg'
-import { nominalTypeHack } from 'prop-types';
 
 //creating the array for the banner images
 export const imgArr = [
@@ -52,13 +48,13 @@ class banner extends Component {
 
       changeImage(button) {
         //check what button is pressed left or right
-        if(button == 1) {
+        if(button === 1) {
           // add one if right is pushed
-          if (this.state.counter == imgArr.length - 1) this.setState({counter: 0})
+          if (this.state.counter === imgArr.length - 1) this.setState({counter: 0})
           else this.setState({counter: this.state.counter + 1})
         } else {
           //minus one if left is pushed
-          if (this.state.counter == 0) this.setState({counter: imgArr.length - 1})
+          if (this.state.counter === 0) this.setState({counter: imgArr.length - 1})
           else this.setState({counter: this.state.counter - 1}) 
         }
       }
@@ -67,12 +63,12 @@ class banner extends Component {
         let button1 = false,button2 = false; 
         var imgTitle = "";
         var imgMessage = "";
-        if(this.state.counter == 0) {
+        if(this.state.counter === 0) {
         //make the previous button disable
         button2=true;
         } 
 
-        if(this.state.counter == (imgArr.length - 1)) {
+        if(this.state.counter === (imgArr.length - 1)) {
         button1=true;
         } 
 
@@ -85,16 +81,16 @@ class banner extends Component {
 
 
         //setting text for each image depending on counter state 
-        if(this.state.counter == 0){
+        if(this.state.counter === 0){
           imgTitle = "React Gaming";
           imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
-        } else if(this.state.counter == 1){
+        } else if(this.state.counter === 1){
           imgTitle = "Banner Image";
           imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
-        } else if(this.state.counter == 2){
+        } else if(this.state.counter === 2){
           imgTitle = "Banner Image";
           imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
-        } else if(this.state.counter == 3){
+        } else if(this.state.counter === 3){
           imgTitle = "Banner Image";
           imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
         }
@@ -135,7 +131,6 @@ class banner extends Component {
 
           arrowLeftText: {
             //background: "#fff",
-            color: "#000",
             //opacity: "0.3",
             padding: "15px",
             fontSize: "4em",
@@ -148,7 +143,6 @@ class banner extends Component {
 
           arrowRightText: {
             //background: "#fff",
-            color: "#000",
             //opacity: "0.3",
             padding: "15px",
             fontSize: "4em",

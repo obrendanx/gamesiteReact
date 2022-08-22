@@ -71,13 +71,12 @@
           )}
         /> */
 
-import React, { Component, useState } from 'react';
+import React from 'react';
 import Nav from './Components/Nav';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import Fourms from './Pages/Fourms';
 import Footer from './Components/Footer';
-import Login from './Components/Login';
 import Logout from './Components/Logout';
 import Register from './Components/Register';
 import Profile from './Components/Profile';

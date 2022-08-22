@@ -5,7 +5,7 @@ function MdTextComp(props) {
     return (
         <div>
             <div className="text_box_md">
-                <img src={props.imgName} alt="image here" />
+                <img src={props.imgName} alt="gaming" />
                 <div className="text_area">
                     <div class="hov_indicator"></div>
                     <header>

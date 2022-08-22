@@ -1,6 +1,5 @@
 import React from 'react'
 import AboutUser from '../Components/AboutUser'
-import Footer from '../Components/Footer';
 
 import personone from '../images/main/defperson.png'
 import persontwo from '../images/main/defperson.png'

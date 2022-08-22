@@ -11,7 +11,7 @@ import React from 'react'
 function AboutUser(props) {
     return (
         <div className="workUserProfile">
-            <img src={props.teamMemImg} alt="Image of team member" className="teamUserImg"/>
+            <img src={props.teamMemImg} alt="team member" className="teamUserImg"/>
             <div className="userInfo">
                 <h2 className="teamMemMainHead">{props.teamMemName}</h2>
                 <h3 calss="teamMemSubHead">{props.teamMemEmail}</h3>
