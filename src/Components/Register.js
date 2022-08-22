@@ -57,7 +57,8 @@ export class Register extends Component {
   render() {
     return (
       <div>
-          <div className="container">
+          <div className="login_form">
+            <h1>Register</h1>
               <div className="form-div">
                   <form onSubmit={this.onSubmit}>
                       <input type='text'

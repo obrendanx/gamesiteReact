@@ -39,7 +39,7 @@ export class FetchUser extends Component {
         return (
             <div>
                 {this.state.loading || !this.state.person ? (
-                    <h2>loading ... {<Login username="loading ..." password="loading ..." email="loading ..."/>}</h2>
+                    <h2></h2>
                 ) : (
                     <h1></h1>
                 )}

@@ -13,7 +13,7 @@ router.post('/signup', async (request, response) =>{
     fullName:request.body.fullName,
     username:request.body.username,
     email:request.body.email,
-    password:request.body.password
+    password:securePassword
   })
   signedUpUser.save()
   .then(data =>{
@@ -65,4 +65,3 @@ router.post('/login', async (request, response) =>{
 })
 
 module.exports = router
-
