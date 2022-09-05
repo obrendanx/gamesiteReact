@@ -124,6 +124,11 @@ html{
     width:100% !important;
     margin-bottom:2% !important;
     @include textDisplay(1.1em, 'Dongle', Roboto, #fff );
+    h1{
+      height:40% !important;
+      margin-top:5%;
+      line-height:200px;
+    }
   }
 
   .members{

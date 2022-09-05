@@ -42,8 +42,6 @@ function About() {
                         <div className="member_group_one">
                             <AboutUser teamMemImg={personone} teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"} className="aboutuser"/>
                             <AboutUser teamMemImg={persontwo} teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"} className="aboutuser"/>
-                        </div>
-                        <div className="member_group_two">
                             <AboutUser teamMemImg={personthree} teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"} className="aboutuser"/>
                             <AboutUser teamMemImg={personfour} teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"} className="aboutuser"/>
                         </div>

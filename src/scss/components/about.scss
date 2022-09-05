@@ -22,19 +22,12 @@
 }
 
 .members{
-    @include flex(flex, column, nowrap);
+    @include flex(flex, row, nowrap);
     justify-content:flex-start;
-    margin-left:17.5%;
 }
 
 .member_group_one{
     @include flex(flex, row, nowrap);
-    margin-bottom:2%;
-    column-gap:2%;
-}
-.member_group_two{
-    @include flex(flex, row, nowrap);
-    row-gap:2%;
     column-gap:2%;
 }
 
