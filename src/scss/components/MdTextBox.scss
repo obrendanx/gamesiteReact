@@ -19,8 +19,8 @@
         transition:0.7s;
         margin:0;
         font-weight:900;
-        @include textDisplay(0.8em, 'Dongle', Roboto, #000 );
-        background:rgba(255, 254, 254, 0.8);
+        @include textDisplay(0.8em, 'Dongle', Roboto, #fff );
+        background:rgba(0, 0, 0, 0.8);
         a{
             color:#F44336;
         }
@@ -28,6 +28,9 @@
             margin-bottom:5px;
             text-transform:uppercase;
         }
+    }
+    .text_area:hover{
+        background:rgba(0, 0, 0, 1);
     }
     .hov_indicator{
         background:rgb(114, 112, 112);

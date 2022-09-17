@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+const axios = require("axios");
     // var colours = ['#3968ff', '#10ff74', '#ceff12'];
     // var random_colour = colours[Math.floor(Math.random() * colours.length)];
     // window.onload = function(){

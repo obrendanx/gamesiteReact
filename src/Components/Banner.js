@@ -12,14 +12,14 @@ import { View, Text, TouchableHighlight, ImageBackground } from 'react-native'
 import StyleSheet from 'react-native-media-query';
 
 //importing images for the banner slideshow
-import REACTGaming from '../images/react-gaming.jpeg'
-import BANOne from '../images/banone.jpg'
-import BANTwo from '../images/bantwo.webp'
-import BANThree from '../images/banthree.jpg'
+import BANFour from '../imgs/banner/tog.jpg'
+import BANOne from '../imgs/banner/aot.jpg'
+import BANTwo from '../imgs/banner/goh.jpg'
+import BANThree from '../imgs/banner/sololevel.jpg'
 
 //creating the array for the banner images
 export const imgArr = [
-  REACTGaming,
+  BANFour,
   BANOne,
   BANTwo,
   BANThree
@@ -82,16 +82,16 @@ class banner extends Component {
 
         //setting text for each image depending on counter state 
         if(this.state.counter === 0){
-          imgTitle = "React Gaming";
+          imgTitle = "Tower of God - Season 2";
           imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
         } else if(this.state.counter === 1){
-          imgTitle = "Banner Image";
+          imgTitle = "Attack on Titan";
           imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
         } else if(this.state.counter === 2){
-          imgTitle = "Banner Image";
+          imgTitle = "The God of Highschool";
           imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
         } else if(this.state.counter === 3){
-          imgTitle = "Banner Image";
+          imgTitle = "Solo Leveling";
           imgMessage = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in maximus sapien. Duis eget pulvinar massa, quis varius libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sit amet libero vitae metus placerat efficitur. Curabitur nec molestie sem";
         }
 
@@ -101,7 +101,7 @@ class banner extends Component {
               width: "100%",
               animation: "1s linear forwards ${fadeIn}",
               position: "relative",  
-
+              opacity: "0.8",
               '@media (min-width: 770px)': {
                   height: '700px',
                   
@@ -207,7 +207,9 @@ class banner extends Component {
                             //background: "rgba(0, 0, 0, 0.3)",
                             marginLeft: "2.5%",
                             marginBottom: "2.5%",
-                            padding: "2.5%"
+                            padding: "2.5%",
+                            background: "rgba(0, 0, 0, 0.6)",
+                            borderRadius: "20px"
                           }}
                         >
                           {/* adding text to the banner image */}

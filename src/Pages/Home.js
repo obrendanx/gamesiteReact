@@ -25,6 +25,11 @@ import PKMFIRERED from '../images/main/pkmfirered.jpg'
 import PKMBLACK from '../images/main/pkmblack.jpeg'
 import PKMWHITE2 from '../images/main/pkmwhite2.jpg'
 
+import TOG from '../imgs/togs2.jpg'
+import SOLOLEVEL from '../imgs/goh.jpg'
+import GOH from '../imgs/sololevel.jpg'
+import UNORDINARY from '../imgs/unordinary.png'
+
 var comp_one_text = "Some information about the image, and about new updates that are out. Learn more";
 var comp_one_title = "Main Title";
 
@@ -55,10 +60,10 @@ function Home() {
                 <div className="text_comp_two">
 
                         <div className="comp_two_wrapone">
-                            <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
-                            <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
+                            <SmTextComp imgName={TOG} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmTextComp imgName={SOLOLEVEL} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
+                            <SmTextComp imgName={GOH} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmTextComp imgName={UNORDINARY} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
                             {/* <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
                             <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
                             <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
