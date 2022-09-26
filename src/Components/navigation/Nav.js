@@ -1,8 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import logo from '../images/logo.jpg'
+import logo from '../../images/logo.jpg'
 import { useSelector } from "react-redux";
-import { selectUser } from "../app/features/userSlice";
+import { selectUser } from "../../app/features/userSlice";
 
 function Nav() {
     const user = useSelector(selectUser);
@@ -38,6 +38,9 @@ function Nav() {
                             </Link>
                             <Link to='/fourms'>
                                 <li> Fourms </li>
+                            </Link>
+                            <Link to='/anime'>
+                                <li> Anime </li>
                             </Link>
                         </div>
 

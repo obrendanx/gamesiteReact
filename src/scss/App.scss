@@ -11,6 +11,7 @@
 @import './components/about.scss';
 @import './components/aboutuser.scss';
 @import './components/profile.scss';
+@import './components/animecard.scss';
 
 /*
 Colors:
@@ -159,4 +160,10 @@ html{
     width:45% !important;
     margin-left:27.5% !important;
   }
+}
+
+.progress{
+  @include textDisplay(3em, 'Dongle', Roboto, #fff );
+  text-align:center;
+  margin-top:150px;
 }

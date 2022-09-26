@@ -1,34 +1,30 @@
 import React from 'react'
-import Banner from '../Components/Banner'
-import LgTextComp from '../Components/LgTextComp'
-import SmTextComp from '../Components/SmTextComp'
-import MdTextComp from '../Components/MdTextComp'
+import Banner from '../Components/information/Banner'
+import LgTextComp from '../Components/information/GameCards/LgTextComp'
+import SmallAnime from '../Components/information/GameCards/SmallAnime'
+import SmallManga from '../Components/information/GameCards/SmallManga'
+import MdTextComp from '../Components/information/GameCards/MdTextComp'
 
-import DPREMAKE from '../images/main/dpremake.webp'
-import SW from '../images/main/sw.jpg'
-import MARIO from '../images/main/mario.webp'
-import ZELDA from '../images/main/zelda.webp'
-import PS5 from '../images/main/ps5.jpg'
-import XBOX from '../images/main/xboxx.jpg'
-import SMASH from '../images/main/smashbro.jpg'
-import MINECRAFT from '../images/main/minecraft.png'
-import AC from '../images/main/animalcrossing.jpg'
-import CODMOB from '../images/main/codmob.jpeg'
-import HALOINFINITE from '../images/main/haloinfinite.jpeg'
-import PKMPEARL from '../images/main/pkmpearl.jpeg'
-import FALLOUT76 from '../images/main/fallout76.jpeg'
-import CYBERPUNK from '../images/main/cyberpunk.jpeg'
-import SPIDERMAN2 from '../images/main/spiderman2.png'
-import WARFRAMENEWWAR from '../images/main/warframenewwar.jpeg'
-import PKMDIAMOND from '../images/main/pkmdiamond.jpeg'
-import PKMFIRERED from '../images/main/pkmfirered.jpg'
-import PKMBLACK from '../images/main/pkmblack.jpeg'
-import PKMWHITE2 from '../images/main/pkmwhite2.jpg'
-
-import TOG from '../imgs/togs2.jpg'
-import SOLOLEVEL from '../imgs/goh.jpg'
-import GOH from '../imgs/sololevel.jpg'
-import UNORDINARY from '../imgs/unordinary.png'
+import DPREMAKE from '../images/main/dpremake.webp' //small
+import SW from '../images/main/sw.jpg' //large
+import MARIO from '../images/main/mario.webp' //med
+import ZELDA from '../images/main/zelda.webp' //small
+import PS5 from '../images/main/ps5.jpg' //large
+import XBOX from '../images/main/xboxx.jpg'//large
+import SMASH from '../images/main/smashbro.jpg' //small
+import MINECRAFT from '../images/main/minecraft.png' //med
+import AC from '../images/main/animalcrossing.jpg' //small
+import CODMOB from '../images/main/codmob.jpeg' //med
+import HALOINFINITE from '../images/main/haloinfinite.jpeg' //large
+import PKMPEARL from '../images/main/pkmpearl.jpeg' //med
+import FALLOUT76 from '../images/main/fallout76.jpeg' //large
+import CYBERPUNK from '../images/main/cyberpunk.jpeg' //large
+import SPIDERMAN2 from '../images/main/spiderman2.png' //large
+import WARFRAMENEWWAR from '../images/main/warframenewwar.jpeg' //large
+import PKMDIAMOND from '../images/main/pkmdiamond.jpeg' //small
+import PKMFIRERED from '../images/main/pkmfirered.jpg' //small
+import PKMBLACK from '../images/main/pkmblack.jpeg' //small
+import PKMWHITE2 from '../images/main/pkmwhite2.jpg' //small
 
 var comp_one_text = "Some information about the image, and about new updates that are out. Learn more";
 var comp_one_title = "Main Title";
@@ -55,19 +51,22 @@ function Home() {
                     </div>
                 </div>
 
-                <h2 className="section_header">Nintendo</h2>
+                <h2 className="section_header">TOP: UPCOMING ANIME</h2>
 
                 <div className="text_comp_two">
 
                         <div className="comp_two_wrapone">
-                            <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
-                            <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
-                            {/* <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
-                            <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/> */}
+                            <SmallAnime animeNo={0} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmallAnime animeNo={1} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
+                            <SmallAnime animeNo={2} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmallAnime animeNo={3} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
+                        </div>
+
+                        <div className="comp_two_wrapone">
+                            <SmallAnime animeNo={4} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmallAnime animeNo={5} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
+                            <SmallAnime animeNo={6} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmallAnime animeNo={7} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
                         </div>
 
                         <h2 className="section_header">Top Stories</h2>
@@ -105,17 +104,29 @@ function Home() {
                             </div>
                         </div>
 
-                        <div className="comp_two_wrapone">
-                            <SmTextComp imgName={PKMBLACK} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmTextComp imgName={PKMDIAMOND} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
-                            <SmTextComp imgName={PKMFIRERED} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmTextComp imgName={PKMWHITE2} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/>
-                            {/* <SmTextComp imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmTextComp imgName={AC} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s2'}/>
-                            <SmTextComp imgName={DPREMAKE} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmTextComp imgName={SMASH} imgText={comp_one_text} imgTitle={comp_smtwo_title} colorscheme={'color-scheme-s4'}/> */}
-                        </div>
+                        <h2 className="section_header">TOP 15 MANGA</h2>
 
+                        <div className="comp_two_wrapone">
+                            <SmallManga mangaNo={0} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
+                            <SmallManga mangaNo={1} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmallManga mangaNo={2} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
+                            <SmallManga mangaNo={3} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmallManga mangaNo={4} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
+                        </div>
+                        <div className="comp_two_wrapone">
+                            <SmallManga mangaNo={5} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
+                            <SmallManga mangaNo={6} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmallManga mangaNo={7} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
+                            <SmallManga mangaNo={8} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmallManga mangaNo={9} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
+                        </div>
+                        <div className="comp_two_wrapone">
+                            <SmallManga mangaNo={10} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
+                            <SmallManga mangaNo={11} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
+                            <SmallManga mangaNo={12} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
+                            <SmallManga mangaNo={13} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
+                            <SmallManga mangaNo={14} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
+                        </div>
                 </div>
             </div>
         </div>

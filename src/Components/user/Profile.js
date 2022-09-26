@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectUser } from "../app/features/userSlice";
-import Followers from "./Followers.js";
-import Following from "./Following.js";
-import FollowingList from "./FollowingList.js";
+import { selectUser } from "../../app/features/userSlice";
+import Followers from "./ProfileFeatures/Followers.js";
+import Following from "./ProfileFeatures/Following.js";
+import FollowingList from "./ProfileFeatures/FollowingList.js";
 import jwt from 'jsonwebtoken'
 
 function Profile() {

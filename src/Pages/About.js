@@ -1,5 +1,5 @@
 import React from 'react'
-import AboutUser from '../Components/AboutUser'
+import AboutUser from '../Components/information/AboutUser'
 
 import personone from '../images/main/defperson.png'
 import persontwo from '../images/main/defperson.png'

@@ -3,7 +3,7 @@ FetchUser - fetches a random users set of details from an api to display and use
 */ 
 
 import React, { Component } from 'react';
-import Login from './Login';
+import Login from './Auth/Login';
 
 export class FetchUser extends Component {
     state = {

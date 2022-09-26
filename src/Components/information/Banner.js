@@ -7,15 +7,16 @@ Banner - this component takes a colelction of images and forms them into a small
 */ 
 
 import React, { Component } from 'react'
+import {BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import "react-toggle/style.css" // for ES6 modules
 import { View, Text, TouchableHighlight, ImageBackground } from 'react-native'
 import StyleSheet from 'react-native-media-query';
 
 //importing images for the banner slideshow
-import BANFour from '../imgs/banner/tog.jpg'
-import BANOne from '../imgs/banner/aot.jpg'
-import BANTwo from '../imgs/banner/goh.jpg'
-import BANThree from '../imgs/banner/sololevel.jpg'
+import BANFour from '../../images/banner/tog.jpg'
+import BANOne from '../../images/banner/aot.jpg'
+import BANTwo from '../../images/banner/goh.jpg'
+import BANThree from '../../images/banner/sololevel.jpg'
 
 //creating the array for the banner images
 export const imgArr = [
@@ -24,6 +25,8 @@ export const imgArr = [
   BANTwo,
   BANThree
 ];
+
+const page = "/towerofgod"
 
 class banner extends Component {
     constructor(props) {
@@ -78,7 +81,6 @@ class banner extends Component {
             counter: 0
           });
         }
-
 
         //setting text for each image depending on counter state 
         if(this.state.counter === 0){
@@ -223,7 +225,7 @@ class banner extends Component {
                             <p>
                               {imgMessage}
                             </p>
-                            <a href="#">Learn More</a>
+                            <Link to={page}>Learn More</Link>
                         </Text>
                     </div>
                     </ImageBackground>

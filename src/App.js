@@ -72,19 +72,23 @@
         /> */
 
 import React from 'react';
-import Nav from './Components/Nav';
+import Nav from './Components/navigation/Nav';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import Fourms from './Pages/Fourms';
-import Footer from './Components/Footer';
-import Logout from './Components/Logout';
-import Register from './Components/Register';
-import Profile from './Components/Profile';
-import FetchUser from './Components/FetchUser';
+import Footer from './Components/information/Footer';
+import Banner from './Components/information/Banner';
+import Logout from './Components/user/Auth/Logout';
+import Register from './Components/user/Auth/Register';
+import Profile from './Components/user/Profile';
+import FetchUser from './Components/user/FetchUser';
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './scss/App.scss';
 import { useSelector } from "react-redux";
 import { selectUser } from "./app/features/userSlice";
+import TowerOfGod from './Pages/subPages/TowerOfGod';
+import AnimeSearch from './Pages/AnimeSearch';
+import InProgress from './Pages/InProgress';
 
 
 const App = () => {
@@ -98,9 +102,11 @@ const App = () => {
         <Switch>
         <Route path="/" exact component={Home}/>
         <Route path="/about" component={About}/>
-        <Route path="/fourms" component={Fourms}/>
+        <Route path="/fourms" component={InProgress}/>
+        <Route path="/anime" component={AnimeSearch}/>
         <Route path="/register" component={Register}/>
         <Route path="/profile" component={Profile}/>
+        <Route path="/towerofgod" component={TowerOfGod} />
         {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
         {user ? <Logout /> : <FetchUser />}
         </Switch>

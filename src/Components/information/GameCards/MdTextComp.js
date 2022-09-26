@@ -1,12 +1,13 @@
 import React from 'react'
 
 
-function SmTextComp(props) {
+function MdTextComp(props) {
     return (
         <div>
-            <div className="text_box_small">
+            <div className="text_box_md">
                 <img src={props.imgName} alt="gaming" />
-                <div className={'text_area ' + (props.colorscheme)}>
+                <div className="text_area">
+                    <div class="hov_indicator"></div>
                     <header>
                         <h2>{props.imgTitle}</h2>
                     </header>
@@ -19,4 +20,4 @@ function SmTextComp(props) {
     )
 }
 
-export default SmTextComp
+export default MdTextComp

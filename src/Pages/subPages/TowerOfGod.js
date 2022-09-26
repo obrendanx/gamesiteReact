@@ -1,5 +1,5 @@
 import React from 'react'
-import SubPage from '../src/Components/SubPage.js'
+import SubPage from '../../Components/information/BannerCards/SubPage.js'
 
 function TowerOfGod() {
     const storyTitle = "Tower of God";
@@ -10,7 +10,7 @@ function TowerOfGod() {
 
   return (
     <div>
-        <SubPage sotryTitle={storyTitle} storySynopsis={storySynopsis} storyVideoSrc={storyVideoSrc} storySubTitle={storySubTitle} storyInfo={storyInfo}/>
+        <SubPage storyTitle={storyTitle} storySynopsis={storySynopsis} storyVideoSrc={storyVideoSrc} storySubTitle={storySubTitle} storyInfo={storyInfo}/>
     </div>
   )
 }

@@ -15,7 +15,7 @@ function SubPage(props) {
             </div>
 
             <div>
-                <iframe src={storyVideoSrc}></iframe>
+                <iframe src={props.storyVideoSrc}></iframe>
             </div>
 
             <div>

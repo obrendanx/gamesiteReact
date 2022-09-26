@@ -1,0 +1,87 @@
+.anime_container{
+    @include flex(flex, row, wrap);
+    width:100%;
+    min-height:100%;
+    .anime_group{
+        width:25%;
+        margin:4.16%;
+        text-align: center;
+        
+    }
+}
+
+.anime_card{
+    width:100%;
+    .anime_title{
+        @include textDisplay(1em, 'Dongle', Roboto, #fff );
+    }
+    a{
+        text-decoration: none;
+    }
+    h2{
+        margin-top:10px;
+    }
+    .anime_img{
+        border-radius:20px;
+    }
+}
+
+.anime_search{
+    input{
+        width:100%;
+        height:50px;
+        margin-bottom:10px;
+        border-radius:20px;
+        border:none;
+        padding-left:2.5%;
+        @include textDisplay(1em, 'Dongle', Roboto, #000 );
+    }
+}
+
+.anime_side{
+    height:100%;
+    background:#333;
+    border-radius:20px;
+    padding:10px;
+    .anime_side_nav{
+        h3{
+            @include textDisplay(1.3em, 'Dongle', Roboto, #fff );
+            text-align:center;
+        }
+    }
+    ul{
+        list-style-type: decimal;
+        width:80%;
+        margin-left:10%;
+        @include textDisplay(1em, 'Dongle', Roboto, #fff );
+    }
+}
+
+.anime_top_link{
+    @include textDisplay(1em, 'Dongle', Roboto, #fff );
+    display:block;
+    margin:10px;
+}
+
+.anime_main_container{
+    @include flex(flex, row, nowrap);
+    margin-bottom:20px;
+    width:100%;
+    .con_side{
+        width:20%;
+        min-height:300px;
+    }
+    .con_main{
+        width:80%;
+        margin-left:2%;
+    }
+}
+
+.anime_search_title{
+    text-align: center;
+    margin:20px;
+    @include textDisplay(2em, 'Dongle', Roboto, #fff );
+    strong{
+        color:#333;
+    }
+}
