@@ -141,6 +141,10 @@ html{
     border-radius:0;
   }
 
+  .anime_group{
+    width:100% !important;
+  }
+
 }
 
 @media screen and (max-width: 1600px){
@@ -166,4 +170,18 @@ html{
   @include textDisplay(3em, 'Dongle', Roboto, #fff );
   text-align:center;
   margin-top:150px;
+}
+
+@media screen and (max-width: 1200px){
+  .con_side{
+    display:none;
+  }
+  .con_main{
+    margin-left:10% !important;
+  }
+
+  .anime_group{
+    width:40% !important;
+    margin:5% !important;
+  }
 }

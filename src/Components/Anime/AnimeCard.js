@@ -8,7 +8,7 @@ function AnimeCard({anime}) {
                 <figure className='anime_img'>
                     <img src={anime.image_url} alt="Anime Image" />
                 </figure>
-                <h2 className='anime_title'>{anime.title}</h2>
+                <h2 className='anime_title'>{anime.title_japanese}</h2>
             </a>
         </article>
     </div>
