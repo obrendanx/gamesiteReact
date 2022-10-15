@@ -4,6 +4,7 @@ import LgTextComp from '../Components/information/GameCards/LgTextComp'
 import SmallAnime from '../Components/information/GameCards/SmallAnime'
 import SmallManga from '../Components/information/GameCards/SmallManga'
 import MdTextComp from '../Components/information/GameCards/MdTextComp'
+import SetAnime from '../Components/information/GameCards/SetAnime'
 
 import DPREMAKE from '../images/main/dpremake.webp' //small
 import SW from '../images/main/sw.jpg' //large
@@ -56,17 +57,7 @@ function Home() {
                 <div className="text_comp_two">
 
                         <div className="comp_two_wrapone">
-                            <SmallAnime animeNo={0} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmallAnime animeNo={1} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
-                            <SmallAnime animeNo={2} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmallAnime animeNo={3} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
-                        </div>
-
-                        <div className="comp_two_wrapone">
-                            <SmallAnime animeNo={4} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmallAnime animeNo={5} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
-                            <SmallAnime animeNo={6} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmallAnime animeNo={7} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
+                            <SetAnime />
                         </div>
 
                         <h2 className="section_header">Top Stories</h2>
@@ -106,7 +97,7 @@ function Home() {
 
                         <h2 className="section_header">TOP 15 MANGA</h2>
 
-                        <div className="comp_two_wrapone">
+                        {/*<div className="comp_two_wrapone">
                             <SmallManga mangaNo={0} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
                             <SmallManga mangaNo={1} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
                             <SmallManga mangaNo={2} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
@@ -126,7 +117,7 @@ function Home() {
                             <SmallManga mangaNo={12} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
                             <SmallManga mangaNo={13} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
                             <SmallManga mangaNo={14} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
-                        </div>
+                        </div>*/}
                 </div>
             </div>
         </div>

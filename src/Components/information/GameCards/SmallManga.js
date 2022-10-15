@@ -9,10 +9,10 @@ function SmallManga(props) {
     const mangaUrl = [];
 
     const GetManga = async () => {
-        const temp = await fetch(`https://api.jikan.moe/v3/top/manga/1/bypopularity`)
+        const temp = await fetch(`https://api.jikan.moe/v4/top/anime`)
             .then(res => res.json());
     
-        setMangaList(temp.top.slice(0, 15));
+        setMangaList(temp.data.slice(0,8));
       }
 
       useEffect(() => {
