@@ -2,40 +2,17 @@ import { current } from '@reduxjs/toolkit';
 import React, { useState, useEffect } from 'react'
 
 function SmallManga(props) {
-    const [mangaList, setMangaList] = useState([]);
-    const mangaTitle = [];
-    const mangaImage = [];
-    const mangaStart = [];
-    const mangaUrl = [];
-
-    const GetManga = async () => {
-        const temp = await fetch(`https://api.jikan.moe/v4/top/anime`)
-            .then(res => res.json());
-    
-        setMangaList(temp.data.slice(0,8));
-      }
-
-      useEffect(() => {
-        GetManga();
-
-      }, []);
-      console.log(mangaList);
-
-      mangaList.map(manga => (
-        mangaTitle.push(manga.title),
-        mangaImage.push(manga.image_url),
-        mangaStart.push(manga.start_date),
-        mangaUrl.push(manga.url)
-      ));
-
     return (
         <div>
             <div className="text_box_small">
-                <img src={mangaImage[props.mangaNo]} alt="gaming" />
+                {/* textcard image */}
+                <img src={props.manga.images.jpg.image_url} alt="gaming" />
                 <div className={'text_area ' + (props.colorscheme)}>
                     <header>
-                        <h2><a href={mangaUrl[props.mangaNo]} target="_blank">{mangaTitle[props.mangaNo]}</a></h2>
-                        <h2>Start Date: {mangaStart[props.mangaNo]}</h2>
+                        {/* textcards title with url */}
+                        <h2><a href={props.manga.url} target="_blank">{props.manga.title_japanese}</a></h2>
+                        {/* current status of manga */}
+                        <h2>Status: {props.manga.status}</h2>
                     </header>
                 </div>
             </div>

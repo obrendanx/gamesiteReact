@@ -1,11 +1,13 @@
 import React from 'react'
 import Banner from '../Components/information/Banner'
-import LgTextComp from '../Components/information/GameCards/LgTextComp'
+import LgTextComp from '../Components/information/GameCards/LargeTextCard'
 import SmallAnime from '../Components/information/GameCards/SmallAnime'
 import SmallManga from '../Components/information/GameCards/SmallManga'
-import MdTextComp from '../Components/information/GameCards/MdTextComp'
+import MdTextComp from '../Components/information/GameCards/MediumTextCard'
 import SetAnime from '../Components/information/GameCards/SetAnime'
+import SetManga from '../Components/information/GameCards/SetManga'
 
+//images being used
 import DPREMAKE from '../images/main/dpremake.webp' //small
 import SW from '../images/main/sw.jpg' //large
 import MARIO from '../images/main/mario.webp' //med
@@ -39,85 +41,72 @@ var comp_smtwo_title = "Main Title 2";
 function Home() {
     return (
         <div className="home_wrap">
+            {/* Banner Section */}
             <Banner />
             <div className="info_wrap">
                 
-                <div className="text_comp_one top_block">
-                    <div className="large_textbox_wrap">
+                <h2 className="section_header">TOP: UPCOMING ANIME</h2>
+
+                {/* Introduction Content */}
+                <div className="intro_content">
+                    <div className="large_textcard">
                         <LgTextComp imgName={SW} imgText={comp_smone_text} imgTitle={comp_one_title}/>
                     </div>
-                    <div className="small_textbox_wrap">
+                    <div className="med_textcard">
                         <MdTextComp imgName={MINECRAFT} imgText={comp_one_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
                         <MdTextComp imgName={MARIO} imgText={comp_one_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
                     </div>
                 </div>
 
-                <h2 className="section_header">TOP: UPCOMING ANIME</h2>
+                {/* Main Content */}
+                <div className="main_content">
 
-                <div className="text_comp_two">
+                        {/* Section One */}
+                        <h2 className="section_header">TOP: UPCOMING ANIME</h2>
+                        <SetAnime />
 
-                        <div className="comp_two_wrapone">
-                            <SetAnime />
-                        </div>
-
+                        {/* Section 2 */}
                         <h2 className="section_header">Top Stories</h2>
-
-                        <div className="comp_two_wraptwo">
-                            <LgTextComp imgName={PS5} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
+                        <div className="info_section">
+                            <div className="large_textcard">
+                                <LgTextComp imgName={PS5} imgText={comp_smone_text} imgTitle={comp_smone_title}/>
+                            </div>
+                            <div className="large_textcard">
                             <LgTextComp imgName={XBOX} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title}/>
                         </div>
+                        </div>
 
-                        <div className="text_comp_one">
-                            <div className="small_textbox_wrap">
+                        <div className="info_section">
+                            <div className="med_textcard">
                                 <MdTextComp imgName={CODMOB} imgText={comp_smone_text} imgTitle={comp_smone_title} margbot={"margbot"}/>
                                 <MdTextComp imgName={PKMPEARL} imgText={comp_smtwo_text} imgTitle={comp_smtwo_title} margbot={"margbot"}/>
                             </div>
-                            <div className="large_textbox_wrap">
+                            <div className="large_textcard">
                                 <LgTextComp imgName={HALOINFINITE} imgText={comp_smone_text} imgTitle={comp_one_title}/>
                             </div>
                         </div>
 
-                        <div className="text_comp_one">
-                            <div className="large_textbox_wrap">
+                        <div className="info_section">
+                            <div className="large_textcard">
                                 <LgTextComp imgName={CYBERPUNK} imgText={comp_smone_text} imgTitle={comp_one_title}/>
                             </div>
-                            <div className="large_textbox_wrap">
+                            <div className="large_textcard">
                                 <LgTextComp imgName={FALLOUT76} imgText={comp_smone_text} imgTitle={comp_one_title}/>
                             </div>
                         </div>
 
-                        <div className="text_comp_one">
-                            <div className="large_textbox_wrap">
+                        <div className="info_section">
+                            <div className="large_textcard">
                                 <LgTextComp imgName={SPIDERMAN2} imgText={comp_smone_text} imgTitle={comp_one_title}/>
                             </div>
-                            <div className="large_textbox_wrap">
+                            <div className="large_textcard">
                                 <LgTextComp imgName={WARFRAMENEWWAR} imgText={comp_smone_text} imgTitle={comp_one_title}/>
                             </div>
                         </div>
 
+                        {/* Section 3 */}
                         <h2 className="section_header">TOP 15 MANGA</h2>
-
-                        {/*<div className="comp_two_wrapone">
-                            <SmallManga mangaNo={0} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
-                            <SmallManga mangaNo={1} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmallManga mangaNo={2} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
-                            <SmallManga mangaNo={3} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmallManga mangaNo={4} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
-                        </div>
-                        <div className="comp_two_wrapone">
-                            <SmallManga mangaNo={5} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
-                            <SmallManga mangaNo={6} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmallManga mangaNo={7} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
-                            <SmallManga mangaNo={8} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmallManga mangaNo={9} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
-                        </div>
-                        <div className="comp_two_wrapone">
-                            <SmallManga mangaNo={10} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
-                            <SmallManga mangaNo={11} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s3'}/>
-                            <SmallManga mangaNo={12} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s2'}/>
-                            <SmallManga mangaNo={13} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s1'}/>
-                            <SmallManga mangaNo={14} imgName={ZELDA} imgText={comp_one_text} imgTitle={comp_smone_title} colorscheme={'color-scheme-s4'}/>
-                        </div>*/}
+                        <SetManga />
                 </div>
             </div>
         </div>

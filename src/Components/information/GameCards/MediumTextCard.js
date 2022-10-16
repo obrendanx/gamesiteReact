@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function MdTextComp(props) {
+function MediumTextCard(props) {
     return (
         <div>
             <div className="text_box_md">
@@ -20,4 +20,4 @@ function MdTextComp(props) {
     )
 }
 
-export default MdTextComp
+export default MediumTextCard

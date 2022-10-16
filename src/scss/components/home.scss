@@ -1,70 +1,50 @@
-.text_comp_one{
-    @include flex(flex, row, nowrap);
-    margin-top:2.5%;
-    width:90%;
-    margin-left:5%;
-}
-
-.large_textbox_wrap{
-    width:47.5%;
-}
-
-.small_textbox_wrap{
-    width:47.5%;
-    margin-left:5%;
-}
-
-.text_comp_two{
-    @include flex(flex, column, nowrap);
-    .comp_two_wrapone{
-        @include flex(flex, row, nowrap);
-        width:100%;
-    }
-    .comp_two_wraptwo{
-        @include flex(flex, row, nowrap);
-    }
-    div{
-        margin-right:0.5%;
-        margin-left:0.5%;
-    }
-}
-
 .home_wrap{
+    //sets content background
     background:#333333;
+    //adds some space between footer and bottom of main content
     padding-bottom:2.5%;
-    h2{
-        font-family: 'Oswald', sans-serif;
+
+    .info_wrap{
+        margin-top:450px;
     }
+
+    //sets global styles for home headers
+    .section_header{
+        font-family: 'Oswald', sans-serif;
+        height:75px;
+        width:97%;
+        border-bottom:solid 1px rgb(37, 38, 39);
+        margin:10px;
+        padding-left:20px;
+        padding-top:10px;
+        font-size:2em;
+        color:#fff;
+    }
+
+    //adds extra space between main content and footer
     .main_footer{
         bottom:-450px;
     }
-}
 
-.section_header{
-    height:75px;
-    width:97%;
-    border-bottom:solid 1px rgb(37, 38, 39);
-    margin:10px;
-    padding-left:20px;
-    padding-top:10px;
-    font-size:2em;
-    color:#fff;
-}
-
-.text_comp_one, .text_comp_two, .comp_two_wrapone, .comp_two_wraptwo{
-    margin-left:1%;
-}
-
-.top_block{
-    margin-left:5%;
-}
-
-@media only screen and (min-width: 770px){
-    .info_wrap{
-        position:relative;
-        top:450px;
+    //sets width of the medium and large textcards
+    .large_textcard, .med_textcard{
+        width:47.5%;
     }
-    .home_wrap{
-        padding-bottom:460px;
+
+    //controls the display for the intro textcards
+    .intro_content{
+        @include flex(flex, row, nowrap);
+        width:90%;
+        margin-left:5%;
+        column-gap:2.5%;
+    }
+
+    .main_content{
+        //controls the display for the main text cards
+        .info_section{
+            @include flex(flex, row, nowrap);
+            margin-left:2.5%;
+            column-gap:2.5%;
+        }
     }
 }

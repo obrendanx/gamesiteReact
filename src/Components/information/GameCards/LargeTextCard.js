@@ -10,7 +10,7 @@ const axios = require("axios");
     //         this.style.color = "#fff";
     //     } 
     // }
-function LgTextComp(props) {
+function LargeTextCard(props) {
     return (
         <div>
             <div className="text_box">
@@ -29,4 +29,4 @@ function LgTextComp(props) {
     )
 }
 
-export default LgTextComp
+export default LargeTextCard

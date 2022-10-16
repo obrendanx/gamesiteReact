@@ -50,6 +50,13 @@ html{
 
 @media screen and (max-width: 770px) {
 
+  .anime_sm_card{
+    padding:5%;
+    div{
+        width:100%;
+    }
+}
+
   .navbar{
     height: 12vh;
     .navbar-ul{

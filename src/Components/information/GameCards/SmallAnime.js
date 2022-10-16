@@ -9,7 +9,7 @@ function SmallAnime(props) {
                 <div className={'text_area ' + (props.colorscheme)}>
                     <header>
                         <h2><a href={props.anime.url} target="_blank">{props.anime.title_japanese}</a></h2>
-                        <h2>Year: {props.anime.year}</h2>
+                        <h2>Status: {props.anime.status}</h2>
                     </header>
                 </div>
             </div>
