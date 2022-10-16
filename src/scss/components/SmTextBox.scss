@@ -1,6 +1,5 @@
 .text_box_small{
     height:295px;
-    width:100%;
     margin-top:2.5%;
     position: relative;
     margin-bottom:4%;
@@ -21,6 +20,7 @@
         border-radius:0px 0px 5px 5px;
         font-weight:900;
         @include textDisplay(0.5em, 'Dongle', Roboto, #fff );
+        background:rgba(0, 0, 0, 0.5);
         a{
             color:#fff;
         }
@@ -71,4 +71,8 @@
 
 .mar_bot{
     margin-bottom:2%;
+}
+
+.anime_sm_card{
+    @include flex(flex, row, wrap);
 }

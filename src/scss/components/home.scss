@@ -18,12 +18,12 @@
     @include flex(flex, column, nowrap);
     .comp_two_wrapone{
         @include flex(flex, row, nowrap);
+        width:100%;
     }
     .comp_two_wraptwo{
         @include flex(flex, row, nowrap);
     }
     div{
-        width:98%;
         margin-right:0.5%;
         margin-left:0.5%;
     }

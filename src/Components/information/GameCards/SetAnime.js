@@ -28,9 +28,9 @@ function SetAnime() {
       ));
       console.log(animeList);
   return (
-    <div>
+    <div className="anime_sm_card">
         {animeList.map(anime => (
-                    <div className='anime_group'>
+                    <div>
                         <SmallAnime anime={anime} key={anime.mal_id} />
                     </div>
                 ))}
