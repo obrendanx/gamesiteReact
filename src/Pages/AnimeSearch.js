@@ -21,10 +21,10 @@ function AnimeSearch() {
   }
 
   const FetchAnime = async (query) => {
-    const temp = await fetch(`https://api.jikan.moe/v4/search/anime?q=${query}&order_by=title&sort=acs&limit=10`)
+    const temp = await fetch(`https://api.jikan.moe/v4/anime?q=${query}`)
         .then(res => res.json());
 
-    setAnimeList(temp.results);
+    setAnimeList(temp.data);
   }
 
   useEffect(() => {
@@ -32,6 +32,7 @@ function AnimeSearch() {
 
   }, []);
   console.log(topAnime);
+  console.log(animeList);
 
 
   return (
