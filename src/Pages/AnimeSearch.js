@@ -3,6 +3,9 @@ import Sidebar from '../Components/Anime/Sidebar.js'
 import MainContent from '../Components/Anime/MainContent'
 
 function AnimeSearch() {
+  //States to store the search contents
+  //the top anime
+  //and a list of different anime
   const [animeList, setAnimeList] = useState([]);
   const [topAnime,setTopAnime] = useState([]);
   const [search, setSearch] = useState([]);
