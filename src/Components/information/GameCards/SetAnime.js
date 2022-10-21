@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import SmallAnime from './SmallAnime';
 
 function SetAnime() {
+    //State array variable to store all results from api
     const [animeList, setAnimeList] = useState([]);
     const animeTitle = [];
     const animeImage = [];
@@ -9,9 +10,12 @@ function SetAnime() {
     const animeUrl = [];
 
     const GetAnime = async () => {
+        //Fetches top anime
         const temp = await fetch(`https://api.jikan.moe/v4/top/anime`)
             .then(res => res.json());
-    
+
+        //Sets how many different anime to be shown
+        //For this it will be 8
         setAnimeList(temp.data.slice(0, 8));
       }
 

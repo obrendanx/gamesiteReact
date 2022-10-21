@@ -1,26 +1,19 @@
-import React, {useEffect, useState} from 'react'
-const axios = require("axios");
-    // var colours = ['#3968ff', '#10ff74', '#ceff12'];
-    // var random_colour = colours[Math.floor(Math.random() * colours.length)];
-    // window.onload = function(){
-    //     document.getElementById("text_area").onmouseenter = function(){
-    //         this.style.color = random_colour;
-    //     } 
-    //     document.getElementById("text_area").onmouseleave = function(){
-    //         this.style.color = "#fff";
-    //     } 
-    // }
+import React from 'react'
+
 function LargeTextCard(props) {
     return (
         <div>
             <div className="text_box">
+                {/* Card Image */}
                 <img src={props.imgName} alt="gaming" />
                 <div className="text_area" id="text_area">
                     <div class="hov_indicator"></div>
                     <header>
+                        {/* Card Title */}
                         <h2>{props.imgTitle}</h2>
                     </header>
                     <p>
+                    {/* Small Description of Card */}
                     {props.imgText} <a href="#">here</a>
                     </p>
                 </div>
