@@ -3,3 +3,38 @@
         margin-bottom:5px;
     }
 }
+
+.banner{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    height: 90vh;
+    width: 100%;
+    position: relative;
+    .banner_button {
+        @include textDisplay(3em, 'Dongle', Roboto, #fff );
+        position:absolute;
+        top:45%;
+        margin:1.75%;
+    }
+    .buttonRight{
+        right:0;
+    }
+    .banner_info{
+        position:relative;
+        background:rgba(0, 0, 0, 0.6);
+        border-radius: 20px;
+        height:30%;
+        width:45%;
+        top: 67.5%;
+        margin:0 0 2.5% 2.5%;
+        padding:2.5%;
+        @include textDisplay(1em, 'Dongle', Roboto, #fff );
+        .banner_title a{
+            @include textDisplay(0.8em, 'Dongle', Roboto, #fff );
+        }
+        .banner_text a{
+            @include textDisplay(0.8em, 'Dongle', Roboto, #fff );
+        }
+    }
+}

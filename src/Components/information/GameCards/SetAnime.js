@@ -23,8 +23,10 @@ function SetAnime() {
         GetAnime();
 
       }, []);
+      console.log(animeList);
 
       animeList.map(anime => (
+        //mapping through fetch data to results values such as title and push to an array
         animeTitle.push(anime.title),
         animeImage.push(anime.image_url),
         animeStart.push(anime.start_date),
@@ -35,6 +37,7 @@ function SetAnime() {
     <div className="anime_sm_card">
         {animeList.map(anime => (
                     <div>
+                        {/* Mapping the anime card with the number of results for the fetched data */}
                         <SmallAnime anime={anime} key={anime.mal_id} />
                     </div>
                 ))}

@@ -59,6 +59,11 @@ html{
 /// Styles for Screens widths of 770px and below ///
 ////////////////////////////////////////////////////
 @media screen and (max-width: 770px) {
+  //removers the banner information from smaller screens
+  .banner_info{
+    display:none;
+    font-size:0.7em;
+  }
 
   .anime_sm_card{
     padding:5%;
@@ -211,6 +216,11 @@ html{
     width:45% !important;
     margin-left:27.5% !important;
   }
+
+  .banner_info{
+    width:95% !important;
+    font-size:1.3em !important;
+  }
 }
 
 .progress{
@@ -231,5 +241,9 @@ html{
   .anime_group{
     width:40%;
     margin:5% !important;
+  }
+
+  .banner_info{
+    font-size:1.1em !important;
   }
 }
