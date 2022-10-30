@@ -1,11 +1,6 @@
 import React from 'react'
 import AboutUser from '../Components/information/AboutUser'
 
-import personone from '../images/main/defperson.png'
-import persontwo from '../images/main/defperson.png'
-import personthree from '../images/main/defperson.png'
-import personfour from '../images/main/defperson.png'
-
 var teaminfo = "Cras luctus bibendum justo, ut consectetur libero euismod non. Cras ut elit semper neque ultrices consectetur at eu tortor. Cras malesuada eget nibh faucibus dapibus. Mauris sit amet egestas odio, nec tempor mi. Nulla aliquam ullamcorper mattis."
 
 function About() {
@@ -40,10 +35,7 @@ function About() {
                     <h1 className="abt_main_head">Leadership</h1>
                     <div className="members">
                         <div className="member_group_one">
-                            <AboutUser teamMemImg={personone} teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"} className="aboutuser"/>
-                            <AboutUser teamMemImg={persontwo} teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"} className="aboutuser"/>
-                            <AboutUser teamMemImg={personthree} teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"} className="aboutuser"/>
-                            <AboutUser teamMemImg={personfour} teamMemName={"Name Here"} teamMemEmail={"teamemail@email.com"} teamMemInfo={teaminfo} teamMemProjects={"Projects here"} className="aboutuser"/>
+                            
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ function MediumTextCard(props) {
                     </header>
                     <p>
                     {/* Small Card Description */}
-                    {props.imgText} <a href="#">here</a>
+                    {props.imgText} <a href={props.imgLink}>here</a>
                     </p>
                 </div>
             </div>

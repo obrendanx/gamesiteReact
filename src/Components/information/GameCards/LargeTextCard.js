@@ -14,7 +14,7 @@ function LargeTextCard(props) {
                     </header>
                     <p>
                     {/* Small Description of Card */}
-                    {props.imgText} <a href="#">here</a>
+                    {props.imgText} <a href={props.imgLink}>here</a>
                     </p>
                 </div>
             </div>
