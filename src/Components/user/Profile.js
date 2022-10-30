@@ -7,14 +7,18 @@ import FollowingList from "./ProfileFeatures/FollowingList.js";
 import jwt from 'jsonwebtoken'
 
 function Profile() {
+  //used to grab user information
   const user = useSelector(selectUser);
   const username = user.name;
 
   useEffect(() => {
+    //grabs user local  token
     const token = localStorage.getItem('token')
     if (token){
+      //if token matches decode jwt token
       const user = jwt.decode(token)
       if(!user){
+        //if its not the correct user remove jwt token
         localStorage.removeItem('token')
       }else{
         console.log("welcome")

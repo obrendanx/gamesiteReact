@@ -5,23 +5,28 @@
 }
 
 .banner{
+    //Sets styles for banner images
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
+    //sets height and width of main banner component 
     height: 90vh;
     width: 100%;
     position: relative;
     .banner_button {
+        //sets styles for banner arrow buttons
         @include textDisplay(3em, 'Dongle', Roboto, #fff );
         position:absolute;
         top:45%;
         margin:1.75%;
     }
     .buttonRight{
+        //pushes incremental arrow to the right
         right:0;
     }
     .banner_info{
         position:relative;
+        //sets a background for the banner info to be more readable
         background:rgba(0, 0, 0, 0.6);
         border-radius: 20px;
         height:30%;
@@ -29,6 +34,7 @@
         top: 67.5%;
         margin:0 0 2.5% 2.5%;
         padding:2.5%;
+        //sets text styles or banner info
         @include textDisplay(1em, 'Dongle', Roboto, #fff );
         .banner_title a{
             @include textDisplay(0.8em, 'Dongle', Roboto, #fff );

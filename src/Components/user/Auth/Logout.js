@@ -9,7 +9,10 @@
     const dispatch = useDispatch();
     const handleLogout = (e) => {
         e.preventDefault();
-
+        /*
+            if the user clicks logout
+            Logout dispatch is called and sets the loggedin state to false
+        */
         dispatch(logout());
     };
 

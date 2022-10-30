@@ -11,15 +11,6 @@ function Nav() {
         var loginBtnText = "";
         var registerLink = "";
 
-        // // checks to see if loginstat is true and changes login message depeding on the answer
-        // if (user == false){
-        //     loginMessage = "Welcome";
-        //     loginBtnText = "Login";
-        // } else{
-        //     loginMessage = "LOGGED_IN";
-        //     loginBtnText = "Logout";
-        // }
-
     return (
         <div>
             <div>
@@ -27,6 +18,7 @@ function Nav() {
                     <ul className="navbar-ul">
                         
                         <div className="nav-left">
+                            {/* Main Navigation Links  */}
                             <Link to='/'>
                                 <li><img src={logo} alt="Logo" /></li>
                             </Link>
@@ -42,6 +34,12 @@ function Nav() {
                         </div>
 
                         <div className="nav-right">
+                            {/* 
+                            Login / Register Links
+                            Determines text and location of links
+                            if the user is logged in display a logout button and there profile
+                            otherwise always show register and login as the option
+                            */}
                             <Link to={user ? registerLink = "profile" : registerLink = "/register"} class="user-name">
                                 <li>{user ? loginMessage = user.name : loginMessage = "Register"}</li>
                             </Link>

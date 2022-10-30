@@ -10,6 +10,12 @@ function Footer() {
             <footer className="main_footer">
             <div className="welcome_links">
                     <ul>
+                        {/* 
+                        Perosonal Links:
+                        What We Do -  to show about myself
+                        Portfolio - to show of my work
+                        Contact - for any enquiries
+                        */}
                         <li><a href="#">What we Do</a></li>
                         <li><a href="#">Portfolio</a></li>
                         <li><a href="#">Contact</a></li>
@@ -18,6 +24,7 @@ function Footer() {
 
                 <div className="social_links">
                     <ul>
+                        {/* All social media links */}
                         <li><a href="#"><i class="fab fa-facebook fa-2x"></i></a></li>
                         <li><a href="#"><i class="fab fa-twitter fa-2x"></i></a></li>
                         <li><a href="#"><i class="fab fa-instagram fa-2x"></i></a></li>
@@ -26,6 +33,7 @@ function Footer() {
                 </div>
 
                 <div className="personal_info">
+                    {/* Personal location information */}
                     <h4>99 Road Lane Townsville NE34 1JU</h4>
                     <h4>07263634786</h4>
                     <h4><a href="#">myemail@gmail.com</a></h4>

@@ -5,6 +5,7 @@ export class Register extends Component {
     constructor(){
         super()
         this.state = {
+            //sets default state to all register fields
             fullName:'',
             username:'',
             email:'',
@@ -17,6 +18,8 @@ export class Register extends Component {
         this.onSubmit = this.onSubmit.bind(this)
     }
 
+    //sets the state to the value of each register field 
+    //to corresponding state name
     changeFullName(event){
         this.setState({
             fullName:event.target.value
@@ -38,9 +41,11 @@ export class Register extends Component {
         })
     }
 
+    //Actions performed when user clicks register
     onSubmit(event){
         event.preventDefault()
 
+        //sets register input fieldd variables using state values
         const registered = {
             fullName: this.state.fullName,
             username: this.state.username,
@@ -48,9 +53,11 @@ export class Register extends Component {
             password: this.state.password
         }
 
+        //pushes register fields to mongodb
         axios.post('http://localhost:5000/app/signup', registered)
             .then(response => console.log(response.data))
 
+            //After registering changes to login page
             window.location = './Login'
     }
 
