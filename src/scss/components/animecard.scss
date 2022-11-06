@@ -1,8 +1,11 @@
 .anime_container{
+    //sets the arrangement of the anime cards
     @include flex(flex, row, wrap);
+    //sets entire width to contain anime cards
     width:100%;
     min-height:100%;
     .anime_group{
+        //sets width for each anime card
         width:25%;
         margin:4.16%;
         text-align: center;
@@ -13,6 +16,7 @@
 .anime_card{
     width:100%;
     .anime_title{
+        //font styles for card title
         @include textDisplay(1em, 'Dongle', Roboto, #fff );
     }
     a{
@@ -22,12 +26,14 @@
         margin-top:10px;
     }
     .anime_img{
+        //makes the image more rounded
         border-radius:20px;
     }
 }
 
 .anime_search{
     input{
+        //sets style for the search bar
         width:100%;
         height:50px;
         margin-bottom:10px;
@@ -39,6 +45,7 @@
 }
 
 .anime_side{
+    //sets styles for the side bar next to the search bar
     height:100%;
     background:#333;
     border-radius:20px;
@@ -50,6 +57,7 @@
         }
     }
     ul{
+        //sets the pointer for each list item to decimal shape
         list-style-type: decimal;
         width:80%;
         margin-left:10%;

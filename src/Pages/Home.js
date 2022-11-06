@@ -12,15 +12,6 @@ import SOLO from '../images/sololevel.jpg'
 import UNORD from '../images/unordinary.png'
 import NOBLESSE from '../images/noblesse.webp'
 
-var comp_one_text = "Some information about the image, and about new updates that are out. Learn more";
-var comp_one_title = "Main Title";
-
-var comp_smone_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt mollis mi, sit amet aliquam sem volutpat in. Donec varius. Learn more";
-var comp_smone_title = "Main Title 1";
-
-var comp_smtwo_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum et mauris et tempor. Vivamus porttitor leo id lectus pharetra egestas. Learn more";
-var comp_smtwo_title = "Main Title 2";
-
 let links = [
     "https://towerofgod.fandom.com/wiki/Tower_of_God_Wiki",
     "https://godofhighschool.fandom.com/wiki/The_God_Of_High_School_Wiki",

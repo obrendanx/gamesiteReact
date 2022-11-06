@@ -1,10 +1,12 @@
 .main_footer{
+    //sets main styles for entire footer
     background:#464545;
     height:325px;
     width:100%;
     padding:1.5%;
     position:relative;
     bottom:0;
+    //sets styles for what we do, portfolio and contact links
     .welcome_links{
         height:50px;
         margin-bottom:-1.25%;
@@ -25,6 +27,7 @@
             text-decoration:underline;
         }
     }
+    //sets styles for social links
     .social_links{
         height:75px;
         width:40%;
@@ -50,6 +53,7 @@
             transition:1s;
         }
     }
+    //sets styles for personal info such as location, phone number
     .personal_info{
         @include textDisplay(0.8em, 'Dongle', Roboto, #fff );
         text-align:center;
@@ -66,11 +70,5 @@
         a{
             color:rgba(255, 255, 255, 0.603);
         }
-    }
-}
-
-@media only screen and (min-width: 770px){
-    .main_footer{
-        
     }
 }

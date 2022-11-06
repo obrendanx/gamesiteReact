@@ -1,4 +1,5 @@
 .text_box_md{
+    //sets main styles for medium sized card
     height:295px;
     width:100%;
     margin-top:2.5%;
@@ -6,11 +7,13 @@
     margin-bottom:2.5%;
     transition:0.7s;
     img{
+        //sets styles for card image
         height: 100%;
         width:100%;
         border-radius:5px;
     }
     .text_area{
+        //styles for the information section of the card
         position: absolute;
         min-height:30%;
         width:100%;
@@ -32,6 +35,7 @@
     .text_area:hover{
         background:rgba(0, 0, 0, 1);
     }
+    //styles for light up button on card
     .hov_indicator{
         background:rgb(114, 112, 112);
         height:10px;
@@ -40,6 +44,7 @@
     }
 }
 
+//hover styles for elements
 .text_box_md:hover .hov_indicator{
     background:#F44336;
 }

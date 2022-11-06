@@ -1,24 +1,31 @@
 .login_form{
+    //login form main styles 
     height:calc(100% + 150px);
     width:35%;
+    //sets background for login form
     background:rgba(244, 64, 52, 0.8);
+    //centering login form to middle of page
     margin:auto;
     margin-top:50px;
     margin-bottom:150px;
     padding-top:25px;
     padding-bottom:25px;
     border-radius:10px;
+    //default fonts for login form
     @include textDisplay(1em, normal, 'Roboto', #fff );
     h1{
+        //login form header styles
         text-align:center;
         padding-top:30px;
         margin-bottom:30px;
     }
         label{
+            //login form label styles
             width:50%;
             margin-left:25%;
         }
         input{
+            //login form input styles
             width:70%;
             height:10%;
             margin-top:2%;
@@ -31,6 +38,7 @@
             @include textDisplay(1em, normal, 'Roboto', #f44034);
         }
         button{
+            //submit button styles
             width:70%;
             height:30px;
             border:none;
@@ -48,6 +56,8 @@
     }
 
     .fixed_sidebar_login{
+        //sidebar for login details
+        //!!!!!NO LONGER USED!!!!!//
         position:absolute;
         height:150px;
         width:27.5%;

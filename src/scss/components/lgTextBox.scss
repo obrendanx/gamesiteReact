@@ -1,4 +1,5 @@
 .text_box{
+    //set main styles for card
     height:600px;
     width: 100%;
     margin-top:2.5%;
@@ -6,11 +7,13 @@
     position: relative;
     transition:0.7s;
     border-radius:5px;
+    //set styles for card image
     img{
         height: 70%;
         width:100%;
         border-radius:5px;
     }
+    //set styles for card info section
     .text_area{
         position: absolute;
         height:30%;
@@ -34,7 +37,7 @@
             font-size:1.3em;
         }
     }
-
+    //set styles for small indicator
     .hov_indicator{
         background:rgb(114, 112, 112);
         height:10px;
