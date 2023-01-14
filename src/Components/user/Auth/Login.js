@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../../app/features/userSlice";
+import { useNavigate } from 'react-router-dom';
+
+const navigate = useNavigate();
 
 function Login() {
 /*
@@ -49,6 +52,7 @@ async function loginUser(event) {
             name:username,
             email:email
         }));
+        navigate('/home');
     }else{
         //if incorrect notify the user
         alert("Please check your username and password")

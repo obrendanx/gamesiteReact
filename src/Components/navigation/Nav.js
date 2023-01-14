@@ -10,6 +10,7 @@ function Nav() {
         var loginMessage = "";
         var loginBtnText = "";
         var registerLink = "";
+        var logincheck = "";
 
     return (
         <div>
@@ -31,6 +32,9 @@ function Nav() {
                             <Link to='/anime'>
                                 <li> Anime </li>
                             </Link>
+                            <Link to='/admin'>
+                                <li> Admin </li>
+                            </Link>
                         </div>
 
                         <div className="nav-right">
@@ -43,7 +47,7 @@ function Nav() {
                             <Link to={user ? registerLink = "profile" : registerLink = "/register"} class="user-name">
                                 <li>{user ? loginMessage = user.name : loginMessage = "Register"}</li>
                             </Link>
-                            <Link to="/login">
+                            <Link to={user ? logincheck = "/logout" : logincheck = "/login"}>
                                 <li>{user ? loginBtnText = "Logout" : loginBtnText = "Login"}</li>
                             </Link>
                         </div>

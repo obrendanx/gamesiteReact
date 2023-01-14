@@ -15,6 +15,8 @@ import { useSelector } from "react-redux";
 import { selectUser } from "./app/features/userSlice";
 import AnimeSearch from './Pages/AnimeSearch';
 import InProgress from './Pages/InProgress';
+import Login from './Components/user/Auth/Login';
+import Admin from './Components/Admin/Admin';
 
 
 const App = () => {
@@ -32,6 +34,9 @@ const App = () => {
         <Route path="/anime" component={AnimeSearch}/>
         <Route path="/register" component={Register}/>
         <Route path="/profile" component={Profile}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/logout" component={Logout}/>
+        <Route path="/admin" component={Admin}/>
         {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
         {user ? <Logout /> : <FetchUser />}
         </Switch>

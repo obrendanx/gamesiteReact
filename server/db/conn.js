@@ -19,10 +19,14 @@ const signUp = new mongoose.Schema({
     type:String,
     required:true
   },
+  userType:{
+    type:String,
+    required:true
+  },
   date:{
     type:Date,
     default:Date.now
   }
 })
 
-module.exports = mongoose.model('mytable', signUp)
+module.exports = mongoose.model('users', signUp)

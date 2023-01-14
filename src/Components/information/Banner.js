@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 function Banner() {
-  //State array variable to store all results from api
+//State array variable to store all results from api
 const [animeList, setAnimeList] = useState([]);
 const [count, setCount] = useState(0);
 const animeTitle = [];
@@ -41,9 +41,11 @@ const GetAnime = async () => {
     };
   }, [count]);
 
+  //Buttons do work but if clicked to many times to many requests made
+
   //function for > to go to next image
   function countAdd() {
-    if(count == 4){
+    if(count == 3){
       setCount(0)
     }else{
       setCount(count + 1)
@@ -53,11 +55,12 @@ const GetAnime = async () => {
   //function for < to go to previous image
   function countMinus() {
     if(count == 0){
-      setCount(4)
+      setCount(3)
     }else{
       setCount(count - 1)
     }
   }
+  console.log(count);
 
   animeList.map(anime => (
     //mapping through fetch data to results values such as title and push to an array
@@ -74,8 +77,8 @@ const GetAnime = async () => {
           backgroundImage: `linear-gradient(rgba(204,204,204,.2), rgba(204,204,204,.3)), url(${animeImage[count]})`,
         }
       }>
-        <span className="buttonLeft banner_button" onClick={countMinus}>&lt;</span>
-        <span className="buttonRight banner_button" onClick={countAdd}>&gt;</span>
+        <button className="buttonLeft banner_button" onClick={countMinus}>&lt;</button>
+        <button className="buttonRight banner_button" onClick={countAdd}>&gt;</button>
         <div className="banner_info">
           <h2 className="banner_title"><a href={animeUrl}>{animeTitle[count]}</a></h2>
           <p className="banner_text">

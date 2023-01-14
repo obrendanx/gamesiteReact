@@ -15,10 +15,15 @@
     position: relative;
     .banner_button {
         //sets styles for banner arrow buttons
-        @include textDisplay(3em, 'Dongle', Roboto, #fff );
+        @include textDisplay(1em, 'Dongle', Roboto, #fff );
         position:absolute;
         top:45%;
-        margin:1.75%;
+        margin:0 1.5% 0 1.5%;
+        border:none;
+        border-radius:50%;
+        height:8.5%;
+        width:5%;
+        background: rgba(0, 0, 0, 0.6);
     }
     .buttonRight{
         //pushes incremental arrow to the right
@@ -33,7 +38,7 @@
         width:45%;
         top: 67.5%;
         margin:0 0 2.5% 2.5%;
-        padding:2.5%;
+        padding:1% 2.5% 2.5% 2.5%;
         //sets text styles or banner info
         @include textDisplay(1em, 'Dongle', Roboto, #fff );
         .banner_title a{
