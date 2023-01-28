@@ -9,7 +9,7 @@ import Logout from './Components/user/Auth/Logout';
 import Register from './Components/user/Auth/Register';
 import Profile from './Components/user/Profile';
 import FetchUser from './Components/user/FetchUser';
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './scss/App.scss';
 import { useSelector } from "react-redux";
 import { selectUser } from "./app/features/userSlice";
@@ -27,19 +27,19 @@ const App = () => {
       <Router>
       <div className="App">
         <Nav/>
-        <Switch>
-        <Route path="/" exact component={Home}/>
-        <Route path="/about" component={About}/>
-        <Route path="/fourms" component={InProgress}/>
-        <Route path="/anime" component={AnimeSearch}/>
-        <Route path="/register" component={Register}/>
-        <Route path="/profile" component={Profile}/>
-        <Route path="/login" component={Login}/>
-        <Route path="/logout" component={Logout}/>
-        <Route path="/admin" component={Admin}/>
+        <Routes>
+        <Route path="/" exact element={<Home />}/>
+        <Route path="/about" element={<About />}/>
+        <Route path="/fourms" element={<InProgress />}/>
+        <Route path="/anime" element={<AnimeSearch />}/>
+        <Route path="/register" element={<Register />}/>
+        <Route path="/profile" element={<Profile />}/>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/logout" element={<Logout />}/>
+        <Route path="/admin" element={<Admin />}/>
         {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
-        {user ? <Logout /> : <FetchUser />}
-        </Switch>
+        </Routes>
+        {/*{user ? <Logout /> : <FetchUser />}*/}
       </div>
       </Router>
       <Footer />
