@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { login } from "../../../app/features/userSlice";
 
@@ -15,6 +16,7 @@ const [password, setPassword] = useState('')
 //Dispatch possibly unused at the moment//
 //////////////////////////////////////////
 const dispatch = useDispatch();
+const navigate = useNavigate();
 
 async function loginUser(event) {
     event.preventDefault()
@@ -26,7 +28,7 @@ async function loginUser(event) {
         },
         body: JSON.stringify({
             //converts into JSON
-            username, email, password,
+            username, email, password
         }),
     })
    
@@ -42,13 +44,15 @@ async function loginUser(event) {
         */
         localStorage.setItem('token', data.user)
         console.log('Login successful') 
+        alert('Login successful') 
         dispatch(login({
             //Lets the application know user is logged in
             loggedIn: true,
             //Sends the username and email to redux state
             name:username,
-            email:email
+            email:email,
         }));
+        navigate("/profile");
     }else{
         //if incorrect notify the user
         alert("Please check your username and password")

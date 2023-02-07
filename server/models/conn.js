@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { string } = require('prop-types')
 
 const signUp = new mongoose.Schema({
   fullName:{
@@ -19,9 +18,15 @@ const signUp = new mongoose.Schema({
     type:String,
     required:true
   },
-  userType:{
+  isGlobalAdmin:{
+    type:Boolean,
+    required:true,
+    default: false
+  },
+  profileIconColor:{
     type:String,
-    required:true
+    required:true,
+    default: "000"
   },
   date:{
     type:Date,
