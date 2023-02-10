@@ -76,7 +76,6 @@ router.get('/is-admin', async (request, response, next) => {
   try{
     const username = request.query.username;
     // Use the username to retrieve the user's profile icon color from the database
-    console.log(username)
     const user = await signUp.findOne({ username: username });
     if (user) {
       const isGlobal = user.isGlobalAdmin;
@@ -93,7 +92,6 @@ router.get('/api/users', async (req, res) => {
   try {
     const users = await signUp.find();
     res.json({data: users});
-    console.log(users);
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -106,6 +104,21 @@ router.delete('/api/users/:username', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
+});
+
+router.get("/api/user/:username", async (req, res) => {
+  console.log(req.params.username);
+  const user = await signUp.findOne({ username: req.params.username });
+  res.json(user);
+  console.log(user.fullName);
+});
+
+router.put("/api/userupdate/:username", async (req, res) => {
+  const updatedUser = req.body;
+  const user = await signUp.findOneAndUpdate({ username: req.query.username }, updatedUser, {
+    new: true,
+  });
+  res.json(user);
 });
 
 router.use(errorHandler);

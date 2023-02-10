@@ -52,6 +52,9 @@ function Nav() {
                             <Link to='/anime'>
                                 <li> Anime </li>
                             </Link>
+                            <Link to='/profilepage'>
+                                <li> Profile Page </li>
+                            </Link>
                             <Link to='/admin'>
                                 <li> {isGlobal ? "Admin" : ""} </li>
                             </Link>

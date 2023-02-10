@@ -17,6 +17,7 @@ import AnimeSearch from './Pages/AnimeSearch';
 import InProgress from './Pages/InProgress';
 import Login from './Components/user/Auth/Login';
 import Admin from './Components/Admin/Admin';
+import ProfilePage from './Components/user/ProfileFeatures/ProfilePage';
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/login" element={<Login />}/>
         <Route path="/logout" element={<Logout />}/>
         <Route path="/admin" element={<Admin />}/>
+        <Route path="/profilepage" element={<ProfilePage />}/>
         {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
         </Routes>
         {/*{user ? <Logout /> : <FetchUser />}*/}
