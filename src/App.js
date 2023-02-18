@@ -17,7 +17,7 @@ import AnimeSearch from './Pages/AnimeSearch';
 import InProgress from './Pages/InProgress';
 import Login from './Components/user/Auth/Login';
 import Admin from './Components/Admin/Admin';
-import ProfilePage from './Components/user/ProfileFeatures/ProfilePage';
+import ProfilePage from './Components/user/ProfilePage';
 
 
 const App = () => {

@@ -6,6 +6,7 @@ import Following from "./ProfileFeatures/Following.js";
 import FollowingList from "./ProfileFeatures/FollowingList.js";
 import jwt from 'jsonwebtoken'
 import ProfileIcon from "./ProfileFeatures/ProfileIcon";
+import ProfilePage from "./ProfilePage";
 
 function Profile() {
   //used to grab user information
@@ -49,6 +50,8 @@ function Profile() {
           <FollowingList username={username}/>
           <FollowingList username={username}/> 
         </div>
+
+        <ProfilePage />
     </div>
   )
 }
