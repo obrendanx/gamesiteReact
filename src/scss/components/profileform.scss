@@ -1,0 +1,44 @@
+.editProfile{
+    border:none;
+    background:#F44336;
+    color:#fff;
+    width:30%;
+    padding:2.5%;
+    text-align:center;
+    margin-top:2.5%;
+    margin-bottom:2.5%;
+    margin-left:2.5%;
+}
+
+.profile-form{
+    height:100%;
+    width:80%;
+    margin-left:10%;
+    margin-bottom:20px;
+    padding:10px;
+    background:#F44336;
+    @include textDisplay(1em, 'Dongle', Roboto, #fff );
+    .profile-form-div{
+        margin:10px;
+        width:100%
+    }
+    .profile-header h1{
+        @include textDisplay(1em, 'Dongle', Roboto, #fff );
+        margin:10px;
+    }
+    button{
+        margin:10px;
+        border:none;
+        background:#252627;
+        color:#fff;
+        width:30%;
+        padding:2.5%;
+        text-align:center;
+    }
+    p{
+        margin-top:7.5px;
+    }
+    .circle-picker{
+        margin-top:7.5px;
+    }
+}

@@ -35,27 +35,32 @@ async function loginUser(event) {
     //Stores the fetch response in the 'data' variable
     const data = await response.json()
 
-    if(data.user){
+    if (data.user) {
+        console.log(data.user);
         /*
             If data matches:
             - Set a unique token for the user in there local storage
             - Dispatch the login state to Redux state to use
             in other components
         */
-        localStorage.setItem('token', data.user)
-        console.log('Login successful') 
-        alert('Login successful') 
+        // Set a cookie to keep the user signed in
+        const now = new Date();
+        now.setTime(now.getTime() + 30 * 24 * 60 * 60 * 1000); // Expires in 30 days
+        document.cookie = `token=${data.user}; expires=${now.toUTCString()}; path='/'`;
+        
+        console.log('Login successful');
+        alert('Login successful');
         dispatch(login({
             //Lets the application know user is logged in
             loggedIn: true,
             //Sends the username and email to redux state
-            name:username,
-            email:email,
+            name: username,
+            email: email,
         }));
-        navigate("/profile");
-    }else{
+        navigate('/profile');
+    } else {
         //if incorrect notify the user
-        alert("Please check your username and password")
+        alert('Please check your username and password');
     }
     console.log(data)
 }

@@ -23,7 +23,7 @@ const Register = () => {
       }
   
       // Validate password
-      if (!password || password.length < 8 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)) {
+      if (!password || password.length < 8 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$/.test(password)) {
         error.password = 'Password must be at least 8 characters and contain uppercase, lowercase, numbers, and symbols'
         hasError = true
       }

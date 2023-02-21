@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { CirclePicker } from "react-color";
 
 const ProfileForm = ({ onSubmit, initialValues }) => {
   const [fullName, setFullName] = useState(initialValues.fullName);
@@ -10,24 +11,95 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     initialValues.profileIconColor
   );
   const [user, setUser] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState({});
+  const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
+      setIsLoading(true);
       const response = await axios.get(`http://localhost:5000/app/api/user/${username}`);
       setUser(response.data);
+      setIsLoading(false);
     };
     fetchUser();
   }, [username]);
-  console.log(user);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit({ fullName, username, email, password, profileIconColor });
+
+    // Validate input fields
+    setError({});
+    let hasError = false;
+    const newError = {};
+
+    // Validate username
+    if (
+      !username ||
+      username.length < 6 ||
+      username.length > 14 ||
+      !/^[a-zA-Z0-9]+$/.test(username)
+    ) {
+      newError.username =
+        "Username must be between 6 and 14 characters and contain only letters and numbers";
+      hasError = true;
+    }
+
+    // Validate password
+    if (
+      !password ||
+      password.length < 8 ||
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        password
+      )
+    ) {
+      newError.password =
+        "Password must be at least 8 characters and contain uppercase, lowercase, numbers, and symbols";
+      hasError = true;
+    }
+
+    // Validate email
+    if (
+      !email ||
+      !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)
+    ) {
+      newError.email = "Email must be a valid email address";
+      hasError = true;
+    }
+
+    // Validate full name
+    if (!fullName || !/^[a-zA-Z]+$/.test(fullName)) {
+      newError.fullName = "Full name must contain only letters";
+      hasError = true;
+    }
+
+    if (hasError) {
+      setError(newError);
+      return;
+    }
+
+    await onSubmit({
+      fullName,
+      username,
+      email,
+      password,
+      profileIconColor,
+    });
+    console.log({ fullName, username, email, password, profileIconColor }); // add this line
+  };
+
+  const handleColorChange = (color) => {
+    setProfileIconColor(color.hex);
+  };
+
+  const handleColorClick = () => {
+    setDisplayColorPicker(!displayColorPicker);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <div className="profile-form">
+      <form onSubmit={handleSubmit}>
+      <div className="profile-form-div">
         <label htmlFor="fullName">Full Name:</label>
         <input
           type="text"
@@ -35,9 +107,10 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
         />
-        <p>{user.fullName}</p>
+        {error.fullName && <p className="error">{error.fullName}</p>}
+        <p>Current: {user?.fullName}</p>
       </div>
-      <div>
+      <div className="profile-form-div">
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -45,9 +118,10 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <p>{user.username}</p>
+        {error.username && <p className="error">{error.username}</p>}
+        <p>Current: {user?.username}</p>
       </div>
-      <div>
+      <div className="profile-form-div">
         <label htmlFor="email">Email:</label>
         <input
           type="email"
@@ -55,9 +129,10 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <p>{user.email}</p>
+        {error.email && <p className="error">{error.email}</p>}
+        <p>Current: {user?.email}</p>
       </div>
-      <div>
+      <div className="profile-form-div">
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -65,20 +140,19 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {error.password && <p className="error">{error.password}</p>}
       </div>
-      <div>
+      <div className="profile-form-div">
         <label htmlFor="profileIconColor">Profile Icon Color:</label>
-        <input
-          type="text"
-          id="profileIconColor"
-          value={profileIconColor}
-          onChange={(e) => setProfileIconColor(e.target.value)}
+        <CirclePicker
+          color={profileIconColor}
+          onChangeComplete={(color) => setProfileIconColor(color.hex)}
         />
-        <p>{user.profileIconColor}</p>
       </div>
       <button type="submit">Update Profile</button>
     </form>
+  </div>
   );
 };
 
-export default ProfileForm;
+export default ProfileForm

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileForm from "./ProfileForm";
-import { selectUser } from "../../app/features/userSlice";
+import { selectUser } from "../../../app/features/userSlice";
 
 const ProfilePage = () => {
   const [user, setUsers] = useState({});
@@ -35,8 +35,9 @@ const ProfilePage = () => {
     if(isLoggedIn){
         const username = isLoggedIn.name;
         await axios.put(`http://localhost:5000/app/api/userupdate/${username}`, updatedUser);
+        setUsers(updatedUser);
+        alert("User Updated");
     }
-    setUsers(updatedUser);
     setIsLoading(false);
   };
 
@@ -44,18 +45,18 @@ const ProfilePage = () => {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div>
-      <ProfileForm 
-        initialValues={{
-          fullName: user.fullName,
-          username: user.username,
-          email: user.email,
-          password: user.password,
-          profileIconColor: user.profileIconColor,
-        }}
-        onSubmit={handleUpdateProfile} 
-      />
-    </div>
+    <div className="profile-header">
+    {user && <ProfileForm 
+      initialValues={{
+        fullName: user.fullName,
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        profileIconColor: user.profileIconColor,
+      }}
+      onSubmit={handleUpdateProfile} 
+    />}
+  </div>
   );
 };
 

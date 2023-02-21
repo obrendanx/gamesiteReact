@@ -26,7 +26,7 @@ const signUp = new mongoose.Schema({
   profileIconColor:{
     type:String,
     required:true,
-    default: "000"
+    default: "#3F51B5"
   },
   date:{
     type:Date,

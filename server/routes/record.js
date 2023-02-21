@@ -110,12 +110,11 @@ router.get("/api/user/:username", async (req, res) => {
   console.log(req.params.username);
   const user = await signUp.findOne({ username: req.params.username });
   res.json(user);
-  console.log(user.fullName);
 });
 
 router.put("/api/userupdate/:username", async (req, res) => {
   const updatedUser = req.body;
-  const user = await signUp.findOneAndUpdate({ username: req.query.username }, updatedUser, {
+  const user = await signUp.findOneAndUpdate({ username: req.params.username }, updatedUser, {
     new: true,
   });
   res.json(user);

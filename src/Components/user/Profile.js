@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../app/features/userSlice";
 import Followers from "./ProfileFeatures/Followers.js";
@@ -9,31 +9,35 @@ import ProfileIcon from "./ProfileFeatures/ProfileIcon";
 import ProfilePage from "./ProfilePage";
 
 function Profile() {
-  //used to grab user information
+  const [isProfilePageDisplayed, setIsProfilePageDisplayed] = useState(false);
   const user = useSelector(selectUser);
   const username = user.name;
 
   useEffect(() => {
-    //grabs user local  token
     const token = localStorage.getItem('token')
     if (token){
-      //if token matches decode jwt token
       const user = jwt.decode(token)
       if(!user){
-        //if its not the correct user remove jwt token
         localStorage.removeItem('token')
       }else{
         console.log("welcome")
       }
     }
   }, [])
+
+  const handleEditProfileClick = () => {
+    setIsProfilePageDisplayed(!isProfilePageDisplayed);
+  }
+
   return (
     <div>
+        <button onClick={handleEditProfileClick} className="editProfile">Edit Profile</button>
+        {isProfilePageDisplayed && <ProfilePage />}
+
         <div className='profile_page'>
           <h1 className='profile_title'>{username}</h1>
           <h2 className="profilePic"><ProfileIcon/></h2>
           <div className='profile_info'>
-            <h2 className='profile_h2'>{user.first}{user.last}</h2>
             <h3 className='profile_h3'>{user.location_street}, {user.location_code}, {user.location_country}</h3>
           </div>
 
@@ -50,8 +54,6 @@ function Profile() {
           <FollowingList username={username}/>
           <FollowingList username={username}/> 
         </div>
-
-        <ProfilePage />
     </div>
   )
 }

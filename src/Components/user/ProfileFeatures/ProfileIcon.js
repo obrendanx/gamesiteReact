@@ -22,7 +22,7 @@ const ProfileIcon = () => {
   const initials = name ? name.split(" ").map(word => word[0]).join("") : "?";
 
   return (
-    <div style={{ backgroundColor: `#${color}` }} className="profile-icon">
+    <div style={{ backgroundColor: `${color}` }} className="profile-icon">
       {initials}
     </div>
   );
