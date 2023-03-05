@@ -10,11 +10,14 @@ import ProfilePage from "./ProfilePage";
 
 function Profile() {
   const [isProfilePageDisplayed, setIsProfilePageDisplayed] = useState(false);
+  //grabs user from redux store
   const user = useSelector(selectUser);
+  //sets the users username
   const username = user.name;
 
   useEffect(() => {
     const token = localStorage.getItem('token')
+    //decodes token if correct user logged in
     if (token){
       const user = jwt.decode(token)
       if(!user){
@@ -26,12 +29,15 @@ function Profile() {
   }, [])
 
   const handleEditProfileClick = () => {
+    //shows edit profile section when button is clicked
     setIsProfilePageDisplayed(!isProfilePageDisplayed);
   }
 
   return (
     <div>
+        {/*edit profile button*/}
         <button onClick={handleEditProfileClick} className="editProfile">Edit Profile</button>
+        {/* checks if profile page is displayed (from edit profile button) */}
         {isProfilePageDisplayed && <ProfilePage />}
 
         <div className='profile_page'>

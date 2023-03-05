@@ -16,6 +16,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
   useEffect(() => {
+    //fetch the current user
     const fetchUser = async () => {
       setIsLoading(true);
       const response = await axios.get(`http://localhost:5000/app/api/user/${username}`);
@@ -85,7 +86,6 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
       password,
       profileIconColor,
     });
-    console.log({ fullName, username, email, password, profileIconColor }); // add this line
   };
 
   const handleColorChange = (color) => {

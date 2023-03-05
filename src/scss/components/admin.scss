@@ -1,0 +1,21 @@
+.adminPanel{
+    background:#F44336;
+    @include textDisplay(1em, 'Dongle', Roboto, #fff );
+    height:100%;
+    width:80%;
+    margin-left:10%;
+    margin-top:20px;
+    margin-bottom:20px;
+    padding:15px;
+    ul{
+        list-style-type:none;
+        li{
+            padding:5px;
+            button{
+                margin-left:7.5px;
+                border:none;
+                padding:5px;
+            }
+        }
+    }
+}
