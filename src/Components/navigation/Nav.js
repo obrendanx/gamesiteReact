@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../app/features/userSlice";
 import axios from 'axios';
 import ProfileIcon from '../user/ProfileFeatures/ProfileIcon';
+import styled from '@emotion/styled';
 
 function Nav() {
     const user = useSelector(selectUser);
@@ -33,32 +34,102 @@ function Nav() {
         var registerLink = "";
         var logincheck = "";
 
+    const Navbar = styled.nav`
+        height:7vh;
+        width:100%;
+        background:#1C1C1C;
+    `
+    const NavigationList = styled.ul`
+        width:100%;
+        height:100%;
+        list-style:none;
+        display:flex;
+        flex-direction:row;
+        flex-wrap:nowrap;
+    `
+    const NavLink = styled.a`
+        display:block;
+        height:7vh;
+        text-decoration:none;
+        line-height:7vh;
+        margin:0px 5px 0px 5px;
+        font-size:0.8em;
+        font-weight:normal;
+        font-family:Roboto, sans-serif;
+        color:#fff;
+        transition:0.5s;
+        &:hover{
+            color:#F44336;
+        }
+    `
+
+    const NavLinkRegister = styled.a`
+        display:block;
+        height:7vh;
+        text-decoration:none;
+        line-height:7vh;
+        margin:0px 5px 0px 5px;
+        font-size:0.8em;
+        font-weight:normal;
+        font-family:Roboto, sans-serif;
+        color:#fff;
+        transition:0.5s;
+        &:hover{
+            text-decoration:underlined;
+        }
+    `
+
+    const NavLeft = styled.div`
+        height:100%;
+        width:60%;
+        align-self:flex-start;
+        display:flex;
+        flex-direction:row;
+        flew-wrap:nowrap;
+    `
+    const Logo = styled.img`
+        height:7vh;
+    `
+    const NavListItem = styled.li`
+        margin-left:10px;
+    `
+
+    const NavRight = styled.div`
+        height:100%;
+        width:40%;
+        align-self:flex-end;
+        display:flex;
+        flex-direction:row;
+        justify-content:flex-end;
+        padding-right:10px;
+    `
+
     return (
         <div>
             <div>
-                <nav className="navbar">
-                    <ul className="navbar-ul">
+                <Navbar className="navbar">
+                    <NavigationList className="navbar-ul">
                         
-                        <div className="nav-left">
+                        <NavLeft>
                             {/* Main Navigation Links  */}
                             <Link to='/'>
-                                <li><img src={logo} alt="Logo" /></li>
+                                <NavListItem><Logo src={logo} alt="Logo" /></NavListItem>
                             </Link>
                             <Link to='/'>
-                                <li> Home </li>
+                                <NavListItem><NavLink> Home </NavLink></NavListItem>
                             </Link>
                             <Link to='/fourms'>
-                                <li> Fourms </li>
+                                <NavListItem><NavLink> Fourms </NavLink></NavListItem>
                             </Link>
                             <Link to='/anime'>
-                                <li> Anime </li>
+                                <NavListItem><NavLink> Anime </NavLink></NavListItem>
                             </Link>
                             <Link to='/admin'>
-                                <li> {isGlobal ? "Admin" : ""} </li>
+                                <NavListItem><NavLink> {isGlobal ? "Admin" : ""} </NavLink></NavListItem>
                             </Link>
-                        </div>
+                        </NavLeft>
 
-                        <div className="nav-right">
+                        <NavRight>
                             {/* 
                             Login / Register Links
                             Determines text and location of links
@@ -66,15 +137,15 @@ function Nav() {
                             otherwise always show register and login as the option
                             */}
                             <Link to={user ? registerLink = "profile" : registerLink = "/register"} class="user-name">
-                                <li>{user ? loginMessage = user.name : loginMessage = "Register"}</li>
+                                <NavListItem><NavLinkRegister>{user ? loginMessage = user.name : loginMessage = "Register"}</NavLinkRegister></NavListItem>
                             </Link>
                             <Link to={user ? logincheck = "/logout" : logincheck = "/login"}>
-                                <li>{user ? loginBtnText = "Logout" : loginBtnText = "Login"}</li>
+                                <NavListItem><NavLink>{user ? loginBtnText = "Logout" : loginBtnText = "Login"}</NavLink></NavListItem>
                             </Link>
-                        </div>
+                        </NavRight>
 
-                    </ul>
-                </nav>
+                    </NavigationList>
+                </Navbar>
             </div>
         </div>
     )

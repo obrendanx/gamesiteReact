@@ -1,58 +1,7 @@
 .navbar {
-    //sets main styles for navbar
-    height:7vh;
-    width:100%;
-    background:#D32F2F;
+   
     .navbar-ul{
-        //sets styles for nav links
-        width: 100%;
-        height: 100%;
-        list-style: none;
-        //sets arrangement for nav links
-        @include flex(flex, row, nowrap);
-        a{
-            //sets navigation links font, position and height
-            display: block;
-            height:7vh;
-            text-decoration: none;
-            line-height:7vh;
-            margin:0px 5px 0px 5px;
-            @include textDisplay(0.8em, normal, Roboto, #fff );
-            transition:0.5s;
-        }
-        a:hover{
-            //sets font hover color
-            color:#181616;
-        }
-        li{
-            margin-left:10px;
-        }
-        .nav-left{
-            //sets styles for main links of navigation
-            height: 100%;
-            width: 60%;
-            align-self: flex-start;
-            @include flex(flex, row,  nowrap);
-            img{
-                height:7vh;
                 
-            }
-        }
-        //sets styles for authentication links of navigation
-        .nav-right{
-            height: 100%;
-            width: 40%;
-            align-self: flex-end;
-            @include flex(flex, row,  nowrap);
-            justify-content: flex-end;
-            padding-right:10px;
-        }
     }
 }
 
-.user-name{
-    color:#212121 !important;
-}
-.user-name:hover{
-    text-decoration: underline !important;
-}
