@@ -3,7 +3,7 @@
  import { useSelector } from "react-redux";
  import React from 'react';
  import { useNavigate } from 'react-router-dom';
- 
+ import styled from '@emotion/styled'; 
  const Logout = () => {
     const user = useSelector(selectUser);
     const navigate = useNavigate();
@@ -18,6 +18,12 @@
         dispatch(logout());
         navigate("/login");
     };
+
+    const Logout = styled.div`
+        height:425px;
+        text-align:center;
+        padding-top:10%;
+    `
 
      return (
          <div className="logout_box">

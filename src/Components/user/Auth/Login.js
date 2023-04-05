@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { login } from "../../../app/features/userSlice";
+import styled from '@emotion/styled';
 
 function Login() {
 /*
@@ -65,31 +66,87 @@ async function loginUser(event) {
     console.log(data)
 }
 
+const LoginForm = styled.form`
+    height:calc(100% + 150px);
+    width:35%;
+    background:#1C1C1C;
+    margin:auto;
+    margin-top:50px;
+    margin-bottom:150px;
+    padding-top:25px;
+    padding-bottom:25px;
+    border-radius:10px;
+    font-size:1em;
+    font-weight:normal;
+    font-family:Roboto, sans-serif;
+    color:#fff;
+`
+
+const Header = styled.h1`
+    text-align:center;
+    padding-top:30px;
+    margin-bottom:30px;
+`
+
+const Input = styled.input`
+    width:70%;
+    height:10%;
+    margin-top:2%;
+    margin-bottom:2%;
+    margin-left:15%;
+    padding:10px;
+    border:0;
+    border-radius:10px;
+    box-shadow:0 0 15px 4px #000;
+    font-size:1em;
+    font-weight:normal;
+    font-family:Roboto, sans-serif;
+    color:#f44034;
+    transition:1s;
+`
+
+const SubmitBtn = styled.input`
+    width:70%;
+    height:45px !important;
+    border:none;
+    line-height:10px;
+    margin-top:10px;
+    color:#fff !important;
+    background:#f44034;
+    margin-left:15%;
+    border-radius:10px;
+    margin-bottom:50px;
+    transition:1s;
+    &:hover{
+        border:solid 1px #1C1C1C;
+    }
+`
+
   return (
     <div className="login">
 
-        <form onSubmit={loginUser} className="login_form">
-            <h1>Login Here</h1>
-            <input 
+        <LoginForm onSubmit={loginUser} className="login_form">
+            <Header>Login Here</Header>
+            <Input 
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 type="text" 
                 placeholder="Username" 
             />
-            <input 
+            <Input 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email" 
                 placeholder="Email" 
             />
-            <input 
+            <Input 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password" 
                 placeholder="Password" 
             />
-            <input type="submit" value="Login" className="submit_btn"/>
-        </form>
+            <SubmitBtn type="submit" value="Login"/>
+        </LoginForm>
 
     </div>
   )
