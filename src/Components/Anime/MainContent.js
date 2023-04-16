@@ -1,5 +1,30 @@
 import React from 'react'
 import AnimeCard from './AnimeCard'
+import styled from '@emotion/styled'
+
+const AnimeSearch = styled.input`
+    width:100%;
+    height:50px;
+    margin-bottom:10px;
+    border-radius:20px;
+    border:none;
+    padding-left:2.5%;
+    font-size:1em;
+    font-size:Roboto, sans-serif;
+    color:#000;
+`
+
+const AnimeContainer = styled.div`
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+`
+
+const AnimeGroup = styled.div`
+    width:25%;
+    margin:4.16%;
+    text-align:center;
+`
 
 function MainContent(props) {
   return (
@@ -11,8 +36,8 @@ function MainContent(props) {
                     Search bar is used to send a query to the api 
                     which sends back a set of results
                 */}
-                <form onSubmit={props.HandleSearch} className='anime_search'>
-                    <input 
+                <form onSubmit={props.HandleSearch}>
+                    <AnimeSearch 
                         type="search" 
                         placeholder="Search" 
                         required value={props.search} 
@@ -20,14 +45,14 @@ function MainContent(props) {
                     />
                 </form>
             </div>
-            <div className='anime_container'>
+            <AnimeContainer>
                 {props.animeList.map(anime => (
-                    <div className='anime_group'>
+                    <AnimeGroup>
                         {/* Results of query search stored in the prop 'anime' for the anime card to use */}
                         <AnimeCard anime={anime} key={anime.mal_id} />
-                    </div>
+                    </AnimeGroup>
                 ))}
-            </div>
+            </AnimeContainer>
         </main>
     </div>
   )

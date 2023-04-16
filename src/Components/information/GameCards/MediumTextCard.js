@@ -1,24 +1,80 @@
 import React from 'react'
+import styled from '@emotion/styled'
 
+const TextBox = styled.div`
+    height:295px;
+    width:100%;
+    margin-top:2.5%;
+    position:relative;
+    margin-bottom:2.5%;
+    transition:0.7s;
+`
+
+const Image = styled.img`
+    height:100%;
+    width:100%;
+    border-radius:5px;
+    &:hover{
+        opacity:0.8;
+        transform:scale(1.25);
+    }
+`
+
+const TextArea = styled.div`
+    position:absolute;
+    min-height:30%;
+    width:100%;
+    bottom:0;
+    padding:2% 5% 2% 5%;
+    transition:0.7s;
+    margin:0;
+    font-weight:900;
+    font-size:0.8em;
+    font-family:Roboto, sans-serif;
+    color:#fff;
+    background:rgba(0, 0, 0, 0.8);
+    &:hover{
+        background:rgba(0, 0, 0, 1)
+    }
+`
+
+const Link = styled.a`
+    color:#F44336;
+`
+
+const Header = styled.h2`
+    margin-bottom:5px;
+    text-transform:uppercase;
+`
+
+const Indicator = styled.div`
+    background:rgb(114, 112, 112);
+    height:10px;
+    width:30px;
+    transition:1s;
+    &:hover{
+        background:#F44336;
+    }
+`
 
 function MediumTextCard(props) {
     return (
         <div>
-            <div className="text_box_md">
+            <TextBox>
                 {/* Card Image */}
-                <img src={props.imgName} alt="gaming" />
-                <div className="text_area">
-                    <div class="hov_indicator"></div>
+                <Image src={props.imgName} alt="gaming" />
+                <TextArea>
+                    <Indicator></Indicator>
                     <header>
                         {/* Card Title */}
-                        <h2>{props.imgTitle}</h2>
+                        <Header>{props.imgTitle}</Header>
                     </header>
                     <p>
                     {/* Small Card Description */}
-                    {props.imgText} <a href={props.imgLink}>here</a>
+                    {props.imgText} <Link href={props.imgLink}>here</Link>
                     </p>
-                </div>
-            </div>
+                </TextArea>
+            </TextBox>
         </div>
     )
 }

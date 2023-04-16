@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SmallAnime from './SmallAnime';
+import styled from '@emotion/styled';
 
 function SetAnime() {
     //State array variable to store all results from api
@@ -33,15 +34,32 @@ function SetAnime() {
         animeUrl.push(anime.url)
       ));
       console.log(animeList);
+
+      const AnimeCard = styled.div`
+        display:flex;
+        flex-direction:row;
+        flex-wrap:wrap;
+        row-gap:1%;
+        column-gap:1%;
+        padding-left:2.5%;
+        width:100%;
+        div{
+          width:23.5%;
+          div{
+            width:100%;
+          }
+        }
+      `
+
   return (
-    <div className="anime_sm_card">
+    <AnimeCard>
         {animeList.map(anime => (
                     <div>
                         {/* Mapping the anime card with the number of results for the fetched data */}
                         <SmallAnime anime={anime} key={anime.mal_id} />
                     </div>
                 ))}
-    </div>
+    </AnimeCard>
   )
 }
 

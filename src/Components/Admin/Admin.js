@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from '@emotion/styled';
 
 export default function Admin() {
   const [users, setUsers] = useState([]);
@@ -35,21 +36,48 @@ export default function Admin() {
     }
   };
 
+  const AdminPanel = styled.div`
+    background:#1C1C1C;
+    font-size:1em;
+    font-family:Roboto, sans-serif;
+    color:#fff;
+    height:100%;
+    width:80%;
+    margin-left:10%;
+    margin-top:20px;
+    margin-bottom:20px;
+    padding:15px;
+  `
+
+  const List = styled.ul`
+    list-style:none;
+  `
+
+  const ListItem = styled.li`
+    padding:5px;
+  `
+
+  const RemoveBtn = styled.button`
+    margin-left:7.5px;
+    border:none;
+    padding:5px;
+  `
+
   return (
     <div>
-        <div className="adminPanel">
+        <AdminPanel>
           <h1>Admin Panel - Welcome User</h1>
-          <div className='siteUsers'>
-              <ul>
+          <div>
+              <List>
               {users.map(user => (
-                  <li key={user._id}>
+                  <ListItem key={user._id}>
                       {user.username}
-                      <button onClick={() => handleRemoveUser(user.username)}>Remove</button>
-                  </li>
+                      <RemoveBtn onClick={() => handleRemoveUser(user.username)}>Remove</RemoveBtn>
+                  </ListItem>
                   ))}
-              </ul>
+              </List>
           </div>
-        </div>
+        </AdminPanel>
     </div>
   );
 }

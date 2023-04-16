@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import SmallManga from './SmallManga';
+import styled from '@emotion/styled';
 
 function SetManga() {
     const [mangaList, setMangaList] = useState([]);
@@ -34,15 +35,31 @@ function SetManga() {
         mangaUrl.push(manga.url)
       ));
 
+      const AnimeCard = styled.div`
+        display:flex;
+        flex-direction:row;
+        flex-wrap:wrap;
+        row-gap:1%;
+        column-gap:1%;
+        padding-left:2.5%;
+        width:100%;
+        div{
+          width:23.5%;
+          div{
+            width:100%;
+          }
+        }
+      `
+
   return (
-    <div className="anime_sm_card">
+    <AnimeCard>
         {/* mapping data to each card used */}
         {mangaList.map(manga => (
                     <div>
                         <SmallManga manga={manga} key={manga.mal_id} />
                     </div>
                 ))}
-    </div>
+    </AnimeCard>
   )
 }
 

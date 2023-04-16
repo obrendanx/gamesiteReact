@@ -1,19 +1,36 @@
 import React from 'react'
+import styled from '@emotion/styled'
+
+const AnimeCardCtn = styled.article`
+  width:100%;
+`
+
+const Link = styled.a`
+  text-decoration:none;
+`
+
+const Header = styled.h2`
+  margin-top:10px;
+`
+
+const AnimeImage = styled.figure`
+  border-radius:20px;
+`
 
 function AnimeCard({anime}) {
   return (
     <div>
-        <article className="anime_card">
+        <AnimeCardCtn>
             {/* Links to more information about anime (Covers entire card) */}
-            <a href={anime.url} target="_blank" rel="noreferrer">
+            <Link href={anime.url} target="_blank" rel="noreferrer">
                 {/* Image for card */}
-                <figure className='anime_img'>
+                <AnimeImage className='anime_img'>
                     <img src={anime.images.jpg.image_url} alt="Anime Image" />
-                </figure>
+                </AnimeImage>
                 {/* Title for anime card (in japanese) */}
-                <h2 className='anime_title'>{anime.title_japanese}</h2>
-            </a>
-        </article>
+                <Header className='anime_title'>{anime.title_japanese}</Header>
+            </Link>
+        </AnimeCardCtn>
     </div>
   )
 }
