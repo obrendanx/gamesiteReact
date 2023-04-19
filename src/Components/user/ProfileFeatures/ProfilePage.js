@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileForm from "./ProfileForm";
 import { selectUser } from "../../../app/features/userSlice";
+import styled from "@emotion/styled";
 
 const ProfilePage = () => {
   const [user, setUsers] = useState({});

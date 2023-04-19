@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../app/features/userSlice";
 import axios from 'axios';
+import styled from '@emotion/styled';
 
 const ProfileIcon = () => {
   //used to grab user information
@@ -21,10 +22,23 @@ const ProfileIcon = () => {
 
   const initials = name ? name.split(" ").map(word => word[0]).join("") : "?";
 
+  const ProfileIcon = styled.div`
+    padding:10px;
+    border-radius:100%;
+    width:50px;
+    height:50px;
+    text-align:center;
+    line-height:25px;
+    margin:0 auto;
+    margin-top:17.5px;
+    margin-bottom:17.5px;
+    color:#fff;
+  `
+
   return (
-    <div style={{ backgroundColor: `${color}` }} className="profile-icon">
+    <ProfileIcon style={{ backgroundColor: `${color}` }} className="profile-icon">
       {initials}
-    </div>
+    </ProfileIcon>
   );
 };
 

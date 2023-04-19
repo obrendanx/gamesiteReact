@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CirclePicker } from "react-color";
+import styled from "@emotion/styled";
 
 const ProfileForm = ({ onSubmit, initialValues }) => {
   const [fullName, setFullName] = useState(initialValues.fullName);
@@ -96,10 +97,42 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     setDisplayColorPicker(!displayColorPicker);
   };
 
+  const ProfileFormDiv = styled.div`
+    height:100%;
+    width:80%;
+    margin-left:10%;
+    margin-bottom:20px;
+    padding:10px;
+    background:#F44336;
+    font-size:1em;
+    font-family:Roboto, sans-serif;
+    color:#fff; 
+  `
+
+  const ProfileFormSubDiv = styled.div`
+    margin:10px;
+    width:100%;
+  `
+
+  const Button = styled.button`
+    margin:10px;
+    border:none;
+    background:#252627;
+    color:#fff;
+    width:30%;
+    padding:2.5%;
+    text-align:center;
+  `
+
+  const Text = styled.p`
+    margin-top:7.5px;  
+  `
+
+
   return (
-    <div className="profile-form">
+    <ProfileFormDiv>
       <form onSubmit={handleSubmit}>
-      <div className="profile-form-div">
+      <ProfileFormSubDiv>
         <label htmlFor="fullName">Full Name:</label>
         <input
           type="text"
@@ -109,8 +142,8 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
         />
         {error.fullName && <p className="error">{error.fullName}</p>}
         <p>Current: {user?.fullName}</p>
-      </div>
-      <div className="profile-form-div">
+      </ProfileFormSubDiv>
+      <ProfileFormSubDiv>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -119,9 +152,9 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
           onChange={(e) => setUsername(e.target.value)}
         />
         {error.username && <p className="error">{error.username}</p>}
-        <p>Current: {user?.username}</p>
-      </div>
-      <div className="profile-form-div">
+        <Text>Current: {user?.username}</Text>
+      </ProfileFormSubDiv>
+      <ProfileFormSubDiv>
         <label htmlFor="email">Email:</label>
         <input
           type="email"
@@ -130,9 +163,9 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
           onChange={(e) => setEmail(e.target.value)}
         />
         {error.email && <p className="error">{error.email}</p>}
-        <p>Current: {user?.email}</p>
-      </div>
-      <div className="profile-form-div">
+        <Text>Current: {user?.email}</Text>
+      </ProfileFormSubDiv>
+      <ProfileFormSubDiv>
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -141,17 +174,17 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
         {error.password && <p className="error">{error.password}</p>}
-      </div>
-      <div className="profile-form-div">
+      </ProfileFormSubDiv>
+      <ProfileFormSubDiv>
         <label htmlFor="profileIconColor">Profile Icon Color:</label>
         <CirclePicker
           color={profileIconColor}
           onChangeComplete={(color) => setProfileIconColor(color.hex)}
         />
-      </div>
-      <button type="submit">Update Profile</button>
+      </ProfileFormSubDiv>
+      <Button type="submit">Update Profile</Button>
     </form>
-  </div>
+  </ProfileFormDiv>
   );
 };
 

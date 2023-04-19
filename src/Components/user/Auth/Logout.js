@@ -26,10 +26,10 @@
     `
 
      return (
-         <div className="logout_box">
+         <Logout>
              <h1>Welcome <span className="user_name">{user.name}</span></h1>
              <button className="logout_btn" onClick={(e) => handleLogout(e)}> Logout </button>
-         </div>
+         </Logout>
      );
  };
  

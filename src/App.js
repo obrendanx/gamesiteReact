@@ -1,14 +1,12 @@
 import React from 'react';
 import Nav from './Components/navigation/Nav';
 import Home from './Pages/Home';
-import About from './Pages/About';
 import Fourms from './Pages/Fourms';
 import Footer from './Components/information/Footer';
 import Banner from './Components/information/Banner';
 import Logout from './Components/user/Auth/Logout';
 import Register from './Components/user/Auth/Register';
 import Profile from './Components/user/Profile';
-import FetchUser from './Components/user/FetchUser';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './scss/App.scss';
 import { useSelector } from "react-redux";
@@ -30,7 +28,6 @@ const App = () => {
         <Nav/>
         <Routes>
         <Route path="/" exact element={<Home />}/>
-        <Route path="/about" element={<About />}/>
         <Route path="/fourms" element={<InProgress />}/>
         <Route path="/anime" element={<AnimeSearch />}/>
         <Route path="/register" element={<Register />}/>

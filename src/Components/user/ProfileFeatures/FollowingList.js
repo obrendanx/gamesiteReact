@@ -1,9 +1,40 @@
 import React from 'react'
+import styled from '@emotion/styled'
+
+const FollowingTab = styled.div`
+  background:#464545;
+  width:70%;
+  height:75px;
+  border-radius:20px;
+  margin:auto;
+  margin-top:35px;
+  margin-bottom:35px;
+  padding:15px 10px 10px 20px;
+  transition:1s;
+  box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12);
+  &:hover{
+    background:#ccc;
+  }
+`
+
+const Link = styled.a`
+  color:#fff;
+  text-decoration:none;
+  &:hover{
+    color:#464545;
+  }
+`
 
 export default function FollowingList(props) {
   return (
-    <div className="following_tab">
-        <h1><a href="#">{props.username}</a></h1>
-    </div>
+    <FollowingTab>
+        <h1><Link href="#">{props.username}</Link></h1>
+    </FollowingTab>
   )
 }

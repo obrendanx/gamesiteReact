@@ -7,6 +7,7 @@ import FollowingList from "./ProfileFeatures/FollowingList.js";
 import jwt from 'jsonwebtoken'
 import ProfileIcon from "./ProfileFeatures/ProfileIcon";
 import ProfilePage from "./ProfilePage";
+import styled from "@emotion/styled";
 
 function Profile() {
   const [isProfilePageDisplayed, setIsProfilePageDisplayed] = useState(false);
@@ -33,33 +34,91 @@ function Profile() {
     setIsProfilePageDisplayed(!isProfilePageDisplayed);
   }
 
+  const Edit = styled.button`
+    border:none;
+    background:#F44336;
+    color:#ff;
+    width:30%;
+    padding:2.5%;
+    text-align:center;
+    margin-top:2.5%;
+    margin-bottom:2.5%;
+    margin-left:2.5%;
+  `
+
+  const ProfilePageDiv = styled.div`
+      background:#F44336;
+      width:100%;
+      min-height:600px;
+      color:#fff;
+      padding:20px;
+      margin:auto;
+      font-size:0.8em;
+      font-family:Roboto, sans-serif;
+      color:#fff;
+  `
+
+  const ProfileTitle = styled.h1`
+    color:#fff;
+    text-transform:uppercase;
+    text-align:center;
+  `
+
+  const Link = styled.a`
+    font-size:0.8em;
+    font-family:Roboto, sans-serif;
+    color:#000;
+  `
+
+  const ProfileInfo = styled.div`
+    text-align:center;  
+  `
+
+  const FollowCount = styled.div`
+    display:flex;
+    flex-direction:row;
+    width:50%;
+    margin-left:25%;
+    margin-top:25px;  
+  `
+
+  const FollowingDiv = styled.div`
+    width:50%;
+    text-align:center;  
+  `
+
+  const FollowersDiv = styled.div`
+    width:50%;
+    text-align:center;  
+  `
+
   return (
     <div>
         {/*edit profile button*/}
-        <button onClick={handleEditProfileClick} className="editProfile">Edit Profile</button>
+        <Edit onClick={handleEditProfileClick}>Edit Profile</Edit>
         {/* checks if profile page is displayed (from edit profile button) */}
         {isProfilePageDisplayed && <ProfilePage />}
 
-        <div className='profile_page'>
-          <h1 className='profile_title'>{username}</h1>
+        <ProfilePageDiv>
+          <ProfileTitle>{username}</ProfileTitle>
           <h2 className="profilePic"><ProfileIcon/></h2>
-          <div className='profile_info'>
+          <ProfileInfo>
             <h3 className='profile_h3'>{user.location_street}, {user.location_code}, {user.location_country}</h3>
-          </div>
+          </ProfileInfo>
 
-          <div className='follow_count'>
-            <div className='following'>
+          <FollowCount>
+            <FollowingDiv>
               <Following />
-            </div>
-            <div className='followers'>
+            </FollowingDiv>
+            <FollowersDiv>
               <Followers/>
-            </div>
-          </div>
+            </FollowersDiv>
+          </FollowCount>
 
           <FollowingList username={username}/>
           <FollowingList username={username}/>
           <FollowingList username={username}/> 
-        </div>
+        </ProfilePageDiv>
     </div>
   )
 }
