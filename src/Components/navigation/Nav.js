@@ -38,6 +38,9 @@ function Nav() {
         height:7vh;
         width:100%;
         background:#1C1C1C;
+        @media (max-width: 770px){
+            height:12vh;
+        }
     `
     const NavigationList = styled.ul`
         width:100%;
@@ -46,6 +49,9 @@ function Nav() {
         display:flex;
         flex-direction:row;
         flex-wrap:nowrap;
+        @media (max-width: 770px){
+            flex-direction:column-reverse !important;
+        }
     `
     const NavLink = styled.a`
         display:block;
@@ -86,6 +92,10 @@ function Nav() {
         display:flex;
         flex-direction:row;
         flew-wrap:nowrap;
+        @media (max-width: 770px){
+            height:7vh;
+            width:100%;
+        }
     `
     const Logo = styled.img`
         height:7vh;
@@ -102,6 +112,15 @@ function Nav() {
         flex-direction:row;
         justify-content:flex-end;
         padding-right:10px;
+        @media (max-width: 770px){
+            height:5vh;
+            width:100%;
+            background:#F44336;
+            a{
+                height:5vh;
+                line-height:5vh;
+            }
+        }
     `
 
     return (

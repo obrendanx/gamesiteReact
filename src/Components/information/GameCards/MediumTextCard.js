@@ -52,6 +52,7 @@ const Indicator = styled.div`
     height:10px;
     width:30px;
     transition:1s;
+    margin-bottom:5px;
     &:hover{
         background:#F44336;
     }

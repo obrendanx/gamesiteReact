@@ -4,6 +4,7 @@ import LgTextComp from '../Components/information/GameCards/LargeTextCard'
 import MdTextComp from '../Components/information/GameCards/MediumTextCard'
 import SetAnime from '../Components/information/GameCards/SetAnime'
 import SetManga from '../Components/information/GameCards/SetManga'
+import styled from '@emotion/styled'
 
 //images being used
 import TOG from '../images/togs2.jpg'
@@ -36,51 +37,109 @@ let title = [
     "Noblesse"
 ]
 
+const HomeWrap = styled.div`
+    padding-bottom:2.5%;
+    background:#333333;
+`
+
+const SectionHeader = styled.h2`
+    font-family: 'Oswald', sans-serif;
+    height:75px;
+    width:97%;
+    border-bottom:solid 1px rgb(37, 38, 39);
+    margin:10px;
+    padding-left:20px;
+    padding-top:10px;
+    font-size:2em;
+    color:#fff;
+`
+
+const TextCard = styled.div`
+    width:47.5%;
+    @media (max-width: 770px){
+        width:100%;
+    }
+`
+
+const IntroContent = styled.div`
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    width:90%;
+    margin-left:5%;
+    column-gap:2.5%;
+    @media (max-width: 770px){
+        flex-direction:column;
+        margin-left:5%;
+        display:block;
+    }
+`
+
+const InfoSectionTwo = styled.div`
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    margin-left:2.5%;
+    column-gap:2.5%;
+    @media (max-width: 770px){
+        width:90%;
+        flex-direction:column;
+        margin-left:5%;
+        display:block;
+    }
+`
+
+const InfoWrap = styled.div`
+    @media (max-width: 770px) {
+        margin-top:0;
+    }
+`
+
 function Home() {
     return (
-        <div className="home_wrap">
+        <HomeWrap>
             {/* Banner Section */}
             <Banner />
-            <div className="info_wrap">
+            <InfoWrap>
                 
-                <h2 className="section_header">TOP: UPCOMING ANIME</h2>
+                <SectionHeader>TOP: UPCOMING ANIME</SectionHeader>
 
                 {/* Introduction Content */}
-                <div className="intro_content">
-                    <div className="large_textcard">
+                <IntroContent>
+                    <TextCard>
                         <LgTextComp imgName={TOG} imgText={description[0]} imgTitle={title[0]} imgLink={links[0]}/>
-                    </div>
-                    <div className="med_textcard">
+                    </TextCard>
+                    <TextCard>
                         <MdTextComp imgName={GOH} imgText={description[1]} imgTitle={title[1]} imgLink={links[1]} margbot={"margbot"}/>
                         <MdTextComp imgName={SOLO} imgText={description[2]} imgTitle={title[2]} imgLink={links[2]} margbot={"margbot"}/>
-                    </div>
-                </div>
+                    </TextCard>
+                </IntroContent>
 
                 {/* Main Content */}
                 <div className="main_content">
 
                         {/* Section One */}
-                        <h2 className="section_header">TOP: UPCOMING ANIME</h2>
+                        <SectionHeader>TOP: UPCOMING ANIME</SectionHeader>
                         <SetAnime />
 
                         {/* Section 2 */}
-                        <h2 className="section_header">Top Stories</h2>
+                        <SectionHeader>Top Stories</SectionHeader>
 
-                        <div className="info_section">
-                            <div className="large_textcard">
+                        <InfoSectionTwo>
+                            <TextCard>
                                 <LgTextComp imgName={UNORD} imgText={description[3]} imgTitle={title[3]} imgLink={links[3]}/>
-                            </div>
-                            <div className="large_textcard">
+                            </TextCard>
+                            <TextCard>
                                 <LgTextComp imgName={NOBLESSE} imgText={description[4]} imgTitle={title[4]} imgLink={links[4]}/>
-                            </div>
-                        </div>
+                            </TextCard>
+                        </InfoSectionTwo>
 
                         {/* Section 3 */}
-                        <h2 className="section_header">TOP 15 MANGA</h2>
+                        <SectionHeader>TOP 15 MANGA</SectionHeader>
                         <SetManga />
                 </div>
-            </div>
-        </div>
+            </InfoWrap>
+        </HomeWrap>
     )
 }
 

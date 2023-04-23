@@ -7,6 +7,10 @@ const TextBox = styled.div`
     position:relative;
     transition:0.7s;
     margin:2.5% 0 4% 0;
+    @media (max-width: 770px){
+        padding:5;
+        width:100%;
+    }
 `
 
 const Image = styled.img`

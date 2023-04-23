@@ -49,6 +49,12 @@ function SetManga() {
             width:100%;
           }
         }
+        @media (max-width: 770px){
+          flex-direction:column;
+          div{
+            width:98%;
+          }
+        }
       `
 
   return (

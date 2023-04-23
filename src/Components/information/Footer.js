@@ -12,6 +12,9 @@ const FooterContainer = styled.footer`
     padding:1.5%;
     position:relative;
     bottom:0;
+    @media (max-width: 770px){
+        padding-top:50px;
+    }
 `
 
 const WelcomeLinks = styled.div`
@@ -62,6 +65,9 @@ const Icon = styled.i`
     transition:1s;
     &:hover{
         transform:scale(1.5);
+    }
+    @media (max-width: 770px){
+        font-size:1.5em;
     }
 `
 

@@ -121,6 +121,10 @@ const GetAnime = async () => {
     font-size:1em;
     font-family:Roboto, sans-serif;
     color:#fff;
+    @media (max-width: 770px){
+      display:none;
+      font-size:0.7em;
+    }
   `
 
   const BannerTitle = styled.h2`

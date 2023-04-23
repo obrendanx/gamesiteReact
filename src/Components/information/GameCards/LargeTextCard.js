@@ -29,7 +29,7 @@ const TextArea = styled.div`
     transition:0.7s;
     margin:0;
     margin-left:1.75%;
-    font-size:0.8e,;
+    font-size:0.8em;
     font-family:Roboto, sans-serif;
     color:#fff;
     background:rgba(0, 0, 0, 0.5);
@@ -53,6 +53,7 @@ const Indicator = styled.div`
     height:10px;
     width:30px;
     transition:1s;
+    margin-bottom:5px;
     &:hover{
         background:rgb(245, 242, 242);
     }

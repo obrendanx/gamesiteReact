@@ -80,6 +80,9 @@ const LoginForm = styled.form`
     font-weight:normal;
     font-family:Roboto, sans-serif;
     color:#fff;
+    @media (max-width:770px){
+        width:100%;
+    }
 `
 
 const Header = styled.h1`
