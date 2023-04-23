@@ -125,6 +125,13 @@ const GetAnime = async () => {
       display:none;
       font-size:0.7em;
     }
+    @media (max-width: 1600px){
+      width:95% !important;
+      font-size:1.3em !important;
+    }
+    @media (max-width: 1200px){
+      font-size:1.1em !important;
+    }
   `
 
   const BannerTitle = styled.h2`

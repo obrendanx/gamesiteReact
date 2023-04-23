@@ -1,4 +1,4 @@
-@import 'mixins.scss';
+//@import 'mixins.scss';
 //@import './components/banner.scss';
 //@import './components/lgTextBox.scss';
 //@import './components/SmTextBox.scss';
@@ -46,7 +46,9 @@ html{
 }
 
 .App{
-  @include flex(flex, column, nowrap);
+  display:flex;
+  flex-direction:column;
+  flex-wrap:nowrap;
   //god knows what this does
   min-height:calc(100vh - 325px);
   //sets default width for page components
@@ -59,175 +61,10 @@ html{
 /// Styles for Screens widths of 770px and below ///
 ////////////////////////////////////////////////////
 @media screen and (max-width: 770px) {
-  //removers the banner information from smaller screens
-  .banner_info{
-    display:none;
-    font-size:0.7em;
-  }
-
-  .anime_sm_card{
-    padding:5%;
-    //sets the anime cards to appear underneath each other+
-    div{
-        width:100%;
-    }
-}
-
-//allows the introduction section textcards to display in a column
-.home_wrap .intro_content{
-  display:block;
-}
-
-//sets the large and medium textcards to full mobile width
-.large_textcard, .med_textcard{
-  width:100% !important;
-}
-
-//display large and medium textboxes underneath each other
-.info_section{
-  flex-direction:column !important;
-  margin-left:0 !important;
-}
-
-//removes empty gap between the information and banner
-.home_wrap .info_wrap{
-  margin-top:0;
-}
-
-  .navbar{
-
-    //styles to move register 
-    height: 12vh;
-    .navbar-ul{
-      flex-direction: column-reverse !important;
-      .nav-left{
-        //main navigation
-        height: 7vh;
-        width: 100%;
-      }
-      .nav-right{
-        //authentication navigation
-        height: 5vh;
-        width: 100%;
-        background: #F44336;
-        a{
-          height: 5vh;
-          line-height: 5vh;
-        }
-      }
-    }
-  }
-
-  .imageInfo{
-    //removes the banner image information
-    display:none;
-  }
-
-  .login_form{
-    //sets the login form to fit the moible width
-    width:100%;
-    margin-top:0;
-    border-radius:0;
-    height:115%;
-    padding-top:0;
-    margin-bottom:0;
-  }
-
   .App{
     //set the default width for the device width
     width:100%;
   }
-
-  //adds extra space for footer content
-  .main_footer{
-    padding-top:50px;
-  }
-
-    //sets the font awesome icon size
-  .fa-2x{
-    font-size:1.5em;
-  }
-
-  ///////////////
-  //Unknown Use//
-  ///////////////
-  
-  .member_group_one{
-    @include flex(flex, column, nowrap);
-  }
-  .member_group_two{
-    @include flex(flex, column, nowrap);
-  }
-
-
-  //styles for user profile
-  .workUserProfile{
-    width:100% !important;
-    margin-bottom:2% !important;
-    @include textDisplay(1.1em, 'Dongle', Roboto, #fff );
-    h1{
-      height:40% !important;
-      margin-top:5%;
-      line-height:200px;
-    }
-  }
-
-  ///////////////////////
-  //Unused About Styles//
-  ///////////////////////
-  
-  .members{
-    margin-left:0 !important;
-  }
-
-  .fixed_sidebar_login{
-    width:100%;
-    border-radius:0;
-  }
-
-  //Container for anime cards on search bar
-  .anime_group{
-    width:100% !important;
-  }
-
-}
-
-/////////////////////////////////////////////////////
-/// Styles for Screens widths of 1600px and below ///
-/////////////////////////////////////////////////////
-
-@media screen and (max-width: 1600px){
-  ////////////////
-  //about styles//
-  ////////////////
-  .workUserProfile{
-    width:45%;
-  }
-
-  .teamMembers h1{
-    padding:2.5%;
-  }
-
-  .members{
-    margin-left:7.5%;
-  }
-
-  .teamUserImg{
-    width:45% !important;
-    margin-left:27.5% !important;
-  }
-
-  .banner_info{
-    width:95% !important;
-    font-size:1.3em !important;
-  }
-}
-
-.progress{
-  @include textDisplay(3em, 'Dongle', Roboto, #fff );
-  text-align:center;
-  margin-top:150px;
-}
 
 @media screen and (max-width: 1200px){
   .con_side{
@@ -246,4 +83,5 @@ html{
   .banner_info{
     font-size:1.1em !important;
   }
+}
 }
