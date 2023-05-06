@@ -28,7 +28,7 @@ const App = () => {
         <Nav/>
         <Routes>
         <Route path="/" exact element={<Home />}/>
-        <Route path="/fourms" element={<InProgress />}/>
+        <Route path="/fourms" element={<Fourms />}/>
         <Route path="/anime" element={<AnimeSearch />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/profile" element={<Profile />}/>
