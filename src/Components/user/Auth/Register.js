@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import styled from '@emotion/styled'
+import { css } from '@emotion/css'
 
 const Register = () => {
     const [fullName, setFullName] = useState('')
@@ -60,98 +61,148 @@ const Register = () => {
       window.location = './Login'
     }
 
-    const RegisterForm = styled.div`
-      height:calc(100% + 150px);
-      width:35%;
-      background:#1C1C1C;
-      margin:auto;
-      margin-top:50px;
-      margin-bottom:150px;
-      padding-top:25px;
-      padding-bottom:25px;
-      border-radius:10px;
-      font-size:1em;
-      font-weight:normal;
-      font-family:Roboto, sans-serif;
-      color:#fff;
-    `
-
     const Header = styled.h1`
       text-align:center;
       padding-top:30px;
       margin-bottom:30px;
     `
-
-    const Input = styled.input`
-      width:70%;
-      height:10%;
-      margin-top:2%;
-      margin-bottom:2%;
-      margin-left:15%;
-      padding:10px;
-      border:0;
-      border-radius:10px;
-      box-shadow:0 0 15px 4px #000;
-      font-size:1em;
-      font-weight:normal;
-      font-family:Roboto, sans-serif;
-      color:#fff;
-    `
-
-    const SubmitBtn = styled.input`
-      width:70%;
-      height:45px;
-      border:none;
-      line-height:10px;
-      margin-top:10px;
-      color:#fff;
-      background:#f44034;
-      margin-left:15%;
-      border-radius:10px;
-      margin-bottom:50px;
-      &:hover{
-        border:solid 1px #1C1C1C;
-      }
-    `
   
     return (
       <div>
-        <RegisterForm>
+        <div
+          className={css`
+            height:calc(100% + 150px);
+            width:35%;
+            background:#1C1C1C;
+            margin:auto;
+            margin-top:50px;
+            margin-bottom:150px;
+            padding-top:25px;
+            padding-bottom:25px;
+            border-radius:10px;
+            font-size:1em;
+            font-weight:normal;
+            font-family:Roboto, sans-serif;
+            color:#fff;
+          `}
+        >
           <Header>Register</Header>
           <div className="form-div">
             <form onSubmit={onSubmit}>
-              <Input type='text'
+              <input
+                className={css`
+                  width:70%;
+                  height:10%;
+                  margin-top:2%;
+                  margin-bottom:2%;
+                  margin-left:15%;
+                  padding:10px;
+                  border:0;
+                  border-radius:10px;
+                  box-shadow:0 0 15px 4px #000;
+                  font-size:1em;
+                  font-weight:normal;
+                  font-family:Roboto, sans-serif;
+                  color:#f44336; 
+                `} 
+                type='text'
                 placeholder='Full Name'
                 onChange={(event) => setFullName(event.target.value)}
                 value={fullName}
               />
               {error.fullName && <p className="error">{error.fullName}</p>}
   
-              <Input type='text'
+              <input 
+                className={css`
+                  width:70%;
+                  height:10%;
+                  margin-top:2%;
+                  margin-bottom:2%;
+                  margin-left:15%;
+                  padding:10px;
+                  border:0;
+                  border-radius:10px;
+                  box-shadow:0 0 15px 4px #000;
+                  font-size:1em;
+                  font-weight:normal;
+                  font-family:Roboto, sans-serif;
+                  color:#f44336; 
+                `} 
+                type='text'
                 placeholder='Username'
                 onChange={(event) => setUsername(event.target.value)}
                 value={username}
               />
               {error.username && <p className="error">{error.username}</p>}
 
-              <Input type='text'
+              <input 
+              className={css`
+                  width:70%;
+                  height:10%;
+                  margin-top:2%;
+                  margin-bottom:2%;
+                  margin-left:15%;
+                  padding:10px;
+                  border:0;
+                  border-radius:10px;
+                  box-shadow:0 0 15px 4px #000;
+                  font-size:1em;
+                  font-weight:normal;
+                  font-family:Roboto, sans-serif;
+                  color:#f44336; 
+                `} 
+              type='text'
               placeholder='Email'
               onChange={(event) => setEmail(event.target.value)}
               value={email}
               />
               {error.email && <p className="error">{error.email}</p>}
 
-              <Input type="password"
+              <input 
+              className={css`
+                  width:70%;
+                  height:10%;
+                  margin-top:2%;
+                  margin-bottom:2%;
+                  margin-left:15%;
+                  padding:10px;
+                  border:0;
+                  border-radius:10px;
+                  box-shadow:0 0 15px 4px #000;
+                  font-size:1em;
+                  font-weight:normal;
+                  font-family:Roboto, sans-serif;
+                  color:#f44336; 
+                `} 
+              type="password"
               placeholder="Password"
               onChange={(event) => setPassword(event.target.value)}
               value={password}
               />
               {error.password && <p className="error">{error.password}</p>}
 
-              <SubmitBtn type='submit' value='Submit' />
+              <input 
+                className={css`
+                  width:70%;
+                  height:45px;
+                  border:none;
+                  line-height:10px;
+                  margin-top:10px;
+                  color:#fff;
+                  background:#f44034;
+                  margin-left:15%;
+                  border-radius:10px;
+                  margin-bottom:50px;
+                  &:hover{
+                    border:solid 1px #1C1C1C;
+                  }
+                `}
+                type='submit' 
+                value='Submit' 
+              />
             </form>
           </div>
-        </RegisterForm>
+        </div>
       </div>
         )
     }
