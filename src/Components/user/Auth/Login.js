@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../../app/features/userSlice";
 import styled from '@emotion/styled';
 import { css } from "@emotion/css";
+import Input from "../../Form/Input";
 
 function Login() {
 /*
@@ -22,6 +23,9 @@ const navigate = useNavigate();
 
 async function loginUser(event) {
     event.preventDefault()
+
+    console.log(username);
+    console.log(email);
     //Fetching the users login information from mongo
     const response = await fetch('http://localhost:5000/app/login', {
         method: 'POST',
@@ -98,7 +102,7 @@ const Header = styled.h1`
         onSubmit={loginUser}
         >
             <Header>Login Here</Header>
-            <input
+            {/* <input
                 className={css`
                     width:70%;
                     height:10%;
@@ -119,7 +123,14 @@ const Header = styled.h1`
                 onChange={(e) => setUsername(e.target.value)}
                 type="text" 
                 placeholder="Username" 
-            />
+            /> */}
+            <Input
+          variant="primary"
+          type="text"
+          placeholder="Username"
+          value={username}
+          onValueChange={setUsername}
+        />
             <input 
                 className={css`
                     width:70%;
