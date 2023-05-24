@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import Sidebar from '../Components/Anime/Sidebar.js'
-import MainContent from '../Components/Anime/MainContent'
+import Sidebar from '../Components/AnimePage/Sidebar.js'
+import MainContent from '../Components/AnimePage/MainContent'
 
 function AnimeSearch() {
   //States to store the search contents

@@ -4,7 +4,6 @@ import logo from '../../images/logo.jpg'
 import { useSelector } from "react-redux";
 import { selectUser } from "../../app/features/userSlice";
 import axios from 'axios';
-import ProfileIcon from '../user/ProfileFeatures/ProfileIcon';
 import styled from '@emotion/styled';
 
 function Nav() {

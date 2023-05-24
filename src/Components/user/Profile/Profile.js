@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../app/features/userSlice";
-import Followers from "./ProfileFeatures/Followers.js";
-import Following from "./ProfileFeatures/Following.js";
-import FollowingList from "./ProfileFeatures/FollowingList.js";
+import { selectUser } from "../../../app/features/userSlice";
+import Followers from "./Followers.js";
+import Following from "./Following.js";
+import FollowingList from "./FollowingList.js";
 import jwt from 'jsonwebtoken'
-import ProfileIcon from "./ProfileFeatures/ProfileIcon";
+import ProfileIcon from "./ProfileIcon";
 import ProfilePage from "./ProfilePage";
 import styled from "@emotion/styled";
 

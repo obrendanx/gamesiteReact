@@ -79,7 +79,7 @@ function FourmInput() {
       >
         <Label htmlFor="subject">Subject:</Label>
         <br />
-        {/* <input
+        <input
           className={css`
             height: 35px;
             width: 60%;
@@ -94,18 +94,12 @@ function FourmInput() {
           name="subject"
           onChange={(event) => setSubject(event.target.value)}
           value={subject}
-        /> */}
-        <Input
-                type="text"
-                placeholder="Username: "
-                value={subject}
-                onValueChange={setSubject}
-                />
+        />
         <br />
 
         <Label htmlFor="message">Message:</Label>
         <br />
-        {/* <textarea
+        <textarea
           className={css`
             height: 125px;
             width: 100%;
@@ -120,13 +114,7 @@ function FourmInput() {
           name="message"
           onChange={(event) => setMessage(event.target.value)}
           value={message}
-        /> */}
-        <TextArea 
-            type="text"
-            placeholder="Username: "
-            value={message}
-            onValueChange={setMessage}
-            />
+        />
         <br />
 
         <Submit type="submit" value="Post" />

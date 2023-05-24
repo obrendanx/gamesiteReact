@@ -1,7 +1,3 @@
-/*
-Footer - this component displays the nesccary links needed for users to go to when they reach the bottom of the page
-*/
-
 import React from 'react'
 import styled from '@emotion/styled'
 

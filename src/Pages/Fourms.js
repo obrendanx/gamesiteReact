@@ -1,6 +1,6 @@
 import React from 'react'
-import FourmPost from '../Components/user/FourmPost'
-import Post from '../Components/user/Post'
+import FourmPost from '../Components/FourmPage/FourmPost'
+import Post from '../Components/FourmPage/Post'
 import styled from '@emotion/styled'
 
 const Header = styled.h1`
