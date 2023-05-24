@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import styled from '@emotion/styled'
 import { css } from '@emotion/css'
+import Input from '../../Form/Input'
+import Submit from '../../Form/Submit'
 
 const Register = () => {
     const [fullName, setFullName] = useState('')
@@ -89,7 +91,7 @@ const Register = () => {
           <Header>Register</Header>
           <div className="form-div">
             <form onSubmit={onSubmit}>
-              <input
+              {/* <input
                 className={css`
                   width:70%;
                   height:10%;
@@ -109,10 +111,16 @@ const Register = () => {
                 placeholder='Full Name'
                 onChange={(event) => setFullName(event.target.value)}
                 value={fullName}
-              />
+              /> */}
+              <Input
+                type="text"
+                placeholder="Full Name: "
+                value={fullName}
+                onValueChange={setFullName}
+                />
               {error.fullName && <p className="error">{error.fullName}</p>}
   
-              <input 
+              {/* <input 
                 className={css`
                   width:70%;
                   height:10%;
@@ -132,10 +140,16 @@ const Register = () => {
                 placeholder='Username'
                 onChange={(event) => setUsername(event.target.value)}
                 value={username}
-              />
+              /> */}
+              <Input
+                type="text"
+                placeholder="Username: "
+                value={username}
+                onValueChange={setUsername}
+                />
               {error.username && <p className="error">{error.username}</p>}
 
-              <input 
+              {/* <input 
               className={css`
                   width:70%;
                   height:10%;
@@ -155,10 +169,16 @@ const Register = () => {
               placeholder='Email'
               onChange={(event) => setEmail(event.target.value)}
               value={email}
-              />
+              /> */}
+              <Input
+                type="text"
+                placeholder="Email: "
+                value={email}
+                onValueChange={setEmail}
+                />
               {error.email && <p className="error">{error.email}</p>}
 
-              <input 
+              {/* <input 
               className={css`
                   width:70%;
                   height:10%;
@@ -178,10 +198,16 @@ const Register = () => {
               placeholder="Password"
               onChange={(event) => setPassword(event.target.value)}
               value={password}
-              />
+              /> */}
+              <Input
+                type="password"
+                placeholder="Password: "
+                value={password}
+                onValueChange={setPassword}
+                />
               {error.password && <p className="error">{error.password}</p>}
 
-              <input 
+              {/* <input 
                 className={css`
                   width:70%;
                   height:45px;
@@ -199,7 +225,8 @@ const Register = () => {
                 `}
                 type='submit' 
                 value='Submit' 
-              />
+              /> */}
+              <Submit />
             </form>
           </div>
         </div>

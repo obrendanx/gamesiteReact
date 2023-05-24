@@ -125,13 +125,12 @@ const Header = styled.h1`
                 placeholder="Username" 
             /> */}
             <Input
-          variant="primary"
-          type="text"
-          placeholder="Username"
-          value={username}
-          onValueChange={setUsername}
-        />
-            <input 
+                type="text"
+                placeholder="Username: "
+                value={username}
+                onValueChange={setUsername}
+                />
+            {/* <input 
                 className={css`
                     width:70%;
                     height:10%;
@@ -152,8 +151,14 @@ const Header = styled.h1`
                 onChange={(e) => setEmail(e.target.value)}
                 type="email" 
                 placeholder="Email" 
-            />
-            <input 
+            /> */}
+            <Input
+                type="text"
+                placeholder="Email: "
+                value={email}
+                onValueChange={setEmail}
+                />
+            {/* <input 
                 className={css`
                     width:70%;
                     height:10%;
@@ -174,7 +179,13 @@ const Header = styled.h1`
                 onChange={(e) => setPassword(e.target.value)}
                 type="password" 
                 placeholder="Password" 
-            />
+            /> */}
+            <Input
+                type="password"
+                placeholder="Password: "
+                value={password}
+                onValueChange={setPassword}
+                />
             <input 
                 className={css`
                     width:70%;
