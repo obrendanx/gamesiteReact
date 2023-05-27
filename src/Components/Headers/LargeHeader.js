@@ -11,8 +11,7 @@ function LargeHeader({text}) {
             width:97%;
             border-bottom:solid 1px rgb(37, 38, 39);
             margin:10px;
-            padding-left:20px;
-            padding-top:10px;
+            padding:10px;
             font-size:2em;
             color:#fff;
         `}

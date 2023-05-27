@@ -1,4 +1,5 @@
 import React from 'react'
+import { css } from '@emotion/css'
 
 function MediumHeader({text}) {
   return (
@@ -6,12 +7,10 @@ function MediumHeader({text}) {
         <h3
         className={css`
             font-family: 'Oswald', sans-serif;
-            height:75px;
+            height:50px;
             width:97%;
-            border-bottom:solid 1px rgb(37, 38, 39);
             margin:10px;
-            padding-left:20px;
-            padding-top:10px;
+            padding:10px;
             font-size:1.2em;
             color:#fff;
         `}

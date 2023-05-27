@@ -1,4 +1,5 @@
 import React from 'react'
+import { css } from '@emotion/css'
 
 function SmallHeader({text, xsm}) {
   return (
@@ -6,12 +7,10 @@ function SmallHeader({text, xsm}) {
         <h4
         className={css`
             font-family: 'Oswald', sans-serif;
-            height:75px;
+            height:35px;
             width:97%;
-            border-bottom:solid 1px rgb(37, 38, 39);
-            margin:10px;
-            padding-left:20px;
-            padding-top:10px;
+            margin:2.5px;
+            padding:2.5px;
             ${xsm ? 'font-size:0.8em;' : 'font-size:0.4em;'}
             color:#fff;
         `}

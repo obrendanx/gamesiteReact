@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from '@emotion/styled';
+import Button from '../Form/Buttons/Button';
+import LargeHeader from '../Headers/LargeHeader'
+import SmallHeader from '../Headers/SmallHeader';
+import MediumHeader from '../Headers/MediumHeader'
 
 export default function Admin() {
   const [users, setUsers] = useState([]);
@@ -46,7 +50,6 @@ export default function Admin() {
     margin-left:10%;
     margin-top:20px;
     margin-bottom:20px;
-    padding:15px;
   `
 
   const List = styled.ul`
@@ -55,24 +58,22 @@ export default function Admin() {
 
   const ListItem = styled.li`
     padding:5px;
-  `
-
-  const RemoveBtn = styled.button`
-    margin-left:7.5px;
-    border:none;
-    padding:5px;
+    margin-bottom:5px;
   `
 
   return (
     <div>
         <AdminPanel>
-          <h1>Admin Panel - Welcome User</h1>
+          <LargeHeader text="Admin Panel"/>
           <div>
               <List>
+              <MediumHeader text="Current Users: "/>
               {users.map(user => (
                   <ListItem key={user._id}>
-                      {user.username}
-                      <RemoveBtn onClick={() => handleRemoveUser(user.username)}>Remove</RemoveBtn>
+                      <SmallHeader xsm text={user.username} />
+                      {/* {user.username} */}
+                      {/* <RemoveBtn onClick={() => handleRemoveUser(user.username)}>Remove</RemoveBtn> */}
+                      <Button sm primary handleClick={() => handleRemoveUser(user.username)} text="Remove" />
                   </ListItem>
                   ))}
               </List>
