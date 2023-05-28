@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Sidebar from '../Components/AnimePage/Sidebar.js'
 import MainContent from '../Components/AnimePage/MainContent'
+import { css } from '@emotion/css';
 
 function AnimeSearch() {
   //States to store the search contents
@@ -45,7 +46,12 @@ function AnimeSearch() {
   return (
     <div>
         <h1 className='anime_search_title'>Search <strong>Anime</strong></h1>
-        <div className='anime_main_container'>
+        <div
+          className={css`
+            display:flex;
+            flex-direction:row;
+          `}
+        >
             <div className='con_side'>
                 {/* Pushes TopAnime results to the sidebar components */}
                 <Sidebar topAnime={topAnime} />

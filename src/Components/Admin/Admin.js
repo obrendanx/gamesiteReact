@@ -50,6 +50,7 @@ export default function Admin() {
     margin-left:10%;
     margin-top:20px;
     margin-bottom:20px;
+    padding:10px;
   `
 
   const List = styled.ul`
@@ -59,6 +60,7 @@ export default function Admin() {
   const ListItem = styled.li`
     padding:5px;
     margin-bottom:5px;
+    margin-left:7.5px;
   `
 
   return (

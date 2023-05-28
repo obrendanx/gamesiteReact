@@ -1,4 +1,5 @@
 import React from 'react'
+import { css } from '@emotion/css';
 
 function SearchBar({ small, type, placeholder, value, onValueChange }) {
   const handleInputChange = (event) => {
@@ -12,9 +13,7 @@ function SearchBar({ small, type, placeholder, value, onValueChange }) {
         <input
         className={css`
             height: 35px;
-            margin-top: 2%;
-            margin-bottom: 2%;
-            margin-left: 15%;
+            
             padding: 10px;
             border: 0;
             border-radius: 10px;

@@ -1,18 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import SmallHeader from '../Headers/SmallHeader'
 
 const AnimeSideBar = styled.div`
   height:100%;
+  width:25%;
   background:#1C1C1C;
   border-radius:20px;
-  padding:10px;
-`
-
-const SubHeader = styled.h3`
-  font-size:1.3em; 
-  font-family:Roboto, sans-serif;
-  color:#fff;
-  text-align:center;
+  padding:15px;
 `
 
 const List = styled.ul`
@@ -22,6 +17,12 @@ const List = styled.ul`
   font-size:1em;
   font-family:Roboto, sans-serif;
   color:#fff;
+  li{
+    margin-bottom:5px;
+  }
+  li::marker{
+    color:#F33446;
+  }
 `
 
 const TopLink = styled.a`
@@ -37,7 +38,8 @@ function Sidebar({topAnime}) {
     <AnimeSideBar>
         <aside>
             <nav className='anime_side_nav'>
-                <SubHeader>Top Anime:</SubHeader>
+                {/* <SubHeader>Top Anime:</SubHeader> */}
+                <SmallHeader text="Top Anime:"></SmallHeader>
                 <List>
                   {/* Maps the Top anime for the sidebar */}
                   {topAnime.map(anime => (

@@ -11,7 +11,7 @@ function SmallHeader({text, xsm}) {
             width:97%;
             margin:2.5px;
             padding:2.5px;
-            ${xsm ? 'font-size:0.8em;' : 'font-size:0.4em;'}
+            ${xsm ? 'font-size:0.6em;' : 'font-size:0.8em;'}
             color:#fff;
         `}
         >

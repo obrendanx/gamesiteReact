@@ -1,6 +1,8 @@
 import React from 'react'
 import AnimeCard from './AnimeCard'
 import styled from '@emotion/styled'
+import { css } from '@emotion/css'
+import SearchBar from '../Form/SearchBar'
 
 const AnimeSearch = styled.input`
     width:100%;
@@ -36,13 +38,23 @@ function MainContent(props) {
                     Search bar is used to send a query to the api 
                     which sends back a set of results
                 */}
-                <form onSubmit={props.HandleSearch}>
-                    <AnimeSearch 
+                <form onSubmit={props.HandleSearch}
+                className={css`
+                    width:75%;
+                `}
+                >
+                    {/* <AnimeSearch 
                         type="search" 
                         placeholder="Search" 
                         required value={props.search} 
                         onChange={e => props.SetSearch(e.target.value)} 
-                    />
+                    /> */}
+                     <SearchBar
+                        type="search"
+                        placeholder="Search: "
+                        value={props.search}
+                        onValueChange={props.setSearch}
+                        />
                 </form>
             </div>
             <AnimeContainer>
