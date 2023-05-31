@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled';
+import ArrowBtn from '../Form/Buttons/ArrowBtn'
 
 function Banner() {
 //State array variable to store all results from api
@@ -153,8 +154,9 @@ const GetAnime = async () => {
           backgroundImage: `linear-gradient(rgba(204,204,204,.2), rgba(204,204,204,.3)), url(${animeImage[count]})`,
         }
       }>
-        <ButtonLeft onClick={countMinus}>&lt;</ButtonLeft>
-        <ButtonRight onClick={countAdd}>&gt;</ButtonRight>
+        {/* <ButtonLeft onClick={countMinus}>&lt;</ButtonLeft> */}
+        <ArrowBtn text='&lt;' handleClick={countMinus}></ArrowBtn>
+        {/* <ButtonRight onClick={countAdd}>&gt;</ButtonRight> */}
         <BannerInfo>
           <div><BannerTitle href={animeUrl}>{animeTitle[count]}</BannerTitle></div>
           <div>

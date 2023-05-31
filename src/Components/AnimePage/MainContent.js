@@ -26,11 +26,20 @@ const AnimeGroup = styled.div`
     width:25%;
     margin:4.16%;
     text-align:center;
+    @media screen and (max-width: 1200px){
+        width:40%;
+        margin:5% !important;
+    }
+    @media screen and (max-width: 770px){
+        width:100%;
+    }
 `
 
 function MainContent(props) {
   return (
-    <div>
+    <div className={css`
+        width:100%;
+    `}>
         <main>
             <div>
                 {/* 
@@ -38,11 +47,7 @@ function MainContent(props) {
                     Search bar is used to send a query to the api 
                     which sends back a set of results
                 */}
-                <form onSubmit={props.HandleSearch}
-                className={css`
-                    width:75%;
-                `}
-                >
+                <form onSubmit={props.HandleSearch} >
                     {/* <AnimeSearch 
                         type="search" 
                         placeholder="Search" 

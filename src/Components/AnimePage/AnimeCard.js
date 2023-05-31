@@ -7,6 +7,7 @@ const AnimeCardCtn = styled.article`
 
 const Link = styled.a`
   text-decoration:none;
+  color:#fff;
 `
 
 const Header = styled.h2`
