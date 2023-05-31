@@ -1,16 +1,15 @@
-FROM node:16 AS Production
+FROM node:16-alpine
 
-ENV NODE_ENV=production
+RUN mkdir -p /app
 
-WORKDIR /usr/src/client
+WORKDIR /app
 
-COPY package.json .
-COPY package-lock.json .
+COPY package*.json ./app
 
 RUN npm install
 
-COPY . .
+COPY . /app
 
-RUN npm run build
-
-CMD ["sh", "-c" "npm start"]
+EXPOSE 3000
+RUN npm install
+CMD ["npm","run", "docker-start"]

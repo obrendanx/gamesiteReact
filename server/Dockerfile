@@ -1,16 +1,13 @@
-FROM node:16 AS Production
+FROM node:16 
 
-ENV NODE_ENV=production
+WORKDIR /usr/src/app
 
-WORKDIR /usr/src/server
-
-COPY package.json .
-COPY package-lock.json .
+COPY package*.json ./
 
 RUN npm install
 
 COPY . .
 
-RUN npm run build
+EXPOSE 3000
 
-CMD ["sh", "-c" "npm run start"]
+CMD ["node","server.js"]
