@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import Indicator from '../Misc/Indicator'
 
 const TextBox = styled.div`
     height:295px;
@@ -16,7 +17,6 @@ const Image = styled.img`
     border-radius:5px;
     &:hover{
         opacity:0.8;
-        transform:scale(1.25);
     }
 `
 
@@ -45,17 +45,6 @@ const Link = styled.a`
 const Header = styled.h2`
     margin-bottom:5px;
     text-transform:uppercase;
-`
-
-const Indicator = styled.div`
-    background:rgb(114, 112, 112);
-    height:10px;
-    width:30px;
-    transition:1s;
-    margin-bottom:5px;
-    &:hover{
-        background:#F44336;
-    }
 `
 
 function MediumTextCard(props) {

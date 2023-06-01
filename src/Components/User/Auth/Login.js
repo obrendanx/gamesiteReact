@@ -5,6 +5,7 @@ import { login } from "../../../app/features/userSlice";
 import styled from '@emotion/styled';
 import { css } from "@emotion/css";
 import Input from "../../Form/Input";
+import Submit from "../../Form/Submit";
 
 function Login() {
 /*
@@ -102,110 +103,29 @@ const Header = styled.h1`
         onSubmit={loginUser}
         >
             <Header>Login Here</Header>
-            {/* <input
-                className={css`
-                    width:70%;
-                    height:10%;
-                    margin-top:2%;
-                    margin-bottom:2%;
-                    margin-left:15%;
-                    padding:10px;
-                    border:0;
-                    border-radius:10px;
-                    box-shadow:0 0 15px 4px #000;
-                    font-size:1em;
-                    font-weight:normal;
-                    font-family:Roboto, sans-serif;
-                    color:#f44034;
-                    transition:1s;
-                `} 
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                type="text" 
-                placeholder="Username" 
-            /> */}
+
             <Input
                 type="text"
                 placeholder="Username: "
                 value={username}
                 onValueChange={setUsername}
                 />
-            {/* <input 
-                className={css`
-                    width:70%;
-                    height:10%;
-                    margin-top:2%;
-                    margin-bottom:2%;
-                    margin-left:15%;
-                    padding:10px;
-                    border:0;
-                    border-radius:10px;
-                    box-shadow:0 0 15px 4px #000;
-                    font-size:1em;
-                    font-weight:normal;
-                    font-family:Roboto, sans-serif;
-                    color:#f44034;
-                    transition:1s;
-                `}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email" 
-                placeholder="Email" 
-            /> */}
+            
             <Input
                 type="text"
                 placeholder="Email: "
                 value={email}
                 onValueChange={setEmail}
                 />
-            {/* <input 
-                className={css`
-                    width:70%;
-                    height:10%;
-                    margin-top:2%;
-                    margin-bottom:2%;
-                    margin-left:15%;
-                    padding:10px;
-                    border:0;
-                    border-radius:10px;
-                    box-shadow:0 0 15px 4px #000;
-                    font-size:1em;
-                    font-weight:normal;
-                    font-family:Roboto, sans-serif;
-                    color:#f44034;
-                    transition:1s;
-                `}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password" 
-                placeholder="Password" 
-            /> */}
+    
             <Input
                 type="password"
                 placeholder="Password: "
                 value={password}
                 onValueChange={setPassword}
                 />
-            <input 
-                className={css`
-                    width:70%;
-                    height:45px !important;
-                    border:none;
-                    line-height:10px;
-                    margin-top:10px;
-                    color:#fff !important;
-                    background:#f44034;
-                    margin-left:15%;
-                    border-radius:10px;
-                    margin-bottom:50px;
-                    transition:1s;
-                    &:hover{
-                        border:solid 1px #1C1C1C;
-                    }
-                `}
-                type="submit" 
-                value="Login"
-            />
+
+            <Submit></Submit>
         </form>
 
     </div>

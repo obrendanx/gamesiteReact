@@ -25,11 +25,11 @@ function AnimeCard({anime}) {
             {/* Links to more information about anime (Covers entire card) */}
             <Link href={anime.url} target="_blank" rel="noreferrer">
                 {/* Image for card */}
-                <AnimeImage className='anime_img'>
-                    <img src={anime.images.jpg.image_url} alt="Anime Image" />
+                <AnimeImage>
+                    <img src={anime.images.jpg.image_url} alt="" />
                 </AnimeImage>
                 {/* Title for anime card (in japanese) */}
-                <Header className='anime_title'>{anime.title_japanese}</Header>
+                <Header>{anime.title_japanese}</Header>
             </Link>
         </AnimeCardCtn>
     </div>

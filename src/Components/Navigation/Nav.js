@@ -27,7 +27,6 @@ function Nav() {
         }
         fetchData();
     }, [user]);
-    console.log(isGlobal);
         var loginMessage = "";
         var loginBtnText = "";
         var registerLink = "";

@@ -4,18 +4,6 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/css'
 import SearchBar from '../Form/SearchBar'
 
-const AnimeSearch = styled.input`
-    width:100%;
-    height:50px;
-    margin-bottom:10px;
-    border-radius:20px;
-    border:none;
-    padding-left:2.5%;
-    font-size:1em;
-    font-size:Roboto, sans-serif;
-    color:#000;
-`
-
 const AnimeContainer = styled.div`
     display:flex;
     flex-direction:row;
@@ -48,12 +36,6 @@ function MainContent(props) {
                     which sends back a set of results
                 */}
                 <form onSubmit={props.HandleSearch} >
-                    {/* <AnimeSearch 
-                        type="search" 
-                        placeholder="Search" 
-                        required value={props.search} 
-                        onChange={e => props.SetSearch(e.target.value)} 
-                    /> */}
                      <SearchBar
                         type="search"
                         placeholder="Search: "

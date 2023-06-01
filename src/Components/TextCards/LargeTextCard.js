@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import Indicator from '../Misc/Indicator'
 
 const TextBox = styled.div`
     height:600px;
@@ -46,17 +47,6 @@ const Header = styled.h2`
 
 const Text = styled.p`
     font-size:1.3em;
-`
-
-const Indicator = styled.div`
-    background:rgb(114, 112, 112);
-    height:10px;
-    width:30px;
-    transition:1s;
-    margin-bottom:5px;
-    &:hover{
-        background:rgb(245, 242, 242);
-    }
 `
 
 function LargeTextCard(props) {
