@@ -91,142 +91,43 @@ const Register = () => {
           <Header>Register</Header>
           <div className="form-div">
             <form onSubmit={onSubmit}>
-              {/* <input
-                className={css`
-                  width:70%;
-                  height:10%;
-                  margin-top:2%;
-                  margin-bottom:2%;
-                  margin-left:15%;
-                  padding:10px;
-                  border:0;
-                  border-radius:10px;
-                  box-shadow:0 0 15px 4px #000;
-                  font-size:1em;
-                  font-weight:normal;
-                  font-family:Roboto, sans-serif;
-                  color:#f44336; 
-                `} 
-                type='text'
-                placeholder='Full Name'
-                onChange={(event) => setFullName(event.target.value)}
-                value={fullName}
-              /> */}
               <Input
                 type="text"
                 placeholder="Full Name: "
                 value={fullName}
                 onValueChange={setFullName}
+                left="15%"
                 />
               {error.fullName && <p className="error">{error.fullName}</p>}
-  
-              {/* <input 
-                className={css`
-                  width:70%;
-                  height:10%;
-                  margin-top:2%;
-                  margin-bottom:2%;
-                  margin-left:15%;
-                  padding:10px;
-                  border:0;
-                  border-radius:10px;
-                  box-shadow:0 0 15px 4px #000;
-                  font-size:1em;
-                  font-weight:normal;
-                  font-family:Roboto, sans-serif;
-                  color:#f44336; 
-                `} 
-                type='text'
-                placeholder='Username'
-                onChange={(event) => setUsername(event.target.value)}
-                value={username}
-              /> */}
+
               <Input
                 type="text"
                 placeholder="Username: "
                 value={username}
                 onValueChange={setUsername}
+                left="15%"
                 />
               {error.username && <p className="error">{error.username}</p>}
 
-              {/* <input 
-              className={css`
-                  width:70%;
-                  height:10%;
-                  margin-top:2%;
-                  margin-bottom:2%;
-                  margin-left:15%;
-                  padding:10px;
-                  border:0;
-                  border-radius:10px;
-                  box-shadow:0 0 15px 4px #000;
-                  font-size:1em;
-                  font-weight:normal;
-                  font-family:Roboto, sans-serif;
-                  color:#f44336; 
-                `} 
-              type='text'
-              placeholder='Email'
-              onChange={(event) => setEmail(event.target.value)}
-              value={email}
-              /> */}
               <Input
                 type="text"
                 placeholder="Email: "
                 value={email}
                 onValueChange={setEmail}
+                left="15%"
                 />
               {error.email && <p className="error">{error.email}</p>}
 
-              {/* <input 
-              className={css`
-                  width:70%;
-                  height:10%;
-                  margin-top:2%;
-                  margin-bottom:2%;
-                  margin-left:15%;
-                  padding:10px;
-                  border:0;
-                  border-radius:10px;
-                  box-shadow:0 0 15px 4px #000;
-                  font-size:1em;
-                  font-weight:normal;
-                  font-family:Roboto, sans-serif;
-                  color:#f44336; 
-                `} 
-              type="password"
-              placeholder="Password"
-              onChange={(event) => setPassword(event.target.value)}
-              value={password}
-              /> */}
               <Input
                 type="password"
                 placeholder="Password: "
                 value={password}
                 onValueChange={setPassword}
+                left="15%"
                 />
               {error.password && <p className="error">{error.password}</p>}
 
-              {/* <input 
-                className={css`
-                  width:70%;
-                  height:45px;
-                  border:none;
-                  line-height:10px;
-                  margin-top:10px;
-                  color:#fff;
-                  background:#f44034;
-                  margin-left:15%;
-                  border-radius:10px;
-                  margin-bottom:50px;
-                  &:hover{
-                    border:solid 1px #1C1C1C;
-                  }
-                `}
-                type='submit' 
-                value='Submit' 
-              /> */}
-              <Submit />
+              <Submit left="15%" />
             </form>
           </div>
         </div>

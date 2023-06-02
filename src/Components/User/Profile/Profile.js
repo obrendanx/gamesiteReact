@@ -8,6 +8,8 @@ import jwt from 'jsonwebtoken'
 import ProfileIcon from "./ProfileIcon";
 import ProfilePage from "./ProfilePage";
 import styled from "@emotion/styled";
+import { css } from "@emotion/css";
+import Button from '../../Form/Buttons/Button'
 
 function Profile() {
   const [isProfilePageDisplayed, setIsProfilePageDisplayed] = useState(false);
@@ -93,9 +95,14 @@ function Profile() {
   `
 
   return (
-    <div>
+    <div className={css`
+      margin-top:20px;
+      width:90%;
+      margin-left:5%;
+    `}>
         {/*edit profile button*/}
-        <Edit onClick={handleEditProfileClick}>Edit Profile</Edit>
+        {/* <Edit onClick={handleEditProfileClick}>Edit Profile</Edit> */}
+        <Button handleClick={handleEditProfileClick} text='Edit Profile'></Button>
         {/* checks if profile page is displayed (from edit profile button) */}
         {isProfilePageDisplayed && <ProfilePage />}
 

@@ -109,6 +109,7 @@ const Header = styled.h1`
                 placeholder="Username: "
                 value={username}
                 onValueChange={setUsername}
+                left="15%"
                 />
             
             <Input
@@ -116,6 +117,7 @@ const Header = styled.h1`
                 placeholder="Email: "
                 value={email}
                 onValueChange={setEmail}
+                left="15%"
                 />
     
             <Input
@@ -123,9 +125,10 @@ const Header = styled.h1`
                 placeholder="Password: "
                 value={password}
                 onValueChange={setPassword}
+                left="15%"
                 />
 
-            <Submit></Submit>
+            <Submit left="15%"></Submit>
         </form>
 
     </div>

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CirclePicker } from "react-color";
 import styled from "@emotion/styled";
+import Input from '../../Form/Input'
+import Label from "../../Form/Label";
+import Submit from "../../Form/Submit";
 
 const ProfileForm = ({ onSubmit, initialValues }) => {
   const [fullName, setFullName] = useState(initialValues.fullName);
@@ -98,20 +101,22 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
   };
 
   const ProfileFormDiv = styled.div`
-    height:100%;
-    width:80%;
-    margin-left:10%;
-    margin-bottom:20px;
-    padding:10px;
-    background:#F44336;
-    font-size:1em;
-    font-family:Roboto, sans-serif;
-    color:#fff; 
+    // height:100%;
+    // width:100%;
+    // margin-top:20px;
+    // margin-bottom:20px;
+    // padding:50px 10px 10px 20px;
+    // background:#1C1C1C;
+    // font-size:1em;
+    // font-family:Roboto, sans-serif;
+    // color:#fff; 
+    // border-radius:15px;
+    padding:10px 10px 10px 5px;
   `
 
   const ProfileFormSubDiv = styled.div`
-    margin:10px;
-    width:100%;
+    // margin:10px;
+    // width:100%;
   `
 
   const Button = styled.button`
@@ -133,56 +138,94 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     <ProfileFormDiv>
       <form onSubmit={handleSubmit}>
       <ProfileFormSubDiv>
-        <label htmlFor="fullName">Full Name:</label>
-        <input
+        {/* <label htmlFor="fullName">Full Name:</label> */}
+        <Label htmlfor='fullName' text='Full Name:' primary></Label>
+        {/* <input
           type="text"
           id="fullName"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-        />
+        /> */}
+        <Input
+                type="text"
+                placeholder="Fullname: "
+                value={fullName}
+                onValueChange={setFullName}
+                small
+                left="5px"
+                />
         {error.fullName && <p className="error">{error.fullName}</p>}
-        <p>Current: {user?.fullName}</p>
+        {/* <p>Current: {user?.fullName}</p> */}
       </ProfileFormSubDiv>
       <ProfileFormSubDiv>
-        <label htmlFor="username">Username:</label>
-        <input
+        {/* <label htmlFor="username">Username:</label> */}
+        <Label htmlfor='username' text='Username:' primary></Label>
+        {/* <input
           type="text"
           id="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />
+        /> */}
+        <Input
+                type="text"
+                placeholder="Username: "
+                value={username}
+                onValueChange={setUsername}
+                small
+                left="5px"
+                />
         {error.username && <p className="error">{error.username}</p>}
-        <Text>Current: {user?.username}</Text>
+        {/* <Text>Current: {user?.username}</Text> */}
       </ProfileFormSubDiv>
       <ProfileFormSubDiv>
-        <label htmlFor="email">Email:</label>
-        <input
+        {/* <label htmlFor="email">Email:</label> */}
+        <Label htmlfor='email' text='Email:' primary></Label>
+        {/* <input
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-        />
+        /> */}
+        <Input
+                type="text"
+                placeholder="Email: "
+                value={email}
+                onValueChange={setEmail}
+                small
+                left="5px"
+                />
         {error.email && <p className="error">{error.email}</p>}
-        <Text>Current: {user?.email}</Text>
+        {/* <Text>Current: {user?.email}</Text> */}
       </ProfileFormSubDiv>
       <ProfileFormSubDiv>
-        <label htmlFor="password">Password:</label>
-        <input
+        {/* <label htmlFor="password">Password:</label> */}
+        <Label htmlfor='password' text='Password:' primary></Label>
+        {/* <input
           type="password"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-        />
+        /> */}
+        <Input
+                type="password"
+                placeholder="Password: "
+                value={password}
+                onValueChange={setPassword}
+                small
+                left="5px"
+                />
         {error.password && <p className="error">{error.password}</p>}
       </ProfileFormSubDiv>
       <ProfileFormSubDiv>
-        <label htmlFor="profileIconColor">Profile Icon Color:</label>
+        {/* <label htmlFor="profileIconColor">Profile Icon Color:</label> */}
+        <Label htmlfor='profileIconColor' text='Profile Icon Color:' primary></Label>
         <CirclePicker
           color={profileIconColor}
           onChangeComplete={(color) => setProfileIconColor(color.hex)}
         />
       </ProfileFormSubDiv>
-      <Button type="submit">Update Profile</Button>
+      {/* <Button type="submit">Update Profile</Button> */}
+      <Submit small left="5px"></Submit>
     </form>
   </ProfileFormDiv>
   );

@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/css'
 
-function Submit({ small }) {
+function Submit({ small, left }) {
   return (
     <div>
         <input 
@@ -13,11 +13,15 @@ function Submit({ small }) {
             margin-top:10px;
             color:#fff;
             background:#f44034;
-            margin-left:15%;
+            margin-left:${left};
             border-radius:10px;
             margin-bottom:50px;
             &:hover{
-                border:solid 1px #1C1C1C;
+                border:
+                solid 1px #1C1C1C;
+            }
+            @media (max-width: 770px) {
+                width:100%;
             }
         `}
         type='submit' 

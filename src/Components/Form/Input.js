@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/css';
 
-function Input({ small, type, placeholder, value, onValueChange }) {
+function Input({ small, type, placeholder, value, onValueChange, left }) {
   const handleInputChange = (event) => {
     const newValue = event.target.value;
     onValueChange(newValue);
@@ -15,7 +15,7 @@ function Input({ small, type, placeholder, value, onValueChange }) {
           height: 35px;
           margin-top: 2%;
           margin-bottom: 2%;
-          margin-left: 15%;
+          margin-left: ${left};
           padding: 10px;
           border: 0;
           border-radius: 10px;
@@ -27,6 +27,9 @@ function Input({ small, type, placeholder, value, onValueChange }) {
           transition: 1s;
           outline:none;
           ${small ? 'width: 50%;' : 'width: 70%;'}
+           @media (max-width: 770px) {
+              width:100%;
+          }
       `}
       type={type}
       value={value}
