@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled';
+import ArrowBtn from '../Form/Buttons/ArrowBtn'
 
 function Banner() {
 //State array variable to store all results from api
@@ -7,7 +8,6 @@ const [animeList, setAnimeList] = useState([]);
 const [count, setCount] = useState(0);
 const animeTitle = [];
 const animeImage = [];
-const animeStart = [];
 const animeUrl = [];
 const animeSynopsis = [];
 
@@ -18,7 +18,6 @@ const GetAnime = async () => {
 
     //Sets how many different anime to be shown
     //For this it will be 8
-    console.log(temp.data);
     setAnimeList(temp.data.slice(0, 5));
   }
 
@@ -46,7 +45,7 @@ const GetAnime = async () => {
 
   //function for > to go to next image
   function countAdd() {
-    if(count == 3){
+    if(count === 3){
       setCount(0)
     }else{
       setCount(count + 1)
@@ -55,13 +54,12 @@ const GetAnime = async () => {
 
   //function for < to go to previous image
   function countMinus() {
-    if(count == 0){
+    if(count === 0){
       setCount(3)
     }else{
       setCount(count - 1)
     }
   }
-  console.log(count);
 
   animeList.map(anime => (
     //mapping through fetch data to results values such as title and push to an array
@@ -80,47 +78,18 @@ const GetAnime = async () => {
     position:relative;
   `
 
-  const  ButtonLeft = styled.button`
-    font-size:1em;
-    font-family:Roboto, sans-serif;
-    color:#fff;
-    position:absolute;
-    top:45%;
-    margin:0 1.5% 0 1.5%;
-    border:none;
-    border-radius:50%;
-    height:8.5%;
-    width:5%;
-    background:rgba(0, 0, 0, 0.6); 
-  `
-
-  const ButtonRight = styled.button`
-    font-size:1em;
-    font-family:Roboto, sans-serif;
-    color:#fff;
-    position:absolute;
-    top:45%;
-    margin:0 1.5% 0 1.5%;
-    border:none;
-    border-radius:50%;
-    height:8.5%;
-    width:5%;
-    background:rgba(0, 0, 0, 0.6);
-    right:0;
-  `
-
   const BannerInfo = styled.div`
     position:relative;
     background:rgba(0, 0, 0, 0.6);
     border-radius:20px;
     height:30%;
     width:95%;
-    top:67.5%;
     margin:0 0 2.5% 2.5%;
     padding:1% 2.5% 2.5% 2.5%;
     font-size:1em;
     font-family:Roboto, sans-serif;
     color:#fff;
+    top:62.5%;
     @media (max-width: 770px){
       display:none;
       font-size:0.7em;
@@ -153,8 +122,8 @@ const GetAnime = async () => {
           backgroundImage: `linear-gradient(rgba(204,204,204,.2), rgba(204,204,204,.3)), url(${animeImage[count]})`,
         }
       }>
-        <ButtonLeft onClick={countMinus}>&lt;</ButtonLeft>
-        <ButtonRight onClick={countAdd}>&gt;</ButtonRight>
+        <ArrowBtn text='&lt;' left top="45%;" handleClick={countMinus}></ArrowBtn>
+        <ArrowBtn text='&gt;' top="45%" handleClick={countAdd}></ArrowBtn>
         <BannerInfo>
           <div><BannerTitle href={animeUrl}>{animeTitle[count]}</BannerTitle></div>
           <div>

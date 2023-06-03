@@ -1,26 +1,21 @@
 import React from 'react';
-import Nav from './Components/navigation/Nav';
+import Nav from './Components/Navigation/Nav';
 import Home from './Pages/Home';
 import Fourms from './Pages/Fourms';
-import Footer from './Components/information/Footer';
-import Banner from './Components/information/Banner';
-import Logout from './Components/user/Auth/Logout';
-import Register from './Components/user/Auth/Register';
-import Profile from './Components/user/Profile';
+import Footer from './Components/Information/Footer';
+import Logout from './Components/User/Auth/Logout';
+import Register from './Components/User/Auth/Register';
+import Profile from './Components/User/Profile/Profile';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './scss/App.scss';
-import { useSelector } from "react-redux";
-import { selectUser } from "./app/features/userSlice";
 import AnimeSearch from './Pages/AnimeSearch';
-import InProgress from './Pages/InProgress';
-import Login from './Components/user/Auth/Login';
+//import InProgress from './Pages/InProgress';
+import Login from './Components/User/Auth/Login';
 import Admin from './Components/Admin/Admin';
-import ProfilePage from './Components/user/ProfilePage';
+import ProfilePage from './Components/User/Profile/ProfilePage';
 
 
 const App = () => {
-  const user = useSelector(selectUser);
-
   return (
     <div>
       <Router>

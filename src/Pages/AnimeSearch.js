@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import Sidebar from '../Components/Anime/Sidebar.js'
-import MainContent from '../Components/Anime/MainContent'
+import Sidebar from '../Components/AnimePage/Sidebar.js'
+import MainContent from '../Components/AnimePage/MainContent'
+import { css } from '@emotion/css';
+import LargeHeader from '../Components/Headers/LargeHeader'
 
 function AnimeSearch() {
   //States to store the search contents
@@ -8,7 +10,11 @@ function AnimeSearch() {
   //and a list of different anime
   const [animeList, setAnimeList] = useState([]);
   const [topAnime,setTopAnime] = useState([]);
-  const [search, setSearch] = useState([]);
+  const [search, setSearch] = useState('');
+
+  const handleSearchChange = (value) => {
+    setSearch(value);
+  };
 
   const GetTopAnime = async () => {
     //Fetches current top anime
@@ -43,20 +49,51 @@ function AnimeSearch() {
 
 
   return (
-    <div>
-        <h1 className='anime_search_title'>Search <strong>Anime</strong></h1>
-        <div className='anime_main_container'>
-            <div className='con_side'>
-                {/* Pushes TopAnime results to the sidebar components */}
-                <Sidebar topAnime={topAnime} />
-            </div>
-            <div className='con_main'>
-                {/* Pushes search query results to the main anime card component */}
-                <MainContent HandleSearch={HandleSearch} search={search} SetSearch={setSearch} animeList={animeList} />
-            </div>
+    <div className={css`
+      @media screen and (max-width: 770px){
+        padding:20px
+      }
+    `}>
+      <LargeHeader text='Search Anime'></LargeHeader>
+      <div
+        className={css`
+          display:flex;
+          flex-direction:row;
+          width:100%;
+          margin-top:20px;
+          margin-bottom:20px;
+          margin-left:5%;
+          @media screen and (max-width: 1200px){
+            margin-left:0;
+          }
+        `}
+      >
+        <div className={css`
+          width:30%;
+          @media screen and (max-width: 1200px){
+            display:none;
+          }
+        `}>
+          <Sidebar topAnime={topAnime} />
         </div>
+        <div className={css`
+          width:55%;
+          margin-left:2.5%;
+          @media screen and (max-width: 1200px){
+            width:100%;
+            margin-left:0;
+          }
+        `}>
+          <MainContent
+            HandleSearch={HandleSearch}
+            search={search}
+            setSearch={handleSearchChange}
+            animeList={animeList}
+          />
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default AnimeSearch
+export default AnimeSearch;

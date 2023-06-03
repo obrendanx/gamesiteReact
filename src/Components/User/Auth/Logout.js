@@ -3,7 +3,9 @@
  import { useSelector } from "react-redux";
  import React from 'react';
  import { useNavigate } from 'react-router-dom';
- import styled from '@emotion/styled'; 
+ import styled from '@emotion/styled';
+ import LargeHeader from '../../Headers/LargeHeader'
+ import Button from '../../Form/Buttons/Button'
  const Logout = () => {
     const user = useSelector(selectUser);
     const navigate = useNavigate();
@@ -23,12 +25,16 @@
         height:425px;
         text-align:center;
         padding-top:10%;
+        padding-right:20px;
+        padding-left:20px;
     `
 
      return (
          <Logout>
-             <h1>Welcome <span className="user_name">{user.name}</span></h1>
-             <button className="logout_btn" onClick={(e) => handleLogout(e)}> Logout </button>
+             {/* <h1>Welcome <span className="user_name">{user.name}</span></h1> */}
+             <LargeHeader text={"Welcome " + user.name}></LargeHeader>
+             {/* <button className="logout_btn" onClick={(e) => handleLogout(e)}> Logout </button> */}
+             <Button handleClick={(e) => handleLogout(e)} text="Logout"></Button>
          </Logout>
      );
  };

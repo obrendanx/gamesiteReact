@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../app/features/userSlice";
-import Followers from "./ProfileFeatures/Followers.js";
-import Following from "./ProfileFeatures/Following.js";
-import FollowingList from "./ProfileFeatures/FollowingList.js";
+import { selectUser } from "../../../app/features/userSlice";
+import Followers from "./Followers.js";
+import Following from "./Following.js";
+import FollowingList from "./FollowingList.js";
 import jwt from 'jsonwebtoken'
-import ProfileIcon from "./ProfileFeatures/ProfileIcon";
+import ProfileIcon from "./ProfileIcon";
 import ProfilePage from "./ProfilePage";
 import styled from "@emotion/styled";
+import { css } from "@emotion/css";
+import Button from '../../Form/Buttons/Button'
 
 function Profile() {
   const [isProfilePageDisplayed, setIsProfilePageDisplayed] = useState(false);
@@ -34,20 +36,8 @@ function Profile() {
     setIsProfilePageDisplayed(!isProfilePageDisplayed);
   }
 
-  const Edit = styled.button`
-    border:none;
-    background:#F44336;
-    color:#ff;
-    width:30%;
-    padding:2.5%;
-    text-align:center;
-    margin-top:2.5%;
-    margin-bottom:2.5%;
-    margin-left:2.5%;
-  `
-
   const ProfilePageDiv = styled.div`
-      background:#F44336;
+      background:#1C1C1C;
       width:100%;
       min-height:600px;
       color:#fff;
@@ -56,6 +46,9 @@ function Profile() {
       font-size:0.8em;
       font-family:Roboto, sans-serif;
       color:#fff;
+      margin-bottom:50px;
+      margin-top:20px;
+      border-radius:15px;
   `
 
   const ProfileTitle = styled.h1`
@@ -93,9 +86,14 @@ function Profile() {
   `
 
   return (
-    <div>
+    <div className={css`
+      margin-top:20px;
+      width:90%;
+      margin-left:5%;
+    `}>
         {/*edit profile button*/}
-        <Edit onClick={handleEditProfileClick}>Edit Profile</Edit>
+        {/* <Edit onClick={handleEditProfileClick}>Edit Profile</Edit> */}
+        <Button handleClick={handleEditProfileClick} text='Edit Profile'></Button>
         {/* checks if profile page is displayed (from edit profile button) */}
         {isProfilePageDisplayed && <ProfilePage />}
 

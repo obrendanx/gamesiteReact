@@ -1,10 +1,11 @@
 import React from 'react'
-import Banner from '../Components/information/Banner'
-import LgTextComp from '../Components/information/GameCards/LargeTextCard'
-import MdTextComp from '../Components/information/GameCards/MediumTextCard'
-import SetAnime from '../Components/information/GameCards/SetAnime'
-import SetManga from '../Components/information/GameCards/SetManga'
+import Banner from '../Components/Information/Banner'
+import LgTextComp from '../Components/TextCards/LargeTextCard'
+import MdTextComp from '../Components/TextCards/MediumTextCard'
+import SetAnime from '../Components/TextCards/SetAnime'
+import SetManga from '../Components/TextCards/SetManga'
 import styled from '@emotion/styled'
+import LargeHeader from '../Components/Headers/LargeHeader'
 
 //images being used
 import TOG from '../images/togs2.jpg'
@@ -102,7 +103,7 @@ function Home() {
             <Banner />
             <InfoWrap>
                 
-                <SectionHeader>TOP: UPCOMING ANIME</SectionHeader>
+                <LargeHeader text="TOP: UPCOMING ANIME"></LargeHeader>
 
                 {/* Introduction Content */}
                 <IntroContent>

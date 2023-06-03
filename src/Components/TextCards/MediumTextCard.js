@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import Indicator from '../Misc/Indicator'
 
 const TextBox = styled.div`
-    height:600px;
+    height:295px;
     width:100%;
     margin-top:2.5%;
-    margin-bottom:2.5%;
     position:relative;
+    margin-bottom:2.5%;
     transition:0.7s;
-    border-radius:5px;
 `
 
 const Image = styled.img`
-    height:70%;
+    height:100%;
     width:100%;
     border-radius:5px;
     &:hover{
@@ -22,17 +22,20 @@ const Image = styled.img`
 
 const TextArea = styled.div`
     position:absolute;
-    height:30%;
-    width:97%;
+    min-height:30%;
+    width:100%;
     bottom:0;
-    padding:5%;
+    padding:2% 5% 2% 5%;
     transition:0.7s;
     margin:0;
-    margin-left:1.75%;
+    font-weight:900;
     font-size:0.8em;
     font-family:Roboto, sans-serif;
     color:#fff;
-    background:rgba(0, 0, 0, 0.5);
+    background:rgba(0, 0, 0, 0.8);
+    &:hover{
+        background:rgba(0, 0, 0, 1)
+    }
 `
 
 const Link = styled.a`
@@ -44,41 +47,26 @@ const Header = styled.h2`
     text-transform:uppercase;
 `
 
-const Text = styled.p`
-    font-size:1.3em;
-`
-
-const Indicator = styled.div`
-    background:rgb(114, 112, 112);
-    height:10px;
-    width:30px;
-    transition:1s;
-    margin-bottom:5px;
-    &:hover{
-        background:rgb(245, 242, 242);
-    }
-`
-
-function LargeTextCard(props) {
+function MediumTextCard(props) {
     return (
         <div>
             <TextBox>
                 {/* Card Image */}
                 <Image src={props.imgName} alt="gaming" />
-                <TextArea id="text_area">
+                <TextArea>
                     <Indicator></Indicator>
                     <header>
                         {/* Card Title */}
                         <Header>{props.imgTitle}</Header>
                     </header>
-                    <Text>
-                    {/* Small Description of Card */}
+                    <p>
+                    {/* Small Card Description */}
                     {props.imgText} <Link href={props.imgLink}>here</Link>
-                    </Text>
+                    </p>
                 </TextArea>
             </TextBox>
         </div>
     )
 }
 
-export default LargeTextCard
+export default MediumTextCard

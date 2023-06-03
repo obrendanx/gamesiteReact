@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileForm from "./ProfileForm";
-import { selectUser } from "../../app/features/userSlice";
+import { selectUser } from "../../../app/features/userSlice";
 
 const ProfilePage = () => {
   //array of user details
