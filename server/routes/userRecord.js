@@ -1,7 +1,7 @@
 require("dotenv").config({ path: "./.env" });
 const express = require("express");
 const router = express.Router();
-const signUp = require('../models/conn');
+const signUp = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const errorHandler = require('../middleware/errorHandling');
@@ -121,6 +121,5 @@ router.put("/api/userupdate/:username", async (req, res) => {
 });
 
 router.use(errorHandler);
-
 
 module.exports = router
