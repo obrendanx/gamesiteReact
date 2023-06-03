@@ -25,6 +25,8 @@
         height:425px;
         text-align:center;
         padding-top:10%;
+        padding-right:20px;
+        padding-left:20px;
     `
 
      return (

@@ -28,7 +28,6 @@ function Input({ small, type, placeholder, value, onValueChange, left }) {
           outline:none;
           ${small ? 'width: 50%;' : 'width: 70%;'}
            @media (max-width: 770px) {
-              width:100%;
           }
       `}
       type={type}

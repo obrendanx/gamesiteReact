@@ -21,7 +21,6 @@ function Submit({ small, left }) {
                 solid 1px #1C1C1C;
             }
             @media (max-width: 770px) {
-                width:100%;
             }
         `}
         type='submit' 

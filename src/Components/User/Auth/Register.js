@@ -86,6 +86,9 @@ const Register = () => {
             font-weight:normal;
             font-family:Roboto, sans-serif;
             color:#fff;
+            @media (max-width: 770px){
+              width:100%;
+            }
           `}
         >
           <Header>Register</Header>
