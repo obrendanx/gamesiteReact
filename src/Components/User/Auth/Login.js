@@ -56,7 +56,8 @@ async function loginUser(event) {
         document.cookie = `token=${data.user}; expires=${now.toUTCString()}; path='/'`;
         
         console.log('Login successful');
-        alert('Login successful');
+        //alert('Login successful');
+        showToastMessage();
         dispatch(login({
             //Lets the application know user is logged in
             loggedIn: true,
@@ -80,7 +81,6 @@ const Header = styled.h1`
 
   return (
     <div className="login">
-
         <form 
         className={css`
             height:calc(100% + 150px);
