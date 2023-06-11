@@ -1,8 +1,9 @@
-POST http://localhost:5000/app/fourmspost
+POST http://localhost:5000/app/showposts
 Content-Type: application/json
 
 {
-  "subject": "Test Subject",
-  "message": "Test Message",
-  "postedBy": "Test User"
+  "subject"
+  "message"
+  "postedBy"
 }
+

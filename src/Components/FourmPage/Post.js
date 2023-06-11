@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled'
+import axios from 'axios';
 
 const Wrapper = styled.div`
     min-height:250px;
@@ -48,6 +49,23 @@ const SubHeader = styled.h3`
 `
 
 function Post() {
+ const [posts, setPosts] = useState([]);
+
+ async function fetchPosts() {
+    //fetches all users from database
+    try {
+      const res = await axios.get('http://localhost:5000/app/showposts');
+      setPosts(res.data.data)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+  console.log(posts);
+
   return (
     <Wrapper>
         <Subject>
@@ -66,6 +84,29 @@ function Post() {
             <SubHeader>Posted: 24/07/2000</SubHeader>
             <SubHeader>By: Brendan Ewen</SubHeader>
         </UserDetails>
+
+        <ul>
+            {posts.map(post => (
+                <li key={post._id}>
+                    <Subject>
+                        <Header>
+                            {post.subject}
+                        </Header>
+                    </Subject>
+
+                    <Comment>
+                        <Content>
+                            {post.message}
+                        </Content>
+                    </Comment>
+
+                    <UserDetails>
+                        <SubHeader>{post.date}</SubHeader>
+                        <SubHeader>{post.postedBy}</SubHeader>
+                    </UserDetails>
+                </li>
+            ))}
+        </ul>
     </Wrapper>
   )
 }
