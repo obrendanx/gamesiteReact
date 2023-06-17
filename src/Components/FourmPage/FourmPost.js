@@ -6,13 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../app/features/userSlice';
 import TextArea from '../Form/TextArea';
 import Input from '../Form/Input';
-
-const Label = styled.label`
-  height: 10px;
-  padding: 5px;
-  color: #fff;
-  margin-right: 5px;
-`;
+import Label from '../Form/Label'
 
 const Submit = styled.input`
   border: none;
@@ -66,7 +60,7 @@ function FourmInput() {
       <form
         onSubmit={handleSubmit}
         className={css`
-          height: 270px;
+          height: 450px;
           width: 85%;
           background: #1c1c1c;
           padding: 20px;
@@ -77,44 +71,26 @@ function FourmInput() {
           margin-bottom: 20px;
         `}
       >
-        <Label htmlFor="subject">Subject:</Label>
+        <Label htmlFor="subject" text="Subject:" primary/>
         <br />
-        <input
-          className={css`
-            height: 35px;
-            width: 60%;
-            margin: 2.5px;
-            padding: 2.5px;
-            border-radius: 5px;
-            color: #1c1c1c;
-            border: solid 5px #f44336;
-          `}
-          type="text"
-          id="subject"
-          name="subject"
-          onChange={(event) => setSubject(event.target.value)}
-          value={subject}
-        />
+        <Input
+                type="text"
+                placeholder="Subject: "
+                value={subject}
+                onValueChange={setSubject}
+                left="0"
+                />
         <br />
 
-        <Label htmlFor="message">Message:</Label>
+        <Label htmlFor="message" text="Message:" primary/>
         <br />
-        <textarea
-          className={css`
-            height: 125px;
-            width: 100%;
-            margin: 2.5px 2.5px 7.5px 2.5px;
-            padding: 2.5px;
-            border-radius: 5px;
-            border: solid 5px #f44336;
-            color: #1c1c1c;
-          `}
-          type="text"
-          id="message"
-          name="message"
-          onChange={(event) => setMessage(event.target.value)}
-          value={message}
-        />
+        <TextArea
+                type="text"
+                placeholder="Message Here: "
+                value={message}
+                onValueChange={setMessage}
+                left="0"
+                />
         <br />
 
         <Submit type="submit" value="Post" />

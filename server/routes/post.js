@@ -23,7 +23,7 @@ router.post('/fourmspost', async (request, response, next) => {
   }
 });
 
-router.post('showposts', async (request, response, next) => {
+router.get('/showposts', async (request, response, next) => {
   try {
     const posts = await fourmPost.find();
     response.json({data: posts});
