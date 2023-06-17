@@ -1,13 +1,12 @@
-FROM node:16 
+FROM node:16
 
-WORKDIR /usr/src/app
+WORKDIR /server
 
 COPY package*.json ./
-
 RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5000
 
-CMD ["node","server.js"]
+CMD ["npm", "npm run start", "docker-start"]
