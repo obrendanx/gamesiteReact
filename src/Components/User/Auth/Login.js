@@ -57,7 +57,6 @@ async function loginUser(event) {
         
         console.log('Login successful');
         //alert('Login successful');
-        showToastMessage();
         dispatch(login({
             //Lets the application know user is logged in
             loggedIn: true,

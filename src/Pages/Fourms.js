@@ -2,14 +2,7 @@ import React from 'react'
 import FourmPost from '../Components/FourmPage/FourmPost'
 import Post from '../Components/FourmPage/Post'
 import styled from '@emotion/styled'
-
-const Header = styled.h1`
-    color:#F44336;
-    font-weight:900;
-    font-size:1.7em;
-    font-family:Roboto, sans-serif;
-    padding:5px;
-`
+import LargeHeader from '../Components/Headers/LargeHeader'
 
 const Wrapper = styled.div`
     margin-bottom:25px;
@@ -21,11 +14,9 @@ function Fourms() {
             <FourmPost/>
 
             <Wrapper>
-                <Header>Latest Posts</Header>
+                <LargeHeader text="Latest Posts"/>
                 <hr></hr>
 
-                <Post></Post>
-                <Post></Post>
                 <Post></Post>
             </Wrapper>
         </div>

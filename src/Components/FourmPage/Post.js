@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled'
+import { css } from '@emotion/css';
+import axios from 'axios';
+import MediumHeader from '../Headers/MediumHeader'
 
 const Wrapper = styled.div`
     min-height:250px;
@@ -17,23 +20,22 @@ const Subject = styled.div`
     width:100%;
 `
 
-const Header = styled.h2`
-    height:100%;
-    color:#F44336;
-    font-size:1.3em;
-    padding:5px;
-`
-
 const Comment = styled.div`
-    min-height:150px;
+    min-height:100px;
     margin:10px;
     width:100%;
+    font-family: Roboto, sans-serif;
+    @media (max-width: 770px) {
+      margin-left:0px;
+    }
 `
 
 const Content = styled.p`
     color:#fff;
     font-size:1em;
     padding:5px;
+    margin-left:10px;
+    font-family: 'Oswald', sans-serif;
 `
 
 const UserDetails = styled.div`
@@ -43,31 +45,67 @@ const UserDetails = styled.div`
 `
 
 const SubHeader = styled.h3`
+    margin-left:10px;
     font-size:0.7em;
     color:#fff;
+    font-family: Roboto, sans-serif;
+    font-weight:300;
 `
 
+async function fetchPosts(setPosts) {
+  try {
+    const res = await axios.get('http://localhost:5000/app/showposts');
+    setPosts(res.data.data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function Post() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetchPosts(setPosts);
+  }, [fetchPosts]);
+
+  console.log(posts);
+
   return (
     <Wrapper>
-        <Subject>
-            <Header>
-                Subject Here
-            </Header>
-        </Subject>
+      <ul className={css`
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        list-style:none;
+      `}>
+        {posts.map(post => (
+          <li 
+          className={css`
+            &:nth-child(even) {
+                background: #212121;
+            }
+          `}
+          key={post._id}
+          >
+            <Subject>
+              <MediumHeader text={post.subject}/>
+            </Subject>
 
-        <Comment>
-            <Content>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis convallis felis in orci vestibulum, vel molestie nibh interdum. Vivamus posuere ut odio at rhoncus. Nunc congue purus sed diam ullamcorper pharetra. Cras ullamcorper vulputate efficitur. Suspendisse et vestibulum enim. Nam pretium fermentum orci. Aliquam venenatis a urna non scelerisque. Cras scelerisque sapien sed turpis auctor scelerisque. Fusce eu finibus ex.
-            </Content>
-        </Comment>
+            <Comment>
+              <Content>
+                {post.message}
+              </Content>
+            </Comment>
 
-        <UserDetails>
-            <SubHeader>Posted: 24/07/2000</SubHeader>
-            <SubHeader>By: Brendan Ewen</SubHeader>
-        </UserDetails>
+            <UserDetails>
+              <SubHeader>{post.date}</SubHeader>
+              <SubHeader>{post.postedBy}</SubHeader>
+            </UserDetails>
+          </li>
+        ))}
+      </ul>
     </Wrapper>
   )
 }
 
-export default Post
+export default Post;
