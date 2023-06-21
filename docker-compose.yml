@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  front-end:
+    container_name: gamesitefront
+    build:
+      context: C:\Users\brend\Documents\Websites\gamesiteReact
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+
+  back-end:
+    container_name: gamesiteback
+    build:
+      context: C:\Users\brend\Documents\Websites\gamesiteReact\server
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
