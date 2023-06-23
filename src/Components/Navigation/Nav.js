@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../app/features/userSlice";
 import axios from 'axios';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 function Nav() {
     const user = useSelector(selectUser);
@@ -121,6 +122,14 @@ function Nav() {
         }
     `
 
+    const styles = {
+        disabledLink: css`
+            color: gray; /* Adjust the color to indicate disabled state */
+            cursor: default; /* Display default cursor to indicate it's not clickable */
+            /* Additional styling as per your requirements */
+        `,
+    };
+
     return (
         <div>
             <div>
@@ -141,9 +150,13 @@ function Nav() {
                             <Link to='/anime'>
                                 <NavListItem><NavLink> Anime </NavLink></NavListItem>
                             </Link>
-                            <Link to='/admin'>
-                                <NavListItem><NavLink> {isGlobal ? "Admin" : ""} </NavLink></NavListItem>
-                            </Link>
+                            {isGlobal ? (
+                                <Link to='/admin'>
+                                    <NavListItem>
+                                            <NavLink> Admin </NavLink> 
+                                    </NavListItem>
+                                </Link>
+                            ) : null }
                         </NavLeft>
 
                         <NavRight>
