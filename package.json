@@ -10,7 +10,6 @@
     "@expo/match-media": "^0.1.0",
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
     "axios": "^1.2.2",
     "dotenv": "^16.0.3",

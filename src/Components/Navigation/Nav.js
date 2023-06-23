@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../app/features/userSlice";
 import axios from 'axios';
 import styled from '@emotion/styled';
+import { css } from '@emotion/css';
 
 function Nav() {
     const user = useSelector(selectUser);
@@ -142,7 +143,23 @@ function Nav() {
                                 <NavListItem><NavLink> Anime </NavLink></NavListItem>
                             </Link>
                             <Link to='/admin'>
-                                <NavListItem><NavLink> {isGlobal ? "Admin" : ""} </NavLink></NavListItem>
+                                <NavListItem><a className={
+                                    css`
+                                        ${isGlobal ? 'display:block;' : 'display:none;'}
+                                        height:7vh;
+                                        text-decoration:none;
+                                        line-height:7vh;
+                                        margin:0px 5px 0px 5px;
+                                        font-size:0.8em;
+                                        font-weight:normal;
+                                        font-family:Roboto, sans-serif;
+                                        color:#fff;
+                                        transition:0.5s;
+                                        &:hover{
+                                            color:#F44336;
+                                        }
+                                    `
+                                }> {isGlobal ? "Admin" : ""} </a></NavListItem>
                             </Link>
                         </NavLeft>
 
