@@ -6,6 +6,8 @@ import styled from '@emotion/styled';
 import { css } from "@emotion/css";
 import Input from "../../Form/Input";
 import Submit from "../../Form/Submit";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
 /*
@@ -67,7 +69,7 @@ async function loginUser(event) {
         navigate('/profile');
     } else {
         //if incorrect notify the user
-        alert('Please check your username and password');
+        toast.error('Please check your username and password');
     }
     console.log(data)
 }
@@ -128,6 +130,7 @@ const Header = styled.h1`
                 />
 
             <Submit left="15%"></Submit>
+            <ToastContainer />
         </form>
 
     </div>

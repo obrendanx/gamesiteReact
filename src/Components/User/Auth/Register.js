@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/css'
 import Input from '../../Form/Input'
 import Submit from '../../Form/Submit'
+import Validator from '../../Form/Validator'
 
 const Register = () => {
     const [fullName, setFullName] = useState('')
@@ -101,7 +102,7 @@ const Register = () => {
                 onValueChange={setFullName}
                 left="15%"
                 />
-              {error.fullName && <p className="error">{error.fullName}</p>}
+              {error.fullName && <Validator width="70%" left="15%" text={error.fullName}/>}
 
               <Input
                 type="text"
@@ -110,7 +111,7 @@ const Register = () => {
                 onValueChange={setUsername}
                 left="15%"
                 />
-              {error.username && <p className="error">{error.username}</p>}
+              {error.username && <Validator width="70%" left="15%" text={error.username}/>}
 
               <Input
                 type="text"
@@ -119,7 +120,7 @@ const Register = () => {
                 onValueChange={setEmail}
                 left="15%"
                 />
-              {error.email && <p className="error">{error.email}</p>}
+              {error.email && <Validator width="70%" left="15%" text={error.email}/>}
 
               <Input
                 type="password"
@@ -128,7 +129,7 @@ const Register = () => {
                 onValueChange={setPassword}
                 left="15%"
                 />
-              {error.password && <p className="error">{error.password}</p>}
+              {error.password && <Validator width="70%" left="15%" text={error.password}/>}
 
               <Submit left="15%" />
             </form>
