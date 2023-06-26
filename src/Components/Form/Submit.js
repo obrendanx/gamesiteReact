@@ -6,7 +6,7 @@ function Submit({ small, left }) {
     <div>
         <input 
         className={css`
-            ${small ? 'width: 50%;' : 'width: 70%;'}
+            ${small ? 'width: 25%;' : 'width: 70%;'}
             height:45px;
             border:none;
             line-height:10px;
@@ -15,7 +15,7 @@ function Submit({ small, left }) {
             background:#f44034;
             margin-left:${left};
             border-radius:10px;
-            margin-bottom:50px;
+            margin-bottom:20px;
             &:hover{
                 border:
                 solid 1px #1C1C1C;
