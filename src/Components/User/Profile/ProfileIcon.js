@@ -18,7 +18,7 @@ const ProfileIcon = () => {
       setColor(res.data.color);
     }
     fetchData();
-  }, []);
+  }, [username]);
 
   const initials = name ? name.split(" ").map(word => word[0]).join("") : "?";
 

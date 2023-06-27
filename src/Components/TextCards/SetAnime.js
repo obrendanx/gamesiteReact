@@ -24,16 +24,16 @@ function SetAnime() {
         GetAnime();
 
       }, []);
-      console.log(animeList);
+    
 
-      animeList.map(anime => (
-        //mapping through fetch data to results values such as title and push to an array
-        animeTitle.push(anime.title),
-        animeImage.push(anime.image_url),
-        animeStart.push(anime.start_date),
-        animeUrl.push(anime.url)
-      ));
-      console.log(animeList);
+      animeList.map(anime => {
+        // mapping through fetch data to extract values such as title and return them
+        animeTitle.push(anime.title);
+        animeImage.push(anime.image_url);
+        animeStart.push(anime.start_date);
+        animeUrl.push(anime.url);
+        return null; // returning null as a placeholder value
+      });
 
       const AnimeCard = styled.div`
         display:flex;
@@ -60,7 +60,7 @@ function SetAnime() {
   return (
     <AnimeCard>
         {animeList.map(anime => (
-                    <div>
+                    <div key={anime.mal_id}>
                         {/* Mapping the anime card with the number of results for the fetched data */}
                         <SmallAnime anime={anime} key={anime.mal_id} />
                     </div>

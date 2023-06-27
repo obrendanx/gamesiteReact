@@ -14,7 +14,9 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
   const [profileIconColor, setProfileIconColor] = useState(
     initialValues.profileIconColor
   );
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState({});
+  // eslint-disable-next-line no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({});
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
@@ -92,10 +94,11 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     });
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleColorChange = (color) => {
     setProfileIconColor(color.hex);
   };
-
+  // eslint-disable-next-line no-unused-vars
   const handleColorClick = () => {
     setDisplayColorPicker(!displayColorPicker);
   };
@@ -108,21 +111,6 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
   const ProfileFormSubDiv = styled.div`
     
   `
-
-  const Button = styled.button`
-    margin:10px;
-    border:none;
-    background:#252627;
-    color:#fff;
-    width:30%;
-    padding:2.5%;
-    text-align:center;
-  `
-
-  const Text = styled.p`
-    margin-top:7.5px;  
-  `
-
 
   return (
     <ProfileFormDiv>

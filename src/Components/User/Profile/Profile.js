@@ -57,12 +57,6 @@ function Profile() {
     text-align:center;
   `
 
-  const Link = styled.a`
-    font-size:0.8em;
-    font-family:Roboto, sans-serif;
-    color:#000;
-  `
-
   const ProfileInfo = styled.div`
     text-align:center;  
   `

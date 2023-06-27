@@ -26,7 +26,6 @@ const ProfilePage = () => {
       console.log(err);
     }
   }
-
   useEffect(() => {
     //updates page with fetched user if logged in
     if (isLoggedIn) {
