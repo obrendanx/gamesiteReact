@@ -61,13 +61,12 @@ const GetAnime = async () => {
     }
   }
 
-  animeList.map(anime => (
-    //mapping through fetch data to results values such as title and push to an array
-    animeImage.push(anime.images.webp.large_image_url),
-    animeTitle.push(anime.title_japanese),
-    animeUrl.push(anime.url),
-    animeSynopsis.push(anime.synopsis.slice(0, 525))
-  ));
+  animeList.forEach((anime) => {
+    animeImage.push(anime.images.webp.large_image_url);
+    animeTitle.push(anime.title_japanese);
+    animeUrl.push(anime.url);
+    animeSynopsis.push(anime.synopsis.slice(0, 525));
+  });
 
   const Banner = styled.div`
     background-repeat:no-repeat;
@@ -82,14 +81,14 @@ const GetAnime = async () => {
     position:relative;
     background:rgba(0, 0, 0, 0.6);
     border-radius:20px;
-    height:30%;
+    min-height:15%;
     width:95%;
     margin:0 0 2.5% 2.5%;
-    padding:1% 2.5% 2.5% 2.5%;
-    font-size:1em;
+    padding:2.5% 2.5% 2.5% 2.5%;
+    font-size:1.3em;
     font-family:Roboto, sans-serif;
     color:#fff;
-    top:62.5%;
+    top:70%;
     @media (max-width: 770px){
       display:none;
       font-size:0.7em;
@@ -127,7 +126,7 @@ const GetAnime = async () => {
         <BannerInfo>
           <div><BannerTitle href={animeUrl}>{animeTitle[count]}</BannerTitle></div>
           <div>
-            {animeSynopsis[count]} ...<BannerText href={animeUrl[count]}> Learn More</BannerText>
+            {animeSynopsis[count]} ...<BannerText href={animeUrl[count]}> Learn More </BannerText>
           </div>
         </BannerInfo>
       </Banner>

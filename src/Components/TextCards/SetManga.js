@@ -24,16 +24,15 @@ function SetManga() {
 
       }, []);
 
-      //logging to console fetched data
-      console.log(mangaList);
-
       //mapping through certain items of fetched data and pushing to selected arrays
-      mangaList.map(manga => (
-        mangaTitle.push(manga.title),
-        mangaImage.push(manga.image_url),
-        mangaStart.push(manga.start_date),
-        mangaUrl.push(manga.url)
-      ));
+      mangaList.map(manga => {
+        // mapping through fetched data to extract values and push them to arrays
+        mangaTitle.push(manga.title);
+        mangaImage.push(manga.image_url);
+        mangaStart.push(manga.start_date);
+        mangaUrl.push(manga.url);
+        return null; // returning null as a placeholder value
+      });
 
       const AnimeCard = styled.div`
         display:flex;
@@ -61,7 +60,7 @@ function SetManga() {
     <AnimeCard>
         {/* mapping data to each card used */}
         {mangaList.map(manga => (
-                    <div>
+                    <div key={manga.mal_id}>
                         <SmallManga manga={manga} key={manga.mal_id} />
                     </div>
                 ))}

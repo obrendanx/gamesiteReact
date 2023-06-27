@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../app/features/userSlice";
 import axios from 'axios';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 
 function Nav() {
     const user = useSelector(selectUser);
@@ -18,7 +17,6 @@ function Nav() {
                     const username = user.name;
                     const res = await axios.get(`http://localhost:5000/app/is-admin?username=${username}`);
                     setIsGlobal(res.data.isGlobal);
-                    console.log(isGlobal);
                 }else{
                     setIsGlobal(false);
                 }
@@ -27,11 +25,7 @@ function Nav() {
             }
         }
         fetchData();
-    }, [user]);
-        var loginMessage = "";
-        var loginBtnText = "";
-        var registerLink = "";
-        var logincheck = "";
+    }, [user, isGlobal]);
 
     const Navbar = styled.nav`
         height:7vh;
@@ -122,14 +116,6 @@ function Nav() {
         }
     `
 
-    const styles = {
-        disabledLink: css`
-            color: gray; /* Adjust the color to indicate disabled state */
-            cursor: default; /* Display default cursor to indicate it's not clickable */
-            /* Additional styling as per your requirements */
-        `,
-    };
-
     return (
         <div>
             <div>
@@ -166,11 +152,11 @@ function Nav() {
                             if the user is logged in display a logout button and there profile
                             otherwise always show register and login as the option
                             */}
-                            <Link to={user ? registerLink = "profile" : registerLink = "/register"} class="user-name">
-                                <NavListItem><NavLinkRegister>{user ? loginMessage = user.name : loginMessage = "Register"}</NavLinkRegister></NavListItem>
+                            <Link to={user ? "profile" : "/register"} class="user-name">
+                                <NavListItem><NavLinkRegister>{user ? user.name : "Register"}</NavLinkRegister></NavListItem>
                             </Link>
-                            <Link to={user ? logincheck = "/logout" : logincheck = "/login"}>
-                                <NavListItem><NavLink>{user ? loginBtnText = "Logout" : loginBtnText = "Login"}</NavLink></NavListItem>
+                            <Link to={user ? "/logout" : "/login"}>
+                                <NavListItem><NavLink>{user ? "Logout" : "Login"}</NavLink></NavListItem>
                             </Link>
                         </NavRight>
 
