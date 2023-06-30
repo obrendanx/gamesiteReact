@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["npm", "npm run start", "docker-start"]
+CMD ["npm", "run", "start"]
