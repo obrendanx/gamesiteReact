@@ -13,6 +13,7 @@ import AnimeSearch from './Pages/AnimeSearch';
 import Login from './Components/User/Auth/Login';
 import Admin from './Components/Admin/Admin';
 import ProfilePage from './Components/User/Profile/ProfilePage';
+import { AuthProvider } from './Components/User/Auth/AuthContext';
 
 
 const App = () => {
@@ -21,19 +22,21 @@ const App = () => {
       <Router>
       <div className="App">
         <Nav/>
-        <Routes>
-        <Route path="/" exact element={<Home />}/>
-        <Route path="/fourms" element={<Fourms />}/>
-        <Route path="/anime" element={<AnimeSearch />}/>
-        <Route path="/register" element={<Register />}/>
-        <Route path="/profile" element={<Profile />}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/logout" element={<Logout />}/>
-        <Route path="/admin" element={<Admin />}/>
-        <Route path="/profilepage" element={<ProfilePage />}/>
-        {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
-        </Routes>
-        {/*{user ? <Logout /> : <FetchUser />}*/}
+        <AuthProvider>
+          <Routes>
+          <Route path="/" exact element={<Home />}/>
+          <Route path="/fourms" element={<Fourms />}/>
+          <Route path="/anime" element={<AnimeSearch />}/>
+          <Route path="/register" element={<Register />}/>
+          <Route path="/profile" element={<Profile />}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path="/logout" element={<Logout />}/>
+          <Route path="/admin" element={<Admin />}/>
+          <Route path="/profilepage" element={<ProfilePage />}/>
+          {/* {user ? <Route path="/logout" component={Logout}/> : <Route path="/login" component={Loogin}/>} */}
+          </Routes>
+          {/*{user ? <Logout /> : <FetchUser />}*/}
+        </AuthProvider>
       </div>
       </Router>
       <Footer />

@@ -1,32 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import {Link} from 'react-router-dom'
 import logo from '../../images/logo.jpg'
 import { useSelector } from "react-redux";
 import { selectUser } from "../../app/features/userSlice";
 import axios from 'axios';
 import styled from '@emotion/styled';
+import { AuthContext } from '../User/Auth/AuthContext';
 
 function Nav() {
-    const user = useSelector(selectUser);
+    // const user = useSelector(selectUser);
+    const { user, isLoggedIn } = useContext(AuthContext);
     const [isGlobal, setIsGlobal] = useState(false);
 
     useEffect(() => {
         async function fetchData() {
             try {
-                if(user){
-                    const username = user.name;
-                    const res = await axios.get(`http://localhost:5000/app/is-admin?username=${username}`);
-                    setIsGlobal(res.data.isGlobal);
-                }else{
-                    setIsGlobal(false);
+                if (Object.keys(user).length > 0) {
+                const username = user.username;
+                const res = await axios.get(`http://localhost:5000/app/is-admin?username=${username}`);
+                setIsGlobal(res.data.isGlobal);
+                } else {
+                setIsGlobal(false);
                 }
             } catch (error) {
                 console.error(error);
             }
         }
         fetchData();
-    }, [user, isGlobal]);
-
+    }, [user, isGlobal, isLoggedIn]);
+    console.log(user.username);
+    console.log(isLoggedIn);
     const Navbar = styled.nav`
         height:7vh;
         width:100%;
@@ -152,11 +155,13 @@ function Nav() {
                             if the user is logged in display a logout button and there profile
                             otherwise always show register and login as the option
                             */}
-                            <Link to={user ? "profile" : "/register"} class="user-name">
-                                <NavListItem><NavLinkRegister>{user ? user.name : "Register"}</NavLinkRegister></NavListItem>
+                            <Link to={user.username ? "profile" : "/register"} class="user-name">
+                                <NavListItem>
+                                    <NavLinkRegister>{user.username || "Register"}</NavLinkRegister>
+                                </NavListItem>
                             </Link>
-                            <Link to={user ? "/logout" : "/login"}>
-                                <NavListItem><NavLink>{user ? "Logout" : "Login"}</NavLink></NavListItem>
+                            <Link to={isLoggedIn ? "/logout" : "/login"}>
+                                <NavListItem><NavLink>{isLoggedIn ? "Logout" : "Login"}</NavLink></NavListItem>
                             </Link>
                         </NavRight>
 

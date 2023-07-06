@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../app/features/userSlice";
 import axios from 'axios';
 import styled from '@emotion/styled';
+import { AuthContext } from '../Auth/AuthContext';
 
 const ProfileIcon = () => {
   //used to grab user information
-  const user = useSelector(selectUser);
-  const name = user.name;
+  const { user } = useContext(AuthContext);
+  const name = user.username;
   const [color, setColor] = useState("000");
-  const username = user.name;
+  const username = user.username;
 
   useEffect(() => {
     async function fetchData() {

@@ -42,9 +42,9 @@ router.post('/login', async (request, response, next) => {
           username: user.username,
           email: user.email,
         }, process.env.SECRET_KEY);
-        return response.json({ status: 'ok', user: token });
+        return response.json({ user: { token } });
       } else {
-        return response.json({ status: 'error', user: false });
+        return response.json({ user: false });
       }
     } else {
       return next(new Error('Wrong username or password.'));

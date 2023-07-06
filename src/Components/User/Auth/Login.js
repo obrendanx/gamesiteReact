@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { login } from "../../../app/features/userSlice";
+//import { login } from "../../../app/features/userSlice";
 import styled from '@emotion/styled';
 import { css } from "@emotion/css";
 import Input from "../../Form/Input";
 import Submit from "../../Form/Submit";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from "./AuthContext";
 
 function Login() {
 /*
@@ -17,11 +18,12 @@ function Login() {
 const [username, setUsername] = useState('')
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
+const { login } = useContext(AuthContext);
 
 //////////////////////////////////////////
 //Dispatch possibly unused at the moment//
 //////////////////////////////////////////
-const dispatch = useDispatch();
+//const dispatch = useDispatch();
 const navigate = useNavigate();
 
 async function loginUser(event) {
@@ -43,34 +45,36 @@ async function loginUser(event) {
    
     //Stores the fetch response in the 'data' variable
     const data = await response.json()
+    console.log(data);
 
-    if (data.user) {
-        console.log(data.user);
+    if (data && data.token) {
+        console.log(data.token);
         /*
             If data matches:
-            - Set a unique token for the user in there local storage
-            - Dispatch the login state to Redux state to use
-            in other components
+            - Set a unique token for the user in their local storage
+            - Dispatch the login state to Redux state to use in other components
         */
         // Set a cookie to keep the user signed in
         const now = new Date();
         now.setTime(now.getTime() + 30 * 24 * 60 * 60 * 1000); // Expires in 30 days
-        document.cookie = `token=${data.user}; expires=${now.toUTCString()}; path='/'`;
-        
+        document.cookie = `token=${data.token}; expires=${now.toUTCString()}; path=/`;
+
         console.log('Login successful');
-        //alert('Login successful');
-        dispatch(login({
-            //Lets the application know user is logged in
-            loggedIn: true,
-            //Sends the username and email to redux state
-            name: username,
-            email: email,
-        }));
+        // dispatch(login({
+        //   // Sends the username and email to Redux state
+        //   name: username,
+        //   email: email,
+        // }));
+
+        login(data.token, {
+            username: username,
+            email: email
+        });
         navigate('/profile');
-    } else {
-        //if incorrect notify the user
+        } else {
+        // If incorrect, notify the user
         toast.error('Please check your username and password');
-    }
+        }
     console.log(data)
 }
 
