@@ -1,6 +1,3 @@
- import { useDispatch } from "react-redux";
- import { selectUser } from "../../../app/features/userSlice";
- import { useSelector } from "react-redux";
  import React, { useContext } from 'react';
  import { useNavigate } from 'react-router-dom';
  import styled from '@emotion/styled';
@@ -11,9 +8,8 @@
  import 'react-toastify/dist/ReactToastify.css';
 
  const Logout = () => {
-    const user = useSelector(selectUser);
     const navigate = useNavigate();
-    const { isLoggedIn, logout } = useContext(AuthContext);
+    const { isLoggedIn, logout, user } = useContext(AuthContext);
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -41,7 +37,7 @@
      return (
          <Logout>
              {/* <h1>Welcome <span className="user_name">{user.name}</span></h1> */}
-             <LargeHeader text={"Welcome " + user.name}></LargeHeader>
+             <LargeHeader text={"Welcome " + user.username}></LargeHeader>
              {/* <button className="logout_btn" onClick={(e) => handleLogout(e)}> Logout </button> */}
              <Button handleClick={(e) => handleLogout(e)} text="Logout"></Button>
              <ToastContainer />

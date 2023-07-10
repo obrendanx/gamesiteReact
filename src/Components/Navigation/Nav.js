@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import {Link} from 'react-router-dom'
 import logo from '../../images/logo.jpg'
-import { useSelector } from "react-redux";
-import { selectUser } from "../../app/features/userSlice";
 import axios from 'axios';
 import styled from '@emotion/styled';
 import { AuthContext } from '../User/Auth/AuthContext';
@@ -149,20 +147,34 @@ function Nav() {
                         </NavLeft>
 
                         <NavRight>
-                            {/* 
-                            Login / Register Links
-                            Determines text and location of links
-                            if the user is logged in display a logout button and there profile
-                            otherwise always show register and login as the option
-                            */}
-                            <Link to={user.username ? "profile" : "/register"} class="user-name">
+                            {/* Conditional rendering of login/register links */}
+                            {isLoggedIn ? (
+                            <>
+                                <Link to="/profile" className="user-name">
                                 <NavListItem>
-                                    <NavLinkRegister>{user.username || "Register"}</NavLinkRegister>
+                                    <NavLinkRegister>{user.username}</NavLinkRegister>
                                 </NavListItem>
-                            </Link>
-                            <Link to={isLoggedIn ? "/logout" : "/login"}>
-                                <NavListItem><NavLink>{isLoggedIn ? "Logout" : "Login"}</NavLink></NavListItem>
-                            </Link>
+                                </Link>
+                                <Link to="/logout">
+                                <NavListItem>
+                                    <NavLink>Logout</NavLink>
+                                </NavListItem>
+                                </Link>
+                            </>
+                            ) : (
+                            <>
+                                <Link to="/register" className="user-name">
+                                <NavListItem>
+                                    <NavLinkRegister>Register</NavLinkRegister>
+                                </NavListItem>
+                                </Link>
+                                <Link to="/login">
+                                <NavListItem>
+                                    <NavLink>Login</NavLink>
+                                </NavListItem>
+                                </Link>
+                            </>
+                            )}
                         </NavRight>
 
                     </NavigationList>

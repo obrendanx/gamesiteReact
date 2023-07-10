@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import jwt from 'jsonwebtoken';
 
 // Create the context
 export const AuthContext = createContext();
@@ -11,35 +12,55 @@ export const AuthProvider = ({ children }) => {
     const token = getCookie('token');
     if (token) {
       setIsLoggedIn(true);
+      fetchUserData(token);
     }
   }, []);
 
-  // Utility function to get a specific cookie by name
   const getCookie = (name) => {
     const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
     return cookieValue ? cookieValue.pop() : '';
   };
 
+  const fetchUserData = async (token) => {
+    try {
+      const decodedToken = jwt.decode(token);
+      const username = decodedToken.username;
+
+      const response = await fetch(`http://localhost:5000/app/api/user/${username}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setUser(data);
+      } else {
+        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        setIsLoggedIn(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const login = (token, userInfo) => {
     setIsLoggedIn(true);
-    setUser(userInfo);
+    setUser({ ...userInfo, username: userInfo.username });
 
-    // Set the user token in the cookie
     const now = new Date();
     now.setTime(now.getTime() + 30 * 24 * 60 * 60 * 1000); // Expires in 30 days
-    document.cookie = `token=${token}; expires=${now.toUTCString()}; path='/'`;
-
-    console.log('Cookie value after setting:', document.cookie);
+    document.cookie = `token=${token}; expires=${now.toUTCString()}; path=/`;
   };
 
   const logout = () => {
     setIsLoggedIn(false);
+    setUser({});
 
-    // Remove the user token from the cookie
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   };
 
-  // Pass the state and functions to the value prop of the context provider
   return (
     <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
       {children}
