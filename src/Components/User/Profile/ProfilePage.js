@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileForm from "./ProfileForm";
 import { selectUser } from "../../../app/features/userSlice";
+import { AuthContext } from "../Auth/AuthContext";
 
 const ProfilePage = () => {
   //array of user details
-  const [user, setUsers] = useState({});
+  const [users, setUsers] = useState({});
   //loading state
   const [isLoading, setIsLoading] = useState(true);
   //grabs user logged in status in store
-  const isLoggedIn = useSelector(selectUser);
+  const { isLoggedIn, user } = useContext(AuthContext);
 
   async function fetchUsers() {
     try {
       if(isLoggedIn){
         //if user is logged in fetch that user data from db
         //store data in the user array
-        const username = isLoggedIn.name;
+        const username = user.username;
         const res = await axios.get(`http://localhost:5000/app/api/user/${username}`);
         setUsers(res.data)
         setIsLoading(false);
@@ -52,11 +53,11 @@ const ProfilePage = () => {
       {/* sends props to ProfileForm of the user details */}
       <ProfileForm 
         initialValues={{
-          fullName: user.fullName,
-          username: user.username,
-          email: user.email,
-          password: user.password,
-          profileIconColor: user.profileIconColor,
+          fullName: users.fullName,
+          username: users.username,
+          email: users.email,
+          password: users.password,
+          profileIconColor: users.profileIconColor,
         }}
         onSubmit={handleUpdateProfile} 
       />

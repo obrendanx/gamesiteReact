@@ -1,23 +1,28 @@
- import { useDispatch } from "react-redux";
- import { logout, selectUser } from "../../../app/features/userSlice";
- import { useSelector } from "react-redux";
- import React from 'react';
+ import React, { useContext } from 'react';
  import { useNavigate } from 'react-router-dom';
  import styled from '@emotion/styled';
  import LargeHeader from '../../Headers/LargeHeader'
  import Button from '../../Form/Buttons/Button'
- const Logout = () => {
-    const user = useSelector(selectUser);
-    const navigate = useNavigate();
+ import { AuthContext } from "./AuthContext";
+ import { ToastContainer, toast } from 'react-toastify';
+ import 'react-toastify/dist/ReactToastify.css';
 
-    const dispatch = useDispatch();
+ const Logout = () => {
+    const navigate = useNavigate();
+    const { isLoggedIn, logout, user } = useContext(AuthContext);
+
     const handleLogout = (e) => {
         e.preventDefault();
         /*
             if the user clicks logout
             Logout dispatch is called and sets the loggedin state to false
         */
-        dispatch(logout());
+        if(isLoggedIn) {
+            logout();
+            navigate('/Home');
+        } else {
+            toast.error('You are already logged out!');
+        }
         navigate("/login");
     };
 
@@ -32,9 +37,10 @@
      return (
          <Logout>
              {/* <h1>Welcome <span className="user_name">{user.name}</span></h1> */}
-             <LargeHeader text={"Welcome " + user.name}></LargeHeader>
+             <LargeHeader text={"Welcome " + user.username}></LargeHeader>
              {/* <button className="logout_btn" onClick={(e) => handleLogout(e)}> Logout </button> */}
              <Button handleClick={(e) => handleLogout(e)} text="Logout"></Button>
+             <ToastContainer />
          </Logout>
      );
  };
