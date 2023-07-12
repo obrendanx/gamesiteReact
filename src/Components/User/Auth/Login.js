@@ -8,6 +8,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "./AuthContext";
 
+const Header = styled.h1`
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: 30px;
+  `;
+
 function Login() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -47,12 +53,6 @@ function Login() {
       toast.error('Please check your username and password');
     }
   }
-
-  const Header = styled.h1`
-    text-align: center;
-    padding-top: 30px;
-    margin-bottom: 30px;
-  `;
 
   return (
     <div className="login">

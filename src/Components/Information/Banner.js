@@ -2,6 +2,52 @@ import React, { useState, useEffect } from 'react'
 import styled from '@emotion/styled';
 import ArrowBtn from '../Form/Buttons/ArrowBtn'
 
+const BannerDiv = styled.div`
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:100% 100%;
+    height:90vh;
+    width:100%;
+    position:relative;
+  `
+
+  const BannerInfo = styled.div`
+    position:relative;
+    background:rgba(0, 0, 0, 0.6);
+    border-radius:20px;
+    min-height:15%;
+    width:95%;
+    margin:0 0 2.5% 2.5%;
+    padding:2.5% 2.5% 2.5% 2.5%;
+    font-size:1.3em;
+    font-family:Roboto, sans-serif;
+    color:#fff;
+    top:70%;
+    @media (max-width: 770px){
+      display:none;
+      font-size:0.7em;
+    }
+    @media (max-width: 1600px){
+      width:95% !important;
+      font-size:1.3em !important;
+    }
+    @media (max-width: 1200px){
+      font-size:1.1em !important;
+    }
+  `
+
+  const BannerTitle = styled.h2`
+    font-size:0.8em;
+    font-family:Roboto, sans-serif;
+    color:#fff;
+  `
+
+  const BannerText = styled.p`
+    font-size:0.8em;
+    font-family:Roboto, sans-serif;
+    color:#fff;
+  `
+
 function Banner() {
 //State array variable to store all results from api
 const [animeList, setAnimeList] = useState([]);
@@ -68,55 +114,9 @@ const GetAnime = async () => {
     animeSynopsis.push(anime.synopsis.slice(0, 525));
   });
 
-  const Banner = styled.div`
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size:100% 100%;
-    height:90vh;
-    width:100%;
-    position:relative;
-  `
-
-  const BannerInfo = styled.div`
-    position:relative;
-    background:rgba(0, 0, 0, 0.6);
-    border-radius:20px;
-    min-height:15%;
-    width:95%;
-    margin:0 0 2.5% 2.5%;
-    padding:2.5% 2.5% 2.5% 2.5%;
-    font-size:1.3em;
-    font-family:Roboto, sans-serif;
-    color:#fff;
-    top:70%;
-    @media (max-width: 770px){
-      display:none;
-      font-size:0.7em;
-    }
-    @media (max-width: 1600px){
-      width:95% !important;
-      font-size:1.3em !important;
-    }
-    @media (max-width: 1200px){
-      font-size:1.1em !important;
-    }
-  `
-
-  const BannerTitle = styled.h2`
-    font-size:0.8em;
-    font-family:Roboto, sans-serif;
-    color:#fff;
-  `
-
-  const BannerText = styled.p`
-    font-size:0.8em;
-    font-family:Roboto, sans-serif;
-    color:#fff;
-  `
-
   return (
     <div>
-      <Banner style={
+      <BannerDiv style={
         {
           backgroundImage: `linear-gradient(rgba(204,204,204,.2), rgba(204,204,204,.3)), url(${animeImage[count]})`,
         }
@@ -129,7 +129,7 @@ const GetAnime = async () => {
             {animeSynopsis[count]} ...<BannerText href={animeUrl[count]}> Learn More </BannerText>
           </div>
         </BannerInfo>
-      </Banner>
+      </BannerDiv>
     </div>
   )
 }

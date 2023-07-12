@@ -2,6 +2,28 @@ import React, { useState, useEffect } from 'react'
 import SmallManga from './SmallManga';
 import styled from '@emotion/styled';
 
+const AnimeCard = styled.div`
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  row-gap:1%;
+  column-gap:1%;
+  padding-left:2.5%;
+  width:100%;
+  div{
+    width:23.5%;
+    div{
+      width:100%;
+    }
+  }
+  @media (max-width: 770px){
+    flex-direction:column;
+    div{
+      width:98%;
+    }
+  }
+`
+
 function SetManga() {
     const [mangaList, setMangaList] = useState([]);
     //arrays to store different api attrbiutes
@@ -33,28 +55,6 @@ function SetManga() {
         mangaUrl.push(manga.url);
         return null; // returning null as a placeholder value
       });
-
-      const AnimeCard = styled.div`
-        display:flex;
-        flex-direction:row;
-        flex-wrap:wrap;
-        row-gap:1%;
-        column-gap:1%;
-        padding-left:2.5%;
-        width:100%;
-        div{
-          width:23.5%;
-          div{
-            width:100%;
-          }
-        }
-        @media (max-width: 770px){
-          flex-direction:column;
-          div{
-            width:98%;
-          }
-        }
-      `
 
   return (
     <AnimeCard>

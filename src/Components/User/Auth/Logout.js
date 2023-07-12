@@ -7,6 +7,14 @@
  import { ToastContainer, toast } from 'react-toastify';
  import 'react-toastify/dist/ReactToastify.css';
 
+ const LogoutDiv = styled.div`
+        height:425px;
+        text-align:center;
+        padding-top:10%;
+        padding-right:20px;
+        padding-left:20px;
+    `
+
  const Logout = () => {
     const navigate = useNavigate();
     const { isLoggedIn, logout, user } = useContext(AuthContext);
@@ -26,22 +34,14 @@
         navigate("/login");
     };
 
-    const Logout = styled.div`
-        height:425px;
-        text-align:center;
-        padding-top:10%;
-        padding-right:20px;
-        padding-left:20px;
-    `
-
      return (
-         <Logout>
+         <LogoutDiv>
              {/* <h1>Welcome <span className="user_name">{user.name}</span></h1> */}
              <LargeHeader text={"Welcome " + user.username}></LargeHeader>
              {/* <button className="logout_btn" onClick={(e) => handleLogout(e)}> Logout </button> */}
              <Button handleClick={(e) => handleLogout(e)} text="Logout"></Button>
              <ToastContainer />
-         </Logout>
+         </LogoutDiv>
      );
  };
  

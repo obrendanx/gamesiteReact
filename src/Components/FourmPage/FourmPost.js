@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { css } from '@emotion/css';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../app/features/userSlice';
 import TextArea from '../Form/TextArea';
 import Input from '../Form/Input';
 import Label from '../Form/Label';
 import Submit from '../Form/Submit';
 import Validator from '../Form/Validator';
+import { AuthContext } from '../User/Auth/AuthContext';
 
 function FourmInput() {
   const [subject, setSubject] = useState('');
@@ -15,13 +14,13 @@ function FourmInput() {
   const [postedBy, setPostedBy] = useState('');
   const [subjectError, setSubjectError] = useState('');
   const [messageError, setMessageError] = useState('');
-  const user = useSelector(selectUser);
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
-    if (user) {
-      setPostedBy(user.name);
+    if (isLoggedIn) {
+      setPostedBy(user.username);
     }
-  }, [user]);
+  }, [isLoggedIn]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
