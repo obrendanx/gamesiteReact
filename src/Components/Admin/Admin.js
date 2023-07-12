@@ -6,6 +6,29 @@ import LargeHeader from '../Headers/LargeHeader'
 import SmallHeader from '../Headers/SmallHeader';
 import MediumHeader from '../Headers/MediumHeader'
 
+const AdminPanel = styled.div`
+    background:#1C1C1C;
+    font-size:1em;
+    font-family:Roboto, sans-serif;
+    color:#fff;
+    height:100%;
+    width:80%;
+    margin-left:10%;
+    margin-top:20px;
+    margin-bottom:20px;
+    padding:10px;
+  `
+
+  const List = styled.ul`
+    list-style:none;
+  `
+
+  const ListItem = styled.li`
+    padding:5px;
+    margin-bottom:5px;
+    margin-left:7.5px;
+  `
+
 export default function Admin() {
   const [users, setUsers] = useState([]);
 
@@ -39,29 +62,6 @@ export default function Admin() {
       }
     }
   };
-
-  const AdminPanel = styled.div`
-    background:#1C1C1C;
-    font-size:1em;
-    font-family:Roboto, sans-serif;
-    color:#fff;
-    height:100%;
-    width:80%;
-    margin-left:10%;
-    margin-top:20px;
-    margin-bottom:20px;
-    padding:10px;
-  `
-
-  const List = styled.ul`
-    list-style:none;
-  `
-
-  const ListItem = styled.li`
-    padding:5px;
-    margin-bottom:5px;
-    margin-left:7.5px;
-  `
 
   return (
     <div>

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import ProfileForm from "./ProfileForm";
-import { selectUser } from "../../../app/features/userSlice";
 import { AuthContext } from "../Auth/AuthContext";
 
 const ProfilePage = () => {

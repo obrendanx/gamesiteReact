@@ -6,6 +6,12 @@ import Input from '../../Form/Input'
 import Submit from '../../Form/Submit'
 import Validator from '../../Form/Validator'
 
+const Header = styled.h1`
+  text-align:center;
+  padding-top:30px;
+  margin-bottom:30px;
+`
+
 const Register = () => {
     const [fullName, setFullName] = useState('')
     const [username, setUsername] = useState('')
@@ -64,12 +70,6 @@ const Register = () => {
       window.location = './Login'
     }
 
-    const Header = styled.h1`
-      text-align:center;
-      padding-top:30px;
-      margin-bottom:30px;
-    `
-  
     return (
       <div>
         <div

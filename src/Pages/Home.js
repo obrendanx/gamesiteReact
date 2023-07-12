@@ -14,30 +14,6 @@ import SOLO from '../images/sololevel.jpg'
 import UNORD from '../images/unordinary.png'
 import NOBLESSE from '../images/noblesse.webp'
 
-let links = [
-    "https://towerofgod.fandom.com/wiki/Tower_of_God_Wiki",
-    "https://godofhighschool.fandom.com/wiki/The_God_Of_High_School_Wiki",
-    "https://solo-leveling.fandom.com/wiki/Solo_Leveling_Wiki",
-    "https://unordinary.fandom.com/wiki/UnOrdinary_Wikia",
-    "https://noblesse.fandom.com/wiki/The_Noblesse"
-]
-
-let description = [
-    "Tower of God centers around a boy named Twenty-Fifth Bam. It is notable that in Korea 'Bam' can mean 'Night' or 'Chestnut'",
-    "A 17-year-old martial artist from Seoul, South Korea who practices Full-Contact Karate",
-    "In a world where hunters — humans who possess magical abilities — must battle deadly monsters to protect the human race from certain annihilation, a notoriously weak hunter named Sung Jinwoo finds himself in a seemingly endless struggle for survival.",
-    "Unordinary is the story of a man with a powerful ability born in a world of cripples. The man only used his power for others, helping the weak, saving lives and spreading wealth.",
-    "Noblesse (Kor. 노블레스) is the title given to the strongest member of the Noble race. The Noblesse is one of the two pillars of Noble society, equivalent in standing to the Lord."
-]
-
-let title = [
-    "Tower of God Season 2",
-    "God of Highschool",
-    "Solo Leveling",
-    "Unordinary",
-    "Noblesse"
-]
-
 const HomeWrap = styled.div`
     padding-bottom:2.5%;
     background:#333333;
@@ -95,6 +71,30 @@ const InfoWrap = styled.div`
         margin-top:0;
     }
 `
+
+let links = [
+    "https://towerofgod.fandom.com/wiki/Tower_of_God_Wiki",
+    "https://godofhighschool.fandom.com/wiki/The_God_Of_High_School_Wiki",
+    "https://solo-leveling.fandom.com/wiki/Solo_Leveling_Wiki",
+    "https://unordinary.fandom.com/wiki/UnOrdinary_Wikia",
+    "https://noblesse.fandom.com/wiki/The_Noblesse"
+]
+
+let description = [
+    "Tower of God centers around a boy named Twenty-Fifth Bam. It is notable that in Korea 'Bam' can mean 'Night' or 'Chestnut'",
+    "A 17-year-old martial artist from Seoul, South Korea who practices Full-Contact Karate",
+    "In a world where hunters — humans who possess magical abilities — must battle deadly monsters to protect the human race from certain annihilation, a notoriously weak hunter named Sung Jinwoo finds himself in a seemingly endless struggle for survival.",
+    "Unordinary is the story of a man with a powerful ability born in a world of cripples. The man only used his power for others, helping the weak, saving lives and spreading wealth.",
+    "Noblesse (Kor. 노블레스) is the title given to the strongest member of the Noble race. The Noblesse is one of the two pillars of Noble society, equivalent in standing to the Lord."
+]
+
+let title = [
+    "Tower of God Season 2",
+    "God of Highschool",
+    "Solo Leveling",
+    "Unordinary",
+    "Noblesse"
+]
 
 function Home() {
     return (

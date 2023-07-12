@@ -6,6 +6,11 @@ import Input from '../../Form/Input'
 import Label from "../../Form/Label";
 import Submit from "../../Form/Submit";
 
+const ProfileFormDiv = styled.div`
+    padding:10px 10px 10px 5px;
+    margin-top:20px;
+  `
+
 const ProfileForm = ({ onSubmit, initialValues }) => {
   const [fullName, setFullName] = useState(initialValues.fullName);
   const [username, setUsername] = useState(initialValues.username);
@@ -103,19 +108,10 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     setDisplayColorPicker(!displayColorPicker);
   };
 
-  const ProfileFormDiv = styled.div`
-    padding:10px 10px 10px 5px;
-    margin-top:20px;
-  `
-
-  const ProfileFormSubDiv = styled.div`
-    
-  `
-
   return (
-    <ProfileFormDiv>
+    <div>
       <form onSubmit={handleSubmit}>
-      <ProfileFormSubDiv>
+      <ProfileFormDiv>
         <Label htmlfor='fullName' text='Full Name:' primary></Label>
         <Input
                 type="text"
@@ -126,8 +122,8 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
                 left="5px"
                 />
         {error.fullName && <p className="error">{error.fullName}</p>}
-      </ProfileFormSubDiv>
-      <ProfileFormSubDiv>
+      </ProfileFormDiv>
+      <ProfileFormDiv>
         <Label htmlfor='username' text='Username:' primary></Label>
         <Input
                 type="text"
@@ -138,8 +134,8 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
                 left="5px"
                 />
         {error.username && <p className="error">{error.username}</p>}
-      </ProfileFormSubDiv>
-      <ProfileFormSubDiv>
+      </ProfileFormDiv>
+      <ProfileFormDiv>
         <Label htmlfor='email' text='Email:' primary></Label>
         <Input
                 type="text"
@@ -150,8 +146,8 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
                 left="5px"
                 />
         {error.email && <p className="error">{error.email}</p>}
-      </ProfileFormSubDiv>
-      <ProfileFormSubDiv>
+      </ProfileFormDiv>
+      <ProfileFormDiv>
         <Label htmlfor='password' text='Password:' primary></Label>
         <Input
                 type="password"
@@ -162,17 +158,17 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
                 left="5px"
                 />
         {error.password && <p className="error">{error.password}</p>}
-      </ProfileFormSubDiv>
-      <ProfileFormSubDiv>
+      </ProfileFormDiv>
+      <ProfileFormDiv>
         <Label htmlfor='profileIconColor' text='Profile Icon Color:' primary></Label>
         <CirclePicker
           color={profileIconColor}
           onChangeComplete={(color) => setProfileIconColor(color.hex)}
         />
-      </ProfileFormSubDiv>
+      </ProfileFormDiv>
       <Submit small left="5px"></Submit>
     </form>
-  </ProfileFormDiv>
+  </div>
   );
 };
 
