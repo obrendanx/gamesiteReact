@@ -1,26 +1,28 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthContext';
+import axios from 'axios';
 
-export default function Followers({ username }) {
-  const { user } = useContext(AuthContext);
+export default function Followers() {
   const [followers, setFollowers] = useState([]);
+  const { user } = useContext(AuthContext); 
+  const [error, setError] = useState(null);
+  const username = user.username;
 
   useEffect(() => {
     fetchFollowers();
-  }, []);
+  }, [username]);
 
   const fetchFollowers = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/app/api/followers/${user.username}`);
-      const data = await response.json();
-      if (response.ok) {
-        setFollowers(data.followers);
+      const response = await axios.get(`http://localhost:5000/app/api/followers/${username}`);
+      if (response.status === 200) {
+        setFollowers(response.data.followers);
       } else {
-        // Handle error
+        setError('Failed to fetch followers');
       }
     } catch (error) {
-      // Handle error
+      setError('Failed to fetch followers');
     }
   };
 
@@ -31,10 +33,11 @@ export default function Followers({ username }) {
       <ul>
         {followers.map((follower) => (
           <li key={follower._id}>
-            <Link to={`/userprofile/${follower.username}`}>{follower.username}</Link>
+            <Link to={`/user/${follower.username}`}>{follower.username}</Link>
           </li>
         ))}
       </ul>
     </div>
   );
 }
+

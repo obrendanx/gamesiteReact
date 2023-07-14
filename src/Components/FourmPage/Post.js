@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/css';
 import axios from 'axios';
 import MediumHeader from '../Headers/MediumHeader';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -99,7 +100,7 @@ function Post() {
 
             <UserDetails>
               <SubHeader>{post.date}</SubHeader>
-              <SubHeader>{post.postedBy}</SubHeader>
+              <SubHeader><Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link></SubHeader>
             </UserDetails>
           </li>
         ))}

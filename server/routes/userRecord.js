@@ -192,6 +192,20 @@ router.get('/api/followers/:username', async (req, res) => {
   }
 });
 
+router.get('/api/following/:username', async (req, res) => {
+  try {
+    const username = req.params.username;
+    const user = await signUp.findOne({ username }).populate('following', 'username');
+    if (user) {
+      const following = user.following;
+      res.json({ following });
+    } else {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
 
 router.use(errorHandler);
 
