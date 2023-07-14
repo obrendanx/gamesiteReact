@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthContext';
-import { useParams } from 'react-router-dom';
 
-function UserProfile({ username }) {
+function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
+  const { username } = useParams();
   const [user, setUser] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
   const [followers, setFollowers] = useState([]);
@@ -15,11 +15,15 @@ function UserProfile({ username }) {
 
   useEffect(() => {
     if (username) {
-        fetchUserProfile();
-        fetchFollowers();
-        checkIfFollowing();
+      fetchUserProfile();
+      fetchFollowers();
     }
   }, [username]);
+
+  console.log('hello');
+
+  const isCurrentUserFollowing = followers.includes(currentUser.username);
+  
 
   const fetchUserProfile = async () => {
     try {
@@ -40,18 +44,13 @@ function UserProfile({ username }) {
       const response = await fetch(`http://localhost:5000/app/api/followers/${username}`);
       const data = await response.json();
       if (response.ok) {
-        setFollowers(data.followers);
+        const followerUsernames = data.followers.map((follower) => follower.username);
+        setFollowers(followerUsernames);
       } else {
         setError('Failed to fetch followers');
       }
     } catch (error) {
       setError('Failed to fetch followers');
-    }
-  };
-
-  const checkIfFollowing = () => {
-    if (currentUser && currentUser.following.includes(user?._id)) {
-      setIsFollowing(true);
     }
   };
 
@@ -135,12 +134,12 @@ function UserProfile({ username }) {
       <ul>
         {followers.map((follower) => (
           <li key={follower._id}>
-            <Link to={`/userprofile/${follower.username}`}>{follower.username}</Link>
+            <Link to={`/user/${follower}`}>{follower}</Link>
           </li>
         ))}
       </ul>
       <button onClick={handleFollowToggle} disabled={loading}>
-        {loading ? 'Loading...' : isFollowing ? 'Unfollow' : 'Follow'}
+        {loading ? 'Loading...' : isCurrentUserFollowing ? 'Unfollow' : 'Follow'}
       </button>
       {error && <div>Error: {error}</div>}
       {successMessage && <div>{successMessage}</div>}
@@ -148,4 +147,4 @@ function UserProfile({ username }) {
   );
 }
 
-export default UserProfile;
+export default User;

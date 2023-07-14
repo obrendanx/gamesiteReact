@@ -1,23 +1,26 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthContext';
+import ProfileIcon from './ProfileIcon';
 
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
   const { username } = useParams();
   const [user, setUser] = useState(null);
-  const [isFollowing, setIsFollowing] = useState(false);
   const [followers, setFollowers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
+  const isCurrentUserFollowing = followers.some(
+    (follower) => follower.username === currentUser.username
+  );
+
   useEffect(() => {
     if (username) {
-        fetchUserProfile();
-        fetchFollowers();
-        checkIfFollowing();
+      fetchUserProfile();
+      fetchFollowers();
     }
   }, [username]);
 
@@ -40,7 +43,10 @@ function User() {
       const response = await fetch(`http://localhost:5000/app/api/followers/${username}`);
       const data = await response.json();
       if (response.ok) {
-        setFollowers(data.followers);
+        const isCurrentUserFollower = data.followers.some(
+          (follower) => follower.username === currentUser.username
+        );
+        setFollowers(isCurrentUserFollower ? data.followers : [...data.followers, currentUser]);
       } else {
         setError('Failed to fetch followers');
       }
@@ -49,15 +55,9 @@ function User() {
     }
   };
 
-  const checkIfFollowing = () => {
-    if (currentUser && currentUser.following && Array.isArray(currentUser.following)) {
-        setIsFollowing(currentUser.following.includes(user?._id));
-    }
-  };
-
   const handleFollowToggle = async () => {
     if (isLoggedIn) {
-      if (isFollowing) {
+      if (isCurrentUserFollowing) {
         await unfollowUser();
       } else {
         await followUser();
@@ -84,7 +84,7 @@ function User() {
 
       if (response.ok) {
         setSuccessMessage('You are now following this user.');
-        setIsFollowing(true);
+        setFollowers([...followers, currentUser]);
       } else {
         setError('Failed to follow user');
       }
@@ -112,7 +112,7 @@ function User() {
 
       if (response.ok) {
         setSuccessMessage('You have unfollowed this user.');
-        setIsFollowing(false);
+        setFollowers(followers.filter((follower) => follower.username !== currentUser.username));
       } else {
         setError('Failed to unfollow user');
       }
@@ -129,18 +129,19 @@ function User() {
 
   return (
     <div>
+      <ProfileIcon username={user.username}/>
       <h1>{user.username}</h1>
       <h2>{user.fullName}</h2>
       <h3>Followers:</h3>
       <ul>
         {followers.map((follower) => (
-          <li key={follower._id}>
-            <Link to={`/userprofile/${follower.username}`}>{follower.username}</Link>
-          </li>
+            <li key={follower._id}>
+            <Link to={`/user/${follower.username}`}>{follower.username}</Link>
+            </li>
         ))}
       </ul>
       <button onClick={handleFollowToggle} disabled={loading}>
-        {loading ? 'Loading...' : isFollowing ? 'Unfollow' : 'Follow'}
+        {loading ? 'Loading...' : isCurrentUserFollowing ? 'Unfollow' : 'Follow'}
       </button>
       {error && <div>Error: {error}</div>}
       {successMessage && <div>{successMessage}</div>}

@@ -16,12 +16,10 @@ const ProfileIconDiv = styled.div`
     color:#fff;
   `
 
-const ProfileIcon = () => { 
+const ProfileIcon = ({username}) => { 
   //used to grab user information
   const { user } = useContext(AuthContext);
-  const name = user.username;
   const [color, setColor] = useState("000");
-  const username = user.username;
 
   useEffect(() => {
     async function fetchData() {
@@ -32,7 +30,7 @@ const ProfileIcon = () => {
     fetchData();
   }, [username]);
 
-  const initials = name ? name.split(" ").map(word => word[0]).join("") : "?"; 
+  const initials = username ? username.split(" ").map(word => word[0]).join("") : "?"; 
 
   return (
     <ProfileIconDiv style={{ backgroundColor: `${color}` }} className="profile-icon">

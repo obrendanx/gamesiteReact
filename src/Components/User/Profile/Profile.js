@@ -75,7 +75,7 @@ function Profile() {
       <ProfilePageDiv>
         <ProfileTitle>{username}</ProfileTitle>
         <h2 className="profilePic">
-          <ProfileIcon />
+          <ProfileIcon username={user.username}/>
         </h2>
         <ProfileInfo>
           <h3 className="profile_h3">
