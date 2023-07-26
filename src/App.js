@@ -20,8 +20,8 @@ const App = () => {
     <div>
       <Router>
         <div className="App">
-          <Nav />
           <AuthProvider>
+            <Nav />
             <Routes>
               <Route path="/" exact element={<Home />} />
               <Route path="/fourms" element={<Fourms />} />

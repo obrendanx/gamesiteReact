@@ -27,7 +27,7 @@
         */
         if(isLoggedIn) {
             logout();
-            navigate('/Home');
+                navigate('./');
         } else {
             toast.error('You are already logged out!');
         }
