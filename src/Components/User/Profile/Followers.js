@@ -2,6 +2,18 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthContext';
 import axios from 'axios';
+import { css } from '@emotion/css';
+import styled from '@emotion/styled';
+
+const Text = styled.span`
+  color:#fff;
+  &:after{
+    color:#fff;
+  }
+  &:hover{
+    color:#F36644;
+  }
+`
 
 export default function Followers() {
   const [followers, setFollowers] = useState([]);
@@ -30,10 +42,18 @@ export default function Followers() {
     <div>
       <h1>{followers.length}</h1>
       <h1>Followers</h1>
-      <ul>
+      <ul className={css`
+        list-style:none;
+        margin-top:5px;
+      `}>
         {followers.map((follower) => (
-          <li key={follower._id}>
-            <Link to={`/user/${follower.username}`}>{follower.username}</Link>
+          <li 
+            key={follower._id}
+            className={css`
+              margin-top:5px;
+            `}
+          >
+            <Link to={`/user/${follower.username}`}><Text>{follower.username}</Text></Link>
           </li>
         ))}
       </ul>

@@ -34,5 +34,18 @@ router.get('/showposts', async (request, response, next) => {
   }
 })
 
+router.get('/showuserposts/:username', async (request, response, next) => {
+  try {
+    const username = request.query.username;
+
+    const posts = await fourmPost.find({ postedBy: username });
+    response.json({data: posts});
+    const responseData = await response.json();
+    console.log(responseData);
+  } catch (error) {
+    next(error);
+  }
+})
+
 router.use(errorHandler);
 module.exports = router

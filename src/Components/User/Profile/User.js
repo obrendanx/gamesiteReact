@@ -3,6 +3,59 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthContext';
 import ProfileIcon from './ProfileIcon';
 import axios from 'axios';
+import LargeHeader from '../../Headers/LargeHeader'
+import { css } from '@emotion/css';
+import Button from '../../Form/Buttons/Button';
+import MediumHeader from '../../Headers/MediumHeader'
+import styled from '@emotion/styled';
+
+const Wrapper = styled.div`
+  min-height: 250px;
+  width: 85%;
+  background: #1C1C1C;
+  padding: 20px;
+  margin: auto;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+const Subject = styled.div`
+  height: 50px;
+  width: 100%;
+`;
+
+const Comment = styled.div`
+  min-height: 100px;
+  margin: 10px;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+  @media (max-width: 770px) {
+    margin-left: 0px;
+  }
+`;
+
+const Content = styled.p`
+  color: #fff;
+  font-size: 1em;
+  padding: 5px;
+  margin-left: 10px;
+  font-family: 'Oswald', sans-serif;
+`;
+
+const UserDetails = styled.div`
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+`;
+
+const SubHeader = styled.h3`
+  margin-left: 10px;
+  font-size: 0.7em;
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+`;
 
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
@@ -13,6 +66,20 @@ function User() {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+
+  async function fetchPosts(setPosts) {
+    try {
+      const res = await axios.get(`http://localhost:5000/app/showuserposts/${username}`);
+      setPosts(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchPosts(setPosts);
+  }, []); // Removed the unnecessary dependency array
 
   const isCurrentUserFollowing = followers.some(
     (follower) => follower.username === currentUser.username
@@ -136,22 +203,74 @@ function User() {
 
   return (
     <div>
-      <ProfileIcon username={user.username} />
-      <h1>{user.username}</h1>
-      <h2>{user.fullName}</h2>
-      <h3>Followers:</h3>
-      <ul>
-        {followers.map((follower) => (
-          <li key={follower._id}>
-            <Link to={`/user/${follower.username}`}>{follower.username}</Link>
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleFollowToggle} disabled={loading}>
-        {loading ? 'Loading...' : isCurrentUserFollowing ? 'Unfollow' : 'Follow'}
-      </button>
-      {error && <div>Error: {error}</div>}
-      {successMessage && <div>{successMessage}</div>}
+      <div className={css`
+        display:flex;
+        flex-direction:row;
+        gap:5px;
+        width:100%;
+        margin-left:7.5%;
+        margin-top:5%;
+      `}>
+        <ProfileIcon username={user.username} className={`margin: 0 !important;`}/>
+        <LargeHeader  text={user.username}/>
+      </div>
+      <div className={css`
+        width:85%;
+        display:flex;
+        flex-direction:column;
+        margin-left:7.5%;
+        gap:7.5px;
+      `}>
+        <Button 
+          handleClick={handleFollowToggle} 
+          text={loading ? 'Loading...' : isCurrentUserFollowing ? 'Unfollow' : 'Follow'}
+        />
+        {error && <div>Error: {error}</div>}
+        {successMessage && <div>{successMessage}</div>}
+        <MediumHeader text={user.fullName + 's posts:'}/>
+        {/* <h3>Followers:</h3>
+        <ul>
+          {followers.map((follower) => (
+            <li key={follower._id}>
+              <Link to={`/user/${follower.username}`}>{follower.username}</Link>
+            </li>
+          ))}
+        </ul> */}
+
+        <Wrapper>
+          <ul
+            className={css`
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              list-style: none;
+            `}
+          >
+            {posts.map(post => (
+              <li
+                className={css`
+                  &:nth-child(even) {
+                    background: #212121;
+                  }
+                `}
+                key={post._id}
+              >
+                <Subject>
+                  <MediumHeader text={post.subject} />
+                </Subject>
+
+                <Comment>
+                  <Content>{post.message}</Content>
+                </Comment>
+
+                <UserDetails>
+                  <SubHeader>{post.date}</SubHeader>
+                </UserDetails>
+              </li>
+            ))}
+          </ul>
+        </Wrapper>
+      </div>
     </div>
   );
 }

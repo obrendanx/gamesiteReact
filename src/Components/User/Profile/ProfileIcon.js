@@ -3,23 +3,23 @@ import axios from 'axios';
 import styled from '@emotion/styled';
 import { AuthContext } from '../Auth/AuthContext';
 
-const ProfileIconDiv = styled.div`
+const ProfileIcon = ({username, auto}) => { 
+  //used to grab user information
+  const { user } = useContext(AuthContext);
+  const [color, setColor] = useState("000");
+
+  const ProfileIconDiv = styled.div`
     padding:10px;
     border-radius:100%;
     width:50px;
     height:50px;
     text-align:center;
     line-height:25px;
-    margin:0 auto;
+    margin:0 ${auto};
     margin-top:17.5px;
     margin-bottom:17.5px;
     color:#fff;
   `
-
-const ProfileIcon = ({username}) => { 
-  //used to grab user information
-  const { user } = useContext(AuthContext);
-  const [color, setColor] = useState("000");
 
   useEffect(() => {
     async function fetchData() {

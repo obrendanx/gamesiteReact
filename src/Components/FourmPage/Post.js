@@ -67,7 +67,7 @@ function Post() {
 
   useEffect(() => {
     fetchPosts(setPosts);
-  }, []); // Removed the unnecessary dependency array
+  }, []); 
 
   console.log(posts);
 

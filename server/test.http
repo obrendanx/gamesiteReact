@@ -1,1 +1,1 @@
-GET http://localhost:5000/app/showposts
+GET http://localhost:5000/app/showuserposts/obrendanx

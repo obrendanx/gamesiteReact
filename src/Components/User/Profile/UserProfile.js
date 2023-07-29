@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthContext';
+import LargeHeader from '../../Headers/LargeHeader'
 
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
@@ -128,7 +129,7 @@ function User() {
 
   return (
     <div>
-      <h1>{user.username}</h1>
+      <LargeHeader>{user.username}</LargeHeader>
       <h2>{user.fullName}</h2>
       <h3>Followers:</h3>
       <ul>
