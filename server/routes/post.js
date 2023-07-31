@@ -26,9 +26,7 @@ router.post('/fourmspost', async (request, response, next) => {
 router.get('/showposts', async (request, response, next) => {
   try {
     const posts = await fourmPost.find();
-    response.json({data: posts});
-    const responseData = await response.json();
-    console.log(responseData);
+    response.json({ data: posts });
   } catch (error) {
     next(error);
   }
@@ -36,12 +34,10 @@ router.get('/showposts', async (request, response, next) => {
 
 router.get('/showuserposts/:username', async (request, response, next) => {
   try {
-    const username = request.query.username;
+    const username = request.params.username; // Use request.params to get the URL parameter
 
     const posts = await fourmPost.find({ postedBy: username });
-    response.json({data: posts});
-    const responseData = await response.json();
-    console.log(responseData);
+    response.json({ data: posts });
   } catch (error) {
     next(error);
   }
