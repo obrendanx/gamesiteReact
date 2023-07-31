@@ -106,18 +106,105 @@ router.delete('/api/users/:username', async (req, res) => {
   }
 });
 
-router.get("/api/user/:username", async (req, res) => {
-  console.log(req.params.username);
-  const user = await signUp.findOne({ username: req.params.username });
-  res.json(user);
+router.get('/api/user/:username', async (req, res) => {
+  try {
+    const user = await signUp.findOne({ username: req.params.username });
+    if (user) {
+      res.json(user);
+    } else {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
-router.put("/api/userupdate/:username", async (req, res) => {
-  const updatedUser = req.body;
-  const user = await signUp.findOneAndUpdate({ username: req.params.username }, updatedUser, {
-    new: true,
-  });
-  res.json(user);
+router.put('/api/userupdate/:username', async (req, res) => {
+  try {
+    const updatedUser = req.body;
+    const user = await signUp.findOneAndUpdate({ username: req.params.username }, updatedUser, {
+      new: true
+    });
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
+router.post('/api/follow/:username', async (req, res) => {
+  try {
+    const followerUsername = req.body.username;
+    const followedUsername = req.params.username;
+
+    const follower = await signUp.findOne({ username: followerUsername });
+    const followedUser = await signUp.findOne({ username: followedUsername });
+
+    followedUser.followers.push(follower._id);
+    follower.following.push(followedUser._id);
+
+    await followedUser.save();
+    await follower.save();
+
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
+router.post('/api/unfollow/:username', async (req, res) => {
+  try {
+    const unfollowerUsername = req.body.username;
+    const unfollowedUsername = req.params.username;
+
+    const unfollower = await signUp.findOne({ username: unfollowerUsername });
+    const unfollowedUser = await signUp.findOne({ username: unfollowedUsername });
+
+    const followerIndex = unfollowedUser.followers.indexOf(unfollower._id);
+    if (followerIndex > -1) {
+      unfollowedUser.followers.splice(followerIndex, 1);
+      await unfollowedUser.save();
+    }
+
+    const followingIndex = unfollower.following.indexOf(unfollowedUser._id);
+    if (followingIndex > -1) {
+      unfollower.following.splice(followingIndex, 1);
+      await unfollower.save();
+    }
+
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
+router.get('/api/followers/:username', async (req, res) => {
+  try {
+    const username = req.params.username;
+    const user = await signUp.findOne({ username }).populate('followers', 'username');
+    if (user) {
+      const followers = user.followers;
+      res.json({ followers });
+    } else {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
+
+router.get('/api/following/:username', async (req, res) => {
+  try {
+    const username = req.params.username;
+    const user = await signUp.findOne({ username }).populate('following', 'username');
+    if (user) {
+      const following = user.following;
+      res.json({ following });
+    } else {
+      return res.status(404).json({ error: 'User not found.' });
+    }
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 router.use(errorHandler);

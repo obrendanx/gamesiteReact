@@ -48,7 +48,7 @@ function Login() {
         username,
         email
       });
-      navigate('/profile');
+        navigate('/profile');
     } else {
       toast.error('Please check your username and password');
     }

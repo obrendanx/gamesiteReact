@@ -98,7 +98,7 @@ function Nav() {
     // const user = useSelector(selectUser);
     const { user, isLoggedIn } = useContext(AuthContext);
     const [isGlobal, setIsGlobal] = useState(false);
-
+    
     useEffect(() => {
         async function fetchData() {
             try {

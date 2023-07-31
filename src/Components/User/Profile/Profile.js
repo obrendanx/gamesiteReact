@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/css";
 import Button from "../../Form/Buttons/Button";
 
+
 const ProfilePageDiv = styled.div`
   background: #1c1c1c;
   width: 100%;
@@ -75,7 +76,7 @@ function Profile() {
       <ProfilePageDiv>
         <ProfileTitle>{username}</ProfileTitle>
         <h2 className="profilePic">
-          <ProfileIcon />
+          <ProfileIcon username={username} auto="auto"/>
         </h2>
         <ProfileInfo>
           <h3 className="profile_h3">
@@ -85,16 +86,12 @@ function Profile() {
 
         <FollowCount>
           <FollowingDiv>
-            <Following />
+            <Following/>
           </FollowingDiv>
           <FollowersDiv>
-            <Followers />
+            <Followers/>
           </FollowersDiv>
         </FollowCount>
-
-        <FollowingList username={username} />
-        <FollowingList username={username} />
-        <FollowingList username={username} />
       </ProfilePageDiv>
     </div>
   );
