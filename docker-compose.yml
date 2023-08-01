@@ -7,7 +7,7 @@ services:
     ports:
       - 3000:3000
     volumes: 
-      - ./
+      - ./:/app
 
   back-end:
     container_name: gamesiteback
@@ -17,7 +17,7 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./server
+      - /server
     environment:
       - DATABASE_ACCESS=mongodb+srv://brendanewen16:3BmFyuA4alqoB666@cluster0.3mfmcng.mongodb.net/?retryWrites=true&w=majority
       - SECRET_KEY=Zz47H.Aa5B
