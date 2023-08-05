@@ -55,7 +55,7 @@ const SubHeader = styled.h3`
 
 async function fetchPosts(setPosts) {
   try {
-    const res = await axios.get('http://localhost:5000/app/showposts');
+    const res = await axios.get('https://gamesite-backend.onrender.com/app/showposts');
     setPosts(res.data.data);
   } catch (err) {
     console.log(err);

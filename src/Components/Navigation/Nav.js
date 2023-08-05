@@ -104,7 +104,7 @@ function Nav() {
             try {
                 if (Object.keys(user).length > 0) {
                 const username = user.username;
-                const res = await axios.get(`http://localhost:5000/app/is-admin?username=${username}`);
+                const res = await axios.get(`https://gamesite-backend.onrender.com/app/is-admin?username=${username}`);
                 setIsGlobal(res.data.isGlobal);
                 } else {
                 setIsGlobal(false);

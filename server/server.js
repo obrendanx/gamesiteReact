@@ -26,7 +26,11 @@ mongoose.connect(process.env.DATABASE_ACCESS, {
   app.use(express.json())
   const bodyParser = require('body-parser');
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(cors())
+  app.use(cors(
+    {
+      origin: ['https://gamesite-front.onrender.com']
+    }
+  ));
   app.use('/app', recordUrl)
   app.use('/app', postUrl)
   

@@ -27,7 +27,7 @@ export default function Followers() {
 
   const fetchFollowers = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/app/api/followers/${username}`);
+      const response = await axios.get(`https://gamesite-backend.onrender.com/app/api/followers/${username}`);
       if (response.status === 200) {
         setFollowers(response.data.followers);
       } else {

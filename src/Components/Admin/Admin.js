@@ -35,7 +35,7 @@ export default function Admin() {
   async function fetchUsers() {
     //fetches all users from database
     try {
-      const res = await axios.get('http://localhost:5000/app/api/users');
+      const res = await axios.get('https://gamesite-backend.onrender.com/app/api/users');
       setUsers(res.data.data)
     } catch (err) {
       console.log(err);
@@ -54,8 +54,8 @@ export default function Admin() {
       try {
         //deletes user from database
         //refetches new list of users to display
-        await axios.delete(`http://localhost:5000/app/api/users/${username}`);
-        const res = await axios.get('http://localhost:5000/app/api/users');
+        await axios.delete(`https://gamesite-backend.onrender.com/app/api/users/${username}`);
+        const res = await axios.get('https://gamesite-backend.onrender.com/app/api/users');
         setUsers(res.data.data);
       } catch (err) {
         console.error(err);

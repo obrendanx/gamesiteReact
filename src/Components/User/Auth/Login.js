@@ -24,7 +24,7 @@ function Login() {
   async function loginUser(event) {
     event.preventDefault();
 
-    const response = await fetch('http://localhost:5000/app/login', {
+    const response = await fetch('https://gamesite-backend.onrender.com/app/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

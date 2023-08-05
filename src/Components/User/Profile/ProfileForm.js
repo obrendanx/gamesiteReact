@@ -30,7 +30,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     //fetch the current user
     const fetchUser = async () => {
       setIsLoading(true);
-      const response = await axios.get(`http://localhost:5000/app/api/user/${username}`);
+      const response = await axios.get(`https://gamesite-backend.onrender.com/app/api/user/${username}`);
       setUser(response.data);
       setIsLoading(false);
     };

@@ -24,7 +24,7 @@ const ProfileIcon = ({username, auto}) => {
   useEffect(() => {
     async function fetchData() {
     
-      const res = await axios.get(`http://localhost:5000/app/profile-icon?username=${username}`);
+      const res = await axios.get(`https://gamesite-backend.onrender.com/app/profile-icon?username=${username}`);
       setColor(res.data.color);
     }
     fetchData();

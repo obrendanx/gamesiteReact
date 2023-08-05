@@ -17,7 +17,7 @@ const ProfilePage = () => {
         //if user is logged in fetch that user data from db
         //store data in the user array
         const username = user.username;
-        const res = await axios.get(`http://localhost:5000/app/api/user/${username}`);
+        const res = await axios.get(`https://gamesite-backend.onrender.com/app/api/user/${username}`);
         setUsers(res.data)
         setIsLoading(false);
       }

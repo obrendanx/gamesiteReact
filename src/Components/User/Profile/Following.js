@@ -26,7 +26,7 @@ export default function Following() {
 
   const fetchFollowing = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/app/api/following/${username}`);
+      const response = await axios.get(`https://gamesite-backend.onrender.com/app/api/following/${username}`);
       if (response.status === 200) {
         setFollowing(response.data.following);
       } else {

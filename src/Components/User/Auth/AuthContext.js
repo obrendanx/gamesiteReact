@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
       const decodedToken = jwt.decode(token);
       const username = decodedToken.username;
 
-      const response = await fetch(`http://localhost:5000/app/api/user/${username}`, {
+      const response = await fetch(`https://gamesite-backend.onrender.com/app/api/user/${username}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,

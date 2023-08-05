@@ -70,7 +70,7 @@ function User() {
 
   async function fetchPosts(setPosts) {
     try {
-      const res = await axios.get(`http://localhost:5000/app/showuserposts/${username}`);
+      const res = await axios.get(`https://gamesite-backend.onrender.com/app/showuserposts/${username}`);
       setPosts(res.data.data);
     } catch (err) {
       console.log(err);
@@ -94,7 +94,7 @@ function User() {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/app/api/user/${username}`);
+      const response = await axios.get(`https://gamesite-backend.onrender.com/app/api/user/${username}`);
       if (response.status === 200) {
         setUser(response.data);
       } else {
@@ -107,7 +107,7 @@ function User() {
 
   const fetchFollowers = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/app/api/followers/${username}`);
+      const response = await axios.get(`https://gamesite-backend.onrender.com/app/api/followers/${username}`);
       if (response.status === 200) {
         const isCurrentUserFollower = response.data.followers.some(
           (follower) => follower.username === currentUser.username
@@ -144,7 +144,7 @@ function User() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/app/api/follow/${username}`,
+        `https://gamesite-backend.onrender.com/app/api/follow/${username}`,
         { username: currentUser.username },
         {
           headers: {
@@ -174,7 +174,7 @@ function User() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/app/api/unfollow/${username}`,
+        `https://gamesite-backend.onrender.com/app/api/unfollow/${username}`,
         { username: currentUser.username },
         {
           headers: {

@@ -64,7 +64,7 @@ const Register = () => {
         password
       }
   
-      axios.post('http://localhost:5000/app/signup', registered)
+      axios.post('https://gamesite-backend.onrender.com/app/signup', registered)
         .then(response => console.log(response.data))
   
       window.location = './Login'
