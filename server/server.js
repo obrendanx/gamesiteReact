@@ -24,7 +24,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, {
     console.error('Error connecting to MongoDB:', error);
   });
 
-app.use(express.json())
+app.use(express.json());
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(
@@ -32,13 +32,15 @@ app.use(cors(
     origin: ['https://bewen.net']
   }
 ));
-app.use('/app', recordUrl)
-app.use('/app', postUrl)
+app.use('/app', recordUrl);
+app.use('/app', postUrl);
 
-// Catch-all route to serve the React app for any route
-app.use(express.static(path.join(__dirname, 'client/build')));
+// Serve static files from the React build folder
+app.use(express.static(path.join(__dirname, '../build')));
+
+// Catch-all route to serve the React app for any other route
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 // Start the Express server
