@@ -7,6 +7,9 @@ import Label from '../Form/Label';
 import Submit from '../Form/Submit';
 import Validator from '../Form/Validator';
 import { AuthContext } from '../User/Auth/AuthContext';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
 
 function FourmInput() {
   const [subject, setSubject] = useState('');
