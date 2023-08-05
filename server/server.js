@@ -28,7 +28,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cors(
     {
-      origin: ['https://gamesite-front.onrender.com']
+      origin: ['https://bewen.net']
     }
   ));
   app.use('/app', recordUrl)
