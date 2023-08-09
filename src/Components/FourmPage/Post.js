@@ -68,6 +68,7 @@ function Post() {
   const allowedTags = [
     'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
     'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
+    'del', 'underline', 'strikethrough', 'figure', 'img', 
   ];
 
   useEffect(() => {
@@ -119,3 +120,4 @@ function Post() {
 }
 
 export default Post;
+
