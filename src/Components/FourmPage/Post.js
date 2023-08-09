@@ -4,6 +4,7 @@ import { css } from '@emotion/css';
 import axios from 'axios';
 import MediumHeader from '../Headers/MediumHeader';
 import { Link } from 'react-router-dom';
+import sanitizeHtml from 'sanitize-html';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -64,6 +65,10 @@ async function fetchPosts(setPosts) {
 
 function Post() {
   const [posts, setPosts] = useState([]);
+  const allowedTags = [
+    'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
+  ];
 
   useEffect(() => {
     fetchPosts(setPosts);
@@ -95,7 +100,11 @@ function Post() {
             </Subject>
 
             <Comment>
-              <Content>{post.message}</Content>
+              <Content
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.message, {
+                  allowedTags, 
+                }) }}
+              />
             </Comment>
 
             <UserDetails>
