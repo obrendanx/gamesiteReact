@@ -37,17 +37,11 @@ function FourmInput() {
           postedBy,
         };
 
-        console.log('Sending data:', newPost);
-
-        const response = await axios.post(
-          'http://localhost:5000/app/fourmspost',
-          newPost,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        const response = await axios.post('https://gamesite-backend.onrender.com/app/fourmspost', newPost, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
         console.log(response.data);
         // Reset form fields
@@ -89,7 +83,7 @@ function FourmInput() {
   return (
     <div
       className={css`
-        height: 450px;
+        min-height: 500px;
         width: 100%;
       `}
     >
@@ -98,14 +92,14 @@ function FourmInput() {
         className={css`
           display: block;
           min-height: 300px;
-          width: 60%;
+          width: 90%;
           background: #1c1c1c;
           padding: 25px;
           margin: auto;
           font-family: Roboto, sans-serif;
           border-radius: 10px;
           margin-top: 20px;
-          margin-bottom: 20px;
+          margin-bottom: 40px;
           @media (max-width: 1330px) {
             width: 85%;
           }
