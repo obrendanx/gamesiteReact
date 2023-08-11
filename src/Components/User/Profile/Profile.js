@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../Auth/AuthContext.js";
 import Followers from "./Followers.js";
 import Following from "./Following.js";
-import FollowingList from "./FollowingList.js";
+import { Link } from 'react-router-dom';
 import ProfileIcon from "./ProfileIcon";
 import ProfilePage from "./ProfilePage";
 import styled from "@emotion/styled";
@@ -74,6 +74,25 @@ function Profile() {
       {isProfilePageDisplayed && <ProfilePage />}
 
       <ProfilePageDiv>
+        <span>
+          <Link 
+            to={`/user/${username}`}
+            className={css`
+              margin-top:10px;
+              color:#fff;
+              font-size: 0.8em;
+              font-family: Roboto, sans-serif;
+              font-weight:900;
+              margin-left:5px;
+              &:hover{
+                pointer:cursor;
+              }
+            `}
+          >
+              PROFILE PAGE &gt;
+          </Link>
+        </span>
+
         <ProfileTitle>{username}</ProfileTitle>
         <h2 className="profilePic">
           <ProfileIcon username={username} auto="auto"/>
