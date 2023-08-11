@@ -11,6 +11,8 @@ import Input from '../Form/Input';
 import Label from '../Form/Label';
 import Submit from '../Form/Submit';
 import Validator from '../Form/Validator';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function FourmInput() {
   const [subject, setSubject] = useState('');
@@ -20,11 +22,19 @@ function FourmInput() {
   const [messageError, setMessageError] = useState('');
   const { user, isLoggedIn } = useContext(AuthContext);
 
+  const handleImageUpload = (file) => {
+    // Check if the file URL starts with http or https
+    if (!/^https?:\/\//.test(file.url)) {
+      toast.error('Invalid image address. Please use a URL starting with http or https.');
+      return;
+    }
+  }
+
   useEffect(() => {
     if (isLoggedIn) {
       setPostedBy(user.username);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, user]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,7 +47,9 @@ function FourmInput() {
           postedBy,
         };
 
-        const response = await axios.post('https://gamesite-backend.onrender.com/app/fourmspost', newPost, {
+        console.log(postedBy);
+
+        const response = await axios.post('http://localhost:5000/app/fourmspost', newPost, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -137,11 +149,18 @@ function FourmInput() {
               font-size: 16px;
               color: #000;
             `}
+            toolbar={{
+              image: {
+                uploadCallback: handleImageUpload,
+                alt: { present: true, mandatory: true },
+              },
+            }}
           />
         </div>
         {messageError && <Validator text={messageError} />}
 
         <Submit small />
+        <ToastContainer/>
       </form>
     </div>
   );

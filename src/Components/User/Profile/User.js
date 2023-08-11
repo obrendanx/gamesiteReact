@@ -4,10 +4,12 @@ import { AuthContext } from '../Auth/AuthContext';
 import ProfileIcon from './ProfileIcon';
 import axios from 'axios';
 import LargeHeader from '../../Headers/LargeHeader'
-import { css } from '@emotion/css';
+//import { css } from '@emotion/css';
+import { css, Global } from '@emotion/react';
 import Button from '../../Form/Buttons/Button';
 import MediumHeader from '../../Headers/MediumHeader'
 import styled from '@emotion/styled';
+import sanitizeHtml from 'sanitize-html';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -67,6 +69,14 @@ function User() {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
+  const allowedTags = [
+    'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
+    'del', 'underline', 'strikethrough', 'img', 
+  ];
+  const allowedAttributes = {
+    img: ['src', 'height', 'width'], // Allow only the src attribute for img tags
+  };
 
   async function fetchPosts(setPosts) {
     try {
@@ -203,7 +213,15 @@ function User() {
 
   return (
     <div>
-      <div className={css`
+      <Global
+        styles={css`
+          img {
+            max-width:200px;
+            max-height:200px;
+          }
+        `}
+      />
+      <div styles={css`
         display:flex;
         flex-direction:row;
         gap:5px;
@@ -214,7 +232,7 @@ function User() {
         <ProfileIcon username={user.username} className={`margin: 0 !important;`}/>
         <LargeHeader  text={user.username}/>
       </div>
-      <div className={css`
+      <div styles={css`
         width:85%;
         display:flex;
         flex-direction:column;
@@ -239,7 +257,7 @@ function User() {
 
         <Wrapper>
           <ul
-            className={css`
+            styles={css`
               display: flex;
               flex-direction: column;
               gap: 10px;
@@ -248,7 +266,7 @@ function User() {
           >
             {posts.map(post => (
               <li
-                className={css`
+                styles={css`
                   &:nth-child(even) {
                     background: #212121;
                   }
@@ -259,9 +277,15 @@ function User() {
                   <MediumHeader text={post.subject} />
                 </Subject>
 
-                <Comment>
-                  <Content>{post.message}</Content>
-                </Comment>
+               <Comment>
+                <Content
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.message, {
+                    allowedTags, 
+                    allowedAttributes,
+                  }) }}
+                  {...console.log(post.message)}
+                />
+              </Comment> 
 
                 <UserDetails>
                   <SubHeader>{post.date}</SubHeader>
