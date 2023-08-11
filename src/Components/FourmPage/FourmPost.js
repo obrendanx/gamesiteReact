@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { css } from '@emotion/css';
 import axios from 'axios';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { EditorState} from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import { AuthContext } from '../User/Auth/AuthContext';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import TextArea from '../Form/TextArea';
 import Input from '../Form/Input';
 import Label from '../Form/Label';
 import Submit from '../Form/Submit';

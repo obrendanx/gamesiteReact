@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-//import { css } from '@emotion/css';
 import axios from 'axios';
 import MediumHeader from '../Headers/MediumHeader';
 import { Link } from 'react-router-dom';
@@ -55,6 +54,19 @@ const SubHeader = styled.h3`
   font-weight: 300;
 `;
 
+const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+`
+
+const ListItem = styled.li`
+  &:nth-of-type(even) {
+    background: #212121;
+  }
+`
+
 
 async function fetchPosts(setPosts) {
   try {
@@ -79,9 +91,7 @@ function Post() {
 
   useEffect(() => {
     fetchPosts(setPosts);
-  }, []); 
-
-  console.log(posts);
+  }, []);
 
   return (
     <Wrapper>
@@ -93,7 +103,7 @@ function Post() {
           }
         `}
       />
-      <ul
+      <List
         styles={css`
           display: flex;
           flex-direction: column;
@@ -102,7 +112,7 @@ function Post() {
         `}
       >
         {posts.map(post => (
-          <li
+          <ListItem
             styles={css`
               &:nth-child(even) {
                 background: #212121;
@@ -127,10 +137,11 @@ function Post() {
             <UserDetails>
               <SubHeader>{post.date}</SubHeader>
               <SubHeader><Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link></SubHeader>
+              {console.log(post._id)}
             </UserDetails>
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </List>
     </Wrapper>
   );
 }
