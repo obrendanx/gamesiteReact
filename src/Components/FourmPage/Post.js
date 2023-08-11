@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/css';
+//import { css } from '@emotion/css';
 import axios from 'axios';
 import MediumHeader from '../Headers/MediumHeader';
 import { Link } from 'react-router-dom';
 import sanitizeHtml from 'sanitize-html';
+import { css, Global } from '@emotion/react';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -54,6 +55,7 @@ const SubHeader = styled.h3`
   font-weight: 300;
 `;
 
+
 async function fetchPosts(setPosts) {
   try {
     const res = await axios.get('http://localhost:5000/app/showposts');
@@ -68,8 +70,12 @@ function Post() {
   const allowedTags = [
     'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
     'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
-    'del', 'underline', 'strikethrough', 'figure', 'img', 
+    'del', 'underline', 'strikethrough', 'img', 
   ];
+  const allowedAttributes = {
+    img: ['src', 'height', 'width'], // Allow only the src attribute for img tags
+  };
+
 
   useEffect(() => {
     fetchPosts(setPosts);
@@ -79,8 +85,16 @@ function Post() {
 
   return (
     <Wrapper>
+      <Global
+        styles={css`
+          img {
+            max-width:200px;
+            max-height:200px;
+          }
+        `}
+      />
       <ul
-        className={css`
+        styles={css`
           display: flex;
           flex-direction: column;
           gap: 10px;
@@ -89,7 +103,7 @@ function Post() {
       >
         {posts.map(post => (
           <li
-            className={css`
+            styles={css`
               &:nth-child(even) {
                 background: #212121;
               }
@@ -104,7 +118,9 @@ function Post() {
               <Content
                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.message, {
                   allowedTags, 
+                  allowedAttributes,
                 }) }}
+                {...console.log(post.message)}
               />
             </Comment>
 
