@@ -49,7 +49,7 @@ function FourmInput() {
 
         console.log(postedBy);
 
-        const response = await axios.post('http://localhost:5000/app/fourmspost', newPost, {
+        const response = await axios.post('https://gamesite-backend.onrender.com/app/fourmspost', newPost, {
           headers: {
             'Content-Type': 'application/json',
           },
