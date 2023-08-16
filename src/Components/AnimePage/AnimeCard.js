@@ -1,5 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from '@emotion/styled'
+import FavouriteBtn from '../Form/Buttons/FavouriteBtn'
+import axios from 'axios'
+import { AuthContext } from "../User/Auth/AuthContext";
 
 const AnimeCardCtn = styled.article`
   width:100%;
@@ -19,6 +22,24 @@ const AnimeImage = styled.figure`
 `
 
 function AnimeCard({anime}) {
+  const { user } = useContext(AuthContext);
+  const handleClick = async () => {
+    try {
+      const newAnimeItem = {
+        username: user.username,
+        title: anime.title_japanese,
+        img: anime.images.jpg.image_url,
+        url: anime.url,
+      };
+
+      // Send a POST request to your server to add the new anime item
+      const response = await axios.post('http://localhost:5000/app/newanime', newAnimeItem);
+      console.log('Anime added:', response.data);
+    } catch (error) {
+      console.error('Error adding anime:', error);
+    }
+  };
+
   return (
     <div>
         <AnimeCardCtn>
@@ -31,6 +52,7 @@ function AnimeCard({anime}) {
                 {/* Title for anime card (in japanese) */}
                 <Header>{anime.title_japanese}</Header>
             </Link>
+            <FavouriteBtn handleClick={handleClick}/>
         </AnimeCardCtn>
     </div>
   )
