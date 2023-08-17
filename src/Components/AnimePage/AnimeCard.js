@@ -1,8 +1,10 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import FavouriteBtn from '../Form/Buttons/FavouriteBtn'
 import axios from 'axios'
 import { AuthContext } from "../User/Auth/AuthContext";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AnimeCardCtn = styled.article`
   width:100%;
@@ -23,6 +25,35 @@ const AnimeImage = styled.figure`
 
 function AnimeCard({anime}) {
   const { user } = useContext(AuthContext);
+  const [userFavourites, setUserFavourites] = useState([]);
+  const [isAlreadyFavorite, setIsAlreadyFavorite] = useState(false);
+
+  // Fetch the user's favorite anime items on component mount
+  useEffect(() => {
+    const fetchUserFavourites = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/app/userfavourites/${user.username}`
+        );
+        setUserFavourites(response.data);
+      } catch (error) {
+        console.error('Error fetching user favourites:', error);
+      }
+    };
+
+    const checkIsAlreadyFavorite = () => {
+      const isFavourite = userFavourites.some(
+        (item) => item.animeTitle === anime.title_japanese
+      );
+      setIsAlreadyFavorite(isFavourite);
+    };
+
+    if (user) {
+      fetchUserFavourites();
+      checkIsAlreadyFavorite();
+    }
+  }, [user, anime.title_japanese, userFavourites]);
+
   const handleClick = async () => {
     try {
       const newAnimeItem = {
@@ -32,11 +63,41 @@ function AnimeCard({anime}) {
         url: anime.url,
       };
 
-      // Send a POST request to your server to add the new anime item
-      const response = await axios.post('http://localhost:5000/app/newanime', newAnimeItem);
-      console.log('Anime added:', response.data);
+      const isAlreadyFavorite = userFavourites.some(
+        (item) => item.animeTitle === newAnimeItem.title
+      );
+
+      if (isAlreadyFavorite) {
+        // Anime already exists, remove it
+        const removedItemId = userFavourites.find(
+          (item) => item.animeTitle === newAnimeItem.title
+        )._id;
+        await removeAnimeItem(removedItemId);
+        setUserFavourites((prevFavourites) =>
+          prevFavourites.filter((item) => item._id !== removedItemId)
+        );
+        toast.error('Anime removed from favorites');
+      } else {
+        // Anime doesn't exist, add it
+        const response = await axios.post(
+          'http://localhost:5000/app/newanime',
+          newAnimeItem
+        );
+        console.log('Anime added:', response.data);
+        setUserFavourites((prevFavourites) => [...prevFavourites, response.data]);
+        toast.success('Anime added to favorites');
+      }
     } catch (error) {
-      console.error('Error adding anime:', error);
+      console.error('Error adding/removing anime:', error);
+    }
+  };
+
+  const removeAnimeItem = async (itemId) => {
+    try {
+      await axios.delete(`http://localhost:5000/app/removeanime/${user.username}/${itemId}`);
+      console.log('Anime removed:', itemId);
+    } catch (error) {
+      console.error('Error removing anime:', error);
     }
   };
 
@@ -52,7 +113,8 @@ function AnimeCard({anime}) {
                 {/* Title for anime card (in japanese) */}
                 <Header>{anime.title_japanese}</Header>
             </Link>
-            <FavouriteBtn handleClick={handleClick}/>
+            <FavouriteBtn favourited={isAlreadyFavorite} handleClick={handleClick}/>
+            <ToastContainer/>
         </AnimeCardCtn>
     </div>
   )

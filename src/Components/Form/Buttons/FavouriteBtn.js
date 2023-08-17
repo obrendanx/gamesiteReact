@@ -2,8 +2,13 @@ import React from 'react'
 import { BsFillStarFill } from 'react-icons/bs';
 import { css } from '@emotion/css';
 
-function FavouriteBtn({ handleClick, sm }) {
-    let iconStyles = { color: "#fff", fontSize: "1.5em", cursor: "pointer" };
+function FavouriteBtn({ handleClick, sm, favourited }) {
+    let iconStyles = {
+        fontSize: "1.5em",
+        cursor: "pointer",
+        color: favourited ? "black" : "#fff", // Update color based on 'favourited' prop
+    };
+
   return (
     <div>
         <button

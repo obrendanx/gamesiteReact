@@ -49,13 +49,54 @@ router.get('/showuseranime/:username', async (request, response, next) => {
   }
 })
 
-router.delete('/removeanime/:id', async (request, response, next) => {
+router.delete('/removeanime/:username/:id', async (request, response, next) => {
   try {
-    await fourmPost.deleteOne({ _id: request.params.id });
-    response.json({ success: true });
+    const username = request.params.username;
+    const animeItemId = request.params.id;
+
+    // Find the user by their username
+    let user = await userFavourite.findOne({ username });
+
+    if (!user) {
+      return response.status(404).json({ message: 'User not found' });
+    }
+
+    // Find the index of the anime item with the provided ID
+    const animeItemIndex = user.favouriteAnimeItems.findIndex(
+      (item) => item._id.toString() === animeItemId
+    );
+
+    if (animeItemIndex === -1) {
+      return response.status(404).json({ message: 'Anime item not found' });
+    }
+
+    // Remove the anime item from the user's favoriteAnimeItems array
+    user.favouriteAnimeItems.splice(animeItemIndex, 1);
+
+    // Save the updated user document
+    const updatedUser = await user.save();
+
+    response.json(updatedUser);
   } catch (error) {
     next(error);
   }
-})
+});
+
+router.get('/userfavourites/:username', async (request, response, next) => {
+  try {
+    const username = request.params.username;
+
+    // Find the user by their username
+    const user = await userFavourite.findOne({ username });
+
+    if (!user) {
+      return response.status(404).json({ message: 'User not found' });
+    }
+
+    response.json(user.favouriteAnimeItems);
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
