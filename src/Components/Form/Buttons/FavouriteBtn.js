@@ -4,9 +4,11 @@ import { css } from '@emotion/css';
 
 function FavouriteBtn({ handleClick, sm, favourited }) {
     let iconStyles = {
-        fontSize: "1.5em",
+        fontSize: "1em",
         cursor: "pointer",
-        color: favourited ? "black" : "#fff", // Update color based on 'favourited' prop
+        color: favourited ? "#F33446" : "#fff", 
+        marginRight: "5px",
+        paddingTop: "2.5px"
     };
 
   return (
@@ -30,6 +32,7 @@ function FavouriteBtn({ handleClick, sm, favourited }) {
         <BsFillStarFill
             style={iconStyles}
         />
+        {favourited ? "Remove Favourite" : "Add to Favourites"}
         </button>
     </div>
   )
