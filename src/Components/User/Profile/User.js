@@ -9,7 +9,7 @@ import Button from '../../Form/Buttons/Button';
 import MediumHeader from '../../Headers/MediumHeader'
 import styled from '@emotion/styled';
 import sanitizeHtml from 'sanitize-html';
-import { currentBlockContainsLink } from 'draft-js/lib/RichTextEditorUtil';
+import FavouriteCard from '../../AnimePage/FavouriteCard'
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -116,6 +116,7 @@ function User() {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
+  const [favourites, setFavourites] = useState([]);
   const allowedTags = [
     'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
     'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
@@ -148,6 +149,22 @@ function User() {
       fetchFollowers();
     }
   }, [username]);
+
+  useEffect(() => {
+    const fetchUserFavourites = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/app/userfavourites/${username}`
+        );
+        setFavourites(response.data);
+      } catch (error) {
+        console.error('Error fetching user favourites:', error);
+      }
+    };
+
+    fetchUserFavourites();
+    console.log(favourites);
+  }, [user]);
 
   const fetchUserProfile = async () => {
     try {
@@ -331,6 +348,12 @@ function User() {
             ))}
           </List>
         </Wrapper>
+        
+        <MediumHeader text={user.fullName + 's favourite anime:'}/>  
+
+        <div>
+          <FavouriteCard favouriteList={favourites} key={favourites._id}/>
+        </div>
       </SubDiv>
     </div>
   );

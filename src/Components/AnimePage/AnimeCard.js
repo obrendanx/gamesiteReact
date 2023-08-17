@@ -103,7 +103,7 @@ function AnimeCard({anime}) {
 
   return (
     <div>
-        <AnimeCardCtn>
+        <AnimeCardCtn key={anime.mal_id}>
             {/* Links to more information about anime (Covers entire card) */}
             <Link href={anime.url} target="_blank" rel="noreferrer">
                 {/* Image for card */}
