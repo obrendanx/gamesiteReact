@@ -38,17 +38,6 @@ router.post('/newanime', async (request, response, next) => {
   }
 });
 
-router.get('/showuseranime/:username', async (request, response, next) => {
-  try {
-    const username = request.params.username;
-
-    const posts = await fourmPost.find({ username: username });
-    response.json({ data: posts });
-  } catch (error) {
-    next(error);
-  }
-})
-
 router.delete('/removeanime/:username/:id', async (request, response, next) => {
   try {
     const username = request.params.username;
@@ -94,6 +83,40 @@ router.get('/userfavourites/:username', async (request, response, next) => {
     }
 
     response.json(user.favouriteAnimeItems);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put('/updateanime/:username/:id', async (request, response, next) => {
+  try {
+    const username = request.params.username;
+    const animeItemId = request.params.id;
+    const { currentEpisode, currentSeason } = request.body;
+
+    // Find the user by their username
+    let user = await userFavourite.findOne({ username });
+
+    if (!user) {
+      return response.status(404).json({ message: 'User not found' });
+    }
+
+    // Find the favorite anime item by its _id
+    const animeItem = user.favouriteAnimeItems.id(animeItemId);
+
+    if (!animeItem) {
+      return response.status(404).json({ message: 'Anime item not found' });
+    }
+
+    // Update the fields
+    animeItem.currentEpisode = currentEpisode;
+    animeItem.currentSeason = currentSeason;
+    animeItem.watching = currentEpisode > 0 || currentSeason > 0;
+
+    // Save the updated user document
+    const updatedUser = await user.save();
+
+    response.json(updatedUser);
   } catch (error) {
     next(error);
   }

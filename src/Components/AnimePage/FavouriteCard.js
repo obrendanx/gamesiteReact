@@ -1,5 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react'
 import styled from '@emotion/styled'
+import Input from '../Form/Input'
+import { AuthContext } from '../User/Auth/AuthContext';
+import Submit from '../Form/Submit'
+import axios from 'axios';
 
 const AnimeCardCtn = styled.article`
   width:100%;
@@ -33,7 +37,27 @@ const AnimeGroup = styled.div`
     }
 `
 
-function FavouriteCard({ favouriteList }) {
+function FavouriteCard({ favouriteList, user }) {
+  const [currentEpisode, setCurrentEpisode] = useState(0);
+  const [currentSeason, setCurrentSeason] = useState(0);
+  const [watching, setWatching] = useState(null)
+  const { user: currentUser } = useContext(AuthContext);
+
+  const handleClick = async (event, favourite) => {
+    event.preventDefault();
+    setWatching(currentEpisode > 0 || currentSeason > 0);
+
+    try {
+      await axios.put(
+        `http://localhost:5000/app/updateanime/${currentUser.username}/${favourite._id}`,
+        { currentEpisode, currentSeason }
+      );
+      // Handle success or update UI if needed
+    } catch (error) {
+      console.error('Error updating anime:', error);
+    }
+  };
+
   return (
     <AnimeContainer>
             {favouriteList.map((favourite) => (
@@ -48,6 +72,32 @@ function FavouriteCard({ favouriteList }) {
                         {/* Title for anime card (in japanese) */}
                         <Header>{favourite.animeTitle}</Header>
                     </Link>
+                    {currentUser.username !== user ? (
+                      null
+                    ) : 
+                      <form onSubmit={(event) => handleClick(event, favourite)}>
+                        <div>
+                          <span>Current Episode: </span>
+                          <Input 
+                            placeholder="Current Episode: " 
+                            type="number" 
+                            value={currentEpisode}
+                            onValueChange={setCurrentEpisode}
+                          />
+                          <span>Current Season: </span>
+                          <Input 
+                            placeholder="Current Season: " 
+                            type="number" 
+                            value={currentSeason}
+                            onValueChange={setCurrentSeason}
+                          />
+                        </div>
+                      </form>
+                    }
+                    <span>Season: {favourite.currentSeason}</span>
+                    <span>Episode: {favourite.currentEpisode}</span>
+                    { favourite.watching ? <span>Watching</span> : <span>Not Seen</span> }
+                    <Submit/>
                     </AnimeCardCtn>
                 </AnimeGroup>
             ))}

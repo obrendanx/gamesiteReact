@@ -352,7 +352,7 @@ function User() {
         <MediumHeader text={user.fullName + 's favourite anime:'}/>  
 
         <div>
-          <FavouriteCard favouriteList={favourites} key={favourites._id}/>
+          <FavouriteCard user={username} favouriteList={favourites} key={favourites._id}/>
         </div>
       </SubDiv>
     </div>
