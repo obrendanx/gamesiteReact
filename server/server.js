@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const recordUrl = require('./routes/userRecord')
 const postUrl = require('./routes/post')
+const animeUrl = require('./routes/animeRecord')
 const cors = require('cors')
 const path = require('path');
 
@@ -24,24 +25,17 @@ mongoose.connect(process.env.DATABASE_ACCESS, {
     console.error('Error connecting to MongoDB:', error);
   });
 
-app.use(express.json());
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors(
-  {
-    origin: ['https://bewen.net']
-  }
-));
-app.use('/app', recordUrl);
-app.use('/app', postUrl);
-
-// Serve static files from the React build folder
-app.use(express.static(path.join(__dirname, '../build')));
-
-// Catch-all route to serve the React app for any other route
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build', 'index.html'));
-});
+  app.use(express.json())
+  const bodyParser = require('body-parser');
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(cors(
+    {
+      origin: ['https://bewen.net']
+    }
+  ));
+  app.use('/app', recordUrl)
+  app.use('/app', postUrl)
+  
 
 // Start the Express server
 app.listen(5000, () => {
