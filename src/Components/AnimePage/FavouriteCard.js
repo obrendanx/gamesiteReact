@@ -85,7 +85,7 @@ function FavouriteCard({ favouriteList, user }) {
 
     try {
       await axios.put(
-        `http://localhost:5000/app/updateanime/${currentUser.username}/${favourite._id}`,
+        `https://gamesite-backend.onrender.com/app/updateanime/${currentUser.username}/${favourite._id}`,
         { currentEpisode, currentSeason }
       );
       toast.success("Anime updated successfully!");

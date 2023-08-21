@@ -273,7 +273,7 @@ function User() {
 
   const handleRemovePost = async (id) => {
       try {
-        await axios.delete(`http://localhost:5000/app/deletepost/${id}`);
+        await axios.delete(`https://gamesite-backend.onrender.com/app/deletepost/${id}`);
         fetchPosts(setPosts);
       } catch (err) {
         console.error(err);
