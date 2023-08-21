@@ -17,6 +17,7 @@ const Link = styled.a`
 
 const Header = styled.h2`
   margin-top:10px;
+  font-size:1em;
 `
 
 const AnimeImage = styled.figure`
