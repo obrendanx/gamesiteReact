@@ -35,6 +35,7 @@ mongoose.connect(process.env.DATABASE_ACCESS, {
   ));
   app.use('/app', recordUrl)
   app.use('/app', postUrl)
+  app.use('/app', animeUrl)
   
 
 // Start the Express server
