@@ -1,1 +1,9 @@
-GET http://localhost:5000/app/showuserposts/obrendanx
+POST http://localhost:5000/app/newanime
+Content-Type: application/json
+
+{
+  "username": "test2",
+  "title": "Dummy Anime Title",
+  "img": "https://dummy-anime-image.com/image.jpg",
+  "url": "https://dummy-anime-url.com"
+}
