@@ -5,6 +5,7 @@ import { css } from '@emotion/css'
 import Input from '../../Form/Input'
 import Submit from '../../Form/Submit'
 import Validator from '../../Form/Validator'
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const Header = styled.h1`
   text-align:center;
@@ -12,20 +13,30 @@ const Header = styled.h1`
   margin-bottom:30px;
 `
 
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+  marginTop: "10px"
+};
+
 const Register = () => {
     const [fullName, setFullName] = useState('')
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState({})
+    const [loading, setLoading] = useState(false);
   
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
       event.preventDefault()
   
       // Validate input fields
       setError({})
       let hasError = false
       const error = {}
+
+      setLoading(true);
   
       // Validate username
       if (!username || username.length < 6 || username.length > 14 || !/^[a-zA-Z0-9]+$/.test(username)) {
@@ -63,11 +74,17 @@ const Register = () => {
         email,
         password
       }
+
+        try {
+          axios.post('http://localhost:5000/app/signup', registered);
+
+          setLoading(false);
+          window.location = './Login'
+        } catch (error) {
+          console.error(error);
+          setLoading(false);
+        }
   
-      axios.post('http://localhost:5000/app/signup', registered)
-        .then(response => console.log(response.data))
-  
-      window.location = './Login'
     }
 
     return (
@@ -131,7 +148,18 @@ const Register = () => {
                 />
               {error.password && <Validator width="70%" left="15%" text={error.password}/>}
 
-              <Submit left="15%" />
+              {loading ? ( 
+                <PacmanLoader
+                  loading={loading}
+                  size={15}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                  color="#F44034"
+                  cssOverride={override}
+                />
+              ) : (
+                <Submit left="15%" />
+              )}
             </form>
           </div>
         </div>
