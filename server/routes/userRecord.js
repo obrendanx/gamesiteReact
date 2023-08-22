@@ -122,9 +122,18 @@ router.get('/api/user/:username', async (req, res) => {
 router.put('/api/userupdate/:username', async (req, res) => {
   try {
     const updatedUser = req.body;
+
+    // Check if the new password is provided
+    if (updatedUser.password) {
+      const saltPassword = await bcrypt.genSalt(10);
+      const securePassword = await bcrypt.hash(updatedUser.password, saltPassword);
+      updatedUser.password = securePassword;
+    }
+
     const user = await signUp.findOneAndUpdate({ username: req.params.username }, updatedUser, {
       new: true
     });
+
     res.json(user);
   } catch (error) {
     res.status(500).json({ error });

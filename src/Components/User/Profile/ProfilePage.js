@@ -4,29 +4,24 @@ import ProfileForm from "./ProfileForm";
 import { AuthContext } from "../Auth/AuthContext";
 
 const ProfilePage = () => {
-  //array of user details
-  const [users, setUsers] = useState({});
-  //loading state
+  const [users, setUsers] = useState(null); 
   const [isLoading, setIsLoading] = useState(true);
-  //grabs user logged in status in store
   const { isLoggedIn, user } = useContext(AuthContext);
 
   async function fetchUsers() {
     try {
-      if(isLoggedIn){
-        //if user is logged in fetch that user data from db
-        //store data in the user array
+      if (isLoggedIn) {
         const username = user.username;
         const res = await axios.get(`https://gamesite-backend.onrender.com/app/api/user/${username}`);
-        setUsers(res.data)
+        setUsers(res.data);
         setIsLoading(false);
       }
     } catch (err) {
       console.log(err);
     }
   }
+
   useEffect(() => {
-    //updates page with fetched user if logged in
     if (isLoggedIn) {
       fetchUsers();
     }
@@ -34,14 +29,13 @@ const ProfilePage = () => {
 
   const handleUpdateProfile = async (updatedUser) => {
     setIsLoading(true);
-    if(isLoggedIn){
-      //handles data for updating the profile for the specified username
-        const username = isLoggedIn.name;
-        await axios.put(`http://localhost:5000/app/api/userupdate/${username}`, updatedUser);
+    if (isLoggedIn) {
+      const username = isLoggedIn.name;
+      const response = await axios.put(`http://localhost:5000/app/api/userupdate/${username}`, updatedUser);
+      setUsers(response.data); 
     }
-    setUsers(updatedUser);
     setIsLoading(false);
-  };
+  }; 
 
   if (!isLoggedIn) return <div>Please log in to view your profile</div>;
   if (isLoading) return <div>Loading...</div>;

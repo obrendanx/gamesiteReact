@@ -5,6 +5,7 @@ import Following from "./Following.js";
 import { Link } from 'react-router-dom';
 import ProfileIcon from "./ProfileIcon";
 import ProfilePage from "./ProfilePage";
+import ProfileForm from "./ProfileForm.js";
 import styled from "@emotion/styled";
 import { css } from "@emotion/css";
 import Button from "../../Form/Buttons/Button";
@@ -41,6 +42,10 @@ const FollowCount = styled.div`
   width: 50%;
   margin-left: 25%;
   margin-top: 25px;
+  @media (max-width: 770px) {
+    width: 80%;
+    margin-left:10%;
+  }
 `;
 
 const FollowingDiv = styled.div`
@@ -71,7 +76,7 @@ function Profile() {
       `}
     >
       <Button handleClick={handleEditProfileClick} text="Edit Profile" />
-      {isProfilePageDisplayed && <ProfilePage />}
+      {isProfilePageDisplayed && <ProfileForm />}
 
       <ProfilePageDiv>
         <span>
