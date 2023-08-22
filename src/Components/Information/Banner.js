@@ -22,7 +22,7 @@ const BannerDiv = styled.div`
     font-size:1.3em;
     font-family:Roboto, sans-serif;
     color:#fff;
-    top:70%;
+    top:60%;
     @media (max-width: 770px){
       display:none;
       font-size:0.7em;

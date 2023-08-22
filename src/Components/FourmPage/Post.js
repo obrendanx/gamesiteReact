@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import styled from '@emotion/styled';
 import axios from 'axios';
 import MediumHeader from '../Headers/MediumHeader';
 import { Link } from 'react-router-dom';
 import sanitizeHtml from 'sanitize-html';
 import { css, Global } from '@emotion/react';
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -67,6 +68,11 @@ const ListItem = styled.li`
   }
 `
 
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 async function fetchPosts(setPosts) {
   try {
@@ -79,6 +85,7 @@ async function fetchPosts(setPosts) {
 
 function Post() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const allowedTags = [
     'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
     'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
@@ -90,7 +97,9 @@ function Post() {
 
 
   useEffect(() => {
-    fetchPosts(setPosts);
+   fetchPosts(setPosts).then(() => {
+      setLoading(false); 
+    }); 
   }, []);
 
   return (
@@ -103,45 +112,56 @@ function Post() {
           }
         `}
       />
-      <List
-        styles={css`
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          list-style: none;
-        `}
-      >
-        {posts.map(post => (
-          <ListItem
-            styles={css`
-              &:nth-child(even) {
-                background: #212121;
-              }
-            `}
-            key={post._id}
-          >
-            <Subject>
-              <MediumHeader text={post.subject} />
-            </Subject>
+      {loading ? ( 
+          <PacmanLoader
+            loading={loading}
+            size={15}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            color="#F44034"
+            cssOverride={override}
+          />
+      ) : (
+        <List
+          styles={css`
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            list-style: none;
+          `}
+        >
+          {posts.map(post => (
+            <ListItem
+              styles={css`
+                &:nth-child(even) {
+                  background: #212121;
+                }
+              `}
+              key={post._id}
+            >
+              <Subject>
+                <MediumHeader text={post.subject} />
+              </Subject>
 
-            <Comment>
-              <Content
-                dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.message, {
-                  allowedTags, 
-                  allowedAttributes,
-                }) }}
-                {...console.log(post.message)}
-              />
-            </Comment>
+              <Comment>
+                <Content
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.message, {
+                    allowedTags, 
+                    allowedAttributes,
+                  }) }}
+                  {...console.log(post.message)}
+                />
+              </Comment>
 
-            <UserDetails>
-              <SubHeader>{post.date}</SubHeader>
-              <SubHeader><Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link></SubHeader>
-              {console.log(post._id)}
-            </UserDetails>
-          </ListItem>
-        ))}
-      </List>
+              <UserDetails>
+                <SubHeader>{post.date}</SubHeader>
+                <SubHeader><Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link></SubHeader>
+                {console.log(post._id)}
+              </UserDetails>
+            </ListItem>
+          ))}
+        </List>
+      )}
     </Wrapper>
   );
 }
