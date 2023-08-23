@@ -75,7 +75,6 @@ router.get('/profile-icon', async (request, response, next) => {
 router.get('/is-admin', async (request, response, next) => {
   try{
     const username = request.query.username;
-    // Use the username to retrieve the user's profile icon color from the database
     const user = await signUp.findOne({ username: username });
     if (user) {
       const isGlobal = user.isGlobalAdmin;

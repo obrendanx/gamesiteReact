@@ -95,7 +95,6 @@ const NavRight = styled.div`
 `
 
 function Nav() {
-    // const user = useSelector(selectUser);
     const { user, isLoggedIn } = useContext(AuthContext);
     const [isGlobal, setIsGlobal] = useState(false);
     

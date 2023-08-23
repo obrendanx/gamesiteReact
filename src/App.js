@@ -5,13 +5,12 @@ import Fourms from './Pages/Fourms';
 import Footer from './Components/Information/Footer';
 import Logout from './Components/User/Auth/Logout';
 import Register from './Components/User/Auth/Register';
-import Profile from './Components/User/Profile/Profile';
+import Profile from './Pages/Profile';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import './scss/App.scss';
 import AnimeSearch from './Pages/AnimeSearch';
 import Login from './Components/User/Auth/Login';
 import Admin from './Components/Admin/Admin';
-import ProfilePage from './Components/User/Profile/ProfilePage';
 import { AuthProvider } from './Components/User/Auth/AuthContext';
 import User from './Components/User/Profile/User' 
 
@@ -31,7 +30,6 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route path="/admin" element={<Admin />} />
-              <Route path="/profilepage" element={<ProfilePage />} />
               {/* New route to display UserProfile */}
               <Route path="/user/:username" element={<User />} />
             </Routes>

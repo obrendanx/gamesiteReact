@@ -30,10 +30,10 @@ export default function Following() {
       if (response.status === 200) {
         setFollowing(response.data.following);
       } else {
-        // Handle error
+       console.log("Followers not found");
       }
     } catch (error) {
-      // Handle error
+      console.log("Follower not found");
     }
   };
 

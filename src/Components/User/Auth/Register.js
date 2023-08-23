@@ -57,8 +57,8 @@ const Register = () => {
       }
   
       // Validate full name
-      if (!fullName || !/^[a-zA-Z ]+$/.test(fullName)) {
-        error.fullName = 'Full name must contain only letters and spaces';
+      if (fullName && !/^[a-zA-Z ]+$/.test(fullName)) {
+        error.fullName = "Full name must contain only letters and spaces";
         hasError = true;
       }
   

@@ -48,27 +48,14 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     const newError = {};
 
     // Validate username
-    if (
-      username &&
-      (username.length < 6 ||
-        username.length > 14 ||
-        !/^[a-zA-Z0-9]+$/.test(username))
-    ) {
-      newError.username =
-        "Username must be between 6 and 14 characters and contain only letters and numbers";
+    if (username && (username.length < 6 || username.length > 14 || !/^[a-zA-Z0-9]+$/.test(username))) {
+      newError.username = "Username must be between 6 and 14 characters and contain only letters and numbers";
       hasError = true;
     }
 
     // Validate password
-    if (
-      password &&
-      (password.length < 8 ||
-        !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%.*?&])[A-Za-z\d@$!%.*?&]{8,}$/.test(
-          password
-        ))
-    ) {
-      newError.password =
-        "Password must be at least 8 characters and contain uppercase, lowercase, numbers, and symbols";
+    if (password && (password.length < 8 || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%.*?&])[A-Za-z\d@$!%.*?&]{8,}$/.test(password))) {
+      newError.password = "Password must be at least 8 characters and contain uppercase, lowercase, numbers, and symbols";
       hasError = true;
     }
 
@@ -78,10 +65,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     }
 
     // Validate email
-    if (
-      email &&
-      !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)
-    ) {
+    if (email && !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       newError.email = "Email must be a valid email address";
       hasError = true;
     }
@@ -97,6 +81,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
       return;
     }
 
+    //Only add fields that have been updated
     const updatedFields = {};
 
     if (username) {

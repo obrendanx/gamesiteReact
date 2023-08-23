@@ -5,7 +5,6 @@ function TextArea({ type, textname, value, onValueChange, left, placeholder }) {
    const handleInputChange = (event) => {
     const newValue = event.target.value;
     onValueChange(newValue);
-    // Call the provided callback function with the new value
   };
 
   return (
