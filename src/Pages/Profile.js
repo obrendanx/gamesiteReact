@@ -1,15 +1,14 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../Auth/AuthContext.js";
-import Followers from "./Followers.js";
-import Following from "./Following.js";
+import { AuthContext } from "../Components/User/Auth/AuthContext.js";
+import Followers from "../Components/User/Profile/Followers.js";
+import Following from "../Components/User/Profile/Following.js";
 import { Link } from 'react-router-dom';
-import ProfileIcon from "./ProfileIcon";
-import ProfilePage from "./ProfilePage";
-import ProfileForm from "./ProfileForm.js";
+import ProfileIcon from "../Components/User/Profile/ProfileIcon.js";
+import ProfileForm from "../Components/User/Profile/ProfileForm.js";
 import styled from "@emotion/styled";
 import { css } from "@emotion/css";
-import Button from "../../Form/Buttons/Button";
-
+import Button from "../Components/Form/Buttons/Button.js";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const ProfilePageDiv = styled.div`
   background: #1c1c1c;
@@ -63,9 +62,34 @@ function Profile() {
   const [isProfilePageDisplayed, setIsProfilePageDisplayed] = useState(false);
   const username = user.username;
 
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+    marginTop: "10px"
+  };
+
   const handleEditProfileClick = () => {
     setIsProfilePageDisplayed(!isProfilePageDisplayed);
   };
+
+  if (!user) {
+    return ( 
+    <div className={css`
+      height:100vh;
+      width:100vw;
+    `}>
+      <PacmanLoader
+        loading={!user}
+        size={15}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        color="#F44034"
+        cssOverride={override}
+      />
+    </div>
+    );
+  }
 
   return (
     <div

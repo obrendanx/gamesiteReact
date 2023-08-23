@@ -10,6 +10,7 @@ import MediumHeader from '../../Headers/MediumHeader'
 import styled from '@emotion/styled';
 import sanitizeHtml from 'sanitize-html';
 import FavouriteCard from '../../AnimePage/FavouriteCard'
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -123,9 +124,21 @@ function User() {
     'del', 'underline', 'strikethrough', 'img', 
   ];
   const allowedAttributes = {
-    img: ['src', 'height', 'width'], // Allow only the src attribute for img tags
+    img: ['src', 'height', 'width'], //allow the src, height and width attributes for an image tag 
   };
 
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+    marginTop: "10px"
+  };
+
+  const isCurrentUserFollowing = followers.some(
+    (follower) => follower.username === currentUser.username
+  );
+
+    //Fetches the users posts
   async function fetchPosts(setPosts) {
     try {
       const res = await axios.get(`http://localhost:5000/app/showuserposts/${username}`);
@@ -139,10 +152,7 @@ function User() {
     fetchPosts(setPosts);
   }, []); 
 
-  const isCurrentUserFollowing = followers.some(
-    (follower) => follower.username === currentUser.username
-  );
-
+  //Fetches profile and posts if username changes
   useEffect(() => {
     if (username) {
       fetchUserProfile();
@@ -150,6 +160,7 @@ function User() {
     }
   }, [username]);
 
+  //Fetches the users anime favourites and updates if user changes
   useEffect(() => {
     const fetchUserFavourites = async () => {
       try {
@@ -166,6 +177,7 @@ function User() {
     console.log(favourites);
   }, [user]);
 
+  //Fetches the user profile
   const fetchUserProfile = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/app/api/user/${username}`);
@@ -179,6 +191,7 @@ function User() {
     }
   };
 
+  //Fetches the users followers
   const fetchFollowers = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/app/api/followers/${username}`);
@@ -199,6 +212,7 @@ function User() {
     }
   };
 
+  //Logic for handling the following and unfollowing of users
   const handleFollowToggle = async () => {
     if (isLoggedIn) {
       if (isCurrentUserFollowing) {
@@ -211,6 +225,8 @@ function User() {
     }
   };
 
+  //Logic on following the user
+  //Current logged in users username is pushed to the DB
   const followUser = async () => {
     setLoading(true);
     setError(null);
@@ -241,6 +257,8 @@ function User() {
     setLoading(false);
   };
 
+  //Logic on unfollowing the user
+  //Current logged in users username is removed from the DB
   const unfollowUser = async () => {
     setLoading(true);
     setError(null);
@@ -271,6 +289,8 @@ function User() {
     setLoading(false);
   };
 
+  //Logic to handle removing a user post
+  //This is only possible if the user is on their own profile
   const handleRemovePost = async (id) => {
       try {
         await axios.delete(`http://localhost:5000/app/deletepost/${id}`);
@@ -281,7 +301,21 @@ function User() {
   };
 
   if (!user) {
-    return <div>Loading...</div>;
+    return ( 
+    <div className={css`
+      height:100vh;
+      width:100vw;
+    `}>
+      <PacmanLoader
+        loading={!user}
+        size={15}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        color="#F44034"
+        cssOverride={override}
+      />
+    </div>
+    );
   }
 
   return (

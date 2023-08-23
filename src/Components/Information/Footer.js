@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import {BsFacebook, BsTwitter, BsInstagram, BsGithub} from 'react-icons/bs'
 
 const FooterContainer = styled.footer`
     background:#464545;
@@ -112,10 +113,10 @@ function Footer() {
                 <SocialLinks>
                     <List>
                         {/* All social media links */}
-                        <SocialListItems><SocialLink href="#"><Icon class="fab fa-facebook fa-2x"></Icon></SocialLink></SocialListItems>
-                        <SocialListItems><SocialLink href="#"><Icon class="fab fa-twitter fa-2x"></Icon></SocialLink></SocialListItems>
-                        <SocialListItems><SocialLink href="#"><Icon class="fab fa-instagram fa-2x"></Icon></SocialLink></SocialListItems>
-                        <SocialListItems><SocialLink href="#"><Icon class="fab fa-github fa-2x"></Icon></SocialLink></SocialListItems>
+                        <SocialListItems><SocialLink href="#"><Icon><BsFacebook/></Icon></SocialLink></SocialListItems>
+                        <SocialListItems><SocialLink href="#"><Icon><BsTwitter/></Icon></SocialLink></SocialListItems>
+                        <SocialListItems><SocialLink href="#"><Icon><BsInstagram/></Icon></SocialLink></SocialListItems>
+                        <SocialListItems><SocialLink href="#"><Icon><BsGithub/></Icon></SocialLink></SocialListItems>
                     </List>
                 </SocialLinks>
 
