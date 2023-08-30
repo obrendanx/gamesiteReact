@@ -141,7 +141,7 @@ function User() {
     //Fetches the users posts
   async function fetchPosts(setPosts) {
     try {
-      const res = await axios.get(`http://localhost:5000/app/showuserposts/${username}`);
+      const res = await axios.get(`http://localhost:5002/showuserposts?username=${username}`);
       setPosts(res.data.data);
     } catch (err) {
       console.log(err);
@@ -293,7 +293,7 @@ function User() {
   //This is only possible if the user is on their own profile
   const handleRemovePost = async (id) => {
       try {
-        await axios.delete(`http://localhost:5000/app/deletepost/${id}`);
+        await axios.delete(`http://localhost:5002/deletepost?id=${id}`);
         fetchPosts(setPosts);
       } catch (err) {
         console.error(err);
