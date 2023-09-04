@@ -29,16 +29,16 @@ function startUserMicroservice() {
     useUnifiedTopology: true
     })
     .then(() => {
-        console.log('User microservice connected to MongoDB cluster!');
+        console.log('Anime microservice connected to MongoDB cluster!');
     })
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error);
     });
 
   // Start the server
-  const port = process.env.PORT || 5002;
+  const port = process.env.PORT || 5003;
   app.listen(port, () => {
-    console.log(`Post microservice is running on port ${port}`);
+    console.log(`User microservice is running on port ${port}`);
   });
 }
 

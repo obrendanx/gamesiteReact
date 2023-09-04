@@ -85,7 +85,7 @@ function FavouriteCard({ favouriteList, user }) {
 
     try {
       await axios.put(
-        `http://localhost:5000/app/updateanime/${currentUser.username}/${favourite._id}`,
+        `http://localhost:5003/updateanime?username=${currentUser.username}?id=${favourite._id}`,
         { currentEpisode, currentSeason }
       );
       toast.success("Anime updated successfully!");
@@ -116,16 +116,16 @@ function FavouriteCard({ favouriteList, user }) {
                       <form onSubmit={(event) => handleClick(event, favourite)}>
                           <Label text="Current Episode: " primary />
                           <Input 
-                            placeholder="Current Episode: " 
+                            placeholder={"Current Episode: " + favourite.currentEpisode} 
                             type="number" 
-                            value={favourite.currentEpisode}
+                            defaultValue={favourite.currentEpisode}
                             onValueChange={setCurrentEpisode}
                           />
                           <Label text="Current Season: " primary/>
                           <Input 
-                            placeholder="Current Season: " 
+                            placeholder={"Current Season: " + favourite.currentSeason}
                             type="number" 
-                            value={favourite.currentSeason}
+                            defaultValue={favourite.currentSeason}
                             onValueChange={setCurrentSeason}
                           />
                           <Submit/>

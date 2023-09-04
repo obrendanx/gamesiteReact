@@ -34,7 +34,7 @@ function AnimeCard({anime}) {
     const fetchUserFavourites = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/app/userfavourites/${user.username}`
+          `http://localhost:5003/userfavorites?username=${user.username}`
         );
         setUserFavourites(response.data);
       } catch (error) {
@@ -81,7 +81,7 @@ function AnimeCard({anime}) {
       } else {
         // Anime doesn't exist, add it
         const response = await axios.post(
-          'http://localhost:5000/app/newanime',
+          'http://localhost:5003/newanime',
           newAnimeItem
         );
         console.log('Anime added:', response.data);
@@ -95,7 +95,7 @@ function AnimeCard({anime}) {
 
   const removeAnimeItem = async (itemId) => {
     try {
-      await axios.delete(`http://localhost:5000/app/removeanime/${user.username}/${itemId}`);
+      await axios.delete(`http://localhost:5003/removeanime?username=${user.username}?id=${itemId}`);
       console.log('Anime removed:', itemId);
     } catch (error) {
       console.error('Error removing anime:', error);

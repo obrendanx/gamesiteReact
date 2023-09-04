@@ -165,7 +165,7 @@ function User() {
     const fetchUserFavourites = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/app/userfavourites/${username}`
+          `http://localhost:5003/userfavorites?username=${username}`
         );
         setFavourites(response.data);
       } catch (error) {
