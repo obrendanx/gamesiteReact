@@ -174,8 +174,7 @@ function User() {
     };
 
     fetchUserFavourites();
-    console.log(favourites);
-  }, [user]);
+  }, [user, favourites]);
 
   //Fetches the user profile
   const fetchUserProfile = async () => {

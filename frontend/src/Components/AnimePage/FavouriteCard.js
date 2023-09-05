@@ -85,7 +85,7 @@ function FavouriteCard({ favouriteList, user }) {
 
     try {
       await axios.put(
-        `http://localhost:5003/updateanime?username=${currentUser.username}?id=${favourite._id}`,
+        `http://localhost:5003/updateanime?username=${currentUser.username}&id=${favourite._id}`,
         { currentEpisode, currentSeason }
       );
       toast.success("Anime updated successfully!");
