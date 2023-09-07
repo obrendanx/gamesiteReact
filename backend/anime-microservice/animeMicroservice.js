@@ -34,6 +34,10 @@ function startUserMicroservice() {
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error);
     });
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html')); // Adjust the path here
+  });
 
   // Start the server
   const port = process.env.PORT || 5003;
