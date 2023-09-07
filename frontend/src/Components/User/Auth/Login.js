@@ -59,7 +59,7 @@ function Login() {
       if (data.user) {
         const token = data.user.token;
         const now = new Date();
-        now.setTime(now.getTime() + 30 * 24 * 60 * 60 * 1000); // Expires in 30 days
+        now.setTime(now.getTime() + 3 * 24 * 60 * 60 * 1000); // Expires in 3 days
         document.cookie = `token=${token}; expires=${now.toUTCString()}; path=/`;
 
         login(token, {
