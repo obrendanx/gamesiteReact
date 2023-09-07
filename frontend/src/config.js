@@ -7,8 +7,8 @@ module.exports = {
   },
   production: {
     backend: 'http://localhost:/', //  local development API URL
-    post: 'http://localhost:/', 
-    user: 'http://localhost:/', 
-    anime: 'http://localhost:/', 
+    post: 'https://gamesite-posts-microservice.onrender.com/', 
+    user: 'https://gamesite-user-microservice.onrender.com/', 
+    anime: 'https://gamesite-anime-microservice.onrender.com/', 
   },
 };
