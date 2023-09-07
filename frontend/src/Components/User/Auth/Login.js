@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "./AuthContext";
 import PacmanLoader from "react-spinners/PacmanLoader";
+import config from "../../../config";
 
 const Header = styled.h1`
     text-align: center;
@@ -29,6 +30,12 @@ function Login() {
   const { login } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  // Set the environment (e.g., 'development' or 'production')
+  const environment = process.env.NODE_ENV || 'development';
+  // Get the API URL based on the environment
+  const userUrl = config[environment].user;
+  const postUrl = config[environment].post;
+  const animeUrl = config[environment].anime;
 
   async function loginUser(event) {
     event.preventDefault();
@@ -37,7 +44,7 @@ function Login() {
 
     try {
       console.log(username);
-     const response = await fetch('http://localhost:5001/login', {
+     const response = await fetch(`${userUrl}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

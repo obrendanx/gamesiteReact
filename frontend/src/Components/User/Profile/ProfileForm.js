@@ -9,6 +9,7 @@ import { css } from "@emotion/css";
 import { AuthContext } from "../Auth/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import config from "../../../config";
 
 const ProfileFormDiv = styled.div`
     padding:10px 10px 10px 5px;
@@ -29,13 +30,19 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
   const [error, setError] = useState({});
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
   const { user } = useContext(AuthContext);
+  // Set the environment (e.g., 'development' or 'production')
+  const environment = process.env.NODE_ENV || 'development';
+  // Get the API URL based on the environment
+  const userUrl = config[environment].user;
+  const postUrl = config[environment].post;
+  const animeUrl = config[environment].anime;
 
   useEffect(() => {
     //fetch the current user
     const fetchUser = async () => {
       setIsLoading(true);
       console.log(user.username);
-      const response = await axios.get(`http://localhost:5001/fetchuser?username=${user.username}`);
+      const response = await axios.get(`${userUrl}/fetchuser?username=${user.username}`);
       setDetails(response.data);
       setIsLoading(false);
     };
@@ -109,7 +116,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     }
 
     try {
-      await axios.put(`http://localhost:5001/updateuserdetails/${details.username}`, updatedFields);
+      await axios.put(`${userUrl}/updateuserdetails/${details.username}`, updatedFields);
       // After successful update, update the user's data
       setDetails((prevDetails) => ({
         ...prevDetails,

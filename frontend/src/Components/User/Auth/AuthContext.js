@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import jwt from 'jsonwebtoken';
+import config from '../../../config';
 
 // Create the context
 export const AuthContext = createContext();
@@ -25,8 +26,12 @@ export const AuthProvider = ({ children }) => {
     try {
       const decodedToken = jwt.decode(token);
       const username = decodedToken.username;
+      // Set the environment (e.g., 'development' or 'production')
+      const environment = process.env.NODE_ENV || 'development';
+      // Get the API URL based on the environment
+      const userUrl = config[environment].user;
 
-      const response = await fetch(`http://localhost:5001/fetchuser?username=${username}`, {
+      const response = await fetch(`${userUrl}/fetchuser?username=${username}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,

@@ -5,6 +5,7 @@ import Button from '../Form/Buttons/Button';
 import LargeHeader from '../Headers/LargeHeader'
 import SmallHeader from '../Headers/SmallHeader';
 import MediumHeader from '../Headers/MediumHeader'
+import config from '../../config';
 
 const AdminPanel = styled.div`
     background:#1C1C1C;
@@ -31,11 +32,17 @@ const AdminPanel = styled.div`
 
 export default function Admin() {
   const [users, setUsers] = useState([]);
+  // Set the environment (e.g., 'development' or 'production')
+  const environment = process.env.NODE_ENV || 'development';
+  // Get the API URL based on the environment
+  const userUrl = config[environment].user;
+  const postUrl = config[environment].post;
+  const animeUrl = config[environment].anime;
 
   async function fetchUsers() {
     //fetches all users from database
     try {
-      const res = await axios.get('http://localhost:5001/fetchusers');
+      const res = await axios.get(`${userUrl}/fetchusers`);
       setUsers(res.data.data)
     } catch (err) {
       console.log(err);
@@ -54,8 +61,8 @@ export default function Admin() {
       try {
         //deletes user from database
         //refetches new list of users to display
-        await axios.delete(`http://localhost:5001/deleteuser?username=${username}`);
-        const res = await axios.get('http://localhost:5001/fetchusers');
+        await axios.delete(`${userUrl}/deleteuser?username=${username}`);
+        const res = await axios.get(`${userUrl}/fetchusers`);
         setUsers(res.data.data);
       } catch (err) {
         console.error(err);

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import sanitizeHtml from 'sanitize-html';
 import { css, Global } from '@emotion/react';
 import PacmanLoader from "react-spinners/PacmanLoader";
+import config from '../../config';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -76,7 +77,11 @@ const override = {
 
 async function fetchPosts(setPosts) {
   try {
-    const res = await axios.get('http://localhost:5002/showposts');
+    // Set the environment (e.g., 'development' or 'production')
+    const environment = process.env.NODE_ENV || 'development';
+    // Get the API URL based on the environment
+    const postUrl = config[environment].post;
+    const res = await axios.get(`${postUrl}/showposts`);
     setPosts(res.data.data);
   } catch (err) {
     console.log(err);

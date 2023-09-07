@@ -11,6 +11,7 @@ import styled from '@emotion/styled';
 import sanitizeHtml from 'sanitize-html';
 import FavouriteCard from '../../AnimePage/FavouriteCard'
 import PacmanLoader from "react-spinners/PacmanLoader";
+import config from '../../../config';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -138,10 +139,18 @@ function User() {
     (follower) => follower.username === currentUser.username
   );
 
+  // Set the environment (e.g., 'development' or 'production')
+  const environment = process.env.NODE_ENV || 'development';
+  // Get the API URL based on the environment
+  const userUrl = config[environment].user;
+  const postUrl = config[environment].post;
+  const animeUrl = config[environment].anime;
+
+
     //Fetches the users posts
   async function fetchPosts(setPosts) {
     try {
-      const res = await axios.get(`http://localhost:5002/showuserposts?username=${username}`);
+      const res = await axios.get(`${postUrl}/showuserposts?username=${username}`);
       setPosts(res.data.data);
     } catch (err) {
       console.log(err);
@@ -165,7 +174,7 @@ function User() {
     const fetchUserFavourites = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5003/userfavorites?username=${username}`
+          `${animeUrl}/userfavorites?username=${username}`
         );
         setFavourites(response.data);
       } catch (error) {
@@ -179,7 +188,7 @@ function User() {
   //Fetches the user profile
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.get(`http://localhost:5001/fetchuser?username=${username}`);
+      const response = await axios.get(`${userUrl}/fetchuser?username=${username}`);
       if (response.status === 200) {
         setUser(response.data);
       } else {
@@ -193,7 +202,7 @@ function User() {
   //Fetches the users followers
   const fetchFollowers = async () => {
     try {
-      const response = await axios.get(`http://localhost:5001/followers/${username}`);
+      const response = await axios.get(`${userUrl}/followers/${username}`);
       if (response.status === 200) {
         const isCurrentUserFollower = response.data.followers.some(
           (follower) => follower.username === currentUser.username
@@ -233,7 +242,7 @@ function User() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5001/follow/${username}`,
+        `${userUrl}/follow/${username}`,
         { username: currentUser.username },
         {
           headers: {
@@ -265,7 +274,7 @@ function User() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5001/unfollow/${username}`,
+        `${userUrl}/unfollow/${username}`,
         { username: currentUser.username },
         {
           headers: {
@@ -292,7 +301,7 @@ function User() {
   //This is only possible if the user is on their own profile
   const handleRemovePost = async (id) => {
       try {
-        await axios.delete(`http://localhost:5002/deletepost?id=${id}`);
+        await axios.delete(`${postUrl}/deletepost?id=${id}`);
         fetchPosts(setPosts);
       } catch (err) {
         console.error(err);

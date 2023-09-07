@@ -1,7 +1,6 @@
 require("dotenv").config({ path: "./.env" });
 const express = require("express");
 const fourmPost = require('./models/post')
-const errorHandler = require('../middleware/errorHandling');
 const dotenv = require('dotenv')
 
 dotenv.config();

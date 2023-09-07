@@ -6,6 +6,7 @@ import Input from '../../Form/Input'
 import Submit from '../../Form/Submit'
 import Validator from '../../Form/Validator'
 import PacmanLoader from "react-spinners/PacmanLoader";
+import config from '../../../config'
 
 const Header = styled.h1`
   text-align:center;
@@ -27,6 +28,12 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState({})
     const [loading, setLoading] = useState(false);
+    // Set the environment (e.g., 'development' or 'production')
+    const environment = process.env.NODE_ENV || 'development';
+    // Get the API URL based on the environment
+    const userUrl = config[environment].user;
+    const postUrl = config[environment].post;
+    const animeUrl = config[environment].anime;
   
     const onSubmit = async (event) => {
       event.preventDefault()
@@ -76,7 +83,7 @@ const Register = () => {
       }
 
         try {
-          axios.post('http://localhost:5001/signup', registered);
+          axios.post(`${userUrl}/signup`, registered);
 
           setLoading(false);
           window.location = './Login'

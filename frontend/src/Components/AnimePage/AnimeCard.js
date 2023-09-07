@@ -5,6 +5,7 @@ import axios from 'axios'
 import { AuthContext } from "../User/Auth/AuthContext";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import config from '../../config';
 
 const AnimeCardCtn = styled.article`
   width:100%;
@@ -28,13 +29,19 @@ function AnimeCard({anime}) {
   const { user } = useContext(AuthContext);
   const [userFavourites, setUserFavourites] = useState([]);
   const [isAlreadyFavorite, setIsAlreadyFavorite] = useState(false);
+  // Set the environment (e.g., 'development' or 'production')
+  const environment = process.env.NODE_ENV || 'development';
+  // Get the API URL based on the environment
+  const userUrl = config[environment].user;
+  const postUrl = config[environment].post;
+  const animeUrl = config[environment].anime;
 
   // Fetch the user's favorite anime items on component mount
   useEffect(() => {
     const fetchUserFavourites = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5003/userfavorites?username=${user.username}`
+          `${animeUrl}/userfavorites?username=${user.username}`
         );
         setUserFavourites(response.data);
       } catch (error) {
@@ -81,7 +88,7 @@ function AnimeCard({anime}) {
       } else {
         // Anime doesn't exist, add it
         const response = await axios.post(
-          'http://localhost:5003/newanime',
+          `${animeUrl}/newanime`,
           newAnimeItem
         );
         console.log('Anime added:', response.data);
@@ -95,7 +102,7 @@ function AnimeCard({anime}) {
 
   const removeAnimeItem = async (itemId) => {
     try {
-      await axios.delete(`http://localhost:5003/removeanime?username=${user.username}?id=${itemId}`);
+      await axios.delete(`${animeUrl}/removeanime?username=${user.username}?id=${itemId}`);
       console.log('Anime removed:', itemId);
     } catch (error) {
       console.error('Error removing anime:', error);

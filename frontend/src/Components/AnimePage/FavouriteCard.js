@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Label from '../Form/Label'
+import config from '../../config';
 
 const AnimeCardCtn = styled.article`
   width:100%;
@@ -79,13 +80,19 @@ function FavouriteCard({ favouriteList, user }) {
   const [currentSeason, setCurrentSeason] = useState(0);
   const [watching, setWatching] = useState(false)
   const { user: currentUser } = useContext(AuthContext);
+  // Set the environment (e.g., 'development' or 'production')
+  const environment = process.env.NODE_ENV || 'development';
+  // Get the API URL based on the environment
+  const userUrl = config[environment].user;
+  const postUrl = config[environment].post;
+  const animeUrl = config[environment].anime;
 
   const handleClick = async (event, favourite) => {
     event.preventDefault();
 
     try {
       await axios.put(
-        `http://localhost:5003/updateanime?username=${currentUser.username}&id=${favourite._id}`,
+        `${animeUrl}/updateanime?username=${currentUser.username}&id=${favourite._id}`,
         { currentEpisode, currentSeason }
       );
       toast.success("Anime updated successfully!");

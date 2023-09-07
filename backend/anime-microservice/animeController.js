@@ -1,7 +1,6 @@
 require("dotenv").config({ path: "./.env" });
 const express = require("express");
 const userFavourite = require('./models/anime')
-const errorHandler = require('../middleware/errorHandling');
 const dotenv = require('dotenv')
 
 dotenv.config();
@@ -74,7 +73,6 @@ const deleteanime = async (request, response) => {
 const userfavorites = async (request, response) => {
   try {
     const username = request.query.username;
-    console.log(username);
 
     // Find the user by their username
     const user = await userFavourite.findOne({ username });

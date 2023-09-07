@@ -12,6 +12,7 @@ import Submit from '../Form/Submit';
 import Validator from '../Form/Validator';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import config from '../../config';
 
 function FourmInput() {
   const [subject, setSubject] = useState('');
@@ -20,6 +21,12 @@ function FourmInput() {
   const [subjectError, setSubjectError] = useState('');
   const [messageError, setMessageError] = useState('');
   const { user, isLoggedIn } = useContext(AuthContext);
+  // Set the environment (e.g., 'development' or 'production')
+  const environment = process.env.NODE_ENV || 'development';
+  // Get the API URL based on the environment
+  const userUrl = config[environment].user;
+  const postUrl = config[environment].post;
+  const animeUrl = config[environment].anime;
 
   const handleImageUpload = (file) => {
     // Check if the file URL starts with http or https
@@ -48,7 +55,7 @@ function FourmInput() {
 
         console.log(postedBy);
 
-        const response = await axios.post('http://localhost:5002/fourmspost', newPost, {
+        const response = await axios.post(`${postUrl}/fourmspost`, newPost, {
           headers: {
             'Content-Type': 'application/json',
           },
