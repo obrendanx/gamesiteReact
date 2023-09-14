@@ -154,14 +154,12 @@ function Post() {
                     allowedTags, 
                     allowedAttributes,
                   }) }}
-                  {...console.log(post.message)}
                 />
               </Comment>
 
               <UserDetails>
                 <SubHeader>{post.date}</SubHeader>
                 <SubHeader><Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link></SubHeader>
-                {console.log(post._id)}
               </UserDetails>
             </ListItem>
           ))}

@@ -52,7 +52,7 @@ export default function Admin() {
   useEffect(() => {
     fetchUsers();
   }, []);
-  console.log(users);
+
 
   const handleRemoveUser = async (username) => {
     //displays a confirm message to make sure user wants to remove
