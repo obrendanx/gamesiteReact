@@ -22,7 +22,8 @@ const BannerDiv = styled.div`
     font-size:1.3em;
     font-family:Roboto, sans-serif;
     color:#fff;
-    top:60%;
+    top: 100%;
+    transform: translateY(-120%);
     @media (max-width: 770px){
       display:none;
       font-size:0.7em;
@@ -121,8 +122,8 @@ const GetAnime = async () => {
           backgroundImage: `linear-gradient(rgba(204,204,204,.2), rgba(204,204,204,.3)), url(${animeImage[count]})`,
         }
       }>
-        <ArrowBtn text='&lt;' left top="45%;" handleClick={countMinus}></ArrowBtn>
-        <ArrowBtn text='&gt;' top="45%" handleClick={countAdd}></ArrowBtn>
+        <ArrowBtn text='&lt;' left top="30%" handleClick={countMinus}></ArrowBtn>
+        <ArrowBtn text='&gt;' top="30%" handleClick={countAdd}></ArrowBtn>
         <BannerInfo>
           <div><BannerTitle href={animeUrl}>{animeTitle[count]}</BannerTitle></div>
           <div>

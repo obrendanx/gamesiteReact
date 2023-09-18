@@ -159,7 +159,7 @@ function User() {
 
   useEffect(() => {
     fetchPosts(setPosts);
-  }, []); 
+  }, [posts]); 
 
   //Fetches profile and posts if username changes
   useEffect(() => {

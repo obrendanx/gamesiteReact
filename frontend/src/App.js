@@ -12,7 +12,8 @@ import AnimeSearch from './Pages/AnimeSearch';
 import Login from './Components/User/Auth/Login';
 import Admin from './Components/Admin/Admin';
 import { AuthProvider } from './Components/User/Auth/AuthContext';
-import User from './Components/User/Profile/User' 
+import User from './Components/User/Profile/User'
+import UserSearch from './Components/Form/UserSearch'; 
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <div className="App">
           <AuthProvider>
             <Nav />
+            <UserSearch/>
             <Routes>
               <Route path="/" exact element={<Home />} />
               <Route path="/fourms" element={<Fourms />} />
