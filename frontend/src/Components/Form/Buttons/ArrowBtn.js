@@ -17,7 +17,7 @@ function ArrowBtn({ handleClick, text, left, top }) {
             position:absolute;
             background:rgba(0, 0, 0, 0.6);
             ${left ? 'left: 0;' : 'right: 0;'}
-            top:${top};
+            top: ${top};
             margin:0 25px 0 25px;
             padding:5px;
       `}

@@ -20,7 +20,6 @@ const NavigationList = styled.ul`
     list-style:none;
     display:flex;
     flex-direction:row;
-    flex-wrap:nowrap;
     @media (max-width: 770px){
         flex-direction:column-reverse !important;
     }
@@ -67,6 +66,7 @@ const NavLeft = styled.div`
     @media (max-width: 770px){
         height:7vh;
         width:100%;
+        font-size:0.7em !important;
     }
 `
 const Logo = styled.img`
