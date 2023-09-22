@@ -1,23 +1,63 @@
 services:
-  front-end:
-    container_name: gamesitefront
+  frontend:
+    container_name: gamesiteFront
     build:
-      context: ./
+      context: ./frontend
       dockerfile: Dockerfile
     ports:
       - 3000:3000
-    volumes: 
-      - ./:/app
+    volumes:
+      - ./frontend:/frontend
+    environment:
+      - CHOKIDAR_USEPOLLING=true
 
-  back-end:
-    container_name: gamesiteback
+  user-microservice:
+    container_name: gamesiteUser
     build:
-      context: ./server
+      context: ./backend/user-microservice
       dockerfile: Dockerfile
     ports:
-      - 5000:5000
+      - 5001:5001
     volumes:
-      - /server
+      - ./backend/user-microservice:/app
+      - ./backend:/backend
     environment:
       - DATABASE_ACCESS=mongodb+srv://brendanewen16:3BmFyuA4alqoB666@cluster0.3mfmcng.mongodb.net/?retryWrites=true&w=majority
       - SECRET_KEY=Zz47H.Aa5B
+    networks:
+      - gamesiteNet
+
+  posts-microservice:
+    container_name: gamesitePosts
+    build:
+      context: ./backend/posts-microservice
+      dockerfile: Dockerfile
+    ports:
+      - 5002:5002
+    volumes:
+      - ./backend/posts-microservice:/app
+      - ./backend:/backend
+    environment:
+      - DATABASE_ACCESS=mongodb+srv://brendanewen16:3BmFyuA4alqoB666@cluster0.3mfmcng.mongodb.net/?retryWrites=true&w=majority
+      - SECRET_KEY=Zz47H.Aa5B
+    networks:
+      - gamesiteNet
+
+  anime-microservice:
+    container_name: gamesiteAnime
+    build:
+      context: ./backend/anime-microservice
+      dockerfile: Dockerfile
+    ports:
+      - 5003:5003
+    volumes:
+      - ./backend/anime-microservice:/app
+      - ./backend:/backend
+    environment:
+      - DATABASE_ACCESS=mongodb+srv://brendanewen16:3BmFyuA4alqoB666@cluster0.3mfmcng.mongodb.net/?retryWrites=true&w=majority
+      - SECRET_KEY=Zz47H.Aa5B
+    networks:
+      - gamesiteNet
+
+networks:
+  gamesiteNet:
