@@ -6,6 +6,7 @@ import SetAnime from '../Components/TextCards/SetAnime'
 import SetManga from '../Components/TextCards/SetManga'
 import styled from '@emotion/styled'
 import LargeHeader from '../Components/Headers/LargeHeader'
+import FavoritesSide from '../Components/TextCards/FavoritesSide'
 
 //images being used
 import TOG from '../images/togs2.jpg'
@@ -99,6 +100,7 @@ let title = [
 function Home() {
     return (
         <HomeWrap>
+            <FavoritesSide/>
             {/* Banner Section */}
             <Banner />
             <InfoWrap>

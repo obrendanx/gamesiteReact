@@ -8,11 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Label from '../Form/Label'
 import config from '../../config';
-
-const AnimeCardCtn = styled.article`
-  width:100%;
-  height:300px;
-`
+import { css } from '@emotion/css';
 
 const Link = styled.a`
   text-decoration:none;
@@ -21,7 +17,7 @@ const Link = styled.a`
 
 const Header = styled.h2`
   margin-top:10px;
-  font-size:1em;
+  font-size:0.8em;
 `
 
 const AnimeImage = styled.figure`
@@ -35,7 +31,6 @@ const AnimeContainer = styled.div`
 `
 
 const AnimeGroup = styled.div`
-    width:40%;
     margin:4.16%;
     text-align:center;
     @media screen and (max-width: 770px){
@@ -75,7 +70,7 @@ const Watching = styled.span`
     justify-content:center;
   `; 
 
-function FavouriteCard({ favouriteList, user }) {
+function FavouriteCard({ favouriteList, user, flex }) {
   const [currentEpisode, setCurrentEpisode] = useState(0);
   const [currentSeason, setCurrentSeason] = useState(0);
   const [watching, setWatching] = useState(false)
@@ -105,8 +100,21 @@ function FavouriteCard({ favouriteList, user }) {
   return (
     <AnimeContainer>
             {favouriteList.map((favourite) => (
-                <AnimeGroup>
-                    <AnimeCardCtn key={favourite._id}>
+                <div className={css`
+                  margin:4.16%;
+                  text-align:center;
+                  width: ${flex ? "100%" : "40%"};
+                  @media screen and (max-width: 770px){
+                      width:100%;
+                  }
+                `}>
+                    <div 
+                      key={favourite._id}
+                      className={css`
+                        width:100%;
+                        height: ${flex ? "" : "300px"};
+                      `}
+                    >
                     {/* Links to more information about anime (Covers entire card) */}
                     <Link href={favourite.animeUrl} target="_blank" rel="noreferrer">
                         {/* Image for card */}
@@ -116,7 +124,7 @@ function FavouriteCard({ favouriteList, user }) {
                         {/* Title for anime card (in japanese) */}
                         <Header>{favourite.animeTitle}</Header>
                     </Link>
-                    </AnimeCardCtn>
+                    </div>
                     {currentUser.username !== user ? (
                       null
                     ) : 
@@ -148,7 +156,7 @@ function FavouriteCard({ favouriteList, user }) {
                         {favourite.watching ? <Green/> : <Red/>}
                       </Watching>
                     </div>
-                </AnimeGroup>
+                </div>
             ))}
             <ToastContainer/>
     </AnimeContainer>
