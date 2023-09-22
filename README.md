@@ -20,22 +20,26 @@ docker-compose up
 **To use this project:**
   1. Clone the repo
   1. If you have docker
-      * docker-compose build 
-      * docker-compose up
+  ```
+      docker-compose build 
+      docker-compose up
+  ```
   1. If you are running using node
       * open 4 separate terminal windows
-      * cd backend/user-microservice
-      * npm install
-      * node userMicroservice.js
-      * npm install
-      * cd backend/anime-microservice
-      * npm install
-      * node animeMicroservice.js
-      * cd backend/posts-microservice
-      * node postsMicroservice.js
-      * cd frontend
-      * npm install
-      * npm start
+      ```
+       cd backend/user-microservice
+       npm install
+       node userMicroservice.js
+       npm install
+       cd backend/anime-microservice
+       npm install
+       node animeMicroservice.js
+       cd backend/posts-microservice
+       node postsMicroservice.js
+       cd frontend
+       npm install
+       npm start
+       ```
 
 ## Pages
 
