@@ -9,7 +9,7 @@ services:
     volumes:
       - ./frontend:/frontend
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true 
 
   user-microservice:
     container_name: gamesiteUser

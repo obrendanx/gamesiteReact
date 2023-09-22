@@ -43,18 +43,16 @@ function UserSearch() {
       <input
         className={css`
           height: 35px;
-          margin:10px 2.5% 10px 2.5%;
+          margin-bottom:10px;
           padding: 10px;
           border: 0;
-          border-radius: 10px;
-          box-shadow: 0 0 15px 4px #000;
           font-size: 1em;
           font-weight: normal;
           font-family: Roboto, sans-serif;
           color: #f44034;
           transition: 1s;
           outline: none;
-          width: 95%;
+          width: 100%;
         `}
         type="text"
         value={finduser}
@@ -62,7 +60,9 @@ function UserSearch() {
         placeholder="Search for a user: "
       />
       {filteredUsers.length > 0 && finduser.trim() !== '' && ( // Check if finduser is not empty
-        <div>
+        <div className={css`
+          margin-bottom:25px;
+        `}>
           <MediumHeader text="Suggestions: "/>
           <ul className={css`
             list-style:none;

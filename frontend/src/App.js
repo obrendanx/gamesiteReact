@@ -21,8 +21,8 @@ const App = () => {
       <Router>
         <div className="App">
           <AuthProvider>
-            <Nav />
             <UserSearch/>
+            <Nav />
             <Routes>
               <Route path="/" exact element={<Home />} />
               <Route path="/fourms" element={<Fourms />} />
