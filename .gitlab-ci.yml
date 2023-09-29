@@ -19,6 +19,7 @@ cypress:
     - cd backend/posts-microservice
     - npm install
     - node postsMicroservice.js &
+    - cd ../..
     - cd frontend # Change to the frontend directory where your Cypress tests are located
     - npm install --legacy-peer-deps
     - npm start &
