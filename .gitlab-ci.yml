@@ -10,15 +10,15 @@ cypress:
   script:
     - cd backend/user-microservice
     - npm install
-    - node userMicroservice.js
+    - node userMicroservice.js &
     - cd ../..
     - cd backend/anime-microservice
     - npm install
-    - node animeMicroservice.js
+    - node animeMicroservice.js &
     - cd ../..
     - cd backend/posts-microservice
     - npm install
-    - node postsMicroservice.js
+    - node postsMicroservice.js &
     - cd frontend # Change to the frontend directory where your Cypress tests are located
     - npm install --legacy-peer-deps
     - npm start &
