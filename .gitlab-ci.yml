@@ -3,7 +3,7 @@ stages:
 
 cypress:
   stage: test
-  image: cypress/browsers:node16.15.1
+  image: node16
   script:
     - cd frontend # Change to the frontend directory where your Cypress tests are located
     - npm install --legacy-peer-deps
