@@ -5,7 +5,7 @@ cypress:
   stage: test
   image: node:16.5.0
   script:
-    - apt-get update && apt-get install -y chromium firefox
+    - apt-get update && apt-get install -y chromium 
     - cd frontend # Change to the frontend directory where your Cypress tests are located
     - npm install --legacy-peer-deps
     - npm start &
