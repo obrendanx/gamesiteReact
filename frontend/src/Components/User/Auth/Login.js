@@ -43,7 +43,6 @@ function Login() {
     setLoading(true);
 
     try {
-      console.log(username);
      const response = await fetch(`${userUrl}/login`, {
         method: 'POST',
         headers: {
@@ -71,8 +70,12 @@ function Login() {
         toast.error('Please check your username and password');
       }
     } catch (error) {
-      console.error(error);
-      toast.error('An error occurred. Please try again later.');
+      if(username.length == 0 || email.length == 0 || password.length == 0){
+        toast.error("username, email or password is missing");
+      } else {
+        console.error(error);
+        toast.error('Please check your username and password');
+      }
     } finally {
       setLoading(false);
     }

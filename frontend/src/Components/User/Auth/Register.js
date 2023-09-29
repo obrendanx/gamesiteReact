@@ -5,8 +5,10 @@ import { css } from '@emotion/css'
 import Input from '../../Form/Input'
 import Submit from '../../Form/Submit'
 import Validator from '../../Form/Validator'
-import PacmanLoader from "react-spinners/PacmanLoader";
+import PacmanLoader from "react-spinners/PacmanLoader"
 import config from '../../../config'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Header = styled.h1`
   text-align:center;
@@ -64,7 +66,7 @@ const Register = () => {
       }
   
       // Validate full name
-      if (fullName && !/^[a-zA-Z ]+$/.test(fullName)) {
+      if (!fullName || !/^[a-zA-Z ]+$/.test(fullName)) {
         error.fullName = "Full name must contain only letters and spaces";
         hasError = true;
       }
@@ -82,15 +84,35 @@ const Register = () => {
         password
       }
 
-        try {
-          axios.post(`${userUrl}/signup`, registered);
+      axios
+      .post(`${userUrl}/signup`, registered)
+      .then((response) => {
+        // Handle a successful response here if needed
+        setLoading(false);
+        window.location = './Login';
+      })
+      .catch((error) => {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          const status = error.response.status;
 
-          setLoading(false);
-          window.location = './Login'
-        } catch (error) {
-          console.error(error);
-          setLoading(false);
+          if (status === 404) {
+            toast.error('Resource not found (404)');
+          } else if (status === 500) {
+            toast.error('Internal server error (500)');
+          } else {
+            toast.error('An error has occurred');
+          }
+        } else if (error.request) {
+          // The request was made but no response was received
+          toast.error('An error has occurred');
+        } else {
+          // Something else happened while setting up the request
+          toast.error('An error occurred while making the request');
         }
+
+        setLoading(false);
+      });
   
     }
 
@@ -167,6 +189,7 @@ const Register = () => {
               ) : (
                 <Submit left="15%" />
               )}
+              <ToastContainer/>
             </form>
           </div>
         </div>
