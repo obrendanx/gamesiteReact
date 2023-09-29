@@ -7,7 +7,6 @@ cypress:
   script:
     - cd frontend # Change to the frontend directory where your Cypress tests are located
     - npm install --legacy-peer-deps
-    - npm install cypress 
-    - npm start &
-    - npx cypress run  # This command will run all Cypress tests in headless mode
+    - npm start 
+    - npx cypress run & # This command will run all Cypress tests in headless mode
   
