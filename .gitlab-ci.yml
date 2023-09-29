@@ -8,18 +8,6 @@ cypress:
   stage: test
   image: cypress/browsers:node18.12.0-chrome106-ff106
   script:
-    - cd backend/user-microservice
-    - npm install
-    - node userMicroservice.js &
-    - cd ../..
-    - cd backend/anime-microservice
-    - npm install
-    - node animeMicroservice.js &
-    - cd ../..
-    - cd backend/posts-microservice
-    - npm install
-    - node postsMicroservice.js &
-    - cd ../..
     - cd frontend # Change to the frontend directory where your Cypress tests are located
     - npm install --legacy-peer-deps
     - npm start &
