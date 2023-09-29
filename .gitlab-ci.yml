@@ -1,0 +1,11 @@
+stages:
+  - test
+
+cypress:
+  stage: test
+  image: cypress/included:8.7.0 # Use an appropriate Cypress Docker image
+  script:
+    - cd frontend # Change to the frontend directory where your Cypress tests are located
+    - npm install
+    - npx cypress run # This command will run all Cypress tests in headless mode
+  
