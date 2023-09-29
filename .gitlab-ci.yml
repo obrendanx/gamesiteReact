@@ -3,7 +3,7 @@ stages:
 
 cypress:
   stage: test
-  image: cypress/browsers:node16.0.0-chrome106-ff106 # Use an appropriate Cypress Docker image
+  image: cypress/browsers:node18.12.0-chrome106-ff106
   script:
     - cd frontend # Change to the frontend directory where your Cypress tests are located
     - npm install --legacy-peer-deps
