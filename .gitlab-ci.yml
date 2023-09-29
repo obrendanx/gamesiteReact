@@ -6,6 +6,6 @@ cypress:
   image: cypress/included:8.7.0 # Use an appropriate Cypress Docker image
   script:
     - cd frontend # Change to the frontend directory where your Cypress tests are located
-    - npm install
+    - npm install --legacy-peer-deps
     - npx cypress run # This command will run all Cypress tests in headless mode
   
