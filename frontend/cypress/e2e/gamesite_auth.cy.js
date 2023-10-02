@@ -15,31 +15,38 @@ describe('User Logging In', () => {
   })
 
   it('submits a failed request', () => {
-        cy.intercept("POST", "http://localhost:5001/signin", {
-            statusCode: 404,
-        }).as("failuser")
+    cy.intercept("POST", "http://localhost:5001/signin", {
+        statusCode: 404,
+    }).as("failuser")
 
-        cy.visit('http://localhost:3000/login');
+    cy.visit('http://localhost:3000/login');
 
-        cy.get('input[placeholder="Username: "]').type('incorrect username');
-        cy.get('input[placeholder="Email: "]').type('incorrect@email.com');
-        cy.get('input[placeholder="Password: "]').type('incorrect password');
-        cy.get('input[type="submit"]').click();
-        cy.contains('Please check your username and password').should('be.visible', { timeout: 10000 });
-    });
+    cy.get('input[placeholder="Username: "]').type('incorrect username');
+    cy.get('input[placeholder="Email: "]').type('incorrect@email.com');
+    cy.get('input[placeholder="Password: "]').type('incorrect password');
+    cy.get('input[type="submit"]').click();
+    cy.contains('Please check your username and password').should('be.visible', { timeout: 10000 });
+  });
 
   it('signs the user in', () => {
+    // Intercept the login request and return mock data
+    cy.intercept('POST', '**/login', {
+      fixture: 'loginData.json', // Replace with the path to your fixture data
+    }).as('loginRequest');
+
     cy.visit('http://localhost:3000/login');
     cy.get('input[placeholder="Username: "]').type('adminuser');
     cy.get('input[placeholder="Email: "]').type('admin@admin.com');
     cy.get('input[placeholder="Password: "]').type('Zx56Tt407.9s');
     cy.get('input[type="submit"]').click();
 
-    cy.wait(4000);
+    // Wait for the login request to complete
+    cy.wait('@loginRequest');
 
+    // Check if the profile page elements are visible
     cy.contains("Edit Profile").should('be.visible');
     cy.contains("PROFILE PAGE >").should('be.visible');
-  })
+  });
 
   it('enters no details', () => {
     cy.visit('http://localhost:3000/login');
