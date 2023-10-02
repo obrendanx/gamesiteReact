@@ -1,0 +1,16 @@
+{
+    "_id": "64e4afdf3d2fe731f07debc4",
+    "fullName": "Brendan Ewen",
+    "username": "adminuser",
+    "email": "admin@admin.com",
+    "password": "$2b$10$hyjdHa0n9hgLzOqCbf300On559V2C85sr1h4/iOPPGIj3anYdw68S",
+    "isGlobalAdmin": true,
+    "profileIconColor": "#9900ef",
+    "followers": [],
+    "following": [
+        "64df468bba158f56439a9000",
+        "64ce63958a349d55a9e9be43"
+    ],
+    "date": "2023-08-22T12:53:51.515Z",
+    "__v": 4
+}
