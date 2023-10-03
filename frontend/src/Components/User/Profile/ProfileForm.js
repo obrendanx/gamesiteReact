@@ -47,7 +47,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
       setIsLoading(false);
     };
     fetchUser();
-  }, [user.username, details]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,8 +81,8 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     }
 
     // Validate full name
-    if (fullName && !/^[a-zA-Z ]+$/.test(fullName)) {
-      error.fullName = "Full name must contain only letters and spaces";
+    if (fullName && /[^a-zA-Z ]/.test(fullName)) {
+      newError.fullName = "Full name must contain only letters and spaces";
       hasError = true;
     }
 

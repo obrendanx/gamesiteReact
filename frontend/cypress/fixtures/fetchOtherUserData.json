@@ -1,0 +1,18 @@
+{
+    "_id": "64df468bba158f56439a9000",
+    "fullName": "Brendan",
+    "username": "obrendanx",
+    "email": "obrendanx@test.com",
+    "password": "$2b$10$gP42CNL2Cs4ISHpluY1hM.RkmHKCWMGevQ7wOh1Ex5lQqrg3kDmJm",
+    "isGlobalAdmin": false,
+    "profileIconColor": "#3F51B5",
+    "followers": [
+        "64da1e4fc7871d73e321579e",
+        "64e4afdf3d2fe731f07debc4"
+    ],
+    "following": [
+        "64da1e4fc7871d73e321579e"
+    ],
+    "date": "2023-08-18T10:23:07.036Z",
+    "__v": 3
+}

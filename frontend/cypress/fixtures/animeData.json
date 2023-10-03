@@ -1,0 +1,72 @@
+[
+    {
+        "watching": true,
+        "currentEpisode": 7,
+        "currentSeason": 3,
+        "animeTitle": "THE LAST NARUTO THE MOVIE",
+        "animeImgSrc": "https://cdn.myanimelist.net/images/anime/1491/134498.jpg",
+        "animeUrl": "https://myanimelist.net/anime/16870/The_Last__Naruto_the_Movie",
+        "_id": "64dce5a1f1f327abf2631d17",
+        "date": "2023-08-16T15:05:05.345Z"
+    },
+    {
+        "watching": true,
+        "currentEpisode": 23,
+        "currentSeason": 2,
+        "animeTitle": "DRAGON BALL Z スペシャル たったひとりの最終決戦~フリーザに挑んだZ戦士孫悟空の父~",
+        "animeImgSrc": "https://cdn.myanimelist.net/images/anime/8/3303.jpg",
+        "animeUrl": "https://myanimelist.net/anime/986/Dragon_Ball_Z_Special_1__Tatta_Hitori_no_Saishuu_Kessen",
+        "_id": "64dce5b3f1f327abf2631d1d",
+        "date": "2023-08-16T15:05:23.202Z"
+    },
+    {
+        "watching": false,
+        "currentEpisode": 0,
+        "currentSeason": 0,
+        "animeTitle": "劇場版 NARUTO -ナルト- 大興奮!みかづき島のアニマル騒動だってばよ",
+        "animeImgSrc": "https://cdn.myanimelist.net/images/anime/1918/134487.jpg",
+        "animeUrl": "https://myanimelist.net/anime/2144/Naruto_Movie_3__Dai_Koufun_Mikazuki_Jima_no_Animaru_Panic_Dattebayo",
+        "_id": "64de0caf432f759e4da126cd",
+        "date": "2023-08-17T12:03:59.762Z"
+    },
+    {
+        "watching": false,
+        "currentEpisode": 0,
+        "currentSeason": 0,
+        "animeTitle": "銀魂。",
+        "animeImgSrc": "https://cdn.myanimelist.net/images/anime/3/83528.jpg",
+        "animeUrl": "https://myanimelist.net/anime/34096/Gintama",
+        "_id": "64de1c4b432f759e4da14e0b",
+        "date": "2023-08-17T13:10:35.775Z"
+    },
+    {
+        "animeTitle": "ナルト",
+        "animeImgSrc": "https://cdn.myanimelist.net/images/anime/13/17405.jpg",
+        "animeUrl": "https://myanimelist.net/anime/20/Naruto",
+        "watching": false,
+        "currentEpisode": 0,
+        "currentSeason": 0,
+        "_id": "64df4b696d381be3d3236e58",
+        "date": "2023-08-18T10:43:53.439Z"
+    },
+    {
+        "animeTitle": "STEINS;GATE",
+        "animeImgSrc": "https://cdn.myanimelist.net/images/anime/1935/127974.jpg",
+        "animeUrl": "https://myanimelist.net/anime/9253/Steins_Gate",
+        "watching": false,
+        "currentEpisode": 0,
+        "currentSeason": 0,
+        "_id": "64e374c1acbe25097c494c5a",
+        "date": "2023-08-21T14:29:21.698Z"
+    },
+    {
+        "animeTitle": "劇場版NARUTO-ナルト- 疾風伝 絆",
+        "animeImgSrc": "https://cdn.myanimelist.net/images/anime/1484/134494.jpg",
+        "animeUrl": "https://myanimelist.net/anime/4437/Naruto__Shippuuden_Movie_2_-_Kizuna",
+        "watching": false,
+        "currentEpisode": 0,
+        "currentSeason": 0,
+        "_id": "64f1e21de71511514c67d9a8",
+        "date": "2023-09-01T13:07:41.241Z"
+    }
+]
