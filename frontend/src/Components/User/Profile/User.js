@@ -12,6 +12,8 @@ import sanitizeHtml from 'sanitize-html';
 import FavouriteCard from '../../AnimePage/FavouriteCard'
 import PacmanLoader from "react-spinners/PacmanLoader";
 import config from '../../../config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -108,13 +110,19 @@ const ListItem = styled.li`
   }
 `
 
+const Error = styled.span`
+    font-size:0.8em;
+    color:#F44336;
+    margin-left:2.5%;
+`
+
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
   const { username } = useParams();
   const [user, setUser] = useState(null);
   const [followers, setFollowers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
@@ -146,14 +154,14 @@ function User() {
   const postUrl = config[environment].post;
   const animeUrl = config[environment].anime;
 
-
-    //Fetches the users posts
+  //Fetches the users posts
   async function fetchPosts(setPosts) {
     try {
       const res = await axios.get(`${postUrl}/showuserposts?username=${username}`);
       setPosts(res.data.data);
     } catch (err) {
       console.log(err);
+      toast.error("Failed to fetch users posts");
     }
   }
 
@@ -179,6 +187,7 @@ function User() {
         setFavourites(response.data);
       } catch (error) {
         console.error('Error fetching user favourites:', error);
+        toast.error('Failed to fetch users favourites');
       }
     };
 
@@ -191,11 +200,9 @@ function User() {
       const response = await axios.get(`${userUrl}/fetchuser?username=${username}`);
       if (response.status === 200) {
         setUser(response.data);
-      } else {
-        setError('Failed to fetch user profile');
-      }
+      } 
     } catch (error) {
-      setError('Failed to fetch user profile');
+      setError(...error, 'Failed to fetch user profile');
     }
   };
 
@@ -213,10 +220,10 @@ function User() {
             : [...response.data.followers, currentUser]
         );
       } else {
-        setError('Failed to fetch followers');
+        setError(...error, 'Failed to fetch followers');
       }
     } catch (error) {
-      setError('Failed to fetch followers');
+      setError(...error, 'Failed to fetch followers');
     }
   };
 
@@ -256,10 +263,10 @@ function User() {
         setSuccessMessage('You are now following this user.');
         setFollowers([...followers, currentUser]);
       } else {
-        setError('Failed to follow user');
+        setError(...error, 'Failed to follow user');
       }
     } catch (error) {
-      setError('Failed to follow user');
+      setError(...error, 'Failed to follow user');
     }
 
     setLoading(false);
@@ -288,10 +295,10 @@ function User() {
         setSuccessMessage('You have unfollowed this user.');
         setFollowers(followers.filter((follower) => follower.username !== currentUser.username));
       } else {
-        setError('Failed to unfollow user');
+        setError(...error, 'Failed to unfollow user');
       }
     } catch (error) {
-      setError('Failed to unfollow user');
+      setError(...error, 'Failed to unfollow user');
     }
 
     setLoading(false);
@@ -349,7 +356,13 @@ function User() {
             text={loading ? 'Loading...' : isCurrentUserFollowing ? 'Unfollow' : 'Follow'}
           />
         }
-        {error && <div>Error: {error}</div>}
+       
+        <div>
+          {error.map((errorMsg, index) => (
+            <Error key={index}>Error: {errorMsg}</Error>
+          ))}
+        </div>
+
         {successMessage && <div>{successMessage}</div>}
         <MediumHeader text={user.fullName + 's posts:'}/>
         {/* <h3>Followers:</h3>
@@ -397,6 +410,8 @@ function User() {
           <FavouriteCard user={username} favouriteList={favourites} key={favourites._id}/>
         </div>
       </SubDiv>
+
+      <ToastContainer/>
     </div>
   );
 }

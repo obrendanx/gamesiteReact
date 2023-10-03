@@ -1,4 +1,4 @@
-it('sees their followers and following display', () => {
+  it('sees their followers and following display', () => {
     Cypress.on('uncaught:exception', (err, runnable) => {
       // Return false to prevent Cypress from failing the test
       return false;
@@ -370,6 +370,106 @@ it('sees their followers and following display', () => {
     cy.contains("Email must be a valid email address").scrollIntoView().should('be.visible');
     cy.contains("Passwords do not match").scrollIntoView().should('be.visible');
     cy.contains("Full name must contain only letters and spaces").scrollIntoView().should('be.visible');
+  });
+  
+  it('fails to load their posts', () => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      // Return false to prevent Cypress from failing the test
+      return false;
+    });
+
+    // Intercept the login request and return mock data
+    cy.intercept('POST', '**/login', {
+      fixture: 'loginData.json', // Fixture for /login endpoint
+    }).as('loginRequest');
+
+    // Intercept the /fetchusers request and return mock user data
+    cy.intercept('GET', '**/fetchusers', {
+      fixture: 'usersData.json', // Fixture for /fetchusers endpoint
+    }).as('fetchUsersRequest');
+
+    cy.visit('http://localhost:3000/login');
+    cy.get('input[placeholder="Username: "]').type('adminuser');
+    cy.get('input[placeholder="Email: "]').type('admin@admin.com');
+    cy.get('input[placeholder="Password: "]').type('Zx56Tt407.9s');
+    cy.get('input[type="submit"]').click();
+
+    // Wait for both the login and fetchusers requests to complete
+    cy.wait(['@loginRequest', '@fetchUsersRequest']);
+
+    cy.wait(2000);
+
+    // Check if the profile page elements are visible
+    cy.contains("Edit Profile").should('be.visible');
+
+    // Intercept the /fetchusers request and return mock user data
+    cy.intercept('GET', '**/showuserposts?username=adminuser', {
+      forceNetworkError: true,
+    }).as('fetchUserPosts');
+
+    cy.intercept('GET', '**/fetchuser?username=adminuser', {
+      fixture: 'fetchUserData.json',
+    }).as('followRequest');
+
+    // Intercept the /fetchusers request and return mock user data
+    cy.intercept('GET', '**/userfavorites?username=adminuser', {
+      fixture: 'animeData.json', // Fixture for /fetchusers endpoint
+    }).as('fetchUserAnime');
+
+    cy.contains("PROFILE PAGE >").click();
+
+    cy.contains("Failed to fetch users posts").should('be.visible');
+  }); 
+
+  it('fails to load their favourite anime', () => {
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      // Return false to prevent Cypress from failing the test
+      return false;
+    });
+
+    // Intercept the login request and return mock data
+    cy.intercept('POST', '**/login', {
+      fixture: 'loginData.json', // Fixture for /login endpoint
+    }).as('loginRequest');
+
+    // Intercept the /fetchusers request and return mock user data
+    cy.intercept('GET', '**/fetchusers', {
+      fixture: 'usersData.json', // Fixture for /fetchusers endpoint
+    }).as('fetchUsersRequest');
+
+    cy.visit('http://localhost:3000/login');
+    cy.get('input[placeholder="Username: "]').type('adminuser');
+    cy.get('input[placeholder="Email: "]').type('admin@admin.com');
+    cy.get('input[placeholder="Password: "]').type('Zx56Tt407.9s');
+    cy.get('input[type="submit"]').click();
+
+    // Wait for both the login and fetchusers requests to complete
+    cy.wait(['@loginRequest', '@fetchUsersRequest']);
+
+    cy.wait(2000);
+
+    // Check if the profile page elements are visible
+    cy.contains("Edit Profile").should('be.visible');
+
+    // Intercept the /fetchusers request and return mock user data
+    cy.intercept('GET', '**/userfavorites?username=adminuser', {
+      forceNetworkError: true,
+    }).as('fetchUserAnime');
+
+    cy.intercept('GET', '**/fetchuser?username=adminuser', {
+      fixture: 'fetchUserData.json',
+    }).as('followRequest');
+
+    // Intercept the /fetchusers request and return mock user data
+    cy.intercept('GET', '**/showuserposts?username=adminuser', {
+      fixture: 'postsData.json', // Fixture for /fetchusers endpoint
+    }).as('fetchUserPosts');
+
+    cy.contains("PROFILE PAGE >").click();
+
+    cy.wait(3000);
+
+    cy.contains("Failed to fetch users favourites").should('be.visible');
   }); 
 
   // it('deletes their post', () => {
