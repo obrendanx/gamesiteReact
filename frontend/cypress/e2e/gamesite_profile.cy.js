@@ -403,8 +403,8 @@
     cy.contains("Edit Profile").should('be.visible');
 
     // Intercept the /fetchusers request and return mock user data
-    cy.intercept('GET', '**/showuserposts?username=adminuser', {
-      forceNetworkError: true,
+    cy.intercept('GET', '**/showuserposts?username=', {
+      status: 400,
     }).as('fetchUserPosts');
 
     cy.intercept('GET', '**/fetchuser?username=adminuser', {
@@ -418,7 +418,8 @@
 
     cy.contains("PROFILE PAGE >").click();
 
-    cy.contains("Failed to fetch users posts").should('be.visible');
+    cy.get('[data-testid="toast-container"]').should('be.visible');
+    cy.contains('[data-testid="toast-container"]', 'Failed to fetch users posts').should('exist');
   }); 
 
   it('fails to load their favourite anime', () => {
@@ -452,8 +453,8 @@
     cy.contains("Edit Profile").should('be.visible');
 
     // Intercept the /fetchusers request and return mock user data
-    cy.intercept('GET', '**/userfavorites?username=adminuser', {
-      forceNetworkError: true,
+    cy.intercept('GET', '**/userfavorites?username=', {
+      status: 400,
     }).as('fetchUserAnime');
 
     cy.intercept('GET', '**/fetchuser?username=adminuser', {
@@ -469,7 +470,7 @@
 
     cy.wait(3000);
 
-    cy.contains("Failed to fetch users favourites").should('be.visible');
+    cy.get('[data-testid="toast-container"]').should('exist').shadow().contains("Failed to fetch users favourites");
   }); 
 
   // it('deletes their post', () => {
