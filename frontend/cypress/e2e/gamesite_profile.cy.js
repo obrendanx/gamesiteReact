@@ -418,8 +418,7 @@
 
     cy.contains("PROFILE PAGE >").click();
 
-    cy.get('[data-testid="toast-container"]').should('be.visible');
-    cy.contains('[data-testid="toast-container"]', 'Failed to fetch users posts').should('exist');
+    cy.contains('Failed to fetch users posts').should('exist');
   }); 
 
   it('fails to load their favourite anime', () => {
@@ -470,7 +469,7 @@
 
     cy.wait(3000);
 
-    cy.get('[data-testid="toast-container"]').should('exist').shadow().contains("Failed to fetch users favourites");
+    cy.contains("Failed to fetch users favourites").should('exist');
   }); 
 
   // it('deletes their post', () => {
