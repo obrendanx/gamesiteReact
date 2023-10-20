@@ -353,3 +353,25 @@ it('fails to update the episode and season of a favourite anime', () => {
     cy.contains('Submit').click();
     cy.contains('Error updating anime!').should('exist');
 }); 
+
+it('searches for an anime', () => {
+    cy.visit('http://localhost:3000/anime');
+    cy.get('input[placeholder="Search: "]').type('naruto {enter}');
+    cy.contains('ナルト').should('be.visible');
+    cy.contains('Add to Favourites').should('be.visible');
+});
+
+it('favorites an anime whilst logged out', () => {
+    cy.visit('http://localhost:3000/anime');
+    cy.get('input[placeholder="Search: "]').type('naruto {enter}');
+    cy.get('[data-cy="favorite"]').first().click()
+    cy.contains('You must be logged in to favourite an anime').should('exist');
+});
+
+it('successfully favorites an anime', () => {
+
+});
+
+it('failes to favorite an anime', () => {
+
+});

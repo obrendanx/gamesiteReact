@@ -31,6 +31,7 @@ function FavouriteBtn({ handleClick, sm, favourited }) {
         >
         <BsFillStarFill
             style={iconStyles}
+            data-cy="favorite"
         />
         {favourited ? "Remove Favourite" : "Add to Favourites"}
         </button>

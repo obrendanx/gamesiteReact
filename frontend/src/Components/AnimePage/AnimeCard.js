@@ -26,7 +26,7 @@ const AnimeImage = styled.figure`
 `
 
 function AnimeCard({anime}) {
-  const { user } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
   const [userFavourites, setUserFavourites] = useState([]);
   const [isAlreadyFavorite, setIsAlreadyFavorite] = useState(false);
   // Set the environment (e.g., 'development' or 'production')
@@ -86,14 +86,18 @@ function AnimeCard({anime}) {
         );
         toast.error('Anime removed from favorites');
       } else {
-        // Anime doesn't exist, add it
-        const response = await axios.post(
-          `${animeUrl}/newanime`,
-          newAnimeItem
-        );
-        console.log('Anime added:', response.data);
-        setUserFavourites((prevFavourites) => [...prevFavourites, response.data]);
-        toast.success('Anime added to favorites');
+        if(isLoggedIn){
+          // Anime doesn't exist, add it
+          const response = await axios.post(
+            `${animeUrl}/newanime`,
+            newAnimeItem
+          );
+          console.log('Anime added:', response.data);
+          setUserFavourites((prevFavourites) => [...prevFavourites, response.data]);
+          toast.success('Anime added to favorites');
+        } else {
+          toast.error("You must be logged in to favourite an anime");
+        }
       }
     } catch (error) {
       console.error('Error adding/removing anime:', error);
