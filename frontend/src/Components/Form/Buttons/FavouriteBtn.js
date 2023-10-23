@@ -28,10 +28,10 @@ function FavouriteBtn({ handleClick, sm, favourited }) {
                   width:100%;
                 }
         `}
+        data-cy="favorite"      
         >
         <BsFillStarFill
             style={iconStyles}
-            data-cy="favorite"
         />
         {favourited ? "Remove Favourite" : "Add to Favourites"}
         </button>

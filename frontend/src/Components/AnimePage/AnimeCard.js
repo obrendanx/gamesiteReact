@@ -36,31 +36,40 @@ function AnimeCard({anime}) {
   const postUrl = config[environment].post;
   const animeUrl = config[environment].anime;
 
+  const fetchUserFavourites = async () => {
+    try {
+      const response = await axios.get(
+        `${animeUrl}/userfavorites?username=${user.username}`
+      );
+      setUserFavourites(response.data);
+    } catch (error) {
+      console.error('Error fetching user favourites:', error);
+    }
+  };
+
+  const checkIsAlreadyFavorite = () => {
+    const isFavourite = userFavourites.some(
+      (item) => item.animeTitle === anime.title_japanese
+    );
+    setIsAlreadyFavorite(isFavourite);
+  };
+
+  const removeAnimeItem = async (itemId) => {
+    try {
+      await axios.delete(`${animeUrl}/removeanime?username=${user.username}?id=${itemId}`);
+      console.log('Anime removed:', itemId);
+    } catch (error) {
+      console.error('Error removing anime:', error);
+    }
+  };
+
   // Fetch the user's favorite anime items on component mount
   useEffect(() => {
-    const fetchUserFavourites = async () => {
-      try {
-        const response = await axios.get(
-          `${animeUrl}/userfavorites?username=${user.username}`
-        );
-        setUserFavourites(response.data);
-      } catch (error) {
-        console.error('Error fetching user favourites:', error);
-      }
-    };
-
-    const checkIsAlreadyFavorite = () => {
-      const isFavourite = userFavourites.some(
-        (item) => item.animeTitle === anime.title_japanese
-      );
-      setIsAlreadyFavorite(isFavourite);
-    };
-
     if (user) {
       fetchUserFavourites();
       checkIsAlreadyFavorite();
     }
-  }, [user, anime.title_japanese, userFavourites]);
+  }, [user]);
 
   const handleClick = async () => {
     try {
@@ -101,15 +110,6 @@ function AnimeCard({anime}) {
       }
     } catch (error) {
       console.error('Error adding/removing anime:', error);
-    }
-  };
-
-  const removeAnimeItem = async (itemId) => {
-    try {
-      await axios.delete(`${animeUrl}/removeanime?username=${user.username}?id=${itemId}`);
-      console.log('Anime removed:', itemId);
-    } catch (error) {
-      console.error('Error removing anime:', error);
     }
   };
 
