@@ -1,0 +1,12 @@
+{
+    "following": [
+        {
+            "_id": "64df468bba158f56439a9000",
+            "username": "test1"
+        },
+        {
+            "_id": "64ce63958a349d55a9e9be43",
+            "username": "test2"
+        }
+    ]
+}

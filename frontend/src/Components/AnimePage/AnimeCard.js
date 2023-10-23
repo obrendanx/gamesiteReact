@@ -26,7 +26,7 @@ const AnimeImage = styled.figure`
 `
 
 function AnimeCard({anime}) {
-  const { user } = useContext(AuthContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
   const [userFavourites, setUserFavourites] = useState([]);
   const [isAlreadyFavorite, setIsAlreadyFavorite] = useState(false);
   // Set the environment (e.g., 'development' or 'production')
@@ -36,31 +36,40 @@ function AnimeCard({anime}) {
   const postUrl = config[environment].post;
   const animeUrl = config[environment].anime;
 
+  const fetchUserFavourites = async () => {
+    try {
+      const response = await axios.get(
+        `${animeUrl}/userfavorites?username=${user.username}`
+      );
+      setUserFavourites(response.data);
+    } catch (error) {
+      console.error('Error fetching user favourites:', error);
+    }
+  };
+
+  const checkIsAlreadyFavorite = () => {
+    const isFavourite = userFavourites.some(
+      (item) => item.animeTitle === anime.title_japanese
+    );
+    setIsAlreadyFavorite(isFavourite);
+  };
+
+  const removeAnimeItem = async (itemId) => {
+    try {
+      await axios.delete(`${animeUrl}/removeanime?username=${user.username}?id=${itemId}`);
+      console.log('Anime removed:', itemId);
+    } catch (error) {
+      console.error('Error removing anime:', error);
+    }
+  };
+
   // Fetch the user's favorite anime items on component mount
   useEffect(() => {
-    const fetchUserFavourites = async () => {
-      try {
-        const response = await axios.get(
-          `${animeUrl}/userfavorites?username=${user.username}`
-        );
-        setUserFavourites(response.data);
-      } catch (error) {
-        console.error('Error fetching user favourites:', error);
-      }
-    };
-
-    const checkIsAlreadyFavorite = () => {
-      const isFavourite = userFavourites.some(
-        (item) => item.animeTitle === anime.title_japanese
-      );
-      setIsAlreadyFavorite(isFavourite);
-    };
-
     if (user) {
       fetchUserFavourites();
       checkIsAlreadyFavorite();
     }
-  }, [user, anime.title_japanese, userFavourites]);
+  }, [user]);
 
   const handleClick = async () => {
     try {
@@ -86,26 +95,21 @@ function AnimeCard({anime}) {
         );
         toast.error('Anime removed from favorites');
       } else {
-        // Anime doesn't exist, add it
-        const response = await axios.post(
-          `${animeUrl}/newanime`,
-          newAnimeItem
-        );
-        console.log('Anime added:', response.data);
-        setUserFavourites((prevFavourites) => [...prevFavourites, response.data]);
-        toast.success('Anime added to favorites');
+        if(isLoggedIn){
+          // Anime doesn't exist, add it
+          const response = await axios.post(
+            `${animeUrl}/newanime`,
+            newAnimeItem
+          );
+          console.log('Anime added:', response.data);
+          setUserFavourites((prevFavourites) => [...prevFavourites, response.data]);
+          toast.success('Anime added to favorites');
+        } else {
+          toast.error("You must be logged in to favourite an anime");
+        }
       }
     } catch (error) {
       console.error('Error adding/removing anime:', error);
-    }
-  };
-
-  const removeAnimeItem = async (itemId) => {
-    try {
-      await axios.delete(`${animeUrl}/removeanime?username=${user.username}?id=${itemId}`);
-      console.log('Anime removed:', itemId);
-    } catch (error) {
-      console.error('Error removing anime:', error);
     }
   };
 

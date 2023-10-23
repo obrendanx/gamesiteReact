@@ -28,6 +28,7 @@ function FavouriteBtn({ handleClick, sm, favourited }) {
                   width:100%;
                 }
         `}
+        data-cy="favorite"      
         >
         <BsFillStarFill
             style={iconStyles}

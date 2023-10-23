@@ -43,4 +43,8 @@ const App = () => {
   );
 };
 
+window.appContext = {
+  AuthProvider,
+};
+
 export default App;

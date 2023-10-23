@@ -12,6 +12,8 @@ import sanitizeHtml from 'sanitize-html';
 import FavouriteCard from '../../AnimePage/FavouriteCard'
 import PacmanLoader from "react-spinners/PacmanLoader";
 import config from '../../../config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -108,17 +110,24 @@ const ListItem = styled.li`
   }
 `
 
+const Error = styled.span`
+    font-size:0.8em;
+    color:#F44336;
+    margin-left:2.5%;
+`
+
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
   const { username } = useParams();
   const [user, setUser] = useState(null);
   const [followers, setFollowers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState([]);
   const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [favourites, setFavourites] = useState([]);
+  const [isCurrentUserFollowing, setIsCurrentUserFollowing] = useState(false);
+  const [flwBtnText, setFlwBtnText] = useState("Follow");
   const allowedTags = [
     'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
     'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
@@ -127,6 +136,7 @@ function User() {
   const allowedAttributes = {
     img: ['src', 'height', 'width'], //allow the src, height and width attributes for an image tag 
   };
+  const navigate = useNavigate();
 
   const override = {
     display: "block",
@@ -135,43 +145,41 @@ function User() {
     marginTop: "10px"
   };
 
-  const isCurrentUserFollowing = followers.some(
-    (follower) => follower.username === currentUser.username
-  );
-
   // Set the environment (e.g., 'development' or 'production')
   const environment = process.env.NODE_ENV || 'development';
-  // Get the API URL based on the environment
   const userUrl = config[environment].user;
   const postUrl = config[environment].post;
   const animeUrl = config[environment].anime;
 
+  /////////////////////////////
+  //LOGIC TO FETCH USER POSTS//
+  /////////////////////////////
 
-    //Fetches the users posts
   async function fetchPosts(setPosts) {
     try {
       const res = await axios.get(`${postUrl}/showuserposts?username=${username}`);
       setPosts(res.data.data);
     } catch (err) {
       console.log(err);
+      toast.error("Failed to fetch users posts");
     }
   }
-
-  useEffect(() => {
-    fetchPosts(setPosts);
-  }, [posts]); 
 
   //Fetches profile and posts if username changes
   useEffect(() => {
     if (username) {
       fetchUserProfile();
       fetchFollowers();
+      fetchPosts(setPosts);
+      fetchUserFavourites();
     }
   }, [username]);
 
-  //Fetches the users anime favourites and updates if user changes
-  useEffect(() => {
-    const fetchUserFavourites = async () => {
+  //////////////////////////////////
+  //LOGIC TO FETCH USER FAVOURITES//
+  //////////////////////////////////
+
+  const fetchUserFavourites = async () => {
       try {
         const response = await axios.get(
           `${animeUrl}/userfavorites?username=${username}`
@@ -179,44 +187,51 @@ function User() {
         setFavourites(response.data);
       } catch (error) {
         console.error('Error fetching user favourites:', error);
+        toast.error('Failed to fetch users favourites');
       }
     };
+  
+  ///////////////////////////////
+  //LOGIC TO FETCH USER PROFILE//
+  ///////////////////////////////
 
-    fetchUserFavourites();
-  }, [user, favourites]);
-
-  //Fetches the user profile
   const fetchUserProfile = async () => {
     try {
       const response = await axios.get(`${userUrl}/fetchuser?username=${username}`);
       if (response.status === 200) {
         setUser(response.data);
-      } else {
-        setError('Failed to fetch user profile');
-      }
+      } 
     } catch (error) {
-      setError('Failed to fetch user profile');
+      toast.error('Failed to fetch user profile');
+      console.log('Failed to fetch user profile');
     }
   };
 
-  //Fetches the users followers
+  //////////////////////////////////////////////////
+  //LOGIC FOR FETCHING THE USER PROFILES FOLLOWERS//
+  //////////////////////////////////////////////////
+
   const fetchFollowers = async () => {
     try {
       const response = await axios.get(`${userUrl}/followers/${username}`);
       if (response.status === 200) {
-        const isCurrentUserFollower = response.data.followers.some(
+
+        const isFollowing = response.data.followers.some(
           (follower) => follower.username === currentUser.username
         );
+
+        if (isFollowing) {
+          setIsCurrentUserFollowing(true);
+          setFlwBtnText("Unfollow");
+        }
+
         setFollowers(
-          isCurrentUserFollower
-            ? response.data.followers
-            : [...response.data.followers, currentUser]
+          isCurrentUserFollowing ? response.data.followers : [...response.data.followers, currentUser]
         );
-      } else {
-        setError('Failed to fetch followers');
-      }
+      } 
     } catch (error) {
-      setError('Failed to fetch followers');
+      console.log('Failed to fetch followers');
+      toast.error('Failed to fetch followers');
     }
   };
 
@@ -233,12 +248,12 @@ function User() {
     }
   };
 
-  //Logic on following the user
-  //Current logged in users username is pushed to the DB
+  ////////////////////////////
+  //LOGIC FOR FOLLOWING USER//
+  ////////////////////////////
+
   const followUser = async () => {
     setLoading(true);
-    setError(null);
-    setSuccessMessage('');
 
     try {
       const response = await axios.post(
@@ -253,24 +268,23 @@ function User() {
       );
 
       if (response.status === 200) {
-        setSuccessMessage('You are now following this user.');
+        toast.success('You are now following this user.');
         setFollowers([...followers, currentUser]);
-      } else {
-        setError('Failed to follow user');
-      }
+      } 
     } catch (error) {
-      setError('Failed to follow user');
+      console.log(error, 'Failed to follow user');
+      toast.error('Failed to follow user');
     }
 
     setLoading(false);
   };
 
-  //Logic on unfollowing the user
-  //Current logged in users username is removed from the DB
+  //////////////////////////////
+  //LOGIC FOR UNFOLLOWING USER//
+  //////////////////////////////
+
   const unfollowUser = async () => {
     setLoading(true);
-    setError(null);
-    setSuccessMessage('');
 
     try {
       const response = await axios.post(
@@ -285,20 +299,21 @@ function User() {
       );
 
       if (response.status === 200) {
-        setSuccessMessage('You have unfollowed this user.');
+        toast.success('You have unfollowed this user.');
         setFollowers(followers.filter((follower) => follower.username !== currentUser.username));
-      } else {
-        setError('Failed to unfollow user');
-      }
+      } 
     } catch (error) {
-      setError('Failed to unfollow user');
+      console.log('Failed to unfollow user');
+      toast.error('Failed to unfollow user');
     }
 
     setLoading(false);
   };
 
-  //Logic to handle removing a user post
-  //This is only possible if the user is on their own profile
+  ////////////////////////////////
+  //LOGIC FOR DELETING USER POST//
+  ////////////////////////////////
+
   const handleRemovePost = async (id) => {
       try {
         await axios.delete(`${postUrl}/deletepost?id=${id}`);
@@ -307,6 +322,8 @@ function User() {
         console.error(err);
       }
   };
+
+  //If user is not found display a loaidng icon
 
   if (!user) {
     return ( 
@@ -328,6 +345,7 @@ function User() {
 
   return (
     <div>
+      <ToastContainer data-testid="toast-container" />
       <Global
         styles={css`
           img {
@@ -346,20 +364,11 @@ function User() {
         ) : 
           <Button 
             handleClick={handleFollowToggle} 
-            text={loading ? 'Loading...' : isCurrentUserFollowing ? 'Unfollow' : 'Follow'}
+            text={loading ? 'Loading...' : flwBtnText}
           />
         }
-        {error && <div>Error: {error}</div>}
-        {successMessage && <div>{successMessage}</div>}
+
         <MediumHeader text={user.fullName + 's posts:'}/>
-        {/* <h3>Followers:</h3>
-        <ul>
-          {followers.map((follower) => (
-            <li key={follower._id}>
-              <Link to={`/user/${follower.username}`}>{follower.username}</Link>
-            </li>
-          ))}
-        </ul> */}
 
         <Wrapper>
           <List>
@@ -397,6 +406,7 @@ function User() {
           <FavouriteCard user={username} favouriteList={favourites} key={favourites._id}/>
         </div>
       </SubDiv>
+
     </div>
   );
 }

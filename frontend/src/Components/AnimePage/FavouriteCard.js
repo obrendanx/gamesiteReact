@@ -93,7 +93,7 @@ function FavouriteCard({ favouriteList, user, flex }) {
       toast.success("Anime updated successfully!");
     } catch (error) {
       console.error('Error updating anime:', error);
-      toast.error("Error updating anime!")
+      toast.error("Error updating anime!");
     }
   };
 

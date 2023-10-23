@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "fullName": "Admin User",
+      "username": "adminuser",
+      "email": "admin@admin.com",
+      "password": "hashedpassword_admin", 
+      "isGlobalAdmin": true,
+      "profileIconColor": "#3F51B5"
+    },
+    {
+      "fullName": "Test User",
+      "username": "testuser",
+      "email": "test@test.com",
+      "password": "hashedpassword_test", 
+      "isGlobalAdmin": false,
+      "profileIconColor": "#FF5733"
+    },
+    {
+      "fullName": "Test User",
+      "username": "obrendanx",
+      "email": "test@test.com",
+      "password": "hashedpassword_test", 
+      "isGlobalAdmin": false,
+      "profileIconColor": "#FF5733"
+    },
+    {
+      "fullName": "Test User",
+      "username": "carol",
+      "email": "test@test.com",
+      "password": "hashedpassword_test", 
+      "isGlobalAdmin": false,
+      "profileIconColor": "#FF5733"
+    }
+  ]
+}

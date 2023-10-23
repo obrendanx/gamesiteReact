@@ -16,6 +16,12 @@ const ProfileFormDiv = styled.div`
     margin-top:20px;
   `
 
+const Error = styled.span`
+    font-size:0.8em;
+    color:#F44336;
+    margin-left:2.5%;
+`
+
 const ProfileForm = ({ onSubmit, initialValues }) => {
   const [fullName, setFullName] = useState('');
   const [username, setUsername] = useState('');
@@ -47,7 +53,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
       setIsLoading(false);
     };
     fetchUser();
-  }, [user.username, details]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,8 +87,8 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
     }
 
     // Validate full name
-    if (fullName && !/^[a-zA-Z ]+$/.test(fullName)) {
-      error.fullName = "Full name must contain only letters and spaces";
+    if (fullName && /[^a-zA-Z ]/.test(fullName)) {
+      newError.fullName = "Full name must contain only letters and spaces";
       hasError = true;
     }
 
@@ -153,7 +159,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
                 small
                 left="5px"
                 />
-        {error.fullName && <p className="error">{error.fullName}</p>}
+        {error.fullName && <Error className="error">{error.fullName}</Error>}
       </ProfileFormDiv>
       <ProfileFormDiv>
         <Label htmlfor='username' text={'Username:' + details.username} primary></Label>
@@ -165,7 +171,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
                 small
                 left="5px"
                 />
-        {error.username && <p className="error">{error.username}</p>}
+        {error.username && <Error className="error">{error.username}</Error>}
       </ProfileFormDiv>
       <ProfileFormDiv>
         <Label htmlfor='email' text={'Email:' + details.email} primary></Label>
@@ -177,7 +183,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
                 small
                 left="5px"
                 />
-        {error.email && <p className="error">{error.email}</p>}
+        {error.email && <Error className="error">{error.email}</Error>}
       </ProfileFormDiv>
       <ProfileFormDiv>
         <Label htmlFor="password" text="New Password:" primary></Label>
@@ -190,7 +196,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
           left="5px"
         />
         {error.password && (
-          <p className="error">{error.password}</p>
+          <Error className="error">{error.password}</Error>
         )}
       </ProfileFormDiv>
       <ProfileFormDiv>
@@ -204,7 +210,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
           left="5px"
         />
         {error.retypePassword && (
-          <p className="error">{error.retypePassword}</p>
+          <Error className="error">{error.retypePassword}</Error>
         )}
       </ProfileFormDiv>
       <ProfileFormDiv>
