@@ -21,7 +21,7 @@ const signup = async (request, response, next) => {
       password: securePassword,
       isGlobalAdmin: false
     });
-    console.log(savedUser);
+    
     const savedUser = await signedUpUser.save();
     response.json(savedUser);
   } catch (error) {

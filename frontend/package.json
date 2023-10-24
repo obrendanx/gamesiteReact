@@ -25,6 +25,7 @@
     "react-draft-wysiwyg-a": "*",
     "react-icons": "^4.10.1",
     "react-native-router-flux": "^4.2.0",
+    "react-query": "^3.39.3",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.6.2",
     "react-router-native": "^5.2.0",

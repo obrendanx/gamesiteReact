@@ -46,9 +46,9 @@ function MainContent(props) {
             </div>
             <AnimeContainer>
                 {props.animeList.map(anime => (
-                    <AnimeGroup>
+                    <AnimeGroup key={anime.mal_id}>
                         {/* Results of query search stored in the prop 'anime' for the anime card to use */}
-                        <AnimeCard anime={anime} key={anime.mal_id} />
+                        <AnimeCard anime={anime}/>
                     </AnimeGroup>
                 ))}
             </AnimeContainer>

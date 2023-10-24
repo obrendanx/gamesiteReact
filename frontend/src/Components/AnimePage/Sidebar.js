@@ -48,7 +48,7 @@ function Sidebar({topAnime}) {
                 <List>
                   {/* Maps the Top anime for the sidebar */}
                   {topAnime.map(anime => (
-                    <li><TopLink href={anime.url} target="_blank" key={anime.mal_id} rel="noreferrer">{anime.title}</TopLink></li>
+                    <li key={anime.mal_id}><TopLink href={anime.url} target="_blank" rel="noreferrer">{anime.title}</TopLink></li>
                   ))}
                 </List>
                 
