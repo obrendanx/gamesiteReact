@@ -1,11 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import FavouriteBtn from '../Form/Buttons/FavouriteBtn'
-import axios from 'axios'
 import { AuthContext } from "../User/Auth/AuthContext";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import config from '../../config';
 import { useUserFavorites } from '../../Querys/userFavoritesQuery';
 import { useAddAnime } from '../../Querys/addAnimeQuery';
 import { useRemoveAnime } from '../../Querys/removeAnimeQuery';
@@ -30,18 +28,14 @@ const AnimeImage = styled.figure`
 
 function AnimeCard({ anime }) {
   const { user, isLoggedIn } = useContext(AuthContext);
-
-  // Use the userFavorites query and pass the username as an argument
   const { data: userFavourites, isLoading, isError, refetch } = useUserFavorites(user.username);
 
-  // Use the addAnime and removeAnime mutations
   const addAnimeMutation = useAddAnime();
   const removeAnimeMutation = useRemoveAnime();
 
   const isAlreadyFavorite = userFavourites
     ? userFavourites.some((item) => item.animeTitle === anime.title_japanese)
     : false;
-
 
   const handleClick = async () => {
     try {
@@ -79,7 +73,6 @@ function AnimeCard({ anime }) {
     }
   };
 
-  // Fetch the user's favorite anime items on component mount
   useEffect(() => {
     if (user) {
       refetch();

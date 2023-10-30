@@ -14,6 +14,9 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 import config from '../../../config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useUserFavorites } from '../../../Querys/userFavoritesQuery';
+import { useShowUserPosts } from '../../../Querys/showUserPostsQuery';
+import { useRemovePost } from '../../../Querys/deletePostQuery';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -116,18 +119,22 @@ const Error = styled.span`
     margin-left:2.5%;
 `
 
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  return new Date(dateString).toLocaleString(undefined, options);
+}
+
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
   const { username } = useParams();
   const [user, setUser] = useState(null);
   const [followers, setFollowers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState([]);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [posts, setPosts] = useState([]);
-  const [favourites, setFavourites] = useState([]);
   const [isCurrentUserFollowing, setIsCurrentUserFollowing] = useState(false);
   const [flwBtnText, setFlwBtnText] = useState("Follow");
+  const { data: userFavourites, refetch } = useUserFavorites(username);
+  const { data: userPosts } = useShowUserPosts(username);
+  const removePostMutation = useRemovePost();
   const allowedTags = [
     'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
     'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
@@ -149,47 +156,15 @@ function User() {
   const environment = process.env.NODE_ENV || 'development';
   const userUrl = config[environment].user;
   const postUrl = config[environment].post;
-  const animeUrl = config[environment].anime;
-
-  /////////////////////////////
-  //LOGIC TO FETCH USER POSTS//
-  /////////////////////////////
-
-  async function fetchPosts(setPosts) {
-    try {
-      const res = await axios.get(`${postUrl}/showuserposts?username=${username}`);
-      setPosts(res.data.data);
-    } catch (err) {
-      console.log(err);
-      toast.error("Failed to fetch users posts");
-    }
-  }
 
   //Fetches profile and posts if username changes
   useEffect(() => {
     if (username) {
       fetchUserProfile();
       fetchFollowers();
-      fetchPosts(setPosts);
-      fetchUserFavourites();
+      refetch();
     }
   }, [username]);
-
-  //////////////////////////////////
-  //LOGIC TO FETCH USER FAVOURITES//
-  //////////////////////////////////
-
-  const fetchUserFavourites = async () => {
-      try {
-        const response = await axios.get(
-          `${animeUrl}/userfavorites?username=${username}`
-        );
-        setFavourites(response.data);
-      } catch (error) {
-        console.error('Error fetching user favourites:', error);
-        toast.error('Failed to fetch users favourites');
-      }
-    };
   
   ///////////////////////////////
   //LOGIC TO FETCH USER PROFILE//
@@ -315,12 +290,9 @@ function User() {
   ////////////////////////////////
 
   const handleRemovePost = async (id) => {
-      try {
-        await axios.delete(`${postUrl}/deletepost?id=${id}`);
-        fetchPosts(setPosts);
-      } catch (err) {
-        console.error(err);
-      }
+      await removePostMutation.mutateAsync({
+        postId: id,
+      });
   };
 
   //If user is not found display a loaidng icon
@@ -372,7 +344,7 @@ function User() {
 
         <Wrapper>
           <List>
-            {posts.map(post => (
+            {userPosts.data.map(post => (
               <ListItem
                 key={post._id}
               >
@@ -390,7 +362,7 @@ function User() {
               </Comment> 
 
                 <UserDetails>
-                  <SubHeader>{post.date}</SubHeader>
+                  <SubHeader>{formatDate(post.date)}</SubHeader>
                   { currentUser.username === user.username && isLoggedIn ? (
                     <DeleteBtn onClick={() => handleRemovePost(post._id)}>remove post</DeleteBtn>
                   ) : null}
@@ -403,7 +375,7 @@ function User() {
         <MediumHeader text={user.fullName + 's favourite anime:'}/>  
 
         <div>
-          <FavouriteCard user={username} favouriteList={favourites} key={favourites._id}/>
+          <FavouriteCard user={username} favouriteList={userFavourites} key={userFavourites._id}/>
         </div>
       </SubDiv>
 

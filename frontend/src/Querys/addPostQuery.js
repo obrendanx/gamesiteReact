@@ -4,19 +4,19 @@ import config from '../config';
 
 const environment = process.env.NODE_ENV || 'development';
 // Get the API URL based on the environment
-const animeUrl = config[environment].anime;
+const postUrl = config[environment].post;
 
-export const addAnime = (newAnimeItem) => {
-  return axios.post(`${animeUrl}/newanime`, newAnimeItem)
+export const addPost = (newPost) => {
+  return axios.post(`${postUrl}/fourmspost`, newPost)
     .then((response) => response.data);
 };
 
-export const useAddAnime = () => {
+export const useAddPost = () => {
   const queryClient = useQueryClient();
 
-  return useMutation((newAnimeItem) => addAnime(newAnimeItem), {
+  return useMutation((newAnimeItem) => addPost(newAnimeItem), {
     onSuccess: () => {
-      queryClient.invalidateQueries('userFavorites'); 
+      queryClient.invalidateQueries('posts'); 
     },
   });
 };

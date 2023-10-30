@@ -6,15 +6,15 @@ const environment = process.env.NODE_ENV || 'development';
 // Get the API URL based on the environment
 const animeUrl = config[environment].anime;
 
-export const removeAnime = (itemId, username) => {
-  return axios.delete(`${animeUrl}/deleteanime?username=${username}&id=${itemId}`)
+export const updateAnime = (itemId, username, currentEpisode, currentSeason) => {
+  return axios.put( `${animeUrl}/updateanime?username=${username}&id=${itemId}`, { currentEpisode, currentSeason })
     .then((response) => response.data);
 };
 
-export const useRemoveAnime = () => {
+export const useUpdateAnime = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(({ itemId, username }) => removeAnime(itemId, username), {
+  return useMutation(({ itemId, username, currentEpisode, currentSeason }) => updateAnime(itemId, username, currentEpisode, currentSeason), {
     onMutate: (variables) => {
       const previousData = queryClient.getQueryData('userFavorites');
       return previousData;

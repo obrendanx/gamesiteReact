@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Label from '../Form/Label'
 import config from '../../config';
 import { css } from '@emotion/css';
+import { useUpdateAnime } from '../../Querys/updateAnimeQuery';
 
 const Link = styled.a`
   text-decoration:none;
@@ -75,21 +76,19 @@ function FavouriteCard({ favouriteList, user, flex }) {
   const [currentSeason, setCurrentSeason] = useState(0);
   const [watching, setWatching] = useState(false)
   const { user: currentUser } = useContext(AuthContext);
-  // Set the environment (e.g., 'development' or 'production')
-  const environment = process.env.NODE_ENV || 'development';
-  // Get the API URL based on the environment
-  const userUrl = config[environment].user;
-  const postUrl = config[environment].post;
-  const animeUrl = config[environment].anime;
+  const updateAnimeMutation = useUpdateAnime();
 
   const handleClick = async (event, favourite) => {
     event.preventDefault();
 
     try {
-      await axios.put(
-        `${animeUrl}/updateanime?username=${currentUser.username}&id=${favourite._id}`,
-        { currentEpisode, currentSeason }
-      );
+      console.log(currentUser.username);
+      await updateAnimeMutation.mutateAsync({
+              itemId: favourite._id,
+              username: currentUser.username,
+              currentEpisode: currentEpisode,
+              currentSeason: currentSeason
+            });
       toast.success("Anime updated successfully!");
     } catch (error) {
       console.error('Error updating anime:', error);
@@ -100,16 +99,18 @@ function FavouriteCard({ favouriteList, user, flex }) {
   return (
     <AnimeContainer>
             {favouriteList.map((favourite) => (
-                <div className={css`
+                <div 
+                className={css`
                   margin:4.16%;
                   text-align:center;
                   width: ${flex ? "100%" : "40%"};
                   @media screen and (max-width: 770px){
                       width:100%;
                   }
-                `}>
+                `}
+                key={favourite._id}
+                >
                     <div 
-                      key={favourite._id}
                       className={css`
                         width:100%;
                         height: ${flex ? "" : "300px"};
