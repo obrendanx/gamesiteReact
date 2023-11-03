@@ -3,17 +3,16 @@ import axios from 'axios';
 import styled from '@emotion/styled';
 import { AuthContext } from '../Auth/AuthContext';
 import config from '../../../config';
+import { useProfileIcon } from '../../../Querys/showProfileIcon';
 
 const ProfileIcon = ({username, auto}) => { 
   //used to grab user information
-  const { user } = useContext(AuthContext);
   const [color, setColor] = useState("000");
+  const { data: profileIcon, refetch } = useProfileIcon(username);
   // Set the environment (e.g., 'development' or 'production')
   const environment = process.env.NODE_ENV || 'development';
   // Get the API URL based on the environment
   const userUrl = config[environment].user;
-  const postUrl = config[environment].post;
-  const animeUrl = config[environment].anime;
 
   const ProfileIconDiv = styled.div`
     padding:10px;
@@ -29,13 +28,10 @@ const ProfileIcon = ({username, auto}) => {
   `
 
   useEffect(() => {
-    async function fetchData() {
-    
-      const res = await axios.get(`${userUrl}/fetchprofileicon?username=${username}`);
-      setColor(res.data.color);
+    if(profileIcon) {
+      setColor(profileIcon.color);
     }
-    fetchData();
-  }, [username]);
+  }, [profileIcon]);
 
   const initials = username ? username.split(" ").map(word => word[0]).join("") : "?"; 
 

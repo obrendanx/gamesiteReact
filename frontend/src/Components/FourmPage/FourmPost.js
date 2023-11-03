@@ -10,10 +10,9 @@ import Input from '../Form/Input';
 import Label from '../Form/Label';
 import Submit from '../Form/Submit';
 import Validator from '../Form/Validator';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import config from '../../config';
-import { useAddPost } from '../../Querys/addPostQuery';
+import useAddPost from '../../Querys/addPostQuery';
 
 function FourmInput() {
   const [subject, setSubject] = useState('');
@@ -42,21 +41,19 @@ function FourmInput() {
     event.preventDefault();
 
     if (validateInputs()) {
-      try {
         const newPost = {
           subject,
           message: stateToHTML(editorState.getCurrentContent()),
           postedBy,
         };
 
-        const response = await addPostMutation.mutateAsync(newPost);
+        await addPostMutation.mutateAsync(newPost);
     
         // Reset form fields
         setSubject('');
         setEditorState(EditorState.createEmpty());
-      } catch (error) {
-        console.log(error.message);
-      }
+    } else {
+      toast.error('Error: Invalid inputs');
     }
   };
 
@@ -155,7 +152,6 @@ function FourmInput() {
         {messageError && <Validator text={messageError} />}
 
         <Submit small />
-        <ToastContainer/>
       </form>
     </div>
   );

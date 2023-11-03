@@ -1,25 +1,24 @@
 import { useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
 import config from '../config';
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 const environment = process.env.NODE_ENV || 'development';
 // Get the API URL based on the environment
-const animeUrl = config[environment].anime;
+const userUrl = config[environment].user;
 
-export default function useAddAnime () {
+export default function useSignup () {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async (newAnimeItem) => {
+    async (registered) => {
       try {
-        const response = axios.post(`${animeUrl}/newanime`, newAnimeItem);
+        const response = axios.post(`${userUrl}/signup`, registered);
 
-        toast.success("Anime added to favourites");
         return await response.data;
       } catch (error) {
         if(error.response.status === 404) {
-          throw new Error(`User not found`);
+          throw new Error(`resource not found`);
         } else {
           throw new Error('An error has occurred');
         }
@@ -28,11 +27,12 @@ export default function useAddAnime () {
     {
       throwOnError: true,
       onSuccess: () => {
-        queryClient.invalidateQueries('userFavorites'); 
+        queryClient.invalidateQueries('user');
+        window.location = './Login'; 
       },
-      onError: (error) => {
+      onError: (error) => { 
         toast.error(
-          `Error adding favourite: ${error.message}`,
+          `Error registering: ${error.message}`,
         );
       },
     },

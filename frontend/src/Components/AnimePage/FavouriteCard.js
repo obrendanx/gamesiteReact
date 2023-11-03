@@ -1,15 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useState} from 'react'
 import styled from '@emotion/styled'
 import Input from '../Form/Input'
 import { AuthContext } from '../User/Auth/AuthContext';
 import Submit from '../Form/Submit'
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Label from '../Form/Label'
-import config from '../../config';
 import { css } from '@emotion/css';
-import { useUpdateAnime } from '../../Querys/updateAnimeQuery';
+import useUpdateAnime from '../../Querys/updateAnimeQuery';
 
 const Link = styled.a`
   text-decoration:none;
@@ -81,19 +79,12 @@ function FavouriteCard({ favouriteList, user, flex }) {
   const handleClick = async (event, favourite) => {
     event.preventDefault();
 
-    try {
-      console.log(currentUser.username);
       await updateAnimeMutation.mutateAsync({
-              itemId: favourite._id,
-              username: currentUser.username,
-              currentEpisode: currentEpisode,
-              currentSeason: currentSeason
-            });
-      toast.success("Anime updated successfully!");
-    } catch (error) {
-      console.error('Error updating anime:', error);
-      toast.error("Error updating anime!");
-    }
+        itemId: favourite._id,
+        username: currentUser.username,
+        currentEpisode: currentEpisode,
+        currentSeason: currentSeason
+      });
   };
 
   return (

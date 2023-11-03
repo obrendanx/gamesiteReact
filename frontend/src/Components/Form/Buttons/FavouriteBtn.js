@@ -19,8 +19,8 @@ function FavouriteBtn({ handleClick, sm, favourited }) {
     };
 
     useEffect(() => {
-      
-    }, [isFavourited]);
+        setIsFavourited(favourited); 
+    }, [favourited]);
 
     return (
         <div>

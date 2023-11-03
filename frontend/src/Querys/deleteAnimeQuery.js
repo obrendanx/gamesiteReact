@@ -1,27 +1,27 @@
 import { useMutation, useQueryClient } from 'react-query';
 import axios from 'axios';
+import { toast } from "react-toastify";
 import config from '../config';
-import { toast } from 'react-toastify';
 
 const environment = process.env.NODE_ENV || 'development';
 // Get the API URL based on the environment
-const postUrl = config[environment].post;
+const animeUrl = config[environment].anime;
 
-export default function useAddPost () {
+export default function useRemoveAnime () {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async (newPost) => {
+    async ({username, itemId}) => {
       try {
-        const response = await axios.post(`${postUrl}/fourmspost`, newPost);
+        const response = await axios.delete(`${animeUrl}/deleteanime?username=${username}&id=${itemId}`);
         
         if (response.status === 200) {
-          toast.success("Posted successfully");
+          toast.success("Anime removed from favourites");
           return response.data;
         } 
       } catch (error) {
         if (error.response.status === 404) {
-          throw new Error(`Fourm input missing`);
+          throw new Error(`User not found`);
         } else {
           console.log(error.response.status);
           throw new Error('An error has occurred');
@@ -31,11 +31,11 @@ export default function useAddPost () {
     {
       throwOnError: true,
       onSuccess: () => {
-        queryClient.invalidateQueries('posts'); 
+        queryClient.invalidateQueries('userFavorites'); 
       },
       onError: (error) => {
         toast.error(
-          `Error adding post: ${error.message}`
+          `Error removing favourite: ${error.message}`
         );
       },
     },

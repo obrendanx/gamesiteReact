@@ -4,11 +4,10 @@ import styled from '@emotion/styled';
 import { css } from "@emotion/css";
 import Input from "../../Form/Input";
 import Submit from "../../Form/Submit";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { AuthContext } from "./AuthContext";
 import PacmanLoader from "react-spinners/PacmanLoader";
-import config from "../../../config";
+import useLogin from "../../../Querys/loginQuery";
 
 const Header = styled.h1`
     text-align: center;
@@ -29,13 +28,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const { login } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const addLoginMutation = useLogin();
   const navigate = useNavigate();
-  // Set the environment (e.g., 'development' or 'production')
-  const environment = process.env.NODE_ENV || 'development';
-  // Get the API URL based on the environment
-  const userUrl = config[environment].user;
-  const postUrl = config[environment].post;
-  const animeUrl = config[environment].anime;
 
   async function loginUser(event) {
     event.preventDefault();
@@ -43,17 +37,11 @@ function Login() {
     setLoading(true);
 
     try {
-     const response = await fetch(`${userUrl}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username, password, email
-        }),
-      }) 
-
-      const data = await response.json();
+      const data = await addLoginMutation.mutateAsync({
+        username,
+        password,
+        email,
+      });
 
       if (data.user) {
         const token = data.user.token;
@@ -142,7 +130,6 @@ function Login() {
         ) : (
           <Submit left="15%" />
         )}
-        <ToastContainer />
       </form>
     </div>
   );

@@ -115,7 +115,7 @@ function Post() {
       />
       <List>
         {Array.isArray(posts.data) ? (
-        posts.data.map(post => (
+        posts.data.slice().reverse().map(post => (
           <ListItem key={post._id}>
             <Subject>
               <MediumHeader text={post.subject} />

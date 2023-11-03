@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import styled from '@emotion/styled'
 import { css } from '@emotion/css'
 import Input from '../../Form/Input'
 import Submit from '../../Form/Submit'
 import Validator from '../../Form/Validator'
 import PacmanLoader from "react-spinners/PacmanLoader"
-import config from '../../../config'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import useSignup from '../../../Querys/signupQuery'
 
 const Header = styled.h1`
   text-align:center;
@@ -30,12 +27,7 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState({})
     const [loading, setLoading] = useState(false);
-    // Set the environment (e.g., 'development' or 'production')
-    const environment = process.env.NODE_ENV || 'development';
-    // Get the API URL based on the environment
-    const userUrl = config[environment].user;
-    const postUrl = config[environment].post;
-    const animeUrl = config[environment].anime;
+    const addSignupMutation = useSignup();
   
     const onSubmit = async (event) => {
       event.preventDefault()
@@ -45,8 +37,6 @@ const Register = () => {
       let hasError = false
       const error = {}
 
-      setLoading(true);
-  
       // Validate username
       if (!username || username.length < 6 || username.length > 14 || !/^[a-zA-Z0-9]+$/.test(username)) {
         error.username = 'Username must be between 6 and 14 characters and contain only letters and numbers'
@@ -75,46 +65,17 @@ const Register = () => {
         setError(error)
         return
       }
-  
-      // Submit form
-      const registered = {
-        fullName,
-        username,
-        email,
-        password
-      }
+   
+        const registered = {
+          fullName,
+          username,
+          email,
+          password
+        };
 
-      axios
-      .post(`${userUrl}/signup`, registered)
-      .then((response) => {
-        // Handle a successful response here if needed
-        setLoading(false);
-        window.location = './Login';
-      })
-      .catch((error) => {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          const status = error.response.status;
+        await addSignupMutation.mutateAsync(registered);
+    };
 
-          if (status === 404) {
-            toast.error('Resource not found (404)');
-          } else if (status === 500) {
-            toast.error('Internal server error (500)');
-          } else {
-            toast.error('An error has occurred');
-          }
-        } else if (error.request) {
-          // The request was made but no response was received
-          toast.error('An error has occurred');
-        } else {
-          // Something else happened while setting up the request
-          toast.error('An error occurred while making the request');
-        }
-
-        setLoading(false);
-      });
-  
-    }
 
     return (
       <div>
@@ -189,7 +150,6 @@ const Register = () => {
               ) : (
                 <Submit left="15%" />
               )}
-              <ToastContainer/>
             </form>
           </div>
         </div>

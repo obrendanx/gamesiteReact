@@ -2,11 +2,10 @@ import React, {useContext, useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import FavouriteBtn from '../Form/Buttons/FavouriteBtn'
 import { AuthContext } from "../User/Auth/AuthContext";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useUserFavorites } from '../../Querys/userFavoritesQuery';
-import { useAddAnime } from '../../Querys/addAnimeQuery';
-import { useRemoveAnime } from '../../Querys/removeAnimeQuery';
+import { useUserFavorites } from '../../Querys/showFavoritesQuery';
+import useAddAnime from '../../Querys/addAnimeQuery';
+import useRemoveAnime from '../../Querys/deleteAnimeQuery';
+import { toast } from "react-toastify";
 
 const AnimeCardCtn = styled.article`
   width:100%;
@@ -28,17 +27,24 @@ const AnimeImage = styled.figure`
 
 function AnimeCard({ anime }) {
   const { user, isLoggedIn } = useContext(AuthContext);
-  const { data: userFavourites, isLoading, isError, refetch } = useUserFavorites(user.username);
+  const { data: userFavourites, refetch } = useUserFavorites(user.username);
 
   const addAnimeMutation = useAddAnime();
   const removeAnimeMutation = useRemoveAnime();
 
-  const isAlreadyFavorite = userFavourites
-    ? userFavourites.some((item) => item.animeTitle === anime.title_japanese)
-    : false;
+  const [isAlreadyFavorite, setIsAlreadyFavourite] = useState(false);
+  
+  useEffect(() => {
+      // Update isAlreadyFavourite when userFavourites data is available
+      if (userFavourites) {
+        setIsAlreadyFavourite(
+          userFavourites.some((item) => item.animeTitle === anime.title_japanese)
+        );
+      }
+    }, [userFavourites, anime.title_japanese]);
+  
 
   const handleClick = async () => {
-    try {
       if (isLoggedIn) {
         const newAnimeItem = {
           username: user.username,
@@ -46,9 +52,8 @@ function AnimeCard({ anime }) {
           img: anime.images.jpg.image_url,
           url: anime.url,
         };
-        console.log(userFavourites);
+
         if (isAlreadyFavorite) {
-          console.log(userFavourites);
           // Anime already exists, remove it
           const removedItem = userFavourites.find((item) => item.animeTitle === newAnimeItem.title);
           if (removedItem) {
@@ -56,28 +61,16 @@ function AnimeCard({ anime }) {
               itemId: removedItem._id,
               username: user.username,
             });
-            toast.success('Anime removed from favorites');
           }
         } else {
           // Anime doesn't exist, add it
-          console.log(userFavourites);
-          const response = await addAnimeMutation.mutateAsync(newAnimeItem);
-          toast.success('Anime added to favorites');
+          await addAnimeMutation.mutateAsync(newAnimeItem);
         }
         refetch();
       } else {
         toast.error('You must be logged in to favorite an anime');
       }
-    } catch (error) {
-      console.error('Error adding/removing anime:', error);
-    }
   };
-
-  useEffect(() => {
-    if (user) {
-      refetch();
-    }
-  }, [user]);
 
   return (
     <div>
@@ -92,7 +85,6 @@ function AnimeCard({ anime }) {
           <Header>{anime.title_japanese}</Header>
         </Link>
         <FavouriteBtn favourited={isAlreadyFavorite} handleClick={handleClick} />
-        <ToastContainer />
       </AnimeCardCtn>
     </div>
   );

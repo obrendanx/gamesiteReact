@@ -12,11 +12,10 @@ import sanitizeHtml from 'sanitize-html';
 import FavouriteCard from '../../AnimePage/FavouriteCard'
 import PacmanLoader from "react-spinners/PacmanLoader";
 import config from '../../../config';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useUserFavorites } from '../../../Querys/userFavoritesQuery';
+import { toast } from 'react-toastify';
+import { useUserFavorites } from '../../../Querys/showFavoritesQuery';
 import { useShowUserPosts } from '../../../Querys/showUserPostsQuery';
-import { useRemovePost } from '../../../Querys/deletePostQuery';
+import useRemovePost from '../../../Querys/deletePostQuery';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -124,6 +123,34 @@ function formatDate(dateString) {
   return new Date(dateString).toLocaleString(undefined, options);
 }
 
+function ShowFavourites(username) {
+  const { data: userFavourites, refetch, isLoading } = useUserFavorites(username.username);
+
+  useEffect(() => {
+    if (username) {
+      refetch();
+    }
+  }, [username, userFavourites]);
+
+  if(isLoading) {
+    return (
+      <div>
+        <span>Loading Favourites ...</span>
+      </div>
+    );
+  }
+
+  if(!userFavourites) {
+    return(
+      <div></div>
+    );
+  }
+
+  return (
+    <FavouriteCard user={username} favouriteList={userFavourites} key={userFavourites._id}/>
+  );
+}
+
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
   const { username } = useParams();
@@ -132,8 +159,7 @@ function User() {
   const [loading, setLoading] = useState(false);
   const [isCurrentUserFollowing, setIsCurrentUserFollowing] = useState(false);
   const [flwBtnText, setFlwBtnText] = useState("Follow");
-  const { data: userFavourites, refetch } = useUserFavorites(username);
-  const { data: userPosts } = useShowUserPosts(username);
+  const { data: userPosts, isLoading, refetch } = useShowUserPosts(username);
   const removePostMutation = useRemovePost();
   const allowedTags = [
     'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
@@ -155,7 +181,6 @@ function User() {
   // Set the environment (e.g., 'development' or 'production')
   const environment = process.env.NODE_ENV || 'development';
   const userUrl = config[environment].user;
-  const postUrl = config[environment].post;
 
   //Fetches profile and posts if username changes
   useEffect(() => {
@@ -315,9 +340,27 @@ function User() {
     );
   }
 
+  if(isLoading) {
+    return (
+      <div className={css`
+        height:100vh;
+        width:100vw;
+      `}>
+        <span>Loading Posts ...</span>
+        <PacmanLoader
+          loading={!user}
+          size={15}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          color="#F44034"
+          cssOverride={override}
+        />
+      </div>
+    );
+  }
+
   return (
     <div>
-      <ToastContainer data-testid="toast-container" />
       <Global
         styles={css`
           img {
@@ -341,10 +384,10 @@ function User() {
         }
 
         <MediumHeader text={user.fullName + 's posts:'}/>
-
+        
         <Wrapper>
           <List>
-            {userPosts.data.map(post => (
+            {userPosts.data.slice().reverse().map(post => (
               <ListItem
                 key={post._id}
               >
@@ -375,7 +418,7 @@ function User() {
         <MediumHeader text={user.fullName + 's favourite anime:'}/>  
 
         <div>
-          <FavouriteCard user={username} favouriteList={userFavourites} key={userFavourites._id}/>
+          <ShowFavourites username={username}/>
         </div>
       </SubDiv>
 
