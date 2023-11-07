@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import Button from '../Form/Buttons/Button';
 import LargeHeader from '../Headers/LargeHeader'
 import SmallHeader from '../Headers/SmallHeader';
 import MediumHeader from '../Headers/MediumHeader'
 import config from '../../config';
+import useRemoveUser from '../../Querys/deleteUserQuery';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../User/Auth/AuthContext';
+import { useShowUsers } from '../../Querys/showUsersQuery';
+import PacmanLoader from "react-spinners/PacmanLoader"
 
 const AdminPanel = styled.div`
     background:#1C1C1C;
@@ -31,44 +35,46 @@ const AdminPanel = styled.div`
   `
 
 export default function Admin() {
-  const [users, setUsers] = useState([]);
-  // Set the environment (e.g., 'development' or 'production')
-  const environment = process.env.NODE_ENV || 'development';
-  // Get the API URL based on the environment
-  const userUrl = config[environment].user;
-  const postUrl = config[environment].post;
-  const animeUrl = config[environment].anime;
-
-  async function fetchUsers() {
-    //fetches all users from database
-    try {
-      const res = await axios.get(`${userUrl}/fetchusers`);
-      setUsers(res.data.data)
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
+  //const [users, setUsers] = useState([]);
+  const removeUserMutation = useRemoveUser();
+  const { data: users, refetch, isLoading } = useShowUsers();
+  const { user } = useContext(AuthContext);
 
   const handleRemoveUser = async (username) => {
     //displays a confirm message to make sure user wants to remove
     //selected user from the datanbase
-    if (window.confirm(`Are you sure you want to delete ${username}?`)) {
-      try {
-        //deletes user from database
-        //refetches new list of users to display
-        await axios.delete(`${userUrl}/deleteuser?username=${username}`);
-        const res = await axios.get(`${userUrl}/fetchusers`);
-        setUsers(res.data.data);
-      } catch (err) {
-        console.error(err);
+    if(user.isGlobalAdmin) {
+      if (window.confirm(`Are you sure you want to delete ${username}?`)) {
+        await removeUserMutation.mutateAsync({
+          username: username,
+        });
       }
+    } else {
+      toast.error('You do not have permission to delete a user');
     }
   };
+
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+    marginTop: "10px"
+  };
+
+  if(isLoading) {
+    return(
+      <PacmanLoader
+        loading={isLoading}
+        size={15}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        color="#F44034"
+        cssOverride={override}
+      />
+    );
+  }
+
+  console.log(users);
 
   return (
     <div>
@@ -77,12 +83,13 @@ export default function Admin() {
           <div>
               <List>
               <MediumHeader text="Current Users: "/>
-              {users.map(user => (
+              {users.data.map(user => (
                   <ListItem key={user._id}>
                       <SmallHeader xsm text={user.username} />
                       {/* {user.username} */}
                       {/* <RemoveBtn onClick={() => handleRemoveUser(user.username)}>Remove</RemoveBtn> */}
                       <Button sm primary handleClick={() => handleRemoveUser(user.username)} text="Remove" />
+                      {console.log(user.username)}
                   </ListItem>
                   ))}
               </List>

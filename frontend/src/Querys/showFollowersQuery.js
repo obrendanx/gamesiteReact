@@ -6,15 +6,15 @@ const environment = process.env.NODE_ENV || 'development';
 // Get the API URL based on the environment
 const userUrl = config[environment].user;
 
-export const fetchProfileIcon = (username) => {
-  if(username) {
-    return axios.get(`${userUrl}/fetchprofileicon?username=${username}`)
+export const fetchUserFollowers = (username) => {
+  if (username) { 
+    return axios.get(`${userUrl}/followers/${username}`)
     .then((response) => response.data);
   } else {
-    return "#000000";
+    return undefined;
   }
 };
 
-export const useProfileIcon = (username) => {
-  return useQuery(['profileIcon', username], () => fetchProfileIcon(username));
+export const useUserFollowers = (username) => {
+  return useQuery(['followers', username], () => fetchUserFollowers(username));
 };
