@@ -12,11 +12,12 @@ export default function useFollowUser () {
 
   return useMutation(
     async (user) => {
+      console.log(user._id);
       console.log(user.username);
       console.log(user.currentUserUsername);
       try {
         const currentUserUsername = user.currentUserUsername;
-        const response = axios.post(`${userUrl}/follow/${user.username}`, { currentUserUsername });
+        const response = axios.post(`${userUrl}/follow/${user.username}`, { username: currentUserUsername });
 
         toast.success(`You are now following ` + user.username);
         return await response.data;

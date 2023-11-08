@@ -12,9 +12,11 @@ export default function useUnfollowUser () {
 
   return useMutation(
     async (user) => {
+      console.log(user.username);
+      console.log(user.currentUserUsername);
       try {
         const currentUserUsername = user.currentUserUsername;
-        const response = axios.post(`${userUrl}/unfollow/${user.username}`, { currentUserUsername });
+        const response = axios.post(`${userUrl}/unfollow/${user.username}`, { username: currentUserUsername });
 
         toast.success(`You have unfollowed ` + user.username);
         return await response.data;

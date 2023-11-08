@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthContext';
 import ProfileIcon from './ProfileIcon';
-import axios from 'axios';
 import LargeHeader from '../../Headers/LargeHeader'
 import { css, Global } from '@emotion/react';
 import Button from '../../Form/Buttons/Button';
@@ -11,15 +10,12 @@ import styled from '@emotion/styled';
 import sanitizeHtml from 'sanitize-html';
 import FavouriteCard from '../../AnimePage/FavouriteCard'
 import PacmanLoader from "react-spinners/PacmanLoader";
-import config from '../../../config';
-import { toast } from 'react-toastify';
 import { useUserFavorites } from '../../../Querys/showFavoritesQuery';
 import { useShowUserPosts } from '../../../Querys/showUserPostsQuery';
 import { useShowUser } from '../../../Querys/showUserQuery';
 import useRemovePost from '../../../Querys/deletePostQuery';
 import useFollowUser from '../../../Querys/addFollowUserQuery';
 import useUnfollowUser from '../../../Querys/deleteFollowUserQuery';
-import { useUserFollowing } from '../../../Querys/showFollowingQuery';
 import { useUserFollowers } from '../../../Querys/showFollowersQuery';
 
 const Wrapper = styled.div`
@@ -159,13 +155,11 @@ function ShowFavourites(username) {
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
   const { username } = useParams();
-  //const [user, setUser] = useState(null);
-  //const [followers, setFollowers] = useState([]);
-  const { data: followers } = useUserFollowers(username);
+  const { data: followers, refetch } = useUserFollowers(username);
   const [loading, setLoading] = useState(false);
   const [isCurrentUserFollowing, setIsCurrentUserFollowing] = useState(false);
   const [flwBtnText, setFlwBtnText] = useState("Follow");
-  const { data: userPosts, isLoading, refetch } = useShowUserPosts(username);
+  const { data: userPosts, isLoading } = useShowUserPosts(username);
   const { data: user } = useShowUser(username);
   const removePostMutation = useRemovePost();
   const addFollowingMutation = useFollowUser();
@@ -187,10 +181,6 @@ function User() {
     marginTop: "10px"
   };
 
-  // Set the environment (e.g., 'development' or 'production')
-  const environment = process.env.NODE_ENV || 'development';
-  const userUrl = config[environment].user;
-
   //Fetches profile and posts if username changes
   useEffect(() => {
   if (followers !== undefined) {
@@ -207,34 +197,6 @@ function User() {
     }
   }
 }, [followers, currentUser]);
-
-  //////////////////////////////////////////////////
-  //LOGIC FOR FETCHING THE USER PROFILES FOLLOWERS//
-  //////////////////////////////////////////////////
-
-  // const fetchFollowers = async () => {
-  //   try {
-  //     const response = await axios.get(`${userUrl}/followers/${username}`);
-  //     if (response.status === 200) {
-
-  //       const isFollowing = response.data.followers.some(
-  //         (follower) => follower.username === currentUser.username
-  //       );
-
-  //       if (isFollowing) {
-  //         setIsCurrentUserFollowing(true);
-  //         setFlwBtnText("Unfollow");
-  //       }
-
-  //       setFollowers(
-  //         isCurrentUserFollowing ? response.data.followers : [...response.data.followers, currentUser]
-  //       );
-  //     } 
-  //   } catch (error) {
-  //     console.log('Failed to fetch followers');
-  //     toast.error('Failed to fetch followers');
-  //   }
-  // };
 
   //Logic for handling the following and unfollowing of users
   const handleFollowToggle = async () => {
@@ -254,35 +216,12 @@ function User() {
   ////////////////////////////
 
   const followUser = async () => {
-    //setLoading(true);
-
     await addFollowingMutation.mutateAsync({
         username: username,
         currentUserUsername: currentUser.username
       });
-
-  //   try {
-  //     const response = await axios.post(
-  //       `${userUrl}/follow/${username}`,
-  //       { username: currentUser.username },
-  //       {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           Authorization: `Bearer ${currentUser.token}`,
-  //         },
-  //       }
-  //     );
-
-  //     if (response.status === 200) {
-  //       toast.success('You are now following this user.');
-  //       setFollowers([...followers, currentUser]);
-  //     } 
-  //   } catch (error) {
-  //     console.log(error, 'Failed to follow user');
-  //     toast.error('Failed to follow user');
-  //   }
-
-  //   setLoading(false);
+      setIsCurrentUserFollowing(true);
+      setFlwBtnText('Unfollow');
    };
 
   //////////////////////////////
@@ -290,35 +229,12 @@ function User() {
   //////////////////////////////
 
   const unfollowUser = async () => {
-    //setLoading(true);
-
     await addUnfollowingMutation.mutateAsync({
         username: username,
         currentUserUsername: currentUser.username
       });
-
-  //   try {
-  //     const response = await axios.post(
-  //       `${userUrl}/unfollow/${username}`,
-  //       { username: currentUser.username },
-  //       {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           Authorization: `Bearer ${currentUser.token}`,
-  //         },
-  //       }
-  //     );
-
-  //     if (response.status === 200) {
-  //       toast.success('You have unfollowed this user.');
-  //       setFollowers(followers.filter((follower) => follower.username !== currentUser.username));
-  //     } 
-  //   } catch (error) {
-  //     console.log('Failed to unfollow user');
-  //     toast.error('Failed to unfollow user');
-  //   }
-
-  //   setLoading(false);
+      setIsCurrentUserFollowing(false);
+      setFlwBtnText('Follow');
   };
 
   ////////////////////////////////
@@ -331,7 +247,7 @@ function User() {
       });
   };
 
-  //If user is not found display a loaidng icon
+  //If user is not found display a loading icon
 
   if (!user) {
     return ( 

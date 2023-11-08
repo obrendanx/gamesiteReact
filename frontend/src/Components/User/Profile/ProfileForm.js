@@ -10,6 +10,7 @@ import { AuthContext } from "../Auth/AuthContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import config from "../../../config";
+import { useShowUser } from "../../../Querys/showUserQuery";
 
 const ProfileFormDiv = styled.div`
     padding:10px 10px 10px 5px;
@@ -42,6 +43,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
   const userUrl = config[environment].user;
   const postUrl = config[environment].post;
   const animeUrl = config[environment].anime;
+  const { data: theUser } = useShowUser(user.username);
 
   useEffect(() => {
     //fetch the current user
@@ -150,7 +152,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
         onSubmit={handleSubmit}
       >
       <ProfileFormDiv>
-        <Label htmlfor='fullName' text={'Full Name:' + details.fullName} primary></Label>
+        <Label htmlfor='fullName' text={'Full Name:' + theUser.fullName} primary></Label>
         <Input
                 type="text"
                 placeholder="Fullname: "
@@ -162,7 +164,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
         {error.fullName && <Error className="error">{error.fullName}</Error>}
       </ProfileFormDiv>
       <ProfileFormDiv>
-        <Label htmlfor='username' text={'Username:' + details.username} primary></Label>
+        <Label htmlfor='username' text={'Username:' + theUser.username} primary></Label>
         <Input
                 type="text"
                 placeholder="Username: "
@@ -174,7 +176,7 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
         {error.username && <Error className="error">{error.username}</Error>}
       </ProfileFormDiv>
       <ProfileFormDiv>
-        <Label htmlfor='email' text={'Email:' + details.email} primary></Label>
+        <Label htmlfor='email' text={'Email:' + theUser.email} primary></Label>
         <Input
                 type="text"
                 placeholder="Email: "
