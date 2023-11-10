@@ -58,7 +58,7 @@ function Login() {
         toast.error('Please check your username and password');
       }
     } catch (error) {
-      if(username.length == 0 || email.length == 0 || password.length == 0){
+      if(username.length === 0 || email.length === 0 || password.length === 0){
         toast.error("username, email or password is missing");
       } else {
         console.error(error);

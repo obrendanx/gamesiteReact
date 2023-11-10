@@ -1,6 +1,5 @@
 import React, {useState, useContext} from 'react'
 import { AuthContext } from '../User/Auth/AuthContext';
-import config from '../../config';
 import FavouriteCard from '../AnimePage/FavouriteCard';
 import { css } from '@emotion/css';
 import { useUserFavorites } from '../../Querys/showFavoritesQuery';
@@ -9,7 +8,7 @@ function FavoritesSide() {
     const { user } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const flex = true;
-    const { data: userFavourites, refetch, isLoading } = useUserFavorites(user.username);
+    const { data: userFavourites, isLoading } = useUserFavorites(user.username);
 
     const handleClick = () => {
         if(open){

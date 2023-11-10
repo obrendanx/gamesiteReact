@@ -1,29 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/css';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import config from '../../config';
 import MediumHeader from '../Headers/MediumHeader';
+import { useShowUsers } from '../../Querys/showUsersQuery';
 
 function UserSearch() {
   const [finduser, setFindUser] = useState('');
-  const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
-  const environment = process.env.NODE_ENV || 'development';
-  const userUrl = config[environment].user;
-
-  async function fetchUsers() {
-    try {
-      const res = await axios.get(`${userUrl}/fetchusers`);
-      setUsers(res.data.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  const { data: users } = useShowUsers();
 
   useEffect(() => {
     if (finduser.trim() === '') {
@@ -32,7 +16,7 @@ function UserSearch() {
       return;
     }
 
-    const filtered = users.filter(user =>
+    const filtered = users.data.filter(user =>
       user.username.toLowerCase().includes(finduser.toLowerCase())
     );
     setFilteredUsers(filtered);

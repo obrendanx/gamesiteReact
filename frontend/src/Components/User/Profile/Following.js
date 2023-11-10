@@ -16,10 +16,9 @@ const Text = styled.span`
 `
 
 export default function Following() {
-  //const [following, setFollowing] = useState([]);
   const { user } = useContext(AuthContext); 
   const username = user.username;
-  const { data: following, refetch, isLoading } = useUserFollowing(username);
+  const { data: following, isLoading } = useUserFollowing(username);
 
   if(isLoading || following === undefined) {
     return (

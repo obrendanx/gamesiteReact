@@ -18,7 +18,7 @@ const Text = styled.span`
 export default function Followers() {
   const { user } = useContext(AuthContext); 
   const username = user.username;
-  const { data: followers, refetch, isLoading } = useUserFollowers(username);
+  const { data: followers, isLoading } = useUserFollowers(username);
 
   if(isLoading || followers === undefined) {
     return (

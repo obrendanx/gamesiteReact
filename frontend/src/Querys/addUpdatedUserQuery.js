@@ -7,21 +7,23 @@ const environment = process.env.NODE_ENV || 'development';
 // Get the API URL based on the environment
 const userUrl = config[environment].user;
 
-export default function useRemovePost () {
+export default function useUpdateUser () {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async ({postId}) => {
+    async (details) => {
       try {
-        const response = await axios.delete(`${postUrl}/deletepost?id=${postId}`);
+        console.log(details.username);
+        console.log(details.updatedFields);
+        const response = await axios.put(`${userUrl}/updateuserdetails/${details.username}`, details.updatedFields);
         
         if (response.status === 200) {
-          toast.success("Post successfully deleted");
+          toast.success("User updated successfully");
           return response.data;
         } 
       } catch (error) {
         if (error.response.status === 404) {
-          throw new Error(`Post not found`);
+          throw new Error(`User not found`);
         } else {
           console.log(error.response.status);
           throw new Error('An error has occurred');
@@ -31,16 +33,16 @@ export default function useRemovePost () {
     {
       throwOnError: true,
       onMutate: (variables) => {
-        const previousData = queryClient.getQueryData('userPosts');
+        const previousData = queryClient.getQueryData('updatedUser');
         return previousData;
       },
       onSuccess: () => {
-        queryClient.invalidateQueries('userPosts'); 
+        queryClient.invalidateQueries('updatedUser'); 
       },
       onError: (error, variables, previousData) => {
-        queryClient.setQueryData('userPosts', previousData);
+        queryClient.setQueryData('updatedUser', previousData);
         toast.error(
-          `Error removing post: ${error.message}`
+          `Error updating user: ${error.message}`
         );
       },
     },

@@ -3,10 +3,8 @@ import styled from '@emotion/styled';
 import { useProfileIcon } from '../../../Querys/showProfileIcon';
 
 const ProfileIcon = ({username, auto}) => { 
-  //used to grab user information
   const [color, setColor] = useState("000");
-  const { data: profileIcon, refetch } = useProfileIcon(username);
-  // Set the environment (e.g., 'development' or 'production')
+  const { data: profileIcon } = useProfileIcon(username);
 
   const ProfileIconDiv = styled.div`
     padding:10px;

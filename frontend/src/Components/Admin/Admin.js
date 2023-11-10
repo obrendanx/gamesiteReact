@@ -4,7 +4,6 @@ import Button from '../Form/Buttons/Button';
 import LargeHeader from '../Headers/LargeHeader'
 import SmallHeader from '../Headers/SmallHeader';
 import MediumHeader from '../Headers/MediumHeader'
-import config from '../../config';
 import useRemoveUser from '../../Querys/deleteUserQuery';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../User/Auth/AuthContext';
@@ -35,9 +34,8 @@ const AdminPanel = styled.div`
   `
 
 export default function Admin() {
-  //const [users, setUsers] = useState([]);
   const removeUserMutation = useRemoveUser();
-  const { data: users, refetch, isLoading } = useShowUsers();
+  const { data: users, isLoading } = useShowUsers();
   const { user } = useContext(AuthContext);
 
   const handleRemoveUser = async (username) => {
@@ -86,8 +84,6 @@ export default function Admin() {
               {users.data.map(user => (
                   <ListItem key={user._id}>
                       <SmallHeader xsm text={user.username} />
-                      {/* {user.username} */}
-                      {/* <RemoveBtn onClick={() => handleRemoveUser(user.username)}>Remove</RemoveBtn> */}
                       <Button sm primary handleClick={() => handleRemoveUser(user.username)} text="Remove" />
                       {console.log(user.username)}
                   </ListItem>

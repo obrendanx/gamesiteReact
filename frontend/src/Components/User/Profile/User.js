@@ -113,11 +113,11 @@ const ListItem = styled.li`
   }
 `
 
-const Error = styled.span`
-    font-size:0.8em;
-    color:#F44336;
-    margin-left:2.5%;
-`
+// const Error = styled.span`
+//     font-size:0.8em;
+//     color:#F44336;
+//     margin-left:2.5%;
+// `
 
 function formatDate(dateString) {
   const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -125,13 +125,7 @@ function formatDate(dateString) {
 }
 
 function ShowFavourites(username) {
-  const { data: userFavourites, refetch, isLoading } = useUserFavorites(username.username);
-
-  useEffect(() => {
-    if (username) {
-      refetch();
-    }
-  }, [username, userFavourites]);
+  const { data: userFavourites, isLoading } = useUserFavorites(username.username);
 
   if(isLoading) {
     return (
@@ -155,7 +149,7 @@ function ShowFavourites(username) {
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
   const { username } = useParams();
-  const { data: followers, refetch } = useUserFollowers(username);
+  const { data: followers } = useUserFollowers(username);
   const [loading, setLoading] = useState(false);
   const [isCurrentUserFollowing, setIsCurrentUserFollowing] = useState(false);
   const [flwBtnText, setFlwBtnText] = useState("Follow");

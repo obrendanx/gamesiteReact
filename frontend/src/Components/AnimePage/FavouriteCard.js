@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import Input from '../Form/Input'
 import { AuthContext } from '../User/Auth/AuthContext';
 import Submit from '../Form/Submit'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Label from '../Form/Label'
 import { css } from '@emotion/css';
@@ -29,13 +28,13 @@ const AnimeContainer = styled.div`
     flex-wrap:wrap;
 `
 
-const AnimeGroup = styled.div`
-    margin:4.16%;
-    text-align:center;
-    @media screen and (max-width: 770px){
-        width:100%;
-    }
-`
+// const AnimeGroup = styled.div`
+//     margin:4.16%;
+//     text-align:center;
+//     @media screen and (max-width: 770px){
+//         width:100%;
+//     }
+// `
 
 const TextCont = styled.div`
     width:100%;
@@ -72,7 +71,6 @@ const Watching = styled.span`
 function FavouriteCard({ favouriteList, user, flex }) {
   const [currentEpisode, setCurrentEpisode] = useState(0);
   const [currentSeason, setCurrentSeason] = useState(0);
-  const [watching, setWatching] = useState(false)
   const { user: currentUser } = useContext(AuthContext);
   const updateAnimeMutation = useUpdateAnime();
 
@@ -117,7 +115,7 @@ function FavouriteCard({ favouriteList, user, flex }) {
                         <Header>{favourite.animeTitle}</Header>
                     </Link>
                     </div>
-                    {currentUser.username !== user ? (
+                    {currentUser.username !== user.username ? (
                       null
                     ) : 
                       <form onSubmit={(event) => handleClick(event, favourite)}>
@@ -150,7 +148,6 @@ function FavouriteCard({ favouriteList, user, flex }) {
                     </div>
                 </div>
             ))}
-            <ToastContainer/>
     </AnimeContainer>
   );
 }

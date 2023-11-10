@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import React, { useState, useContext } from "react";
 import { TwitterPicker } from "react-color";
 import styled from "@emotion/styled";
 import Input from '../../Form/Input'
@@ -7,10 +6,9 @@ import Label from "../../Form/Label";
 import Submit from "../../Form/Submit";
 import { css } from "@emotion/css";
 import { AuthContext } from "../Auth/AuthContext";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import config from "../../../config";
 import { useShowUser } from "../../../Querys/showUserQuery";
+import useUpdateUser from "../../../Querys/addUpdatedUserQuery";
 
 const ProfileFormDiv = styled.div`
     padding:10px 10px 10px 5px;
@@ -33,29 +31,12 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
   // eslint-disable-next-line no-unused-vars
   const [details, setDetails] = useState({});
   // eslint-disable-next-line no-unused-vars
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setIsLoading] = useState(false);
   const [error, setError] = useState({});
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
   const { user } = useContext(AuthContext);
-  // Set the environment (e.g., 'development' or 'production')
-  const environment = process.env.NODE_ENV || 'development';
-  // Get the API URL based on the environment
-  const userUrl = config[environment].user;
-  const postUrl = config[environment].post;
-  const animeUrl = config[environment].anime;
-  const { data: theUser } = useShowUser(user.username);
-
-  useEffect(() => {
-    //fetch the current user
-    const fetchUser = async () => {
-      setIsLoading(true);
-      console.log(user.username);
-      const response = await axios.get(`${userUrl}/fetchuser?username=${user.username}`);
-      setDetails(response.data);
-      setIsLoading(false);
-    };
-    fetchUser();
-  }, []);
+  const { data: theUser, isLoading, refetch } = useShowUser(user.username);
+  const updateUserMutation = useUpdateUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -123,18 +104,12 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
       return;
     }
 
-    try {
-      await axios.put(`${userUrl}/updateuserdetails/${details.username}`, updatedFields);
-      // After successful update, update the user's data
-      setDetails((prevDetails) => ({
-        ...prevDetails,
-        ...updatedFields,
-      }));
-      toast.success('Profile Updated Successfully');
-    } catch (error) {
-      console.error(error);
-      toast.error('No Changes Made');
-    }
+    await updateUserMutation.mutateAsync({
+        username: user.username,
+        updatedFields: updatedFields
+      });
+
+    refetch();
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -145,6 +120,14 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
   const handleColorClick = () => {
     setDisplayColorPicker(!displayColorPicker);
   };
+
+  console.log(theUser);
+
+  if(isLoading) {
+    return(
+      <div>Loading ...</div>
+    );
+  }
 
   return (
     <div>
@@ -226,7 +209,6 @@ const ProfileForm = ({ onSubmit, initialValues }) => {
         />
       </ProfileFormDiv>
       <Submit small left="5px"></Submit>
-      <ToastContainer/>
     </form>
   </div>
   );

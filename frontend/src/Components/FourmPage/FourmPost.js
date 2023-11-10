@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { css } from '@emotion/css';
-import axios from 'axios';
 import { EditorState} from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import { AuthContext } from '../User/Auth/AuthContext';
@@ -11,7 +10,6 @@ import Label from '../Form/Label';
 import Submit from '../Form/Submit';
 import Validator from '../Form/Validator';
 import { toast } from 'react-toastify';
-import config from '../../config';
 import useAddPost from '../../Querys/addPostQuery';
 
 function FourmInput() {

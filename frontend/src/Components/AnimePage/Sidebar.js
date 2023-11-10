@@ -43,7 +43,6 @@ function Sidebar({topAnime}) {
               padding:5%;
               font-size:1em;
             `}>
-                {/* <SubHeader>Top Anime:</SubHeader> */}
                 <SmallHeader text="Top Anime:"></SmallHeader>
                 <List>
                   {/* Maps the Top anime for the sidebar */}
