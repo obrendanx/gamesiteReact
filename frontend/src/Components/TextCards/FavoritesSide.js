@@ -1,36 +1,14 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import { AuthContext } from '../User/Auth/AuthContext';
-import axios from 'axios';
-import config from '../../config';
 import FavouriteCard from '../AnimePage/FavouriteCard';
 import { css } from '@emotion/css';
-import SmallHeader from '../Headers/SmallHeader';
+import { useUserFavorites } from '../../Querys/showFavoritesQuery';
 
 function FavoritesSide() {
-    const [favourites, setFavourites] = useState([]);
-    const { user, isLoggedIn } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const flex = true;
-
-    // Set the environment (e.g., 'development' or 'production')
-    const environment = process.env.NODE_ENV || 'development';
-    // Get the API URL based on the environment
-    const animeUrl = config[environment].anime;
-
-    useEffect(() => {
-    const fetchUserFavourites = async () => {
-        try {
-            const response = await axios.get(
-            `${animeUrl}/userfavorites?username=${user.username}`
-            );
-            setFavourites(response.data);
-        } catch (error) {
-            console.error('Error fetching user favourites:', error);
-        }
-        };
-
-        fetchUserFavourites();
-    }, [user, favourites]);
+    const { data: userFavourites, isLoading } = useUserFavorites(user.username);
 
     const handleClick = () => {
         if(open){
@@ -40,7 +18,13 @@ function FavoritesSide() {
         }
     }
 
-    
+    if (isLoading) {
+        return (
+            <div>
+                
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -113,7 +97,7 @@ function FavoritesSide() {
                         margin-top:5px;
                         font-family: 'Oswald', sans-serif;
                     `}>FAVOURITES</h3>
-                    <FavouriteCard user={user.username} favouriteList={favourites} key={favourites._id} flex={flex}/> 
+                    <FavouriteCard user={user.username} favouriteList={userFavourites} key={userFavourites._id} flex={flex}/> 
                     <div className={css`
                         position:fixed;
                         height:5vh;

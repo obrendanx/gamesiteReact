@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../Auth/AuthContext';
 import ProfileIcon from './ProfileIcon';
-import axios from 'axios';
 import LargeHeader from '../../Headers/LargeHeader'
 import { css, Global } from '@emotion/react';
 import Button from '../../Form/Buttons/Button';
@@ -11,9 +10,13 @@ import styled from '@emotion/styled';
 import sanitizeHtml from 'sanitize-html';
 import FavouriteCard from '../../AnimePage/FavouriteCard'
 import PacmanLoader from "react-spinners/PacmanLoader";
-import config from '../../../config';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useUserFavorites } from '../../../Querys/showFavoritesQuery';
+import { useShowUserPosts } from '../../../Querys/showUserPostsQuery';
+import { useShowUser } from '../../../Querys/showUserQuery';
+import useRemovePost from '../../../Querys/deletePostQuery';
+import useFollowUser from '../../../Querys/addFollowUserQuery';
+import useUnfollowUser from '../../../Querys/deleteFollowUserQuery';
+import { useUserFollowers } from '../../../Querys/showFollowersQuery';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -110,24 +113,51 @@ const ListItem = styled.li`
   }
 `
 
-const Error = styled.span`
-    font-size:0.8em;
-    color:#F44336;
-    margin-left:2.5%;
-`
+// const Error = styled.span`
+//     font-size:0.8em;
+//     color:#F44336;
+//     margin-left:2.5%;
+// `
+
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  return new Date(dateString).toLocaleString(undefined, options);
+}
+
+function ShowFavourites(username) {
+  const { data: userFavourites, isLoading } = useUserFavorites(username.username);
+
+  if(isLoading) {
+    return (
+      <div>
+        <span>Loading Favourites ...</span>
+      </div>
+    );
+  }
+
+  if(!userFavourites) {
+    return(
+      <div></div>
+    );
+  }
+
+  return (
+    <FavouriteCard user={username} favouriteList={userFavourites} key={userFavourites._id}/>
+  );
+}
 
 function User() {
   const { user: currentUser, isLoggedIn } = useContext(AuthContext);
   const { username } = useParams();
-  const [user, setUser] = useState(null);
-  const [followers, setFollowers] = useState([]);
+  const { data: followers } = useUserFollowers(username);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState([]);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [posts, setPosts] = useState([]);
-  const [favourites, setFavourites] = useState([]);
   const [isCurrentUserFollowing, setIsCurrentUserFollowing] = useState(false);
   const [flwBtnText, setFlwBtnText] = useState("Follow");
+  const { data: userPosts, isLoading } = useShowUserPosts(username);
+  const { data: user } = useShowUser(username);
+  const removePostMutation = useRemovePost();
+  const addFollowingMutation = useFollowUser();
+  const addUnfollowingMutation = useUnfollowUser();
   const allowedTags = [
     'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
     'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
@@ -145,95 +175,22 @@ function User() {
     marginTop: "10px"
   };
 
-  // Set the environment (e.g., 'development' or 'production')
-  const environment = process.env.NODE_ENV || 'development';
-  const userUrl = config[environment].user;
-  const postUrl = config[environment].post;
-  const animeUrl = config[environment].anime;
-
-  /////////////////////////////
-  //LOGIC TO FETCH USER POSTS//
-  /////////////////////////////
-
-  async function fetchPosts(setPosts) {
-    try {
-      const res = await axios.get(`${postUrl}/showuserposts?username=${username}`);
-      setPosts(res.data.data);
-    } catch (err) {
-      console.log(err);
-      toast.error("Failed to fetch users posts");
-    }
-  }
-
   //Fetches profile and posts if username changes
   useEffect(() => {
-    if (username) {
-      fetchUserProfile();
-      fetchFollowers();
-      fetchPosts(setPosts);
-      fetchUserFavourites();
+  if (followers !== undefined) {
+    const isFollowing = followers.followers.some(
+      (follower) => follower.username === currentUser.username
+    );
+
+    if (isFollowing) {
+      setIsCurrentUserFollowing(true);
+      setFlwBtnText('Unfollow');
+    } else {
+      setIsCurrentUserFollowing(false);
+      setFlwBtnText('Follow');
     }
-  }, [username]);
-
-  //////////////////////////////////
-  //LOGIC TO FETCH USER FAVOURITES//
-  //////////////////////////////////
-
-  const fetchUserFavourites = async () => {
-      try {
-        const response = await axios.get(
-          `${animeUrl}/userfavorites?username=${username}`
-        );
-        setFavourites(response.data);
-      } catch (error) {
-        console.error('Error fetching user favourites:', error);
-        toast.error('Failed to fetch users favourites');
-      }
-    };
-  
-  ///////////////////////////////
-  //LOGIC TO FETCH USER PROFILE//
-  ///////////////////////////////
-
-  const fetchUserProfile = async () => {
-    try {
-      const response = await axios.get(`${userUrl}/fetchuser?username=${username}`);
-      if (response.status === 200) {
-        setUser(response.data);
-      } 
-    } catch (error) {
-      toast.error('Failed to fetch user profile');
-      console.log('Failed to fetch user profile');
-    }
-  };
-
-  //////////////////////////////////////////////////
-  //LOGIC FOR FETCHING THE USER PROFILES FOLLOWERS//
-  //////////////////////////////////////////////////
-
-  const fetchFollowers = async () => {
-    try {
-      const response = await axios.get(`${userUrl}/followers/${username}`);
-      if (response.status === 200) {
-
-        const isFollowing = response.data.followers.some(
-          (follower) => follower.username === currentUser.username
-        );
-
-        if (isFollowing) {
-          setIsCurrentUserFollowing(true);
-          setFlwBtnText("Unfollow");
-        }
-
-        setFollowers(
-          isCurrentUserFollowing ? response.data.followers : [...response.data.followers, currentUser]
-        );
-      } 
-    } catch (error) {
-      console.log('Failed to fetch followers');
-      toast.error('Failed to fetch followers');
-    }
-  };
+  }
+}, [followers, currentUser]);
 
   //Logic for handling the following and unfollowing of users
   const handleFollowToggle = async () => {
@@ -253,61 +210,25 @@ function User() {
   ////////////////////////////
 
   const followUser = async () => {
-    setLoading(true);
-
-    try {
-      const response = await axios.post(
-        `${userUrl}/follow/${username}`,
-        { username: currentUser.username },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${currentUser.token}`,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        toast.success('You are now following this user.');
-        setFollowers([...followers, currentUser]);
-      } 
-    } catch (error) {
-      console.log(error, 'Failed to follow user');
-      toast.error('Failed to follow user');
-    }
-
-    setLoading(false);
-  };
+    await addFollowingMutation.mutateAsync({
+        username: username,
+        currentUserUsername: currentUser.username
+      });
+      setIsCurrentUserFollowing(true);
+      setFlwBtnText('Unfollow');
+   };
 
   //////////////////////////////
   //LOGIC FOR UNFOLLOWING USER//
   //////////////////////////////
 
   const unfollowUser = async () => {
-    setLoading(true);
-
-    try {
-      const response = await axios.post(
-        `${userUrl}/unfollow/${username}`,
-        { username: currentUser.username },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${currentUser.token}`,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        toast.success('You have unfollowed this user.');
-        setFollowers(followers.filter((follower) => follower.username !== currentUser.username));
-      } 
-    } catch (error) {
-      console.log('Failed to unfollow user');
-      toast.error('Failed to unfollow user');
-    }
-
-    setLoading(false);
+    await addUnfollowingMutation.mutateAsync({
+        username: username,
+        currentUserUsername: currentUser.username
+      });
+      setIsCurrentUserFollowing(false);
+      setFlwBtnText('Follow');
   };
 
   ////////////////////////////////
@@ -315,15 +236,12 @@ function User() {
   ////////////////////////////////
 
   const handleRemovePost = async (id) => {
-      try {
-        await axios.delete(`${postUrl}/deletepost?id=${id}`);
-        fetchPosts(setPosts);
-      } catch (err) {
-        console.error(err);
-      }
+      await removePostMutation.mutateAsync({
+        postId: id,
+      });
   };
 
-  //If user is not found display a loaidng icon
+  //If user is not found display a loading icon
 
   if (!user) {
     return ( 
@@ -343,9 +261,27 @@ function User() {
     );
   }
 
+  if(isLoading) {
+    return (
+      <div className={css`
+        height:100vh;
+        width:100vw;
+      `}>
+        <span>Loading Posts ...</span>
+        <PacmanLoader
+          loading={!user}
+          size={15}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+          color="#F44034"
+          cssOverride={override}
+        />
+      </div>
+    );
+  }
+
   return (
     <div>
-      <ToastContainer data-testid="toast-container" />
       <Global
         styles={css`
           img {
@@ -369,10 +305,10 @@ function User() {
         }
 
         <MediumHeader text={user.fullName + 's posts:'}/>
-
+        
         <Wrapper>
           <List>
-            {posts.map(post => (
+            {userPosts.data.slice().reverse().map(post => (
               <ListItem
                 key={post._id}
               >
@@ -390,7 +326,7 @@ function User() {
               </Comment> 
 
                 <UserDetails>
-                  <SubHeader>{post.date}</SubHeader>
+                  <SubHeader>{formatDate(post.date)}</SubHeader>
                   { currentUser.username === user.username && isLoggedIn ? (
                     <DeleteBtn onClick={() => handleRemovePost(post._id)}>remove post</DeleteBtn>
                   ) : null}
@@ -403,7 +339,7 @@ function User() {
         <MediumHeader text={user.fullName + 's favourite anime:'}/>  
 
         <div>
-          <FavouriteCard user={username} favouriteList={favourites} key={favourites._id}/>
+          <ShowFavourites username={username}/>
         </div>
       </SubDiv>
 

@@ -1,12 +1,11 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
-import axios from 'axios';
 import MediumHeader from '../Headers/MediumHeader';
 import { Link } from 'react-router-dom';
 import sanitizeHtml from 'sanitize-html';
 import { css, Global } from '@emotion/react';
 import PacmanLoader from "react-spinners/PacmanLoader";
-import config from '../../config';
+import { useShowPosts } from '../../Querys/showPostsQuery';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -75,22 +74,13 @@ const override = {
   borderColor: "red",
 };
 
-async function fetchPosts(setPosts) {
-  try {
-    // Set the environment (e.g., 'development' or 'production')
-    const environment = process.env.NODE_ENV || 'development';
-    // Get the API URL based on the environment
-    const postUrl = config[environment].post;
-    const res = await axios.get(`${postUrl}/showposts`);
-    setPosts(res.data.data);
-  } catch (err) {
-    console.log(err);
-  }
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  return new Date(dateString).toLocaleString(undefined, options);
 }
 
 function Post() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data: posts, isLoading } = useShowPosts();
   const allowedTags = [
     'p', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
     'blockquote', 'ul', 'ol', 'li', 'a', 'img', 'code', 'br', 'div',
@@ -100,71 +90,60 @@ function Post() {
     img: ['src', 'height', 'width'], // Allow only the src attribute for img tags
   };
 
-
-  useEffect(() => {
-   fetchPosts(setPosts).then(() => {
-      setLoading(false); 
-    }); 
-  }, []);
+  if (isLoading) {
+    return (
+      <PacmanLoader
+        loading={isLoading}
+        size={15}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        color="#F44034"
+        cssOverride={override}
+      />
+    );
+  }
 
   return (
     <Wrapper>
       <Global
         styles={css`
           img {
-            max-width:200px;
-            max-height:200px;
+            max-width: 200px;
+            max-height: 200px;
           }
         `}
       />
-      {loading ? ( 
-          <PacmanLoader
-            loading={loading}
-            size={15}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-            color="#F44034"
-            cssOverride={override}
-          />
-      ) : (
-        <List
-          styles={css`
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            list-style: none;
-          `}
-        >
-          {posts.map(post => (
-            <ListItem
-              styles={css`
-                &:nth-child(even) {
-                  background: #212121;
-                }
-              `}
-              key={post._id}
-            >
-              <Subject>
-                <MediumHeader text={post.subject} />
-              </Subject>
+      <List>
+        {Array.isArray(posts.data) ? (
+        posts.data.slice().reverse().map(post => (
+          <ListItem key={post._id}>
+            <Subject>
+              <MediumHeader text={post.subject} />
+            </Subject>
 
-              <Comment>
-                <Content
-                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.message, {
-                    allowedTags, 
+            <Comment>
+              <Content
+                dangerouslySetInnerHTML={{
+                  __html: sanitizeHtml(post.message, {
+                    allowedTags,
                     allowedAttributes,
-                  }) }}
-                />
-              </Comment>
+                  }),
+                }}
+              />
+            </Comment>
 
-              <UserDetails>
-                <SubHeader>{post.date}</SubHeader>
-                <SubHeader><Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link></SubHeader>
-              </UserDetails>
-            </ListItem>
-          ))}
-        </List>
+            <UserDetails>
+              <SubHeader>{formatDate(post.date)}</SubHeader>
+              <SubHeader>
+                <Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link>
+              </SubHeader>
+            </UserDetails>
+          </ListItem>
+        ))
+      ) : (
+        <p className={css`color: #fff; text-align:center;`}>No posts available</p>
       )}
+      </List>
     </Wrapper>
   );
 }

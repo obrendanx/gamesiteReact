@@ -44,9 +44,12 @@ const deleteanime = async (request, response) => {
 
     // Find the user by their username
     let user = await userFavourite.findOne({ username });
+    console.log(user);
+    console.log(username);
 
     if (!user) {
       return response.status(404).json({ message: 'User not found' });
+
     }
 
     // Find the index of the anime item with the provided ID

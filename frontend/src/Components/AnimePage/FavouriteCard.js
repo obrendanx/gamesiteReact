@@ -1,14 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useState} from 'react'
 import styled from '@emotion/styled'
 import Input from '../Form/Input'
 import { AuthContext } from '../User/Auth/AuthContext';
 import Submit from '../Form/Submit'
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Label from '../Form/Label'
-import config from '../../config';
 import { css } from '@emotion/css';
+import useUpdateAnime from '../../Querys/updateAnimeQuery';
 
 const Link = styled.a`
   text-decoration:none;
@@ -30,13 +28,13 @@ const AnimeContainer = styled.div`
     flex-wrap:wrap;
 `
 
-const AnimeGroup = styled.div`
-    margin:4.16%;
-    text-align:center;
-    @media screen and (max-width: 770px){
-        width:100%;
-    }
-`
+// const AnimeGroup = styled.div`
+//     margin:4.16%;
+//     text-align:center;
+//     @media screen and (max-width: 770px){
+//         width:100%;
+//     }
+// `
 
 const TextCont = styled.div`
     width:100%;
@@ -73,43 +71,35 @@ const Watching = styled.span`
 function FavouriteCard({ favouriteList, user, flex }) {
   const [currentEpisode, setCurrentEpisode] = useState(0);
   const [currentSeason, setCurrentSeason] = useState(0);
-  const [watching, setWatching] = useState(false)
   const { user: currentUser } = useContext(AuthContext);
-  // Set the environment (e.g., 'development' or 'production')
-  const environment = process.env.NODE_ENV || 'development';
-  // Get the API URL based on the environment
-  const userUrl = config[environment].user;
-  const postUrl = config[environment].post;
-  const animeUrl = config[environment].anime;
+  const updateAnimeMutation = useUpdateAnime();
 
   const handleClick = async (event, favourite) => {
     event.preventDefault();
 
-    try {
-      await axios.put(
-        `${animeUrl}/updateanime?username=${currentUser.username}&id=${favourite._id}`,
-        { currentEpisode, currentSeason }
-      );
-      toast.success("Anime updated successfully!");
-    } catch (error) {
-      console.error('Error updating anime:', error);
-      toast.error("Error updating anime!");
-    }
+      await updateAnimeMutation.mutateAsync({
+        itemId: favourite._id,
+        username: currentUser.username,
+        currentEpisode: currentEpisode,
+        currentSeason: currentSeason
+      });
   };
 
   return (
     <AnimeContainer>
             {favouriteList.map((favourite) => (
-                <div className={css`
+                <div 
+                className={css`
                   margin:4.16%;
                   text-align:center;
                   width: ${flex ? "100%" : "40%"};
                   @media screen and (max-width: 770px){
                       width:100%;
                   }
-                `}>
+                `}
+                key={favourite._id}
+                >
                     <div 
-                      key={favourite._id}
                       className={css`
                         width:100%;
                         height: ${flex ? "" : "300px"};
@@ -125,7 +115,7 @@ function FavouriteCard({ favouriteList, user, flex }) {
                         <Header>{favourite.animeTitle}</Header>
                     </Link>
                     </div>
-                    {currentUser.username !== user ? (
+                    {currentUser.username !== user.username ? (
                       null
                     ) : 
                       <form onSubmit={(event) => handleClick(event, favourite)}>
@@ -158,7 +148,6 @@ function FavouriteCard({ favouriteList, user, flex }) {
                     </div>
                 </div>
             ))}
-            <ToastContainer/>
     </AnimeContainer>
   );
 }

@@ -39,10 +39,7 @@ function AnimeSearch() {
 
   useEffect(() => {
     GetTopAnime();
-
   }, []);
-  console.log(topAnime);
-  console.log(animeList);
 
 
   return (

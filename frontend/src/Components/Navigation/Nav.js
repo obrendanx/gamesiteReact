@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
 import logo from '../../images/logo.jpg'
-import axios from 'axios';
 import styled from '@emotion/styled';
 import { AuthContext } from '../User/Auth/AuthContext';
-import config from '../../config';
 
 const Navbar = styled.nav`
     height:7vh;
@@ -97,30 +95,6 @@ const NavRight = styled.div`
 
 function Nav() {
     const { user, isLoggedIn } = useContext(AuthContext);
-    const [isGlobal, setIsGlobal] = useState(false);
-    // Set the environment (e.g., 'development' or 'production')
-    const environment = process.env.NODE_ENV || 'development';
-    // Get the API URL based on the environment
-    const userUrl = config[environment].user;
-    const postUrl = config[environment].post;
-    const animeUrl = config[environment].anime;
-    
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                if (Object.keys(user).length > 0) {
-                const username = user.username;
-                const res = await axios.get(`${userUrl}/isadmin?username=${username}`);
-                setIsGlobal(res.data.isGlobal);
-                } else {
-                setIsGlobal(false);
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchData();
-    }, [user, isGlobal, isLoggedIn]);
 
     return (
         <div>
@@ -142,7 +116,7 @@ function Nav() {
                             <Link to='/anime'>
                                 <NavListItem><NavLink> Anime </NavLink></NavListItem>
                             </Link>
-                            {isGlobal ? (
+                            {user.isGlobalAdmin ? (
                                 <Link to='/admin'>
                                     <NavListItem>
                                             <NavLink> Admin </NavLink> 

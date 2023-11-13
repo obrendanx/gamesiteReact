@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { css } from '@emotion/css';
-import axios from 'axios';
 import { EditorState} from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import { AuthContext } from '../User/Auth/AuthContext';
@@ -10,9 +9,8 @@ import Input from '../Form/Input';
 import Label from '../Form/Label';
 import Submit from '../Form/Submit';
 import Validator from '../Form/Validator';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import config from '../../config';
+import { toast } from 'react-toastify';
+import useAddPost from '../../Querys/addPostQuery';
 
 function FourmInput() {
   const [subject, setSubject] = useState('');
@@ -21,12 +19,7 @@ function FourmInput() {
   const [subjectError, setSubjectError] = useState('');
   const [messageError, setMessageError] = useState('');
   const { user, isLoggedIn } = useContext(AuthContext);
-  // Set the environment (e.g., 'development' or 'production')
-  const environment = process.env.NODE_ENV || 'development';
-  // Get the API URL based on the environment
-  const userUrl = config[environment].user;
-  const postUrl = config[environment].post;
-  const animeUrl = config[environment].anime;
+  const addPostMutation = useAddPost();
 
   const handleImageUpload = (file) => {
     // Check if the file URL starts with http or https
@@ -46,28 +39,19 @@ function FourmInput() {
     event.preventDefault();
 
     if (validateInputs()) {
-      try {
         const newPost = {
           subject,
           message: stateToHTML(editorState.getCurrentContent()),
           postedBy,
         };
 
-        console.log(postedBy);
-
-        const response = await axios.post(`${postUrl}/fourmspost`, newPost, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        console.log(response.data);
+        await addPostMutation.mutateAsync(newPost);
+    
         // Reset form fields
         setSubject('');
         setEditorState(EditorState.createEmpty());
-      } catch (error) {
-        console.log(error.message);
-      }
+    } else {
+      toast.error('Error: Invalid inputs');
     }
   };
 
@@ -166,7 +150,6 @@ function FourmInput() {
         {messageError && <Validator text={messageError} />}
 
         <Submit small />
-        <ToastContainer/>
       </form>
     </div>
   );

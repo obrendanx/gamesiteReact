@@ -21,16 +21,19 @@
 
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { AuthProvider } from './Components/User/Auth/AuthContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { AuthProvider } from './Components/User/Auth/AuthContext';
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
-  // Remove the StrictMode component
-  <AuthProvider>
-    <App />
-  </AuthProvider>
+  <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </QueryClientProvider>
 );
 
 reportWebVitals();

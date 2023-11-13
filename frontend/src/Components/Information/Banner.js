@@ -50,7 +50,6 @@ const BannerDiv = styled.div`
   `
 
 function Banner() {
-//State array variable to store all results from api
 const [animeList, setAnimeList] = useState([]);
 const [count, setCount] = useState(0);
 const animeTitle = [];
