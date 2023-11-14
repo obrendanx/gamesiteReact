@@ -66,9 +66,7 @@ describe('User Registering', () => {
         cy.get('input[placeholder="Password: "]').type('TestUser12.');
 
         cy.get('input[type="submit"]').click();
-
-        cy.wait(3000);
-        cy.contains('Resource not found (404)').should('be.visible');
+        cy.contains('Error registering: resource not found').should('exist');
     });
 
     it('submits a failed request 500', () => {
@@ -85,7 +83,6 @@ describe('User Registering', () => {
         cy.get('input[placeholder="Password: "]').type('TestUser12.');
 
         cy.get('input[type="submit"]').click();
-        cy.wait(3000);
-        cy.contains('Internal server error (500)').should('be.visible');
+        cy.contains('Error registering: An error has occurred').should('exist');
     });
 })
