@@ -135,6 +135,11 @@
       fixture: 'fetchUserData.json',
     }).as('followRequest');
 
+    // Intercept the /fetchusers request and return mock user data
+    // cy.intercept('GET', '**/showuserposts?username=adminuser', {
+    //   fixture: 'postsData.json', // Fixture for /fetchusers endpoint
+    // }).as('fetchUserPosts');
+
     cy.contains("PROFILE PAGE >").click();
 
     cy.contains("THE LAST NARUTO THE MOVIE").should('be.visible');
@@ -269,7 +274,7 @@
 
     cy.contains("Submit").click();
 
-    cy.contains("Profile Updated Successfully").should('be.visible');
+    cy.contains("User updated successfully").should('be.visible');
   }); 
 
   it('gives a 404 for editing a user profile', () => {
