@@ -26,7 +26,11 @@ const forumPostSchema = new mongoose.Schema({
     default: 0
   },
   usersWhoLiked: {
-    type: [String], // Array of user IDs who have liked the post
+    type: [String], 
+    default: []
+  },
+  usersWhoDisliked: {
+    type: [String], 
     default: []
   }
 })
