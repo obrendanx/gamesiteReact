@@ -74,7 +74,7 @@ const ButtonsGroup = styled.div`
   width:25%;
   display:flex;
   flex-direction:row;
-  gap:10px;
+  gap:5px;
   margin-top:5px;
 `
 
@@ -147,8 +147,8 @@ function Post() {
               <SubHeader>
                 <Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link>
                 <ButtonsGroup>
-                  <LikeBtn />
-                  <DislikeBtn />
+                  <LikeBtn total={post.likeTotal} postId={post._id}/>
+                  <DislikeBtn total={post.dislikeTotal} postId={post._id}/>
                 </ButtonsGroup>
               </SubHeader>
             </UserDetails>

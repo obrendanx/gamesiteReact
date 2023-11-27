@@ -55,6 +55,7 @@ const updatePostInteractions = async (request, response) => {
     const postId = request.query.postId;
     const action = request.query.action;
     const username = request.query.username;
+
     const post = await fourmPost.findById(postId);
 
     const userLikeIndex = post.usersWhoLiked.indexOf(username);
@@ -68,6 +69,11 @@ const updatePostInteractions = async (request, response) => {
       if(userLikeIndex === -1) {
         post.likeTotal += 1;
         post.usersWhoLiked.push(username);
+
+        if (userDislikeIndex !== -1) {
+          post.dislikeTotal -= 1;
+          post.usersWhoDisliked.splice(userDislikeIndex, 1);
+        }
       } else {
         post.likeTotal -= 1;
         post.usersWhoLiked.splice(userLikeIndex, 1);
@@ -76,8 +82,13 @@ const updatePostInteractions = async (request, response) => {
       if(userDislikeIndex === -1) {
         post.dislikeTotal += 1;
         post.usersWhoDisliked.push(username);
+
+        if (userLikeIndex !== -1) {
+          post.likeTotal -= 1;
+          post.usersWhoLiked.splice(userLikeIndex, 1);
+        }
       } else {
-        post.dislikeTotal += 1;
+        post.dislikeTotal -= 1;
         post.usersWhoDisliked.splice(userDislikeIndex, 1);
       }
     }
@@ -95,5 +106,5 @@ module.exports = {
   showposts,
   showuserposts,
   deletepost,
-  updatePostInteractions
+  updatePostInteractions 
 };

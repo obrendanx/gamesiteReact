@@ -13,4 +13,4 @@ COPY models ./models
 
 EXPOSE 5002
 
-CMD ["npm", "start"]
+CMD ["nodemon", "animeMicroservice.js"]
