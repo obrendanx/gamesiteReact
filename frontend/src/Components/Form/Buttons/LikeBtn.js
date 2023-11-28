@@ -4,9 +4,11 @@ import { css } from '@emotion/css';
 import useAddLikeQuery from '../../../Querys/addLikeQuery';
 import { AuthContext } from '../../User/Auth/AuthContext';
 
-function LikeBtn({total, postId}) {
+function LikeBtn({total, postId, likedUsers}) {
   const addLikeMutation = useAddLikeQuery();
   const { user } = useContext(AuthContext);
+
+  const isUserLiked = likedUsers.includes(user.username);
 
   const handleSubmit = async (event) => {
     await addLikeMutation.mutateAsync({ postId: postId, username: user.username, action: "like" });
@@ -17,7 +19,11 @@ function LikeBtn({total, postId}) {
         height:10px;
         width:30px;
     `}>
-        <button onClick={handleSubmit}><GrLike />{total}</button>
+        <button className={css`
+          background-color: ${isUserLiked ? '#1B79F7' : '#fff'};
+          border:none;
+          padding:2px;
+        `} onClick={handleSubmit}><GrLike />{total}</button>
     </div>
   )
 }

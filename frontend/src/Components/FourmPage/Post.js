@@ -147,8 +147,8 @@ function Post() {
               <SubHeader>
                 <Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link>
                 <ButtonsGroup>
-                  <LikeBtn total={post.likeTotal} postId={post._id}/>
-                  <DislikeBtn total={post.dislikeTotal} postId={post._id}/>
+                  <LikeBtn total={post.likeTotal} postId={post._id} likedUsers={post.usersWhoLiked} />
+                  <DislikeBtn total={post.dislikeTotal} postId={post._id} dislikeUsers={post.usersWhoDisliked}/>
                 </ButtonsGroup>
               </SubHeader>
             </UserDetails>

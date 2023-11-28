@@ -17,6 +17,8 @@ import useRemovePost from '../../../Querys/deletePostQuery';
 import useFollowUser from '../../../Querys/addFollowUserQuery';
 import useUnfollowUser from '../../../Querys/deleteFollowUserQuery';
 import { useUserFollowers } from '../../../Querys/showFollowersQuery';
+import LikeBtn from '../../Form/Buttons/LikeBtn';
+import DislikeBtn from '../../Form/Buttons/DislikeBtn';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -111,6 +113,16 @@ const ListItem = styled.li`
   &:nth-of-type(even) {
     background: #212121;
   }
+`
+
+const ButtonsGroup = styled.div`
+  width:25%;
+  display:flex;
+  flex-direction:row;
+  gap:5px;
+  margin-top:5px;
+  margin-left:7.5px;
+  margin-bottom:10px;
 `
 
 // const Error = styled.span`
@@ -327,6 +339,10 @@ function User() {
 
                 <UserDetails>
                   <SubHeader>{formatDate(post.date)}</SubHeader>
+                  <ButtonsGroup>
+                    <LikeBtn total={post.likeTotal} postId={post._id} likedUsers={post.usersWhoLiked} />
+                    <DislikeBtn total={post.dislikeTotal} postId={post._id} dislikeUsers={post.usersWhoDisliked}/>
+                  </ButtonsGroup>
                   { currentUser.username === user.username && isLoggedIn ? (
                     <DeleteBtn onClick={() => handleRemovePost(post._id)}>remove post</DeleteBtn>
                   ) : null}
