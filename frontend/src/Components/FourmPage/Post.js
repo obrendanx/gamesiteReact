@@ -6,6 +6,8 @@ import sanitizeHtml from 'sanitize-html';
 import { css, Global } from '@emotion/react';
 import PacmanLoader from "react-spinners/PacmanLoader";
 import { useShowPosts } from '../../Querys/showPostsQuery';
+import LikeBtn from '../Form/Buttons/LikeBtn';
+import DislikeBtn from '../Form/Buttons/DislikeBtn';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -42,7 +44,7 @@ const Content = styled.p`
 `;
 
 const UserDetails = styled.div`
-  height: 50px;
+  height: 75px;
   width: 100%;
   padding: 10px;
 `;
@@ -66,6 +68,14 @@ const ListItem = styled.li`
   &:nth-of-type(even) {
     background: #212121;
   }
+`
+
+const ButtonsGroup = styled.div`
+  width:25%;
+  display:flex;
+  flex-direction:row;
+  gap:5px;
+  margin-top:5px;
 `
 
 const override = {
@@ -136,6 +146,10 @@ function Post() {
               <SubHeader>{formatDate(post.date)}</SubHeader>
               <SubHeader>
                 <Link to={`/user/${post.postedBy}`}>{post.postedBy}</Link>
+                <ButtonsGroup>
+                  <LikeBtn total={post.likeTotal} postId={post._id} likedUsers={post.usersWhoLiked} />
+                  <DislikeBtn total={post.dislikeTotal} postId={post._id} dislikeUsers={post.usersWhoDisliked}/>
+                </ButtonsGroup>
               </SubHeader>
             </UserDetails>
           </ListItem>
