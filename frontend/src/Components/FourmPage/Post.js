@@ -8,6 +8,7 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 import { useShowPosts } from '../../Querys/showPostsQuery';
 import LikeBtn from '../Form/Buttons/LikeBtn';
 import DislikeBtn from '../Form/Buttons/DislikeBtn';
+import CommentBox from '../Form/CommentBox';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -152,6 +153,7 @@ function Post() {
                 </ButtonsGroup>
               </SubHeader>
             </UserDetails>
+            <CommentBox />
           </ListItem>
         ))
       ) : (
