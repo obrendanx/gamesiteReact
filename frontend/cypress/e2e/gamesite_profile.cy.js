@@ -89,10 +89,10 @@
 
     cy.contains("test image").should('be.visible');
     cy.contains("test").should('be.visible');
-    cy.contains("2023-08-11T20:52:35.902Z").should('be.visible');
+    cy.contains("11 August 2023 at 21:52:35").should('be.visible');
     cy.contains("テスト").should('be.visible');
     cy.contains("テストこの写真はテストです").should('be.visible');
-    cy.contains("2023-08-12T06:45:08.176Z").should('be.visible');
+    cy.contains("12 August 2023 at 07:45:08").should('be.visible');
     cy.contains("remove post").should('be.visible');
   }); 
 
@@ -134,6 +134,11 @@
     cy.intercept('GET', '**/fetchuser?username=adminuser', {
       fixture: 'fetchUserData.json',
     }).as('followRequest');
+
+    // Intercept the /fetchusers request and return mock user data
+    // cy.intercept('GET', '**/showuserposts?username=adminuser', {
+    //   fixture: 'postsData.json', // Fixture for /fetchusers endpoint
+    // }).as('fetchUserPosts');
 
     cy.contains("PROFILE PAGE >").click();
 
@@ -269,7 +274,7 @@
 
     cy.contains("Submit").click();
 
-    cy.contains("Profile Updated Successfully").should('be.visible');
+    cy.contains("User updated successfully").should('be.visible');
   }); 
 
   it('gives a 404 for editing a user profile', () => {

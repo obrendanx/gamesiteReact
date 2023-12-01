@@ -13,7 +13,11 @@ export default function useSignup () {
   return useMutation(
     async (registered) => {
       try {
-        const response = axios.post(`${userUrl}/signup`, registered);
+        const response = await axios.post(`${userUrl}/signup`, registered);
+        
+        if(response) {
+          window.location = './Login';
+        }
 
         return await response.data;
       } catch (error) {
@@ -28,7 +32,6 @@ export default function useSignup () {
       throwOnError: true,
       onSuccess: () => {
         queryClient.invalidateQueries('user');
-        window.location = './Login'; 
       },
       onError: (error) => { 
         toast.error(

@@ -17,17 +17,19 @@ export default function useUpdateUser () {
         console.log(details.updatedFields);
         const response = await axios.put(`${userUrl}/updateuserdetails/${details.username}`, details.updatedFields);
         
-        if (response.status === 200) {
-          toast.success("User updated successfully");
-          return response.data;
-        } 
+        toast.success("User updated successfully");
+        return response.data;
       } catch (error) {
-        if (error.response.status === 404) {
+        if (error.response && error.response.status === 404) {
           throw new Error(`User not found`);
-        } else {
+        } else if (error.response) {
           console.log(error.response.status);
           throw new Error('An error has occurred');
-        } 
+        } else {
+          // Handle other types of errors (without a response object)
+          console.error('An unexpected error occurred:', error);
+          throw new Error('An unexpected error has occurred');
+        }
       }
     },
     {

@@ -273,24 +273,24 @@ function User() {
     );
   }
 
-  if(isLoading) {
-    return (
-      <div className={css`
-        height:100vh;
-        width:100vw;
-      `}>
-        <span>Loading Posts ...</span>
-        <PacmanLoader
-          loading={!user}
-          size={15}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-          color="#F44034"
-          cssOverride={override}
-        />
-      </div>
-    );
-  }
+  // if(isLoading) {
+  //   return (
+  //     <div className={css`
+  //       height:100vh;
+  //       width:100vw;
+  //     `}>
+  //       <span>Loading Posts ...</span>
+  //       <PacmanLoader
+  //         loading={!user}
+  //         size={15}
+  //         aria-label="Loading Spinner"
+  //         data-testid="loader"
+  //         color="#F44034"
+  //         cssOverride={override}
+  //       />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
@@ -319,23 +319,39 @@ function User() {
         <MediumHeader text={user.fullName + 's posts:'}/>
         
         <Wrapper>
-          <List>
-            {userPosts.data.slice().reverse().map(post => (
-              <ListItem
-                key={post._id}
-              >
-                <Subject>
-                  <MediumHeader text={post.subject} />
-                </Subject>
+          { isLoading ? 
+            <div className={css`
+              height:100vh;
+              width:100vw;
+            `}>
+              <span>Loading Posts ...</span>
+              <PacmanLoader
+                loading={!user}
+                size={15}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+                color="#F44034"
+                cssOverride={override}
+              />
+            </div> 
+            : 
+            <List>
+              {userPosts.data.slice().reverse().map(post => (
+                <ListItem
+                  key={post._id}
+                >
+                  <Subject>
+                    <MediumHeader text={post.subject} />
+                  </Subject>
 
-               <Comment>
-                <Content
-                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.message, {
-                    allowedTags, 
-                    allowedAttributes,
-                  }) }}
-                />
-              </Comment> 
+                <Comment>
+                  <Content
+                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.message, {
+                      allowedTags, 
+                      allowedAttributes,
+                    }) }}
+                  />
+                </Comment> 
 
                 <UserDetails>
                   <SubHeader>{formatDate(post.date)}</SubHeader>
