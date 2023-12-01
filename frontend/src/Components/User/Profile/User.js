@@ -366,6 +366,7 @@ function User() {
               </ListItem>
             ))}
           </List>
+          } 
         </Wrapper>
         
         <MediumHeader text={user.fullName + 's favourite anime:'}/>  
