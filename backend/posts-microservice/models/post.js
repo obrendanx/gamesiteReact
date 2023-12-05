@@ -32,7 +32,17 @@ const forumPostSchema = new mongoose.Schema({
   usersWhoDisliked: {
     type: [String], 
     default: []
-  }
+  },
+  userComments: [{
+    username: {
+        type: String,
+        required: true
+    },
+    comment: {
+        type: String,
+        required: true
+    }
+}]
 })
 
 module.exports = mongoose.model('posts', forumPostSchema)

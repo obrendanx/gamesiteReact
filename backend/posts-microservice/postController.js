@@ -101,6 +101,29 @@ const updatePostInteractions = async (request, response) => {
   }
 };
 
+const addComment = async (request, response) => {
+  try {
+    const postId = request.query.postId;
+    const comment = request.body.comment;
+    const action = request.query.action;
+    const username = request.query.username;
+
+    const post = await fourmPost.findById(postId);
+
+    if (!post) {
+      return false; // Post not found
+    }
+
+    post.comment.push({ username, comment });
+
+    await post.save();
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false; // Error updating interaction
+  }
+};
+
 module.exports = {
   fourmspost,
   showposts,
