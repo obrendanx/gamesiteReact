@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { css } from '@emotion/css';
-import Button from './Buttons/Button'
+import Button from './Buttons/Button';
+import useAddComment from '../../Querys/addCommentQuery';
 
-function CommentBox({ value, onValueChange}) {
-
+function CommentBox() {
+    const [comment, setComment] = useState("");
     const handleInputChange = (event) => {
-        const newValue = event.target.value;
-        onValueChange(newValue);
+        setComment(event.target.value);
     };
 
   return (
@@ -18,7 +18,7 @@ function CommentBox({ value, onValueChange}) {
         padding:15px;
     `}>
         <textarea 
-            value={value}
+            value={comment}
             onChange={handleInputChange}
             className={css`
                 width:95%;

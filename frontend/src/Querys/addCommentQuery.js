@@ -7,16 +7,16 @@ const environment = process.env.NODE_ENV || 'development';
 // Get the API URL based on the environment
 const postUrl = config[environment].post;
 
-export default function useAddPost () {
+export default function useAddComment () {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async (newPost) => {
+    async (newComment) => {
       try {
-        const response = await axios.post(`${postUrl}/fourmspost`, newPost);
+        const response = await axios.post(`${postUrl}/addcomment`, newComment);
         
         if (response.status === 200) {
-          toast.success("Posted successfully");
+          toast.success("Comment posted");
           return response.data;
         } 
       } catch (error) {
@@ -35,7 +35,7 @@ export default function useAddPost () {
       },
       onError: (error) => {
         toast.error(
-          `Error adding post: ${error.message}`
+          `Error adding comment: ${error.message}`
         );
       },
     },

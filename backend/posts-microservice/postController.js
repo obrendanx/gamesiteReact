@@ -103,10 +103,10 @@ const updatePostInteractions = async (request, response) => {
 
 const addComment = async (request, response) => {
   try {
-    const postId = request.query.postId;
+    const postId = request.body.postId;
     const comment = request.body.comment;
-    const action = request.query.action;
-    const username = request.query.username;
+    const action = request.body.action;
+    const username = request.body.username;
 
     const post = await fourmPost.findById(postId);
 
@@ -129,5 +129,6 @@ module.exports = {
   showposts,
   showuserposts,
   deletepost,
-  updatePostInteractions 
+  updatePostInteractions,
+  addComment
 };
