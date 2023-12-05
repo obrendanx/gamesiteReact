@@ -11,11 +11,11 @@ function CommentBox({ value, onValueChange}) {
 
   return (
     <div className={css`
-        height:100px;
+        height:120px;
         width:100%;
-        &:nth-of-type(odd) {
-            background: #212121;
-        }
+        border:solid 2px #fff;
+        border-radius:10px;
+        padding:15px;
     `}>
         <textarea 
             value={value}
@@ -39,6 +39,7 @@ function CommentBox({ value, onValueChange}) {
                 border:none;
                 font-weight:600;
                 background:#fff;
+                margin-left:2.5%;
                 @media (max-width: 770px){
                   width:100%;
                 }
