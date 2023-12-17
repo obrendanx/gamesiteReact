@@ -105,7 +105,6 @@ const addComment = async (request, response) => {
   try {
     const postId = request.body.postId;
     const comment = request.body.comment;
-    const action = request.body.action;
     const username = request.body.username;
 
     const post = await fourmPost.findById(postId);
@@ -114,7 +113,7 @@ const addComment = async (request, response) => {
       return false; // Post not found
     }
 
-    post.comment.push({ username, comment });
+    post.userComments.push({ username: username, comment: comment });
 
     await post.save();
     return true;
@@ -123,6 +122,7 @@ const addComment = async (request, response) => {
     return false; // Error updating interaction
   }
 };
+
 
 module.exports = {
   fourmspost,
