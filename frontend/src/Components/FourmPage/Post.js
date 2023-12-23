@@ -153,7 +153,7 @@ function Post() {
                 </ButtonsGroup>
               </SubHeader>
             </UserDetails>
-            <CommentBox />
+            <CommentBox userComment={post.userComments}/>
           </ListItem>
         ))
       ) : (

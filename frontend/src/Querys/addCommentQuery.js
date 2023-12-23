@@ -21,7 +21,7 @@ export default function useAddComment () {
         } 
       } catch (error) {
         if (error.response.status === 404) {
-          throw new Error(`Fourm input missing`);
+          throw new Error(`Fourm input incorrect`);
         } else {
           console.log(error.response.status);
           throw new Error('An error has occurred');

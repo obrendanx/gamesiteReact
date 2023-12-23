@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { css } from '@emotion/css';
 import Button from './Buttons/Button';
 import useAddComment from '../../Querys/addCommentQuery';
+import { AuthContext } from '../User/Auth/AuthContext';
 
-function CommentBox() {
+function CommentBox({userComment}) {
     const [comment, setComment] = useState("");
+    const { user } = useContext(AuthContext);
     const handleInputChange = (event) => {
         setComment(event.target.value);
     };
 
   return (
     <div className={css`
-        height:120px;
+        min-height:120px;
         width:100%;
         border:solid 2px #fff;
         border-radius:10px;
@@ -41,12 +43,33 @@ function CommentBox() {
                 background:#fff;
                 margin-left:2.5%;
                 @media (max-width: 770px){
-                  width:100%;
+                  width:95%;
                 }
             `}
         >
             Comment
         </button>
+
+        <div>
+            {userComment.map(comment => (
+                <div className={css`
+                    width:95%;
+                    margin-left:2.5%;
+                    padding:15px;
+                    color:#fff;
+                    &:nth-of-type(even) {
+                        background: #212121;
+                    }
+                `}>
+                    <p>{comment.comment}</p>
+                    <h3 className={css`
+                        font-size:0.6em;
+                    `}>
+                        comment by: {comment.username}
+                    </h3>
+                </div>
+            ))}
+        </div>
     </div>
   )
 }
