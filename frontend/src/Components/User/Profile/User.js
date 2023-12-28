@@ -19,6 +19,7 @@ import useUnfollowUser from '../../../Querys/deleteFollowUserQuery';
 import { useUserFollowers } from '../../../Querys/showFollowersQuery';
 import LikeBtn from '../../Form/Buttons/LikeBtn';
 import DislikeBtn from '../../Form/Buttons/DislikeBtn';
+import CommentBox from '../../Form/CommentBox';
 
 const Wrapper = styled.div`
   min-height: 250px;
@@ -55,7 +56,7 @@ const Content = styled.p`
 `;
 
 const UserDetails = styled.div`
-  height: 65px;
+  min-height: 65px;
   width: 100%;
   padding: 10px;
 `;
@@ -69,7 +70,7 @@ const SubHeader = styled.h3`
 `;
 
 const DeleteBtn = styled.button`
-  margin-top:5px;
+  margin-top:10px;
   text-align:left;
   margin-left:10px;
   font-size: 0.7em;
@@ -122,7 +123,7 @@ const ButtonsGroup = styled.div`
   gap:5px;
   margin-top:5px;
   margin-left:7.5px;
-  margin-bottom:10px;
+  margin-bottom:25px;
 `
 
 // const Error = styled.span`
@@ -359,6 +360,7 @@ function User() {
                     <LikeBtn total={post.likeTotal} postId={post._id} likedUsers={post.usersWhoLiked} />
                     <DislikeBtn total={post.dislikeTotal} postId={post._id} dislikeUsers={post.usersWhoDisliked}/>
                   </ButtonsGroup>
+                  <CommentBox userComment={post.userComments} postId={post._id}/>
                   { currentUser.username === user.username && isLoggedIn ? (
                     <DeleteBtn onClick={() => handleRemovePost(post._id)}>remove post</DeleteBtn>
                   ) : null}
