@@ -3,13 +3,38 @@ import { css } from '@emotion/css';
 import Button from './Buttons/Button';
 import useAddComment from '../../Querys/addCommentQuery';
 import { AuthContext } from '../User/Auth/AuthContext';
+import useRemoveComment from '../../Querys/deleteCommentQuery';
 
-function CommentBox({userComment}) {
+function CommentBox({userComment, postId}) {
     const [comment, setComment] = useState("");
-    const { user } = useContext(AuthContext);
+    const { user, isLoggedIn } = useContext(AuthContext);
+    const removeCommentMutation = useRemoveComment();
     const handleInputChange = (event) => {
         setComment(event.target.value);
     };
+    const addCommentMutation = useAddComment();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const newComment = {
+            username: user.username,
+            postId: postId,
+            comment: comment,
+        };
+
+        await addCommentMutation.mutateAsync(newComment);
+    
+        // Reset form fields
+        setComment('');
+    };
+
+    const handleRemoveComment = async (postid, commentid) => {
+      await removeCommentMutation.mutateAsync({
+        postId: postid,
+        commentId: commentid
+      });
+  };
 
   return (
     <div className={css`
@@ -46,6 +71,7 @@ function CommentBox({userComment}) {
                   width:95%;
                 }
             `}
+            onClick={handleSubmit}
         >
             Comment
         </button>
@@ -57,6 +83,7 @@ function CommentBox({userComment}) {
                     margin-left:2.5%;
                     padding:15px;
                     color:#fff;
+                    position:relative;
                     &:nth-of-type(even) {
                         background: #212121;
                     }
@@ -67,6 +94,30 @@ function CommentBox({userComment}) {
                     `}>
                         comment by: {comment.username}
                     </h3>
+                    { user.username === comment.username && isLoggedIn ? (
+                    <div 
+                        onClick={() => handleRemoveComment(postId, comment._id)}
+                        className={css`
+                            text-align:left;
+                            margin-left:10px;
+                            font-size: 0.7em;
+                            color: #F3664A;
+                            font-family: Roboto, sans-serif;
+                            font-weight: 300;
+                            border:none;
+                            width:100px;
+                            position:absolute;
+                            right:0;
+                            background:none;
+                            margin-bottom:5px;
+                            &:hover{
+                                cursor:pointer;
+                            }
+                        `}
+                    >
+                        remove comment
+                    </div>
+                  ) : null}
                 </div>
             ))}
         </div>

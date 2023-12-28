@@ -7,22 +7,21 @@ const environment = process.env.NODE_ENV || 'development';
 // Get the API URL based on the environment
 const postUrl = config[environment].post;
 
-export default function useAddComment () {
+export default function useRemoveComment () {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async (newComment) => {
-      console.log(newComment);
+    async ({postId, commentId}) => {
       try {
-        const response = await axios.post(`${postUrl}/comment`, newComment);
+        const response = await axios.delete(`${postUrl}/deletecomment?postId=${postId}&commentId=${commentId}`);
         
         if (response.status === 200) {
-          toast.success("Comment posted");
+          toast.success("Comment successfully deleted");
           return response.data;
         } 
       } catch (error) {
         if (error.response.status === 404) {
-          throw new Error(`Fourm input incorrect`, newComment);
+          throw new Error(`Post not found`);
         } else {
           console.log(error.response.status);
           throw new Error('An error has occurred');
@@ -31,13 +30,17 @@ export default function useAddComment () {
     },
     {
       throwOnError: true,
-      onSuccess: () => {
-        queryClient.invalidateQueries('posts'); 
-        toast.success("Comment posted");
+      onMutate: (variables) => {
+        const previousData = queryClient.getQueryData('userComments');
+        return previousData;
       },
-      onError: (error) => {
+      onSuccess: () => {
+        queryClient.invalidateQueries('userComments'); 
+      },
+      onError: (error, variables, previousData) => {
+        queryClient.setQueryData('userComments', previousData);
         toast.error(
-          `Error adding comment: ${error.message}`
+          `Error removing comment: ${error.message}`
         );
       },
     },

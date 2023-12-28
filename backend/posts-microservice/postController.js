@@ -113,6 +113,8 @@ const addComment = async (request, response) => {
       return false; // Post not found
     }
 
+    console.log(comment);
+
     post.userComments.push({ username: username, comment: comment });
 
     await post.save();
@@ -123,6 +125,38 @@ const addComment = async (request, response) => {
   }
 };
 
+const deleteComment = async (request, response) => {
+  try {
+    const postId = request.query.postId;
+    const commentId = request.query.commentId; // Assuming commentId is passed in the request body
+
+    console.log(postId);
+    console.log(commentId);
+
+    const post = await fourmPost.findById(postId);
+
+    if (!post) {
+      return response.json({ success: false, message: 'Post not found' });
+    }
+
+    // Find the index of the comment in the userComments array
+    const commentIndex = post.userComments.findIndex(comment => comment._id == commentId);
+
+    if (commentIndex === -1) {
+      return response.json({ success: false, message: 'Comment not found' });
+    }
+
+    // Remove the comment from the userComments array
+    post.userComments.splice(commentIndex, 1);
+
+    await post.save();
+    return response.json({ success: true, message: 'Comment deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    return response.json({ success: false, message: 'Error deleting comment' });
+  }
+};
+
 
 module.exports = {
   fourmspost,
@@ -130,5 +164,6 @@ module.exports = {
   showuserposts,
   deletepost,
   updatePostInteractions,
-  addComment
+  addComment,
+  deleteComment
 };
