@@ -1,0 +1,87 @@
+//@import 'mixins.scss';
+//@import './components/banner.scss';
+//@import './components/lgTextBox.scss';
+//@import './components/SmTextBox.scss';
+//@import './components/MdTextBox.scss';
+//@import './components/home.scss';
+//@import './components/footer.scss';
+//@import './components/logonForm.scss';
+//@import './components/logout.scss';
+//@import './components/profile.scss';
+//@import './components/animecard.scss';
+//@import './components/profileicon.scss';
+//@import './components/profileform.scss';
+
+/*
+Colors:
+#D32F2F
+#FFCDD2
+#F44336
+#FFFFFF
+#607D8B
+#212121
+#757575
+#BDBDBD
+*/
+
+*{
+  //sets default styles for entire page
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  text-decoration:none;
+}
+
+body{
+  //stops scroll on x axis
+  overflow-x: hidden;
+  background:rgb(37, 38, 39);
+  //sets default height
+  height:100%;
+}
+
+html{
+  //sets default height
+  height:100%;
+}
+
+.App{
+  display:flex;
+  flex-direction:column;
+  flex-wrap:nowrap;
+  //god knows what this does
+  min-height:calc(100vh - 380px);
+  //sets default width for page components
+  width: 80%;
+  margin: auto;
+}
+
+
+////////////////////////////////////////////////////
+/// Styles for Screens widths of 770px and below ///
+////////////////////////////////////////////////////
+@media screen and (max-width: 770px) {
+  .App{
+    //set the default width for the device width
+    width:100%;
+  }
+
+@media screen and (max-width: 1200px){
+  .con_side{
+    display:none;
+  }
+  .con_main{
+    margin-left:10% !important;
+  }
+
+  //Container for anime cards on search bar
+  .anime_group{
+    width:40%;
+    margin:5% !important;
+  }
+
+  .banner_info{
+    font-size:1.1em !important;
+  }
+}
+}

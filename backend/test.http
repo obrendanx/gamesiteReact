@@ -1,0 +1,18 @@
+# POST http://localhost:5001/login
+# Content-Type: application/json
+
+# {
+#   "username": "adminuser",
+#   "email": "admin@admin.com",
+#   "password": "Zx56Tt407.9s"
+# }
+//POST http://localhost:5002/like?username=adminuser&postId=653f95c1ff88f0c4688c0de3&action=like
+
+POST http://localhost:5002/comment
+Content-Type: application/json
+
+{
+    "username": "adminuser",
+    "postId": "653f95c1ff88f0c4688c0de3",
+    "comment": "This is the first user comment"
+}

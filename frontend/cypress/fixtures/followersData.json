@@ -1,0 +1,16 @@
+{
+    "followers": [
+        {
+            "_id": "64df468bba158f56439a90560",
+            "username": "test3"
+        },
+        {
+            "_id": "64ce63958a349d55a9e97e43",
+            "username": "test4"
+        },
+        {
+            "_id": "64ce63958a349d55a9e3be44",
+            "username": "test5"
+        }
+    ]
+}

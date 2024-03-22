@@ -1,0 +1,117 @@
+{
+    "_id": "64dce59bf1f327abf2631d13",
+    "username": "adminuser",
+    "favouriteAnimeItems": [
+        {
+            "watching": true,
+            "currentEpisode": 7,
+            "currentSeason": 3,
+            "animeTitle": "THE LAST NARUTO THE MOVIE",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/1491/134498.jpg",
+            "animeUrl": "https://myanimelist.net/anime/16870/The_Last__Naruto_the_Movie",
+            "_id": "64dce5a1f1f327abf2631d17",
+            "date": "2023-08-16T15:05:05.345Z"
+        },
+        {
+            "watching": true,
+            "currentEpisode": 23,
+            "currentSeason": 2,
+            "animeTitle": "DRAGON BALL Z スペシャル たったひとりの最終決戦~フリーザに挑んだZ戦士孫悟空の父~",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/8/3303.jpg",
+            "animeUrl": "https://myanimelist.net/anime/986/Dragon_Ball_Z_Special_1__Tatta_Hitori_no_Saishuu_Kessen",
+            "_id": "64dce5b3f1f327abf2631d1d",
+            "date": "2023-08-16T15:05:23.202Z"
+        },
+        {
+            "watching": false,
+            "currentEpisode": 0,
+            "currentSeason": 0,
+            "animeTitle": "劇場版 NARUTO -ナルト- 大興奮!みかづき島のアニマル騒動だってばよ",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/1918/134487.jpg",
+            "animeUrl": "https://myanimelist.net/anime/2144/Naruto_Movie_3__Dai_Koufun_Mikazuki_Jima_no_Animaru_Panic_Dattebayo",
+            "_id": "64de0caf432f759e4da126cd",
+            "date": "2023-08-17T12:03:59.762Z"
+        },
+        {
+            "watching": false,
+            "currentEpisode": 0,
+            "currentSeason": 0,
+            "animeTitle": "銀魂。",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/3/83528.jpg",
+            "animeUrl": "https://myanimelist.net/anime/34096/Gintama",
+            "_id": "64de1c4b432f759e4da14e0b",
+            "date": "2023-08-17T13:10:35.775Z"
+        },
+        {
+            "animeTitle": "STEINS;GATE",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/1935/127974.jpg",
+            "animeUrl": "https://myanimelist.net/anime/9253/Steins_Gate",
+            "watching": false,
+            "currentEpisode": 0,
+            "currentSeason": 0,
+            "_id": "64e374c1acbe25097c494c5a",
+            "date": "2023-08-21T14:29:21.698Z"
+        },
+        {
+            "animeTitle": "劇場版NARUTO-ナルト- 疾風伝 絆",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/1484/134494.jpg",
+            "animeUrl": "https://myanimelist.net/anime/4437/Naruto__Shippuuden_Movie_2_-_Kizuna",
+            "watching": false,
+            "currentEpisode": 0,
+            "currentSeason": 0,
+            "_id": "64f1e21de71511514c67d9a8",
+            "date": "2023-09-01T13:07:41.241Z"
+        },
+        {
+            "animeTitle": "BORUTO -NARUTO THE MOVIE- ナルトが火影になった日",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/6/77678.jpg",
+            "animeUrl": "https://myanimelist.net/anime/32365/Boruto__Naruto_the_Movie_-_Naruto_ga_Hokage_ni_Natta_Hi",
+            "watching": false,
+            "currentEpisode": 0,
+            "currentSeason": 0,
+            "_id": "65324a9b4b4fbe31b4f381ee",
+            "date": "2023-10-20T09:38:35.220Z"
+        },
+        {
+            "animeTitle": "すべてがFになる THE PERFECT INSIDER",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/9/76071.jpg",
+            "animeUrl": "https://myanimelist.net/anime/28621/Subete_ga_F_ni_Naru",
+            "watching": false,
+            "currentEpisode": 0,
+            "currentSeason": 0,
+            "_id": "653645e44b4fbe31b4fee7a9",
+            "date": "2023-10-23T10:07:32.475Z"
+        },
+        {
+            "animeTitle": "どうにかなる日々",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/1924/106583.jpg",
+            "animeUrl": "https://myanimelist.net/anime/40747/Dounika_Naru_Hibi",
+            "watching": false,
+            "currentEpisode": 0,
+            "currentSeason": 0,
+            "_id": "65364c414b4fbe31b401bec4",
+            "date": "2023-10-23T10:34:41.645Z"
+        },
+        {
+            "animeTitle": "アラタなるセカイ WORLD'S/START/LOAD/END",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/6/42075.jpg",
+            "animeUrl": "https://myanimelist.net/anime/14373/Arata_naru_Sekai__Worlds_Start_Load_End",
+            "watching": false,
+            "currentEpisode": 0,
+            "currentSeason": 0,
+            "_id": "65365c614b4fbe31b415be55",
+            "date": "2023-10-23T11:43:29.636Z"
+        },
+        {
+            "animeTitle": "風と木の詩　ＳＡＮＣＴＵＳ－聖なるかな－",
+            "animeImgSrc": "https://cdn.myanimelist.net/images/anime/5/33835.jpg",
+            "animeUrl": "https://myanimelist.net/anime/1637/Kaze_to_Ki_no_Uta_Sanctus__Sei_Naru_Kana",
+            "watching": false,
+            "currentEpisode": 0,
+            "currentSeason": 0,
+            "_id": "65365de84b4fbe31b41b8ffd",
+            "date": "2023-10-23T11:50:00.744Z"
+        }
+    ],
+    "__v": 19
+}
